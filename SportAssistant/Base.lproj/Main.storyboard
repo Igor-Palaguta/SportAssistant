@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZYp-TO-101">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="emb-Jt-vOa">
+            <objects>
+                <navigationController id="ZYp-TO-101" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rsp-Dh-gGc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fCw-9A-acM" kind="relationship" relationship="rootViewController" id="4Jk-he-QF5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lu5-4f-vLE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-792" y="-564"/>
+        </scene>
+        <!--Intervals View Controller-->
+        <scene sceneID="hq7-v3-FUk">
+            <objects>
+                <tableViewController id="fCw-9A-acM" customClass="IntervalsViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="JXo-rC-XaZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IntervalCell" rowHeight="44" id="tOa-gp-Ltm" customClass="IntervalCell" customModule="SportAssistant" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tOa-gp-Ltm" id="2IG-yS-SDx">
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W12-1G-TTb">
+                                            <rect key="frame" x="15" y="11.5" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHf-OD-UEm">
+                                            <rect key="frame" x="324" y="11.5" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="W12-1G-TTb" firstAttribute="centerY" secondItem="2IG-yS-SDx" secondAttribute="centerY" id="E2M-hT-qYZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="sHf-OD-UEm" secondAttribute="trailing" constant="15" id="Krr-N4-czy"/>
+                                        <constraint firstItem="W12-1G-TTb" firstAttribute="leading" secondItem="2IG-yS-SDx" secondAttribute="leading" constant="15" id="gtB-Zd-oOn"/>
+                                        <constraint firstItem="sHf-OD-UEm" firstAttribute="centerY" secondItem="2IG-yS-SDx" secondAttribute="centerY" id="p6k-7L-A7L"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bestLast" destination="W12-1G-TTb" id="sOd-c4-6gH"/>
+                                    <outlet property="dateLabel" destination="sHf-OD-UEm" id="rzj-fu-DWz"/>
+                                    <segue destination="3eW-Fv-zfJ" kind="push" id="x6p-39-Khj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fCw-9A-acM" id="jFf-se-neQ"/>
+                            <outlet property="delegate" destination="fCw-9A-acM" id="zY7-Hh-Ry9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="QeE-vZ-Lby"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JWV-rg-dp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="246" y="-539"/>
+        </scene>
+        <!--Interval View Controller-->
+        <scene sceneID="Ngv-HL-Gv0">
+            <objects>
+                <viewController id="3eW-Fv-zfJ" customClass="IntervalViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JSa-eG-7K4"/>
+                        <viewControllerLayoutGuide type="bottom" id="2OS-L9-Xzh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3go-AT-PNU" customClass="LineChartView" customModule="Charts">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6u-Zk-niK" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="v6u-Zk-niK" secondAttribute="trailing" id="7ty-ac-zqY"/>
+                            <constraint firstItem="v6u-Zk-niK" firstAttribute="leading" secondItem="3go-AT-PNU" secondAttribute="leading" id="RVf-ct-Kqd"/>
+                            <constraint firstItem="2OS-L9-Xzh" firstAttribute="top" secondItem="v6u-Zk-niK" secondAttribute="bottom" id="t7n-zP-QtR"/>
+                            <constraint firstItem="v6u-Zk-niK" firstAttribute="top" secondItem="3go-AT-PNU" secondAttribute="top" id="z5Z-ui-3wA"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="rJJ-ud-hDV"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="chartView" destination="v6u-Zk-niK" id="Fpq-Ts-xC3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLG-nJ-wbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="324" y="357"/>
+        </scene>
+    </scenes>
+</document>
