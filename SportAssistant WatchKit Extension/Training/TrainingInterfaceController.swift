@@ -32,12 +32,10 @@ class TrainingInterfaceController: WKInterfaceController {
 
    override func didDeactivate() {
       super.didDeactivate()
-      NSLog("didDeactivate")
    }
 
    override func willActivate() {
       super.willActivate()
-      NSLog("willActivate")
    }
 
    override func awakeWithContext(context: AnyObject?) {

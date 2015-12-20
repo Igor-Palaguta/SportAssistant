@@ -33,17 +33,13 @@ class Accelerometer {
 
       let semaphore = dispatch_semaphore_create(0)
 
-      NSProcessInfo.processInfo().performExpiringActivityWithReason("Training") {
+      NSProcessInfo.processInfo().performExpiringActivityWithReason(String(Accelerometer)) {
          expired in
          if !expired {
-            NSLog("b performExpiringActivityWithReason not expired")
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(300 * Double(NSEC_PER_SEC)))
             dispatch_semaphore_wait(semaphore, delayTime)
-            NSLog("a performExpiringActivityWithReason not expired")
          } else {
-            NSLog("b performExpiringActivityWithReason expired")
             dispatch_semaphore_signal(semaphore)
-            NSLog("a performExpiringActivityWithReason expired")
          }
       }
 
