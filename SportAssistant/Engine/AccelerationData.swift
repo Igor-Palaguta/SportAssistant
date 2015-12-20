@@ -6,14 +6,14 @@ class AccelerationData: Object {
    dynamic var x: Double = 0
    dynamic var y: Double = 0
    dynamic var z: Double = 0
-   dynamic var total: Double = 0
+   dynamic var acceleration: Double = 0
 
    convenience init(x: Double, y: Double, z: Double) {
       self.init()
       self.x = x
       self.y = y
       self.z = z
-      self.total = sqrt(x * x + y * y + z * z)
+      self.acceleration = sqrt(x * x + y * y + z * z)
    }
 }
 
@@ -37,16 +37,15 @@ extension Realm {
             interval.addData(data)
             NSNotificationCenter.defaultCenter().postNotificationName(DidChangeIntervalNotification, object: self, userInfo: ["id": intervalId, "data": data])
          }
-
       } else {
          let interval = Interval()
+         interval.achievements = self.objects(Achievements).first!
          interval.id = intervalId
-         interval.addData(data)
          try! self.write {
+            interval.addData(data)
             self.add(interval)
             NSNotificationCenter.defaultCenter().postNotificationName(DidAddIntervalNotification, object: self, userInfo: ["id": intervalId])
          }
       }
-
    }
 }

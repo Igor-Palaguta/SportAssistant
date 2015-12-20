@@ -66,6 +66,14 @@ private extension AppDelegate {
 
       // Set this as the configuration used for the default Realm
       Realm.Configuration.defaultConfiguration = config
+
+      let realm = try! Realm()
+      if realm.objects(Achievements.self).isEmpty {
+         try! realm.write {
+            let achievements = Achievements()
+            realm.add(achievements)
+         }
+      }
    }
 
    func startWatchSession() {

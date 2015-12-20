@@ -1,7 +1,10 @@
 import UIKit
 import RealmSwift
+import ReactiveCocoa
 
-class IntervalsViewController: UITableViewController {
+final class IntervalsViewController: UITableViewController {
+
+   @IBOutlet weak private var bestLabel: UILabel!
 
    private var _intervals: Results<Interval>?
 
@@ -15,18 +18,32 @@ class IntervalsViewController: UITableViewController {
       return intervals
    }
 
+   private lazy var achievements: Achievements = {
+      let realm = try! Realm()
+      return realm.objects(Achievements.self).first!
+   }()
+
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      NSNotificationCenter.defaultCenter().addObserver(self,
-         selector: Selector("reloadData"),
-         name: DidAddIntervalNotification,
-         object: nil)
-   }
+      DynamicProperty(object: self.bestLabel, keyPath: "text") <~
+         DynamicProperty(object: self.achievements, keyPath: "acceleration")
+            .producer
+            .map {
+               let acceleration = $0 as! Double
+               return "\(acceleration)"
+      }
 
-   @objc private func reloadData() {
-      self._intervals = nil
-      self.tableView.reloadData()
+      NSNotificationCenter.defaultCenter()
+         .rac_addObserverForName(DidAddIntervalNotification, object: nil)
+         .takeUntil(self.rac_willDeallocSignal())
+         .subscribeNext {
+            [weak self] _ in
+            if let strongSelf = self {
+               strongSelf._intervals = nil
+               strongSelf.tableView.reloadData()
+            }
+      }
    }
 
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

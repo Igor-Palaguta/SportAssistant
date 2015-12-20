@@ -11,7 +11,7 @@ private extension LineChartDataSet {
    }
 }
 
-class IntervalViewController: UIViewController {
+final class IntervalViewController: UIViewController {
 
    var interval: Interval!
 

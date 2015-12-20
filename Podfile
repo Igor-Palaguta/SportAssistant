@@ -11,6 +11,7 @@ target 'SportAssistant' do
   pod 'Charts'
   pod 'RealmSwift'
   pod 'SwiftyTimer'
+  pod 'SwiftDate'
   pod 'ReactiveCocoa', '4.0.0-RC.1'
 end
 
