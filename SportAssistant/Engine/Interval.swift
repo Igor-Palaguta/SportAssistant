@@ -4,9 +4,14 @@ import RealmSwift
 class Interval: Object {
    dynamic var id: String = ""
    dynamic var best: Double = 0
-   dynamic var start: NSDate?
-   dynamic var completed: Bool = true
+   dynamic var start: NSDate!
+   dynamic var completed: Bool = false
    dynamic var achievements: Achievements!
+
+   dynamic var duration: NSTimeInterval {
+      let end = self.completed ? self.data.last!.date : NSDate()
+      return end.timeIntervalSinceDate(self.start)
+   }
 
    let data = List<AccelerationData>()
 
@@ -27,5 +32,13 @@ class Interval: Object {
 
    override static func primaryKey() -> String? {
       return "id"
+   }
+
+   override static func ignoredProperties() -> [String] {
+      return ["duration"]
+   }
+
+   class func keyPathsForValuesAffectingDuration() -> NSSet {
+      return NSSet(object: "completed")
    }
 }

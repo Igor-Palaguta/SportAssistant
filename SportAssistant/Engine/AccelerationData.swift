@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 
 class AccelerationData: Object {
-   dynamic var date: NSDate? = nil
+   dynamic var date: NSDate!
    dynamic var x: Double = 0
    dynamic var y: Double = 0
    dynamic var z: Double = 0
@@ -38,10 +38,13 @@ extension Realm {
             NSNotificationCenter.defaultCenter().postNotificationName(DidChangeIntervalNotification, object: self, userInfo: ["id": intervalId, "data": data])
          }
       } else {
+
          let interval = Interval()
          interval.achievements = self.objects(Achievements).first!
          interval.id = intervalId
          try! self.write {
+            let lastInterval: Interval? = self.objects(Interval).last
+            lastInterval?.completed = true
             interval.addData(data)
             self.add(interval)
             NSNotificationCenter.defaultCenter().postNotificationName(DidAddIntervalNotification, object: self, userInfo: ["id": intervalId])

@@ -38,6 +38,7 @@
 		788A51DA1C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51D91C15835600A166A0 /* Assets.xcassets */; };
 		789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */; };
 		789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* Achievements.swift */; };
+		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 		8BC7F24F9F340BE15D680FF6 /* Pods_SportAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */; };
 /* End PBXBuildFile section */
@@ -153,6 +154,7 @@
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+EveryMinute.swift"; sourceTree = "<group>"; };
 		789DE8F01C27571400B8CA98 /* Achievements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
+		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
 		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
 		E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportAssistantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6599CE32DF9B9848069AFB /* Pods-SportAssistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistantTests/Pods-SportAssistantTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				7831F62F1C217B7600A7CBB1 /* ReusableView.swift */,
 				7854643D1C22A95E00F399D9 /* JSONAble.swift */,
 				789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */,
+				789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				78045FCD1C25FF1000FEEB87 /* Interval.swift in Sources */,
 				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,
 				789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */,
+				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
 				7831F62B1C21720700A7CBB1 /* Training.swift in Sources */,
 				7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */,

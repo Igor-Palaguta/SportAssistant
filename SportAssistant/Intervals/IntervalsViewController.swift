@@ -30,8 +30,8 @@ final class IntervalsViewController: UITableViewController {
          DynamicProperty(object: self.achievements, keyPath: "acceleration")
             .producer
             .map {
-               let acceleration = $0 as! Double
-               return "\(acceleration)"
+               let best = $0 as! Double
+               return NSNumberFormatter.formatAccelereration(best)
       }
 
       NSNotificationCenter.defaultCenter()
