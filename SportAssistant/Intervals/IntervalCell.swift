@@ -1,63 +1,35 @@
 import UIKit
 import ReactiveCocoa
 
-private extension UIView {
-   func startRecordAnimation() {
-      self.hidden = false
-      let fadeAnimation = CABasicAnimation(keyPath: "opacity")
-      fadeAnimation.fromValue = 0
-      fadeAnimation.toValue = 1
-      fadeAnimation.autoreverses = true
-      fadeAnimation.duration = 1
-      fadeAnimation.repeatCount = Float.infinity
-      self.layer.addAnimation(fadeAnimation, forKey: "recordingAnimation")
-   }
+class ProgressView: UIView {
 
-   func stopRecordAnimation() {
-      self.hidden = true
-      self.layer.removeAnimationForKey("recordingAnimation")
-   }
-}
-
-final class IntervalCell: UITableViewCell, ReusableNibView {
-
-   @IBOutlet private weak var dateLabel: UILabel!
-   @IBOutlet private weak var durationLabel: UILabel!
-   @IBOutlet private weak var bestLast: UILabel!
-   @IBOutlet private weak var progressView: UIView!
-
-   private static let dateFormatter: NSDateFormatter = {
-      let dateFormatter = NSDateFormatter()
-      dateFormatter.timeStyle = .ShortStyle
-      dateFormatter.dateStyle = .ShortStyle
-      return dateFormatter
-   }()
-
-   private class func formatDuration(duration: NSTimeInterval, parts: [Int]) -> String {
-      let seconds = Int(duration)
-      var componentValue = seconds
-      var components = parts.flatMap {
-         divider -> Int? in
-         if componentValue == 0 {
-            return nil
+   dynamic var isAnimating = false {
+      didSet {
+         if self.isAnimating {
+            self.startAnimation()
+         } else {
+            self.stopAnimation()
          }
-
-         let value = componentValue % divider
-         componentValue /= divider
-         return value
       }
-
-      if componentValue > 0 || components.isEmpty {
-         components.append(componentValue)
-      }
-
-      return components.reverse().map {
-         String(format: "%02d", arguments: [$0])
-      }.joinWithSeparator(":").stringByAppendingString(" s")
    }
 
-   private class func formatDuration(duration: NSTimeInterval) -> String {
-      return self.formatDuration(duration, parts: [60, 60])
+   override var backgroundColor: UIColor? {
+      set {
+         //do nothing
+         //required if view inside cell. During selection color is clear
+      }
+      get {
+         return super.backgroundColor
+      }
+   }
+
+   private var color: UIColor? {
+      set {
+         super.backgroundColor = newValue
+      }
+      get {
+         return super.backgroundColor
+      }
    }
 
    override func awakeFromNib() {
@@ -68,9 +40,54 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
          .takeUntil(self.rac_willDeallocSignal())
          .subscribeNext {
             [weak self] _ in
-            self?.restartRecordAnimationIfNeeded()
+            self?.restartAnimationIfNeeded()
       }
    }
+
+   private func startAnimation() {
+      self.color = .redColor()
+      let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+      fadeAnimation.fromValue = 0
+      fadeAnimation.toValue = 1
+      fadeAnimation.autoreverses = true
+      fadeAnimation.duration = 1
+      fadeAnimation.repeatCount = Float.infinity
+      self.layer.addAnimation(fadeAnimation, forKey: "progressAnimation")
+   }
+
+   private func stopAnimation() {
+      self.color = .clearColor()
+      self.layer.removeAnimationForKey("progressAnimation")
+   }
+
+   @objc private func restartAnimationIfNeeded() {
+      if self.isAnimating {
+         self.startAnimation()
+      } else {
+         self.stopAnimation()
+      }
+   }
+
+   override func didMoveToWindow() {
+      super.didMoveToWindow()
+
+      self.restartAnimationIfNeeded()
+   }
+}
+
+extension NSTimeInterval {
+   func toDurationString() -> String {
+      let formatter = NSDateComponentsFormatter()
+      return formatter.stringFromTimeInterval(self)!.stringByAppendingString(" s")
+   }
+}
+
+final class IntervalCell: UITableViewCell, ReusableNibView {
+
+   @IBOutlet private weak var dateLabel: UILabel!
+   @IBOutlet private weak var durationLabel: UILabel!
+   @IBOutlet private weak var bestLast: UILabel!
+   @IBOutlet private weak var progressView: ProgressView!
 
    var interval: Interval! {
       didSet {
@@ -91,21 +108,14 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
                      } else {
                         return everySecondSignalProducer().map { _ in interval.duration }
                      }
-                  }.map {
-                     return IntervalCell.formatDuration($0)
                   }
+                  .map { $0.toDurationString() }
                   .takeUntil(reuseSignal)
 
-            completedSignal
-               .takeUntil(reuseSignal)
-               .startWithNext {
-                  [weak progressView = self.progressView] completed in
-                  if completed {
-                     progressView?.stopRecordAnimation()
-                  } else {
-                     progressView?.startRecordAnimation()
-                  }
-            }
+            DynamicProperty(object: self.progressView, keyPath: "isAnimating") <~
+               completedSignal
+                  .map { !$0 }
+                  .takeUntil(reuseSignal)
 
             self.dateLabel.text = interval.start.toString(.ShortStyle, inRegion: .LocalRegion())
 
@@ -118,21 +128,5 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
             }
          }
       }
-   }
-
-   @objc private func restartRecordAnimationIfNeeded() {
-      if let interval = self.interval {
-         if interval.completed {
-            self.progressView.stopRecordAnimation()
-         } else {
-            self.progressView.startRecordAnimation()
-         }
-      }
-   }
-
-   override func didMoveToWindow() {
-      super.didMoveToWindow()
-
-      self.restartRecordAnimationIfNeeded()
    }
 }

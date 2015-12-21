@@ -36,9 +36,11 @@
 		788A51CD1C15835600A166A0 /* SportAssistant WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
 		788A51DA1C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51D91C15835600A166A0 /* Assets.xcassets */; };
+		788C3B421C28AB680081BD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 788C3B411C28AB680081BD13 /* Localizable.strings */; };
 		789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */; };
 		789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* Achievements.swift */; };
 		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
+		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 		8BC7F24F9F340BE15D680FF6 /* Pods_SportAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */; };
 /* End PBXBuildFile section */
@@ -152,9 +154,11 @@
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		788A51D91C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+EveryMinute.swift"; sourceTree = "<group>"; };
 		789DE8F01C27571400B8CA98 /* Achievements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
+		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
 		E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportAssistantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6599CE32DF9B9848069AFB /* Pods-SportAssistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistantTests/Pods-SportAssistantTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 		788A51971C15835600A166A0 /* SportAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				788C3B401C28AB400081BD13 /* Resources */,
 				78045FD11C26072200FEEB87 /* Intervals */,
 				78FAF04B1C258D2700016580 /* Engine */,
 				7831F62E1C21793300A7CBB1 /* Utils */,
@@ -356,6 +361,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		788C3B401C28AB400081BD13 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */,
+				788C3B411C28AB680081BD13 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		78FAF04B1C258D2700016580 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +398,7 @@
 			buildConfigurationList = 788A51E61C15835600A166A0 /* Build configuration list for PBXNativeTarget "SportAssistant" */;
 			buildPhases = (
 				389706F62ABA589B94A58968 /* Check Pods Manifest.lock */,
+				788C3B431C28ABD30081BD13 /* Swiftgen */,
 				788A51911C15835600A166A0 /* Sources */,
 				788A51921C15835600A166A0 /* Frameworks */,
 				788A51931C15835600A166A0 /* Resources */,
@@ -533,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				788A51A31C15835600A166A0 /* LaunchScreen.storyboard in Resources */,
+				788C3B421C28AB680081BD13 /* Localizable.strings in Resources */,
 				788A51A01C15835600A166A0 /* Assets.xcassets in Resources */,
 				788A519E1C15835600A166A0 /* Main.storyboard in Resources */,
 			);
@@ -617,6 +633,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		788C3B431C28ABD30081BD13 /* Swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftgen;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n";
+		};
 		A79F2E10F430742D6F1A7780 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -676,6 +706,7 @@
 				78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */,
 				78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */,
 				7831F6291C2171D200A7CBB1 /* Archive.swift in Sources */,
+				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,
 				78045FCD1C25FF1000FEEB87 /* Interval.swift in Sources */,
 				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,
 				789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */,

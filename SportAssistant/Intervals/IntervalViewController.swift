@@ -20,8 +20,8 @@ final class IntervalViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      self.chartView.descriptionText = ""
-      self.chartView.noDataTextDescription = "You need to provide data for the chart."
+      self.chartView.descriptionText = tr(.AccelerationData)
+      self.chartView.noDataTextDescription = tr(.AccelerationDataEmpty)
 
       self.chartView.drawBordersEnabled = true
 
@@ -36,8 +36,20 @@ final class IntervalViewController: UIViewController {
       self.chartView.dragEnabled = true
       self.chartView.setScaleEnabled(true)
       self.chartView.pinchZoomEnabled = false
+      self.chartView.autoScaleMinMaxEnabled = true
 
       self.chartView.legend.position = .BelowChartCenter
+
+      let best = self.interval.achievements.acceleration
+
+      let bestLine = ChartLimitLine(limit: best, label: tr(.AccelerationRecord))
+
+      bestLine.lineWidth = 4
+      bestLine.lineDashLengths = [5, 5]
+      bestLine.labelPosition = .RightTop
+
+      self.chartView.leftAxis.addLimitLine(bestLine)
+      self.chartView.leftAxis.customAxisMax = best * 1.1
 
       self.addData()
 
@@ -51,7 +63,12 @@ final class IntervalViewController: UIViewController {
                note = next as? NSNotification,
                id = note.userInfo?["id"] as? String where strongSelf.interval.id == id,
                let data = note.userInfo?["data"] as? AccelerationData {
-                  if let chartData = strongSelf.chartView.data as? LineChartData {
+                  if let chartData = strongSelf.chartView.lineData {
+                     if data.acceleration > bestLine.limit {
+                        bestLine.limit = data.acceleration
+                        strongSelf.chartView.leftAxis.customAxisMax = data.acceleration * 1.1
+                     }
+
                      let xDataSet = chartData.dataSets[0] as! LineChartDataSet
                      let newIndex = xDataSet.valueCount
                      xDataSet.addEntry(ChartDataEntry(value: data.x, xIndex: newIndex))
@@ -61,6 +78,9 @@ final class IntervalViewController: UIViewController {
 
                      let zDataSet = chartData.dataSets[2] as! LineChartDataSet
                      zDataSet.addEntry(ChartDataEntry(value: data.z, xIndex: newIndex))
+
+                     let totalDataSet = chartData.dataSets[3] as! LineChartDataSet
+                     totalDataSet.addEntry(ChartDataEntry(value: data.acceleration, xIndex: newIndex))
 
                      chartData.addXValue("\(newIndex)")
                      strongSelf.chartView.notifyDataSetChanged()
@@ -82,11 +102,15 @@ final class IntervalViewController: UIViewController {
       var xs: [ChartDataEntry] = []
       var ys: [ChartDataEntry] = []
       var zs: [ChartDataEntry] = []
+      var totals: [ChartDataEntry] = []
+
       var xVals: [String] = []
+
       for (i, data) in accelerations.enumerate() {
          xs.append(ChartDataEntry(value: data.x, xIndex: i))
          ys.append(ChartDataEntry(value: data.y, xIndex: i))
          zs.append(ChartDataEntry(value: data.z, xIndex: i))
+         totals.append(ChartDataEntry(value: data.acceleration, xIndex: i))
          xVals.append("\(i)")
       }
 
@@ -100,7 +124,12 @@ final class IntervalViewController: UIViewController {
          label: "z",
          color: ChartColorTemplates.colorful()[2])
 
-      let chartData = LineChartData(xVals: xVals, dataSets: [xDataSet, yDataSet, zDataSet])
+      let totalDataSet = LineChartDataSet(yVals: totals,
+         label: "acceleration",
+         color: ChartColorTemplates.colorful()[3])
+      totalDataSet.lineWidth = 2
+
+      let chartData = LineChartData(xVals: xVals, dataSets: [xDataSet, yDataSet, zDataSet, totalDataSet])
       self.chartView.data = chartData
    }
 }
