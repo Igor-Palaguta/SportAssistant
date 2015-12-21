@@ -60,6 +60,18 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
       return self.formatDuration(duration, parts: [60, 60])
    }
 
+   override func awakeFromNib() {
+      super.awakeFromNib()
+
+      NSNotificationCenter.defaultCenter().rac_addObserverForName(UIApplicationDidBecomeActiveNotification,
+         object: nil)
+         .takeUntil(self.rac_willDeallocSignal())
+         .subscribeNext {
+            [weak self] _ in
+            self?.restartRecordAnimationIfNeeded()
+      }
+   }
+
    var interval: Interval! {
       didSet {
          if let interval = self.interval {
@@ -67,7 +79,6 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
 
             let completedSignal = DynamicProperty(object: interval, keyPath: "completed")
                .producer
-               .takeUntil(reuseSignal)
                .map { $0 as! Bool }
                .skipRepeats()
 
@@ -82,18 +93,21 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
                      }
                   }.map {
                      return IntervalCell.formatDuration($0)
+                  }
+                  .takeUntil(reuseSignal)
+
+            completedSignal
+               .takeUntil(reuseSignal)
+               .startWithNext {
+                  [weak progressView = self.progressView] completed in
+                  if completed {
+                     progressView?.stopRecordAnimation()
+                  } else {
+                     progressView?.startRecordAnimation()
+                  }
             }
 
-            completedSignal.startWithNext {
-               [weak progressView = self.progressView] completed in
-               if completed {
-                  progressView?.stopRecordAnimation()
-               } else {
-                  progressView?.startRecordAnimation()
-               }
-            }
-
-            self.dateLabel.text = interval.start.toString(.ShortStyle)
+            self.dateLabel.text = interval.start.toString(.ShortStyle, inRegion: .LocalRegion())
 
             DynamicProperty(object: self.bestLast, keyPath: "text") <~
                DynamicProperty(object: interval, keyPath: "best").producer
@@ -104,5 +118,21 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
             }
          }
       }
+   }
+
+   @objc private func restartRecordAnimationIfNeeded() {
+      if let interval = self.interval {
+         if interval.completed {
+            self.progressView.stopRecordAnimation()
+         } else {
+            self.progressView.startRecordAnimation()
+         }
+      }
+   }
+
+   override func didMoveToWindow() {
+      super.didMoveToWindow()
+
+      self.restartRecordAnimationIfNeeded()
    }
 }
