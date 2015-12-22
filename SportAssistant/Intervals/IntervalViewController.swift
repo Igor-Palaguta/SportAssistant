@@ -64,9 +64,9 @@ final class IntervalViewController: UIViewController {
                id = note.userInfo?["id"] as? String where strongSelf.interval.id == id,
                let data = note.userInfo?["data"] as? AccelerationData {
                   if let chartData = strongSelf.chartView.lineData {
-                     if data.acceleration > bestLine.limit {
-                        bestLine.limit = data.acceleration
-                        strongSelf.chartView.leftAxis.customAxisMax = data.acceleration * 1.1
+                     if data.total > bestLine.limit {
+                        bestLine.limit = data.total
+                        strongSelf.chartView.leftAxis.customAxisMax = data.total * 1.1
                      }
 
                      let xDataSet = chartData.dataSets[0] as! LineChartDataSet
@@ -80,7 +80,7 @@ final class IntervalViewController: UIViewController {
                      zDataSet.addEntry(ChartDataEntry(value: data.z, xIndex: newIndex))
 
                      let totalDataSet = chartData.dataSets[3] as! LineChartDataSet
-                     totalDataSet.addEntry(ChartDataEntry(value: data.acceleration, xIndex: newIndex))
+                     totalDataSet.addEntry(ChartDataEntry(value: data.total, xIndex: newIndex))
 
                      chartData.addXValue("\(newIndex)")
                      strongSelf.chartView.notifyDataSetChanged()
@@ -110,7 +110,7 @@ final class IntervalViewController: UIViewController {
          xs.append(ChartDataEntry(value: data.x, xIndex: i))
          ys.append(ChartDataEntry(value: data.y, xIndex: i))
          zs.append(ChartDataEntry(value: data.z, xIndex: i))
-         totals.append(ChartDataEntry(value: data.acceleration, xIndex: i))
+         totals.append(ChartDataEntry(value: data.total, xIndex: i))
          xVals.append("\(i)")
       }
 

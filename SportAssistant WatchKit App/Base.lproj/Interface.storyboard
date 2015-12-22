@@ -33,10 +33,10 @@
             </objects>
             <point key="canvasLocation" x="-19" y="481"/>
         </scene>
-        <!--Trainings Interface Controller-->
+        <!--History Interface Controller-->
         <scene sceneID="Ydg-Ue-tWj">
             <objects>
-                <controller id="4Vm-e0-XGA" customClass="TrainingsInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
@@ -84,7 +84,7 @@
                                 <label alignment="left" text="Best" id="1uu-IJ-4j2">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
-                                <label alignment="right" text="12.3" id="V7n-gw-cXm"/>
+                                <label alignment="right" text="-" id="V7n-gw-cXm"/>
                             </items>
                         </group>
                         <group width="1" alignment="left" hidden="YES" id="xg7-FR-mWx">

@@ -2,18 +2,29 @@ import Foundation
 import CoreMotion
 
 protocol AccelerometerDelegate: class {
-   func accelerometer(accelerometer: Accelerometer, didReceiveData data: AccelerometerData)
+   func accelerometer(accelerometer: Accelerometer, didReceiveData data: BaseAccelerationData)
 }
 
-struct AccelerometerData {
-   let x: Double
-   let y: Double
-   let z: Double
-}
+extension CMAccelerometerData: BaseAccelerationData {
+   var date: NSDate! {
+      let bootTime = NSDate(timeIntervalSinceNow: NSProcessInfo.processInfo().systemUptime)
+      return NSDate(timeInterval: self.timestamp, sinceDate: bootTime)
+   }
 
-extension AccelerometerData {
-   func toDictionary() -> [String: AnyObject] {
-      return ["x": x, "y": y, "z": z]
+   var x: Double {
+      return self.acceleration.x
+   }
+
+   var y: Double {
+      return self.acceleration.y
+   }
+
+   var z: Double {
+      return self.acceleration.z
+   }
+
+   var total: Double {
+      return sqrt(x*x + y*y + z*z)
    }
 }
 
@@ -22,7 +33,6 @@ class Accelerometer {
    weak var delegate: AccelerometerDelegate?
 
    private var manager: CMMotionManager?
-   private var semaphore: dispatch_semaphore_t?
 
    deinit {
       self.stop()
@@ -31,20 +41,8 @@ class Accelerometer {
    func start() {
       self.stop()
 
-      let semaphore = dispatch_semaphore_create(0)
-
-      NSProcessInfo.processInfo().performExpiringActivityWithReason(String(Accelerometer)) {
-         expired in
-         if !expired {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(300 * Double(NSEC_PER_SEC)))
-            dispatch_semaphore_wait(semaphore, delayTime)
-         } else {
-            dispatch_semaphore_signal(semaphore)
-         }
-      }
-
       let manager = CMMotionManager()
-      manager.accelerometerUpdateInterval = 0.5
+      manager.accelerometerUpdateInterval = 0.2
 
       if manager.accelerometerAvailable {
          manager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) {
@@ -54,10 +52,7 @@ class Accelerometer {
             }
 
             if let data = data {
-               let acceleratorData = AccelerometerData(x: data.acceleration.x,
-                  y: data.acceleration.y,
-                  z: data.acceleration.z)
-               strongSelf.delegate?.accelerometer(strongSelf, didReceiveData: acceleratorData)
+               strongSelf.delegate?.accelerometer(strongSelf, didReceiveData: data)
             } else if let error = error {
                print("startAccelerometerUpdatesToQueue: \(error)")
             }
@@ -65,15 +60,9 @@ class Accelerometer {
       }
 
       self.manager = manager
-      self.semaphore = semaphore
    }
 
    func stop() {
       self.manager?.stopAccelerometerUpdates()
-      if let semaphore = self.semaphore {
-         NSLog("stop")
-         dispatch_semaphore_signal(semaphore)
-         self.semaphore = nil
-      }
    }
 }

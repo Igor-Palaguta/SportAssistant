@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       self.configureRealm()
       self.startWatchSession()
-      self.generateFakeData()
+      //self.generateFakeData()
 
       return true
    }
@@ -87,11 +87,10 @@ private extension AppDelegate {
    func generateFakeData() {
       let intervalId = NSUUID().UUIDString
       NSTimer.every(3.seconds) {
-         let data = AccelerationData(x: drand48() * 16 - 8, y: drand48() * 16 - 8, z: drand48() * 16 - 8)
-         data.date = NSDate()
-         //data.x = drand48() * 16 - 8
-         //data.y = drand48() * 16 - 8
-         //data.z = drand48() * 16 - 8
+         let data = AccelerationData(x: drand48() * 16 - 8,
+            y: drand48() * 16 - 8,
+            z: drand48() * 16 - 8,
+            date: NSDate())
          let realm = try! Realm()
          realm.addAccelerationData(data, intervalId: intervalId)
       }
@@ -104,18 +103,24 @@ extension AppDelegate: WCSessionDelegate {
    }
 
    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
-      if let acceleration = userInfo["acceleration"] as? [String: AnyObject],
-         x = acceleration["x"] as? Double,
-         y = acceleration["y"] as? Double,
-         z = acceleration["z"] as? Double,
-         intervalId = acceleration["intervalId"] as? String {
-            let data = AccelerationData()
-            data.date = NSDate()
-            data.x = x
-            data.y = y
-            data.z = z
+      dispatch_async(dispatch_get_main_queue()) {
+         if let intervalId = userInfo["stop"] as? String {
             let realm = try! Realm()
-            realm.addAccelerationData(data, intervalId: intervalId)
+            if let interval = realm.objectForPrimaryKey(Interval.self, key: intervalId) {
+               try! realm.write {
+                  interval.completed = true
+               }
+            }
+         } else if let acceleration = userInfo["acceleration"] as? [String: AnyObject],
+            x = acceleration["x"] as? Double,
+            y = acceleration["y"] as? Double,
+            z = acceleration["z"] as? Double,
+            date = acceleration["date"] as? NSDate,
+            intervalId = userInfo["intervalId"] as? String {
+               let data = AccelerationData(x: x, y: y, z: z, date: date)
+               let realm = try! Realm()
+               realm.addAccelerationData(data, intervalId: intervalId)
+         }
       }
    }
 }

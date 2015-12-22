@@ -16,12 +16,12 @@ class Interval: Object {
    let data = List<AccelerationData>()
 
    func addData(data: AccelerationData) {
-      if data.acceleration > self.achievements.acceleration {
-         self.achievements.acceleration = data.acceleration
+      if data.total > self.achievements.acceleration {
+         self.achievements.acceleration = data.total
       }
 
-      if data.acceleration > self.best {
-         self.best = data.acceleration
+      if data.total > self.best {
+         self.best = data.total
       }
 
       if self.start == nil {

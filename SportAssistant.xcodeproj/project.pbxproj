@@ -12,15 +12,11 @@
 		78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD21C26073700FEEB87 /* IntervalViewController.swift */; };
 		78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD31C26073700FEEB87 /* IntervalCell.swift */; };
 		78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD41C26073700FEEB87 /* IntervalsViewController.swift */; };
-		7831F6291C2171D200A7CBB1 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6281C2171D200A7CBB1 /* Archive.swift */; };
-		7831F62B1C21720700A7CBB1 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62A1C21720700A7CBB1 /* Training.swift */; };
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
-		7831F6311C217C2200A7CBB1 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6281C2171D200A7CBB1 /* Archive.swift */; };
-		7831F6321C217C2300A7CBB1 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62A1C21720700A7CBB1 /* Training.swift */; };
 		7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */; };
 		7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6371C21845B00A7CBB1 /* Accelerometer.swift */; };
 		7831F6421C21865300A7CBB1 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F63F1C21865300A7CBB1 /* TrainingController.swift */; };
-		7831F6441C21865300A7CBB1 /* TrainingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6411C21865300A7CBB1 /* TrainingsInterfaceController.swift */; };
+		7831F6441C21865300A7CBB1 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6411C21865300A7CBB1 /* HistoryInterfaceController.swift */; };
 		784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D25071C1F1856006491A0 /* MenuInterfaceController.swift */; };
 		7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7854643D1C22A95E00F399D9 /* JSONAble.swift */; };
 		788A51991C15835600A166A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51981C15835600A166A0 /* AppDelegate.swift */; };
@@ -37,12 +33,16 @@
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
 		788A51DA1C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51D91C15835600A166A0 /* Assets.xcassets */; };
 		788C3B421C28AB680081BD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 788C3B411C28AB680081BD13 /* Localizable.strings */; };
+		789C3C4D1C29573200FD6B08 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C4B1C29573200FD6B08 /* Training.swift */; };
+		789C3C4F1C29578200FD6B08 /* BaseAccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */; };
+		789C3C501C29584800FD6B08 /* BaseAccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */; };
+		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
+		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */; };
 		789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* Achievements.swift */; };
 		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
-		8BC7F24F9F340BE15D680FF6 /* Pods_SportAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,24 +112,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15B0E22785BC9E51428D8FC4 /* Pods-SportAssistant WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistant WatchKit Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistant WatchKit Extension/Pods-SportAssistant WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		3023CD20589AF5CC48F86001 /* Pods_SportAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3725F13B51131B7C4114F7D1 /* Pods_SportAssistant_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportAssistant_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4220F2D124522EC48E61ADA1 /* Pods-SportAssistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistant.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistant/Pods-SportAssistant.release.xcconfig"; sourceTree = "<group>"; };
-		4A264EFA515E68C616EF68C2 /* Pods-SportAssistant WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistant WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistant WatchKit Extension/Pods-SportAssistant WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		54FF4E3DBC0AD8C5E6E7504A /* Pods-SportAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistant/Pods-SportAssistant.debug.xcconfig"; sourceTree = "<group>"; };
-		6F70BFACD7C8E39E14FB95E2 /* Pods-SportAssistantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistantTests/Pods-SportAssistantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78045FCC1C25FF1000FEEB87 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		78045FD21C26073700FEEB87 /* IntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalViewController.swift; sourceTree = "<group>"; };
 		78045FD31C26073700FEEB87 /* IntervalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalCell.swift; sourceTree = "<group>"; };
 		78045FD41C26073700FEEB87 /* IntervalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalsViewController.swift; sourceTree = "<group>"; };
-		7831F6281C2171D200A7CBB1 /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
-		7831F62A1C21720700A7CBB1 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
 		7831F6371C21845B00A7CBB1 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
 		7831F63F1C21865300A7CBB1 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrainingController.swift; path = Trainings/TrainingController.swift; sourceTree = "<group>"; };
-		7831F6411C21865300A7CBB1 /* TrainingsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrainingsInterfaceController.swift; path = Trainings/TrainingsInterfaceController.swift; sourceTree = "<group>"; };
+		7831F6411C21865300A7CBB1 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryInterfaceController.swift; path = Trainings/HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
 		7854643D1C22A95E00F399D9 /* JSONAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAble.swift; sourceTree = "<group>"; };
 		788A51951C15835600A166A0 /* SportAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,13 +149,14 @@
 		788A51D91C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		789C3C4B1C29573200FD6B08 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
+		789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAccelerationData.swift; sourceTree = "<group>"; };
+		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+EveryMinute.swift"; sourceTree = "<group>"; };
 		789DE8F01C27571400B8CA98 /* Achievements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
-		E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportAssistantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE6599CE32DF9B9848069AFB /* Pods-SportAssistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistantTests/Pods-SportAssistantTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +172,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC7F24F9F340BE15D680FF6 /* Pods_SportAssistantTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,10 +197,6 @@
 			children = (
 				54FF4E3DBC0AD8C5E6E7504A /* Pods-SportAssistant.debug.xcconfig */,
 				4220F2D124522EC48E61ADA1 /* Pods-SportAssistant.release.xcconfig */,
-				15B0E22785BC9E51428D8FC4 /* Pods-SportAssistant WatchKit Extension.debug.xcconfig */,
-				4A264EFA515E68C616EF68C2 /* Pods-SportAssistant WatchKit Extension.release.xcconfig */,
-				6F70BFACD7C8E39E14FB95E2 /* Pods-SportAssistantTests.debug.xcconfig */,
-				EE6599CE32DF9B9848069AFB /* Pods-SportAssistantTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -219,15 +209,6 @@
 				78045FD41C26073700FEEB87 /* IntervalsViewController.swift */,
 			);
 			path = Intervals;
-			sourceTree = "<group>";
-		};
-		7831F6271C21719900A7CBB1 /* Archive */ = {
-			isa = PBXGroup;
-			children = (
-				7831F6281C2171D200A7CBB1 /* Archive.swift */,
-				7831F62A1C21720700A7CBB1 /* Training.swift */,
-			);
-			path = Archive;
 			sourceTree = "<group>";
 		};
 		7831F62E1C21793300A7CBB1 /* Utils */ = {
@@ -246,6 +227,7 @@
 			children = (
 				7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */,
 				7831F6371C21845B00A7CBB1 /* Accelerometer.swift */,
+				789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -254,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				7831F63F1C21865300A7CBB1 /* TrainingController.swift */,
-				7831F6411C21865300A7CBB1 /* TrainingsInterfaceController.swift */,
+				7831F6411C21865300A7CBB1 /* HistoryInterfaceController.swift */,
 			);
 			name = Trainings;
 			sourceTree = "<group>";
@@ -300,7 +282,6 @@
 				78045FD11C26072200FEEB87 /* Intervals */,
 				78FAF04B1C258D2700016580 /* Engine */,
 				7831F62E1C21793300A7CBB1 /* Utils */,
-				7831F6271C21719900A7CBB1 /* Archive */,
 				788A51981C15835600A166A0 /* AppDelegate.swift */,
 				788A519A1C15835600A166A0 /* ViewController.swift */,
 				788A519C1C15835600A166A0 /* Main.storyboard */,
@@ -342,6 +323,7 @@
 		788A51D01C15835600A166A0 /* SportAssistant WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				789C3C491C2956F600FD6B08 /* Engine */,
 				7831F63E1C21864400A7CBB1 /* Trainings */,
 				7831F6351C21843D00A7CBB1 /* Training */,
 				784D25051C1F1806006491A0 /* Menu */,
@@ -370,12 +352,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		789C3C491C2956F600FD6B08 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				789C3C4B1C29573200FD6B08 /* Training.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
 		78FAF04B1C258D2700016580 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
 				78FAF04C1C258D4700016580 /* AccelerationData.swift */,
 				78045FCC1C25FF1000FEEB87 /* Interval.swift */,
 				789DE8F01C27571400B8CA98 /* Achievements.swift */,
+				789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -384,8 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				3023CD20589AF5CC48F86001 /* Pods_SportAssistant.framework */,
-				3725F13B51131B7C4114F7D1 /* Pods_SportAssistant_WatchKit_Extension.framework */,
-				E4845D04CBA1DAA026A274C5 /* Pods_SportAssistantTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -705,14 +694,13 @@
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */,
 				78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */,
-				7831F6291C2171D200A7CBB1 /* Archive.swift in Sources */,
+				789C3C4F1C29578200FD6B08 /* BaseAccelerationData.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,
 				78045FCD1C25FF1000FEEB87 /* Interval.swift in Sources */,
 				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,
 				789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */,
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
-				7831F62B1C21720700A7CBB1 /* Training.swift in Sources */,
 				7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,14 +725,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789C3C501C29584800FD6B08 /* BaseAccelerationData.swift in Sources */,
+				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
-				7831F6311C217C2200A7CBB1 /* Archive.swift in Sources */,
 				788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */,
-				7831F6441C21865300A7CBB1 /* TrainingsInterfaceController.swift in Sources */,
+				7831F6441C21865300A7CBB1 /* HistoryInterfaceController.swift in Sources */,
+				789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */,
 				7831F6421C21865300A7CBB1 /* TrainingController.swift in Sources */,
 				7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */,
 				784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */,
-				7831F6321C217C2300A7CBB1 /* Training.swift in Sources */,
+				789C3C4D1C29573200FD6B08 /* Training.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +811,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -865,6 +856,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -920,6 +912,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				IBSC_MODULE = SportAssistant_WatchKit_Extension;
 				INFOPLIST_FILE = "SportAssistant WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant.watchkitapp;
@@ -935,6 +928,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				IBSC_MODULE = SportAssistant_WatchKit_Extension;
 				INFOPLIST_FILE = "SportAssistant WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant.watchkitapp;

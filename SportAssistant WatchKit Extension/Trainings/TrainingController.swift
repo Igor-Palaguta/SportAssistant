@@ -8,8 +8,11 @@ class TrainingController: NSObject {
 
    var training: Training! {
       didSet {
-         //self.dateLabel.setText(self.training.movements.first!.description)
-         //self.resultLabel.setText("\(self.training.result)")
+         let dateFormatter = NSDateFormatter()
+         dateFormatter.dateStyle = .ShortStyle
+         dateFormatter.timeStyle = .NoStyle
+         self.dateLabel.setText(dateFormatter.stringFromDate(self.training.start))
+         self.resultLabel.setText(NSNumberFormatter.formatAccelereration(self.training.best))
       }
    }
 }
