@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="-792" y="-564"/>
         </scene>
-        <!--Intervals View Controller-->
+        <!--Results-->
         <scene sceneID="hq7-v3-FUk">
             <objects>
                 <tableViewController id="fCw-9A-acM" customClass="IntervalsViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,14 +35,22 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hku-Ek-90K">
-                                    <rect key="frame" x="186" y="11" width="42" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="175.5" y="6" width="63.5" height="31.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qac-M8-6SI">
+                                    <rect key="frame" x="126" y="18" width="39.5" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="Qac-M8-6SI" firstAttribute="baseline" secondItem="hku-Ek-90K" secondAttribute="baseline" id="GXr-Po-i7c"/>
                                 <constraint firstItem="hku-Ek-90K" firstAttribute="centerX" secondItem="TCW-b3-GwC" secondAttribute="centerX" id="W0I-ha-9NS"/>
+                                <constraint firstItem="hku-Ek-90K" firstAttribute="leading" secondItem="Qac-M8-6SI" secondAttribute="trailing" constant="10" id="dJW-Wi-M0x"/>
                                 <constraint firstItem="hku-Ek-90K" firstAttribute="centerY" secondItem="TCW-b3-GwC" secondAttribute="centerY" id="o1d-FJ-dGT"/>
                             </constraints>
                         </view>
@@ -138,7 +146,7 @@
                             <outlet property="delegate" destination="fCw-9A-acM" id="zY7-Hh-Ry9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QeE-vZ-Lby"/>
+                    <navigationItem key="navigationItem" title="Results" id="QeE-vZ-Lby"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bestLabel" destination="hku-Ek-90K" id="QoI-O9-UGP"/>

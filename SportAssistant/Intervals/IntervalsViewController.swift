@@ -45,6 +45,8 @@ final class IntervalsViewController: UITableViewController {
                strongSelf.tableView.reloadData()
             }
       }
+
+      self.tableView.tableFooterView = UIView()
    }
 
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

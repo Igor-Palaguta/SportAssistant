@@ -78,7 +78,10 @@ class ProgressView: UIView {
 extension NSTimeInterval {
    func toDurationString() -> String {
       let formatter = NSDateComponentsFormatter()
-      return formatter.stringFromTimeInterval(self)!.stringByAppendingString(" s")
+      let duration = max(self, 0)
+      return formatter
+         .stringFromTimeInterval(duration)!
+         .stringByAppendingString(" s")
    }
 }
 

@@ -21,6 +21,10 @@ class History: Object {
          interval.best = data.total
       }
 
+      if interval.data.isEmpty {
+         interval.start = data.date
+      }
+
       interval.data.append(data)
       interval.currentCount = interval.data.count
    }

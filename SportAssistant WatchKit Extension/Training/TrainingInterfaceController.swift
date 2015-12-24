@@ -5,10 +5,7 @@ import CoreMotion
 
 class TrainingInterfaceController: WKInterfaceController {
 
-   @IBOutlet weak var countLabel: WKInterfaceLabel!
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
-   @IBOutlet weak var worstLabel: WKInterfaceLabel!
-   @IBOutlet weak var averageLabel: WKInterfaceLabel!
 
    private var suspender: BackgroundSuspender?
    private var interval: Interval?
@@ -19,10 +16,6 @@ class TrainingInterfaceController: WKInterfaceController {
       accelerometer.delegate = self
       return accelerometer
       }()
-
-   deinit {
-      self.suspender?.stop()
-   }
 
    private func stopRecording() {
       if let interval = self.interval {
@@ -48,18 +41,18 @@ class TrainingInterfaceController: WKInterfaceController {
       self.suspender?.suspend()
    }
 
-   override func didDeactivate() {
-      super.didDeactivate()
-   }
-
    override func willActivate() {
       super.willActivate()
       self.suspender?.suspend()
    }
 
+   override func willDisappear() {
+      super.willDisappear()
+      self.stopRecording()
+   }
+
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
-
       self.startRecording()
    }
 

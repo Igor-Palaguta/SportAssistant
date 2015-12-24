@@ -13,9 +13,15 @@ private extension LineChartDataSet {
 
 final class IntervalViewController: UIViewController {
 
-   var interval: Interval!
+   var interval: Interval! {
+      didSet {
+         self.history = self.interval?.history
+      }
+   }
 
    @IBOutlet private weak var chartView: LineChartView!
+
+   private var history: History!
 
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -40,7 +46,7 @@ final class IntervalViewController: UIViewController {
 
       self.chartView.legend.position = .BelowChartCenter
 
-      let best = History.currentHistory.best
+      let best = self.interval.history.best
 
       let bestLine = ChartLimitLine(limit: best, label: tr(.AccelerationRecord))
 
@@ -53,11 +59,34 @@ final class IntervalViewController: UIViewController {
 
       self.addData()
 
+      DynamicProperty(object: self.interval.history, keyPath: "best")
+         .producer
+         .map { $0 as! Double }
+         .skipRepeats()
+         .takeUntil(self.rac_willDeallocSignalProducer())
+         .startWithNext {
+            [weak self] best in
+            if let strongSelf = self {
+               bestLine.limit = best
+               strongSelf.chartView.leftAxis.customAxisMax = best * 1.1
+               strongSelf.chartView.notifyDataSetChanged()
+            }
+      }
+
+      DynamicProperty(object: self, keyPath: "title") <~
+         DynamicProperty(object: self.interval, keyPath: "best")
+            .producer
+            .takeUntil(self.rac_willDeallocSignalProducer())
+            .map { $0 as! Double }
+            .skipRepeats()
+            .map { NSNumberFormatter.formatAccelereration($0) }
+
       DynamicProperty(object: self.interval, keyPath: "currentCount")
          .producer
          .map { $0 as! Int }
          .skip(1)
          .skipRepeats()
+         .takeUntil(self.rac_willDeallocSignalProducer())
          .startWithNext {
             [weak self] count in
             guard let strongSelf = self else {
@@ -65,14 +94,6 @@ final class IntervalViewController: UIViewController {
             }
 
             if let chartData = strongSelf.chartView.lineData {
-
-               let best = History.currentHistory.best
-
-               if best > bestLine.limit {
-                  bestLine.limit = best
-                  strongSelf.chartView.leftAxis.customAxisMax = best * 1.1
-               }
-
                let xDataSet = chartData.dataSets[0] as! LineChartDataSet
                let previousCount = xDataSet.valueCount
 

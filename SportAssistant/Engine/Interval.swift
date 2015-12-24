@@ -2,17 +2,23 @@ import Foundation
 import RealmSwift
 
 class Interval: Object {
-   dynamic var id: String = NSUUID().UUIDString
+   dynamic var id = NSUUID().UUIDString
    dynamic var best: Double = 0
    dynamic var start = NSDate()
-   dynamic var active: Bool = true
-   dynamic var totalCount: Int = 0
-   dynamic var currentCount: Int = 0
+   dynamic var active = true
+   dynamic var totalCount = 0
+   dynamic var currentCount = 0
 
    dynamic var duration: NSTimeInterval {
-      let now = NSDate()
-      let end = self.active || self.data.isEmpty ? now : self.data.last!.date
-      return end.timeIntervalSinceDate(self.start)
+      guard let lastData = self.data.last?.date else {
+         return 0
+      }
+
+      return lastData.timeIntervalSinceDate(start)
+   }
+
+   var history: History {
+      return self.linkingObjects(History.self, forProperty: "intervals").first!
    }
 
    let data = List<AccelerationData>()
@@ -22,10 +28,10 @@ class Interval: Object {
    }
 
    override static func ignoredProperties() -> [String] {
-      return ["duration"]
+      return ["duration", "history"]
    }
 
    class func keyPathsForValuesAffectingDuration() -> NSSet {
-      return NSSet(object: "active")
+      return NSSet(objects: "active", "currentCount")
    }
 }
