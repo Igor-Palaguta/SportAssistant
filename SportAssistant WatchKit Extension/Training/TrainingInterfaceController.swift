@@ -1,33 +1,17 @@
 import WatchKit
 import Foundation
-import WatchConnectivity
-
-protocol TrainingInterfaceControllerDelegate: class {
-   func trainingInterfaceController(controller: TrainingInterfaceController,
-      didAddData data: BaseAccelerationData,
-      toTraining training: Training)
-
-   func trainingInterfaceController(controller: TrainingInterfaceController,
-      didStopTraining training: Training)
-}
+import RealmSwift
+import CoreMotion
 
 class TrainingInterfaceController: WKInterfaceController {
-
-   weak var delegate: TrainingInterfaceControllerDelegate?
 
    @IBOutlet weak var countLabel: WKInterfaceLabel!
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
    @IBOutlet weak var worstLabel: WKInterfaceLabel!
    @IBOutlet weak var averageLabel: WKInterfaceLabel!
 
-   private var best: Double = 0 {
-      didSet {
-         self.bestLabel.setText(NSNumberFormatter.formatAccelereration(self.best))
-      }
-   }
-
    private var suspender: BackgroundSuspender?
-   private var training: Training?
+   private var interval: Interval?
 
    private lazy var accelerometer: Accelerometer = {
       [unowned self] in
@@ -36,32 +20,29 @@ class TrainingInterfaceController: WKInterfaceController {
       return accelerometer
       }()
 
-   private lazy var session: WCSession? = {
-      if WCSession.isSupported() {
-         let session = WCSession.defaultSession()
-         session.activateSession()
-         return session
-      }
-      return nil
-   }()
-
    deinit {
       self.suspender?.stop()
    }
 
    private func stopRecording() {
-      if let training = self.training {
-         self.delegate?.trainingInterfaceController(self, didStopTraining: training)
-         self.session?.transferUserInfo(["stop": training.id])
+      if let interval = self.interval {
+         ServerSynchronizer.defaultServer.sendPackage(.Stop(interval.id))
       }
+      self.interval = nil
       self.accelerometer.stop()
       self.suspender?.stop()
       self.suspender = nil
-      self.training = nil
    }
 
    private func startRecording() {
-      self.training = Training()
+      let interval = Interval()
+      Realm.write {
+         realm in
+         realm.currentHistory.addInterval(interval)
+      }
+      self.interval = interval
+      ServerSynchronizer.defaultServer.sendPackage(.Start(interval.id))
+
       self.accelerometer.start()
       self.suspender = BackgroundSuspender()
       self.suspender?.suspend()
@@ -79,10 +60,6 @@ class TrainingInterfaceController: WKInterfaceController {
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      if let delegate = context as? TrainingInterfaceControllerDelegate {
-         self.delegate = delegate
-      }
-
       self.startRecording()
    }
 
@@ -98,19 +75,25 @@ class TrainingInterfaceController: WKInterfaceController {
 }
 
 extension TrainingInterfaceController: AccelerometerDelegate {
-   func accelerometer(accelerometer: Accelerometer, didReceiveData accelerometerData: BaseAccelerationData) {
-      guard let training = self.training else {
+   func accelerometer(accelerometer: Accelerometer, didReceiveData data: CMAccelerometerData) {
+      guard let interval = self.interval else {
          return
       }
-      let data = AccelerationData(data: accelerometerData)
-      History.defaultHistory.addData(data, toTraining: training)
-      self.bestLabel.setText(NSNumberFormatter.formatAccelereration(training.best))
 
-      self.delegate?.trainingInterfaceController(self,
-         didAddData: data,
-         toTraining: training)
+      let accelerationData = AccelerationData(x: data.acceleration.x,
+         y: data.acceleration.y,
+         z: data.acceleration.z,
+         date: NSDate())
 
-      let userInfo: [String: AnyObject] = ["acceleration": data.attributes, "intervalId": training.id]
-      self.session?.transferUserInfo(userInfo)
+      ServerSynchronizer.defaultServer.sendPackage(.Data(interval.id, [accelerationData]))
+
+      Realm.write {
+         realm in
+         if let history = realm.objects(History.self).first {
+            history.addData(accelerationData, toInterval: interval)
+         }
+      }
+
+      self.bestLabel.setText(NSNumberFormatter.formatAccelereration(interval.best))
    }
 }

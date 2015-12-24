@@ -40,7 +40,7 @@ final class IntervalViewController: UIViewController {
 
       self.chartView.legend.position = .BelowChartCenter
 
-      let best = self.interval.achievements.acceleration
+      let best = History.currentHistory.best
 
       let bestLine = ChartLimitLine(limit: best, label: tr(.AccelerationRecord))
 
@@ -53,40 +53,50 @@ final class IntervalViewController: UIViewController {
 
       self.addData()
 
-      NSNotificationCenter.defaultCenter()
-         .rac_addObserverForName(DidChangeIntervalNotification, object: nil)
-         .takeUntil(self.rac_willDeallocSignal())
-         .toSignalProducer()
+      DynamicProperty(object: self.interval, keyPath: "currentCount")
+         .producer
+         .map { $0 as! Int }
+         .skip(1)
+         .skipRepeats()
          .startWithNext {
-            [weak self] next in
-            if let strongSelf = self,
-               note = next as? NSNotification,
-               id = note.userInfo?["id"] as? String where strongSelf.interval.id == id,
-               let data = note.userInfo?["data"] as? AccelerationData {
-                  if let chartData = strongSelf.chartView.lineData {
-                     if data.total > bestLine.limit {
-                        bestLine.limit = data.total
-                        strongSelf.chartView.leftAxis.customAxisMax = data.total * 1.1
-                     }
+            [weak self] count in
+            guard let strongSelf = self else {
+               return
+            }
 
-                     let xDataSet = chartData.dataSets[0] as! LineChartDataSet
-                     let newIndex = xDataSet.valueCount
-                     xDataSet.addEntry(ChartDataEntry(value: data.x, xIndex: newIndex))
+            if let chartData = strongSelf.chartView.lineData {
 
-                     let yDataSet = chartData.dataSets[1] as! LineChartDataSet
-                     yDataSet.addEntry(ChartDataEntry(value: data.y, xIndex: newIndex))
+               let best = History.currentHistory.best
 
-                     let zDataSet = chartData.dataSets[2] as! LineChartDataSet
-                     zDataSet.addEntry(ChartDataEntry(value: data.z, xIndex: newIndex))
+               if best > bestLine.limit {
+                  bestLine.limit = best
+                  strongSelf.chartView.leftAxis.customAxisMax = best * 1.1
+               }
 
-                     let totalDataSet = chartData.dataSets[3] as! LineChartDataSet
-                     totalDataSet.addEntry(ChartDataEntry(value: data.total, xIndex: newIndex))
+               let xDataSet = chartData.dataSets[0] as! LineChartDataSet
+               let previousCount = xDataSet.valueCount
 
-                     chartData.addXValue("\(newIndex)")
-                     strongSelf.chartView.notifyDataSetChanged()
-                  } else {
-                     strongSelf.addAccelerations([data])
-                  }
+               let newData = strongSelf.interval.data[previousCount..<count]
+
+               for (i, data) in newData.enumerate() {
+                  let newIndex = previousCount + i
+                  xDataSet.addEntry(ChartDataEntry(value: data.x, xIndex: newIndex))
+
+                  let yDataSet = chartData.dataSets[1] as! LineChartDataSet
+                  yDataSet.addEntry(ChartDataEntry(value: data.y, xIndex: newIndex))
+
+                  let zDataSet = chartData.dataSets[2] as! LineChartDataSet
+                  zDataSet.addEntry(ChartDataEntry(value: data.z, xIndex: newIndex))
+
+                  let totalDataSet = chartData.dataSets[3] as! LineChartDataSet
+                  totalDataSet.addEntry(ChartDataEntry(value: data.total, xIndex: newIndex))
+                  
+                  chartData.addXValue("\(newIndex)")
+               }
+
+               strongSelf.chartView.notifyDataSetChanged()
+            } else {
+               strongSelf.addData()
             }
       }
    }

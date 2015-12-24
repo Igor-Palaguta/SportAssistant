@@ -7,10 +7,13 @@
 //
 
 import WatchKit
+import RealmSwift
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
+      Realm.configure()
+
         // Perform any final initialization of your application.
     }
 

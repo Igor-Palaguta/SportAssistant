@@ -94,27 +94,27 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
          if let interval = self.interval {
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
 
-            let completedSignal = DynamicProperty(object: interval, keyPath: "completed")
+            let activeSignal = DynamicProperty(object: interval, keyPath: "active")
                .producer
                .map { $0 as! Bool }
                .skipRepeats()
 
             DynamicProperty(object: self.durationLabel, keyPath: "text") <~
-               completedSignal
+               activeSignal
                   .flatMap(.Latest) {
-                     completed -> SignalProducer<NSTimeInterval, NoError> in
-                     if completed {
-                        return SignalProducer(value: interval.duration)
-                     } else {
+                     active -> SignalProducer<NSTimeInterval, NoError> in
+                     if active {
                         return everySecondSignalProducer().map { _ in interval.duration }
+                     } else {
+                        return SignalProducer(value: interval.duration)
                      }
                   }
                   .map { $0.toDurationString() }
                   .takeUntil(reuseSignal)
 
             DynamicProperty(object: self.progressView, keyPath: "isAnimating") <~
-               completedSignal
-                  .map { !$0 }
+               activeSignal
+                  .map { $0 }
                   .takeUntil(reuseSignal)
 
             self.dateLabel.text = interval.start.toString(.ShortStyle, inRegion: .LocalRegion())

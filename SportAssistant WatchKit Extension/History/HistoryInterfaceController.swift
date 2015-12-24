@@ -1,5 +1,6 @@
 import WatchKit
 import Foundation
+import RealmSwift
 
 class HistoryInterfaceController: WKInterfaceController {
 
@@ -8,12 +9,14 @@ class HistoryInterfaceController: WKInterfaceController {
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      let trainings = History.defaultHistory.trainings
-      self.table.setNumberOfRows(trainings.count, withRowType: String(TrainingController.self))
+      let realm = try! Realm()
 
-      for (index, training) in trainings.enumerate() {
+      let intervals = realm.currentHistory.intervals
+      self.table.setNumberOfRows(intervals.count, withRowType: String(TrainingController.self))
+
+      for (index, interval) in intervals.enumerate() {
          let row = self.table.rowControllerAtIndex(index) as! TrainingController
-         row.training = training
+         row.interval = interval
       }
    }
 

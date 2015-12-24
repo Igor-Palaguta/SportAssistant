@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		350F4ADD9BF5E131ADC621E8 /* Pods_SportAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3023CD20589AF5CC48F86001 /* Pods_SportAssistant.framework */; };
 		78045FCD1C25FF1000FEEB87 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Interval.swift */; };
 		78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD21C26073700FEEB87 /* IntervalViewController.swift */; };
 		78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD31C26073700FEEB87 /* IntervalCell.swift */; };
@@ -15,8 +14,6 @@
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
 		7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */; };
 		7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6371C21845B00A7CBB1 /* Accelerometer.swift */; };
-		7831F6421C21865300A7CBB1 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F63F1C21865300A7CBB1 /* TrainingController.swift */; };
-		7831F6441C21865300A7CBB1 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6411C21865300A7CBB1 /* HistoryInterfaceController.swift */; };
 		784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D25071C1F1856006491A0 /* MenuInterfaceController.swift */; };
 		7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7854643D1C22A95E00F399D9 /* JSONAble.swift */; };
 		788A51991C15835600A166A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51981C15835600A166A0 /* AppDelegate.swift */; };
@@ -33,15 +30,39 @@
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
 		788A51DA1C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51D91C15835600A166A0 /* Assets.xcassets */; };
 		788C3B421C28AB680081BD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 788C3B411C28AB680081BD13 /* Localizable.strings */; };
-		789C3C4D1C29573200FD6B08 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C4B1C29573200FD6B08 /* Training.swift */; };
-		789C3C4F1C29578200FD6B08 /* BaseAccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */; };
-		789C3C501C29584800FD6B08 /* BaseAccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */; };
-		789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* Achievements.swift */; };
+		789DE8F11C27571400B8CA98 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
 		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
+		78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */; };
+		78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
+		78E51D091C2AA77700E5D26B /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; };
+		78E51D0A1C2AA77700E5D26B /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; };
+		78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D0D1C2AA77700E5D26B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; };
+		78E51D0E1C2AA77700E5D26B /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D0F1C2AA77700E5D26B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; };
+		78E51D101C2AA77700E5D26B /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D111C2AA77700E5D26B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D071C2AA77700E5D26B /* Result.framework */; };
+		78E51D121C2AA77700E5D26B /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D071C2AA77700E5D26B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D131C2AA77700E5D26B /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D081C2AA77700E5D26B /* SwiftDate.framework */; };
+		78E51D141C2AA77700E5D26B /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D081C2AA77700E5D26B /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D171C2AA7C500E5D26B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D151C2AA7C500E5D26B /* Realm.framework */; };
+		78E51D181C2AA7C500E5D26B /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D151C2AA7C500E5D26B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D191C2AA7C500E5D26B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D161C2AA7C500E5D26B /* RealmSwift.framework */; };
+		78E51D1A1C2AA7C500E5D26B /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D161C2AA7C500E5D26B /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
+		78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
+		78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
+		78E51D221C2ACB5A00E5D26B /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Interval.swift */; };
+		78E51D231C2ACB5A00E5D26B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
+		78E61E631C2C2597003C59F1 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E621C2C2597003C59F1 /* Package.swift */; };
+		78E61E641C2C25A3003C59F1 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E621C2C2597003C59F1 /* Package.swift */; };
+		78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */; };
+		78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +126,24 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				78E51D0E1C2AA77700E5D26B /* Realm.framework in Embed Frameworks */,
+				78E51D0A1C2AA77700E5D26B /* Charts.framework in Embed Frameworks */,
+				78E51D121C2AA77700E5D26B /* Result.framework in Embed Frameworks */,
+				78E51D101C2AA77700E5D26B /* RealmSwift.framework in Embed Frameworks */,
+				78E51D141C2AA77700E5D26B /* SwiftDate.framework in Embed Frameworks */,
+				78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78E51D1B1C2AA7C600E5D26B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78E51D1A1C2AA7C500E5D26B /* RealmSwift.framework in Embed Frameworks */,
+				78E51D181C2AA7C500E5D26B /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,9 +151,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3023CD20589AF5CC48F86001 /* Pods_SportAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4220F2D124522EC48E61ADA1 /* Pods-SportAssistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistant.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistant/Pods-SportAssistant.release.xcconfig"; sourceTree = "<group>"; };
-		54FF4E3DBC0AD8C5E6E7504A /* Pods-SportAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportAssistant/Pods-SportAssistant.debug.xcconfig"; sourceTree = "<group>"; };
 		78045FCC1C25FF1000FEEB87 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		78045FD21C26073700FEEB87 /* IntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalViewController.swift; sourceTree = "<group>"; };
 		78045FD31C26073700FEEB87 /* IntervalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalCell.swift; sourceTree = "<group>"; };
@@ -122,8 +158,6 @@
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
 		7831F6371C21845B00A7CBB1 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
-		7831F63F1C21865300A7CBB1 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrainingController.swift; path = Trainings/TrainingController.swift; sourceTree = "<group>"; };
-		7831F6411C21865300A7CBB1 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryInterfaceController.swift; path = Trainings/HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
 		7854643D1C22A95E00F399D9 /* JSONAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAble.swift; sourceTree = "<group>"; };
 		788A51951C15835600A166A0 /* SportAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,13 +183,27 @@
 		788A51D91C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		789C3C4B1C29573200FD6B08 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
-		789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAccelerationData.swift; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+EveryMinute.swift"; sourceTree = "<group>"; };
-		789DE8F01C27571400B8CA98 /* Achievements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
+		789DE8F01C27571400B8CA98 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
+		78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
+		78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingController.swift; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		78E51D031C2AA77700E5D26B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+		78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		78E51D051C2AA77700E5D26B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		78E51D061C2AA77700E5D26B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		78E51D071C2AA77700E5D26B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		78E51D081C2AA77700E5D26B /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
+		78E51D151C2AA7C500E5D26B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/watchOS/Realm.framework; sourceTree = "<group>"; };
+		78E51D161C2AA7C500E5D26B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/watchOS/RealmSwift.framework; sourceTree = "<group>"; };
+		78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Configure.swift"; sourceTree = "<group>"; };
+		78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportAssistant.entitlements; sourceTree = "<group>"; };
+		78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SportAssistant WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		78E61E621C2C2597003C59F1 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSynchronizer.swift; sourceTree = "<group>"; };
+		78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSynchronizer.swift; sourceTree = "<group>"; };
 		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,7 +212,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				350F4ADD9BF5E131ADC621E8 /* Pods_SportAssistant.framework in Frameworks */,
+				78E51D0D1C2AA77700E5D26B /* Realm.framework in Frameworks */,
+				78E51D091C2AA77700E5D26B /* Charts.framework in Frameworks */,
+				78E51D111C2AA77700E5D26B /* Result.framework in Frameworks */,
+				78E51D0F1C2AA77700E5D26B /* RealmSwift.framework in Frameworks */,
+				78E51D131C2AA77700E5D26B /* SwiftDate.framework in Frameworks */,
+				78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,21 +239,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E51D191C2AA7C500E5D26B /* RealmSwift.framework in Frameworks */,
+				78E51D171C2AA7C500E5D26B /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6575AA077200D5FE4FA27FD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				54FF4E3DBC0AD8C5E6E7504A /* Pods-SportAssistant.debug.xcconfig */,
-				4220F2D124522EC48E61ADA1 /* Pods-SportAssistant.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		78045FD11C26072200FEEB87 /* Intervals */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,15 +278,6 @@
 			path = Training;
 			sourceTree = "<group>";
 		};
-		7831F63E1C21864400A7CBB1 /* Trainings */ = {
-			isa = PBXGroup;
-			children = (
-				7831F63F1C21865300A7CBB1 /* TrainingController.swift */,
-				7831F6411C21865300A7CBB1 /* HistoryInterfaceController.swift */,
-			);
-			name = Trainings;
-			sourceTree = "<group>";
-		};
 		784D25051C1F1806006491A0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,14 +289,20 @@
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
+				78E51D151C2AA7C500E5D26B /* Realm.framework */,
+				78E51D161C2AA7C500E5D26B /* RealmSwift.framework */,
+				78E51D031C2AA77700E5D26B /* Charts.framework */,
+				78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */,
+				78E51D051C2AA77700E5D26B /* Realm.framework */,
+				78E51D061C2AA77700E5D26B /* RealmSwift.framework */,
+				78E51D071C2AA77700E5D26B /* Result.framework */,
+				78E51D081C2AA77700E5D26B /* SwiftDate.framework */,
 				788A51971C15835600A166A0 /* SportAssistant */,
 				788A51AC1C15835600A166A0 /* SportAssistantTests */,
 				788A51B71C15835600A166A0 /* SportAssistantUITests */,
 				788A51C11C15835600A166A0 /* SportAssistant WatchKit App */,
 				788A51D01C15835600A166A0 /* SportAssistant WatchKit Extension */,
 				788A51961C15835600A166A0 /* Products */,
-				6575AA077200D5FE4FA27FD4 /* Pods */,
-				890C8075D6021E574CA318DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,6 +321,8 @@
 		788A51971C15835600A166A0 /* SportAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */,
+				78E61E611C2C257B003C59F1 /* Synchronizer */,
 				788C3B401C28AB400081BD13 /* Resources */,
 				78045FD11C26072200FEEB87 /* Intervals */,
 				78FAF04B1C258D2700016580 /* Engine */,
@@ -323,8 +368,9 @@
 		788A51D01C15835600A166A0 /* SportAssistant WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				789C3C491C2956F600FD6B08 /* Engine */,
-				7831F63E1C21864400A7CBB1 /* Trainings */,
+				78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */,
+				78E61E671C2C2ADF003C59F1 /* Synchronizer */,
+				78A2D1DF1C2C135400EEBDD7 /* History */,
 				7831F6351C21843D00A7CBB1 /* Training */,
 				784D25051C1F1806006491A0 /* Menu */,
 				788A51D51C15835600A166A0 /* ExtensionDelegate.swift */,
@@ -352,12 +398,30 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		789C3C491C2956F600FD6B08 /* Engine */ = {
+		78A2D1DF1C2C135400EEBDD7 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				789C3C4B1C29573200FD6B08 /* Training.swift */,
+				78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */,
+				78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */,
 			);
-			path = Engine;
+			path = History;
+			sourceTree = "<group>";
+		};
+		78E61E611C2C257B003C59F1 /* Synchronizer */ = {
+			isa = PBXGroup;
+			children = (
+				78E61E621C2C2597003C59F1 /* Package.swift */,
+				78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */,
+			);
+			path = Synchronizer;
+			sourceTree = "<group>";
+		};
+		78E61E671C2C2ADF003C59F1 /* Synchronizer */ = {
+			isa = PBXGroup;
+			children = (
+				78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */,
+			);
+			path = Synchronizer;
 			sourceTree = "<group>";
 		};
 		78FAF04B1C258D2700016580 /* Engine */ = {
@@ -365,18 +429,10 @@
 			children = (
 				78FAF04C1C258D4700016580 /* AccelerationData.swift */,
 				78045FCC1C25FF1000FEEB87 /* Interval.swift */,
-				789DE8F01C27571400B8CA98 /* Achievements.swift */,
-				789C3C4E1C29578200FD6B08 /* BaseAccelerationData.swift */,
+				789DE8F01C27571400B8CA98 /* History.swift */,
+				78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */,
 			);
 			path = Engine;
-			sourceTree = "<group>";
-		};
-		890C8075D6021E574CA318DB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3023CD20589AF5CC48F86001 /* Pods_SportAssistant.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,14 +442,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 788A51E61C15835600A166A0 /* Build configuration list for PBXNativeTarget "SportAssistant" */;
 			buildPhases = (
-				389706F62ABA589B94A58968 /* Check Pods Manifest.lock */,
 				788C3B431C28ABD30081BD13 /* Swiftgen */,
 				788A51911C15835600A166A0 /* Sources */,
 				788A51921C15835600A166A0 /* Frameworks */,
 				788A51931C15835600A166A0 /* Resources */,
 				788A51E51C15835600A166A0 /* Embed Watch Content */,
-				1E7ABBDFA3B3ECE31C904452 /* Embed Pods Frameworks */,
-				A79F2E10F430742D6F1A7780 /* Copy Pods Resources */,
 				78BFF8BC1C257D7D00F3CD98 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -469,6 +522,7 @@
 				788A51C81C15835600A166A0 /* Sources */,
 				788A51C91C15835600A166A0 /* Frameworks */,
 				788A51CA1C15835600A166A0 /* Resources */,
+				78E51D1B1C2AA7C600E5D26B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -491,6 +545,12 @@
 				TargetAttributes = {
 					788A51941C15835600A166A0 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 76CZQW8YA8;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					788A51A81C15835600A166A0 = {
 						CreatedOnToolsVersion = 7.1;
@@ -502,10 +562,16 @@
 					};
 					788A51BC1C15835600A166A0 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 76CZQW8YA8;
 					};
 					788A51CB1C15835600A166A0 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 76CZQW8YA8;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -577,36 +643,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E7ABBDFA3B3ECE31C904452 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportAssistant/Pods-SportAssistant-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		389706F62ABA589B94A58968 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		63487686B74A119FA823913A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,21 +671,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n";
-		};
-		A79F2E10F430742D6F1A7780 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportAssistant/Pods-SportAssistant-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		B448C4BDE89CE0D662DEC5A6 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -688,17 +709,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */,
 				788A519B1C15835600A166A0 /* ViewController.swift in Sources */,
 				78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */,
 				789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */,
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */,
 				78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */,
-				789C3C4F1C29578200FD6B08 /* BaseAccelerationData.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,
+				78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */,
 				78045FCD1C25FF1000FEEB87 /* Interval.swift in Sources */,
 				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,
-				789DE8F11C27571400B8CA98 /* Achievements.swift in Sources */,
+				789DE8F11C27571400B8CA98 /* History.swift in Sources */,
+				78E61E631C2C2597003C59F1 /* Package.swift in Sources */,
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
 				7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */,
@@ -725,16 +748,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				789C3C501C29584800FD6B08 /* BaseAccelerationData.swift in Sources */,
+				78E51D231C2ACB5A00E5D26B /* History.swift in Sources */,
+				78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */,
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
+				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
+				78E61E641C2C25A3003C59F1 /* Package.swift in Sources */,
+				78E51D221C2ACB5A00E5D26B /* Interval.swift in Sources */,
 				788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */,
-				7831F6441C21865300A7CBB1 /* HistoryInterfaceController.swift in Sources */,
+				78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */,
 				789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */,
-				7831F6421C21865300A7CBB1 /* TrainingController.swift in Sources */,
 				7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */,
+				78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */,
 				784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */,
-				789C3C4D1C29573200FD6B08 /* Training.swift in Sources */,
+				78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,11 +904,16 @@
 		788A51DF1C15835600A166A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SportAssistant WatchKit Extension/SportAssistant WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -894,11 +926,16 @@
 		788A51E01C15835600A166A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SportAssistant WatchKit Extension/SportAssistant WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -912,11 +949,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				IBSC_MODULE = SportAssistant_WatchKit_Extension;
 				INFOPLIST_FILE = "SportAssistant WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -928,11 +968,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				IBSC_MODULE = SportAssistant_WatchKit_Extension;
 				INFOPLIST_FILE = "SportAssistant WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -942,25 +985,41 @@
 		};
 		788A51E71C15835600A166A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54FF4E3DBC0AD8C5E6E7504A /* Pods-SportAssistant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SportAssistant/SportAssistant.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SportAssistant",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		788A51E81C15835600A166A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4220F2D124522EC48E61ADA1 /* Pods-SportAssistant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SportAssistant/SportAssistant.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SportAssistant",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.SportAssistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

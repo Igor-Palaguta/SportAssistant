@@ -6,38 +6,39 @@ final class IntervalsViewController: UITableViewController {
 
    @IBOutlet weak private var bestLabel: UILabel!
 
-   private var _intervals: Results<Interval>?
+   private var _intervals: List<Interval>?
 
-   private var intervals: Results<Interval> {
+   private var intervals: List<Interval> {
       if let intervals = self._intervals {
          return intervals
       }
-      let realm = try! Realm()
-      let intervals = realm.objects(Interval).sorted("start", ascending: false)
+      let intervals = self.history.intervals
       self._intervals = intervals
       return intervals
    }
 
-   private lazy var achievements: Achievements = {
+   private lazy var history: History = {
       let realm = try! Realm()
-      return realm.objects(Achievements.self).first!
+      return realm.currentHistory
    }()
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
       DynamicProperty(object: self.bestLabel, keyPath: "text") <~
-         DynamicProperty(object: self.achievements, keyPath: "acceleration")
+         DynamicProperty(object: self.history, keyPath: "best")
             .producer
             .map {
                let best = $0 as! Double
                return NSNumberFormatter.formatAccelereration(best)
       }
 
-      NSNotificationCenter.defaultCenter()
-         .rac_addObserverForName(DidAddIntervalNotification, object: nil)
-         .takeUntil(self.rac_willDeallocSignal())
-         .subscribeNext {
+      DynamicProperty(object: self.history, keyPath: "intervalsCount")
+         .producer
+         .map { $0 as! Int }
+         .skip(1)
+         .skipRepeats()
+         .startWithNext {
             [weak self] _ in
             if let strongSelf = self {
                strongSelf._intervals = nil

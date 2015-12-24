@@ -29,6 +29,9 @@
                             </connections>
                         </button>
                     </items>
+                    <connections>
+                        <outlet property="bestLabel" destination="Hsg-D2-QcP" id="ggz-xr-LMh"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-19" y="481"/>

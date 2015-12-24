@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class AccelerationData: Object, BaseAccelerationData {
+class AccelerationData: Object {
    dynamic var date: NSDate!
    dynamic var x: Double = 0
    dynamic var y: Double = 0
@@ -10,46 +10,10 @@ class AccelerationData: Object, BaseAccelerationData {
 
    convenience init(x: Double, y: Double, z: Double, date: NSDate) {
       self.init()
-      self.date = NSDate()//date
+      self.date = date
       self.x = x
       self.y = y
       self.z = z
       self.total = sqrt(x * x + y * y + z * z)
-   }
-}
-
-let DidAddIntervalNotification = "DidAddIntervalNotification"
-let DidChangeIntervalNotification = "DidChangeIntervalNotification"
-
-extension Realm {
-   private func intervalById(id: String) -> Interval {
-      if let interval = self.objectForPrimaryKey(Interval.self, key: id) {
-         return interval
-      }
-
-      let interval = Interval()
-      interval.id = id
-      return interval
-   }
-
-   func addAccelerationData(data: AccelerationData, intervalId: String) {
-      if let interval = self.objectForPrimaryKey(Interval.self, key: intervalId) {
-         try! self.write {
-            interval.addData(data)
-            NSNotificationCenter.defaultCenter().postNotificationName(DidChangeIntervalNotification, object: self, userInfo: ["id": intervalId, "data": data])
-         }
-      } else {
-
-         let interval = Interval()
-         interval.achievements = self.objects(Achievements).first!
-         interval.id = intervalId
-         try! self.write {
-            let lastInterval: Interval? = self.objects(Interval).last
-            lastInterval?.completed = true
-            interval.addData(data)
-            self.add(interval)
-            NSNotificationCenter.defaultCenter().postNotificationName(DidAddIntervalNotification, object: self, userInfo: ["id": intervalId])
-         }
-      }
    }
 }

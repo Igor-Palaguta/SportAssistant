@@ -2,33 +2,20 @@ import Foundation
 import RealmSwift
 
 class Interval: Object {
-   dynamic var id: String = ""
+   dynamic var id: String = NSUUID().UUIDString
    dynamic var best: Double = 0
-   dynamic var start: NSDate!
-   dynamic var completed: Bool = false
-   dynamic var achievements: Achievements!
+   dynamic var start = NSDate()
+   dynamic var active: Bool = true
+   dynamic var totalCount: Int = 0
+   dynamic var currentCount: Int = 0
 
    dynamic var duration: NSTimeInterval {
-      let end = self.completed ? self.data.last!.date : NSDate()
+      let now = NSDate()
+      let end = self.active || self.data.isEmpty ? now : self.data.last!.date
       return end.timeIntervalSinceDate(self.start)
    }
 
    let data = List<AccelerationData>()
-
-   func addData(data: AccelerationData) {
-      if data.total > self.achievements.acceleration {
-         self.achievements.acceleration = data.total
-      }
-
-      if data.total > self.best {
-         self.best = data.total
-      }
-
-      if self.start == nil {
-         self.start = data.date
-      }
-      self.data.append(data)
-   }
 
    override static func primaryKey() -> String? {
       return "id"
@@ -39,6 +26,6 @@ class Interval: Object {
    }
 
    class func keyPathsForValuesAffectingDuration() -> NSSet {
-      return NSSet(object: "completed")
+      return NSSet(object: "active")
    }
 }

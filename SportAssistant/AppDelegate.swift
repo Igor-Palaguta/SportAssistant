@@ -9,7 +9,6 @@
 import UIKit
 import WatchConnectivity
 import RealmSwift
-import SwiftyTimer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,11 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    var window: UIWindow?
 
    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-      // Override point for customization after application launch.
 
-      self.configureRealm()
-      self.startWatchSession()
-      //self.generateFakeData()
+      Realm.configure()
+      ClientSynchronizer.defaultClient.start()
 
       return true
    }
@@ -47,81 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    func applicationWillTerminate(application: UIApplication) {
       // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
    }
-
-
 }
-
-private extension AppDelegate {
-   func configureRealm() {
-      var config = Realm.Configuration()
-
-      let documentsURL = NSFileManager.defaultManager()
-         .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-         .first!
-
-      // Use the default directory, but replace the filename with the username
-      config.path = documentsURL
-         .URLByAppendingPathComponent("Acceleration.realm")
-         .path
-
-      // Set this as the configuration used for the default Realm
-      Realm.Configuration.defaultConfiguration = config
-
-      let realm = try! Realm()
-      if realm.objects(Achievements.self).isEmpty {
-         try! realm.write {
-            let achievements = Achievements()
-            realm.add(achievements)
-         }
-      }
-   }
-
-   func startWatchSession() {
-      if WCSession.isSupported() {
-         let session = WCSession.defaultSession()
-         session.delegate = self
-         session.activateSession()
-      }
-   }
-
-   func generateFakeData() {
-      let intervalId = NSUUID().UUIDString
-      NSTimer.every(3.seconds) {
-         let data = AccelerationData(x: drand48() * 16 - 8,
-            y: drand48() * 16 - 8,
-            z: drand48() * 16 - 8,
-            date: NSDate())
-         let realm = try! Realm()
-         realm.addAccelerationData(data, intervalId: intervalId)
-      }
-   }
-}
-
-extension AppDelegate: WCSessionDelegate {
-   func sessionWatchStateDidChange(session: WCSession) {
-
-   }
-
-   func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
-      dispatch_async(dispatch_get_main_queue()) {
-         if let intervalId = userInfo["stop"] as? String {
-            let realm = try! Realm()
-            if let interval = realm.objectForPrimaryKey(Interval.self, key: intervalId) {
-               try! realm.write {
-                  interval.completed = true
-               }
-            }
-         } else if let acceleration = userInfo["acceleration"] as? [String: AnyObject],
-            x = acceleration["x"] as? Double,
-            y = acceleration["y"] as? Double,
-            z = acceleration["z"] as? Double,
-            date = acceleration["date"] as? NSDate,
-            intervalId = userInfo["intervalId"] as? String {
-               let data = AccelerationData(x: x, y: y, z: z, date: date)
-               let realm = try! Realm()
-               realm.addAccelerationData(data, intervalId: intervalId)
-         }
-      }
-   }
-}
-
