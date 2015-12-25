@@ -32,7 +32,7 @@
 		788C3B421C28AB680081BD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 788C3B411C28AB680081BD13 /* Localizable.strings */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
-		789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */; };
+		789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACHelpers.swift */; };
 		789DE8F11C27571400B8CA98 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
 		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */; };
@@ -184,7 +184,7 @@
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
-		789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+EveryMinute.swift"; sourceTree = "<group>"; };
+		789DE8EE1C27484000B8CA98 /* RACHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpers.swift; sourceTree = "<group>"; };
 		789DE8F01C27571400B8CA98 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
 		78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 			children = (
 				7831F62F1C217B7600A7CBB1 /* ReusableView.swift */,
 				7854643D1C22A95E00F399D9 /* JSONAble.swift */,
-				789DE8EE1C27484000B8CA98 /* RACSignal+EveryMinute.swift */,
+				789DE8EE1C27484000B8CA98 /* RACHelpers.swift */,
 				789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */,
 			);
 			path = Utils;
@@ -712,7 +712,7 @@
 				78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */,
 				788A519B1C15835600A166A0 /* ViewController.swift in Sources */,
 				78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */,
-				789DE8EF1C27484000B8CA98 /* RACSignal+EveryMinute.swift in Sources */,
+				789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */,
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */,
 				78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */,

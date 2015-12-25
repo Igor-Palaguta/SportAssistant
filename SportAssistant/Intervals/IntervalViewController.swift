@@ -79,7 +79,7 @@ final class IntervalViewController: UIViewController {
             .takeUntil(self.rac_willDeallocSignalProducer())
             .map { $0 as! Double }
             .skipRepeats()
-            .map { NSNumberFormatter.formatAccelereration($0) }
+            .map { NSNumberFormatter.stringForAcceleration($0) }
 
       DynamicProperty(object: self.interval, keyPath: "currentCount")
          .producer

@@ -12,10 +12,14 @@
                     <items>
                         <group width="134" alignment="left" id="in6-fX-Png">
                             <items>
-                                <label alignment="left" text="Best" id="cu2-RT-uW1">
-                                    <fontDescription key="font" type="system" pointSize="24"/>
+                                <label alignment="left" verticalAlignment="bottom" text="record" id="cu2-RT-uW1">
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
-                                <label alignment="right" text="-" id="Hsg-D2-QcP"/>
+                                <label alignment="right" text="-" id="Hsg-D2-QcP">
+                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                </label>
                             </items>
                         </group>
                         <button width="1" alignment="left" title="Start" id="Che-Hz-tXw">
@@ -67,61 +71,34 @@
             </objects>
             <point key="canvasLocation" x="220" y="581"/>
         </scene>
-        <!--Training Interface Controller-->
+        <!--Done-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Done" id="AgC-eL-Hgc" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
-                        <group width="1" alignment="left" hidden="YES" id="lRg-HY-dtQ">
-                            <items>
-                                <label alignment="left" text="Count" id="IOk-bc-F35">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </label>
-                                <label alignment="right" text="18" textAlignment="right" id="Mhx-Uk-1W0">
-                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                </label>
-                            </items>
-                        </group>
                         <group width="1" alignment="left" id="zUC-WC-caW">
                             <items>
-                                <label alignment="left" text="Best" id="1uu-IJ-4j2">
+                                <label alignment="left" verticalAlignment="bottom" text="best" id="1uu-IJ-4j2">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
-                                <label alignment="right" text="-" id="V7n-gw-cXm"/>
-                            </items>
-                        </group>
-                        <group width="1" alignment="left" hidden="YES" id="xg7-FR-mWx">
-                            <items>
-                                <label alignment="left" text="Worst" id="dbB-hK-TOu">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <label alignment="right" verticalAlignment="bottom" text="-" id="V7n-gw-cXm">
+                                    <fontDescription key="font" type="system" pointSize="30"/>
                                 </label>
-                                <label alignment="right" text="10.0" id="Df7-qg-w9p"/>
                             </items>
                         </group>
-                        <group width="1" alignment="left" hidden="YES" id="vKL-aC-af6">
-                            <items>
-                                <label alignment="left" text="Average" id="Bf1-0I-UfR">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </label>
-                                <label alignment="right" text="11.5" id="p8c-5M-c6C"/>
-                            </items>
-                        </group>
-                        <button width="1" alignment="left" title="Stop" id="Z6I-aa-HVH">
+                        <button width="1" alignment="left" title="Done" id="Z6I-aa-HVH">
                             <connections>
                                 <action selector="stopAction:" destination="AgC-eL-Hgc" id="fXP-uR-oHo"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="Restart" id="Pfo-8v-sgd">
+                        <button width="1" alignment="left" title="New" id="Pfo-8v-sgd">
                             <connections>
                                 <action selector="restartAction:" destination="AgC-eL-Hgc" id="NNM-mZ-5cb"/>
                             </connections>
                         </button>
                     </items>
                     <connections>
-                        <outlet property="averageLabel" destination="p8c-5M-c6C" id="dBJ-zN-QaU"/>
                         <outlet property="bestLabel" destination="V7n-gw-cXm" id="Uad-wG-Vvm"/>
-                        <outlet property="countLabel" destination="Mhx-Uk-1W0" id="fCL-JU-31l"/>
-                        <outlet property="worstLabel" destination="Df7-qg-w9p" id="Fz3-YD-WWK"/>
                     </connections>
                 </controller>
             </objects>

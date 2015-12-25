@@ -25,12 +25,14 @@ final class IntervalsViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      DynamicProperty(object: self.bestLabel, keyPath: "text") <~
+      let integralFont = self.bestLabel.font
+      DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
          DynamicProperty(object: self.history, keyPath: "best")
             .producer
+            .map { $0 as! Double }
             .map {
-               let best = $0 as! Double
-               return NSNumberFormatter.formatAccelereration(best)
+               best -> NSAttributedString? in
+               return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
       }
 
       DynamicProperty(object: self.history, keyPath: "intervalsCount")

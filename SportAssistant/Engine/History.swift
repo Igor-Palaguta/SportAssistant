@@ -4,12 +4,23 @@ import RealmSwift
 class History: Object {
    dynamic var best: Double = 0
    dynamic var intervalsCount = 0
+   dynamic var active: Interval?
 
    let intervals = List<Interval>()
 
    func addInterval(interval: Interval) {
       self.intervals.insert(interval, atIndex: 0)
       self.intervalsCount = self.intervals.count
+   }
+
+   func activateInterval(interval: Interval) {
+      self.active = interval
+   }
+
+   func deactivateInterval(interval: Interval) {
+      if self.active == interval {
+         self.active = nil
+      }
    }
 
    func addData(data: AccelerationData, toInterval interval: Interval) {

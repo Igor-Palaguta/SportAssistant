@@ -44,6 +44,14 @@ class TrainingInterfaceController: WKInterfaceController {
    override func willActivate() {
       super.willActivate()
       self.suspender?.suspend()
+
+      if let interval = self.interval {
+         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(interval.best))
+
+         if interval.best == interval.history.best {
+            self.bestLabel.setTextColor(.greenColor())
+         }
+      }
    }
 
    override func willDisappear() {
@@ -80,13 +88,19 @@ extension TrainingInterfaceController: AccelerometerDelegate {
 
       ServerSynchronizer.defaultServer.sendPackage(.Data(interval.id, [accelerationData]))
 
-      Realm.write {
-         realm in
-         if let history = realm.objects(History.self).first {
-            history.addData(accelerationData, toInterval: interval)
-         }
+      if accelerationData.total > interval.best {
+         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
       }
 
-      self.bestLabel.setText(NSNumberFormatter.formatAccelereration(interval.best))
+      if accelerationData.total > interval.history.best {
+         WKInterfaceDevice.currentDevice().playHaptic(.Success)
+         self.bestLabel.setTextColor(.greenColor())
+      }
+
+      Realm.write {
+         realm in
+         interval.history.addData(accelerationData, toInterval: interval)
+      }
+
    }
 }

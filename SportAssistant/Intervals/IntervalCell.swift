@@ -92,14 +92,26 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
    @IBOutlet private weak var bestLast: UILabel!
    @IBOutlet private weak var progressView: ProgressView!
 
+   private var history: History!
+   private lazy var accelerationFont: UIFont = self.bestLast.font
+
    var interval: Interval! {
       didSet {
          if let interval = self.interval {
+            self.history = interval.history
+
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
 
-            let activeSignal = DynamicProperty(object: interval, keyPath: "active")
+            let activeSignal = DynamicProperty(object: self.history, keyPath: "active")
                .producer
-               .map { $0 as! Bool }
+               .map { $0 as? Interval }
+               .map {
+                  active -> Bool in
+                  if let active = active {
+                     return active == interval
+                  }
+                  return false
+               }
                .skipRepeats()
 
             DynamicProperty(object: self.durationLabel, keyPath: "text") <~
@@ -120,14 +132,24 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
                   .map { $0 }
                   .takeUntil(reuseSignal)
 
-            self.dateLabel.text = interval.start.toString(.ShortStyle, inRegion: .LocalRegion())
-
-            DynamicProperty(object: self.bestLast, keyPath: "text") <~
-               DynamicProperty(object: interval, keyPath: "best").producer
+            DynamicProperty(object: self.dateLabel, keyPath: "text") <~
+               DynamicProperty(object: interval, keyPath: "start").producer
                   .takeUntil(reuseSignal)
                   .map {
-                     let best = $0 as! Double
-                     return NSNumberFormatter.formatAccelereration(best)
+                     if let date = $0 as? NSDate {
+                        return date.toString(.ShortStyle, inRegion: .LocalRegion())
+                     }
+                     return nil
+            }
+
+            let integralFont = self.accelerationFont
+            DynamicProperty(object: self.bestLast, keyPath: "attributedText") <~
+               DynamicProperty(object: interval, keyPath: "best").producer
+                  .takeUntil(reuseSignal)
+                  .map { $0 as! Double }
+                  .map {
+                     best -> NSAttributedString? in
+                     return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
             }
          }
       }

@@ -23,6 +23,6 @@ class MenuInterfaceController: WKInterfaceController {
    override func didAppear() {
       super.didAppear()
 
-      self.bestLabel.setText(NSNumberFormatter.formatAccelereration(History.currentHistory.best))
+      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(History.currentHistory.best))
    }
 }

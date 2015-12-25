@@ -8,11 +8,20 @@ class TrainingController: NSObject {
 
    var interval: Interval! {
       didSet {
-         let dateFormatter = NSDateFormatter()
-         dateFormatter.dateStyle = .ShortStyle
-         dateFormatter.timeStyle = .NoStyle
-         self.dateLabel.setText(dateFormatter.stringFromDate(self.interval.start))
-         self.resultLabel.setText(NSNumberFormatter.formatAccelereration(self.interval.best))
+         let dateString: String? = self.interval.start.map {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .ShortStyle
+            dateFormatter.timeStyle = .NoStyle
+            return dateFormatter.stringFromDate($0)
+         }
+         self.dateLabel.setText(dateString)
+         self.resultLabel.setText(NSNumberFormatter.stringForAcceleration(self.interval.best))
+         let isRecord = self.interval.best == self.interval.history.best
+
+         let resultColor = isRecord
+            ? UIColor.greenColor()
+            : UIColor.whiteColor()
+         self.resultLabel.setTextColor(resultColor)
       }
    }
 }

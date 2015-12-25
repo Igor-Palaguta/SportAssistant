@@ -32,20 +32,20 @@ extension ClientSynchronizer: WCSessionDelegate {
 
       Realm.write {
          realm in
+         let history = realm.currentHistory
          for package in packages {
             switch package {
             case .Start(let id):
                let interval = Interval()
                interval.id = id
-               interval.active = true
-               realm.currentHistory.addInterval(interval)
+               history.addInterval(interval)
+               history.activateInterval(interval)
             case .Stop(let id):
                if let interval = realm.objectForPrimaryKey(Interval.self, key: id) {
-                  interval.active = false
+                  history.deactivateInterval(interval)
                }
             case .Data(let id, let data):
                if let interval = realm.objectForPrimaryKey(Interval.self, key: id) {
-                  let history = realm.currentHistory
                   data.forEach {
                      history.addData($0, toInterval: interval)
                   }

@@ -4,17 +4,15 @@ import RealmSwift
 class Interval: Object {
    dynamic var id = NSUUID().UUIDString
    dynamic var best: Double = 0
-   dynamic var start = NSDate()
-   dynamic var active = true
+   dynamic var start: NSDate?
    dynamic var totalCount = 0
    dynamic var currentCount = 0
 
    dynamic var duration: NSTimeInterval {
-      guard let lastData = self.data.last?.date else {
-         return 0
+      if let start = self.start, end = self.data.last?.date {
+         return end.timeIntervalSinceDate(start)
       }
-
-      return lastData.timeIntervalSinceDate(start)
+      return 0
    }
 
    var history: History {
@@ -32,6 +30,6 @@ class Interval: Object {
    }
 
    class func keyPathsForValuesAffectingDuration() -> NSSet {
-      return NSSet(objects: "active", "currentCount")
+      return NSSet(object: "currentCount")
    }
 }
