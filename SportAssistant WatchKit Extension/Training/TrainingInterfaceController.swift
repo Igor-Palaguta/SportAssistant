@@ -2,53 +2,88 @@ import WatchKit
 import Foundation
 import RealmSwift
 import CoreMotion
+import HealthKit
 
-class TrainingInterfaceController: WKInterfaceController {
+private class Session: NSObject {
 
-   @IBOutlet weak var bestLabel: WKInterfaceLabel!
+   let interval: Interval
+   let accelerometer: Accelerometer
+   let suspender = BackgroundSuspender()
+   let analyzer = TableTennisAnalyzer()
 
-   private var suspender: BackgroundSuspender?
-   private var interval: Interval?
+   let workoutSession: HKWorkoutSession
+   let healthStore: HKHealthStore
 
-   private lazy var accelerometer: Accelerometer = {
-      [unowned self] in
-      let accelerometer = Accelerometer()
-      accelerometer.delegate = self
-      return accelerometer
-      }()
-
-   private func stopRecording() {
-      if let interval = self.interval {
-         ServerSynchronizer.defaultServer.sendPackage(.Stop(interval.id))
-      }
-      self.interval = nil
-      self.accelerometer.stop()
-      self.suspender?.stop()
-      self.suspender = nil
-   }
-
-   private func startRecording() {
+   init(healthStore: HKHealthStore) {
       let interval = Interval()
       Realm.write {
          realm in
          realm.currentHistory.addInterval(interval)
       }
       self.interval = interval
-      ServerSynchronizer.defaultServer.sendPackage(.Start(interval.id))
-
+      self.accelerometer = Accelerometer()
       self.accelerometer.start()
-      self.suspender = BackgroundSuspender()
-      self.suspender?.suspend()
+      self.healthStore = healthStore
+      self.workoutSession = HKWorkoutSession(activityType: .TableTennis, locationType: .Indoor)
+      super.init()
+      self.workoutSession.delegate = self
+      self.healthStore.startWorkoutSession(self.workoutSession)
+   }
+
+   func stop() {
+      self.accelerometer.stop()
+      self.suspender.stop()
+      self.healthStore.endWorkoutSession(self.workoutSession)
+   }
+}
+
+extension Session: HKWorkoutSessionDelegate {
+   @objc private func workoutSession(workoutSession: HKWorkoutSession, didChangeToState toState: HKWorkoutSessionState, fromState: HKWorkoutSessionState, date: NSDate) {
+      NSLog("didChangeToState %d", toState.rawValue)
+   }
+
+   @objc private func workoutSession(workoutSession: HKWorkoutSession, didFailWithError error: NSError) {
+      NSLog("didFailWithError %@", error)
+   }
+}
+
+class TrainingInterfaceController: WKInterfaceController {
+
+   @IBOutlet weak var bestLabel: WKInterfaceLabel!
+
+   private var recordSession: Session?
+   private var healthStore: HKHealthStore?
+
+   private func stopRecording() {
+      if let recordSession = self.recordSession {
+         let outstandingData = recordSession.analyzer.outstandingData
+
+         if !outstandingData.isEmpty {
+            ServerSynchronizer.defaultServer.sendPackage(.Data(recordSession.interval.id, outstandingData))
+         }
+
+         ServerSynchronizer.defaultServer.sendPackage(.Stop(recordSession.interval.id))
+         recordSession.stop()
+         self.recordSession = nil
+      }
+   }
+
+   private func startRecording() {
+      if self.recordSession == nil {
+         let recordSession = Session(healthStore: self.healthStore!)
+         recordSession.accelerometer.delegate = self
+         self.recordSession = recordSession
+         ServerSynchronizer.defaultServer.sendPackage(.Start(recordSession.interval.id))
+      }
    }
 
    override func willActivate() {
       super.willActivate()
-      self.suspender?.suspend()
+      if let recordSession = self.recordSession {
+         recordSession.suspender.suspend()
+         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(recordSession.interval.best))
 
-      if let interval = self.interval {
-         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(interval.best))
-
-         if interval.best == interval.history.best {
+         if recordSession.interval.best == recordSession.interval.history.best {
             self.bestLabel.setTextColor(.greenColor())
          }
       }
@@ -61,6 +96,9 @@ class TrainingInterfaceController: WKInterfaceController {
 
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
+
+      self.healthStore = context as? HKHealthStore
+
       self.startRecording()
    }
 
@@ -77,30 +115,44 @@ class TrainingInterfaceController: WKInterfaceController {
 
 extension TrainingInterfaceController: AccelerometerDelegate {
    func accelerometer(accelerometer: Accelerometer, didReceiveData data: CMAccelerometerData) {
-      guard let interval = self.interval else {
+      guard let recordSession = self.recordSession else {
          return
       }
+
+      let bootTime = NSDate(timeIntervalSinceNow: NSProcessInfo.processInfo().systemUptime)
+      let date = NSDate(timeInterval: data.timestamp, sinceDate: bootTime)
 
       let accelerationData = AccelerationData(x: data.acceleration.x,
          y: data.acceleration.y,
          z: data.acceleration.z,
-         date: NSDate())
-
-      ServerSynchronizer.defaultServer.sendPackage(.Data(interval.id, [accelerationData]))
-
-      if accelerationData.total > interval.best {
-         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
-      }
-
-      if accelerationData.total > interval.history.best {
-         WKInterfaceDevice.currentDevice().playHaptic(.Success)
-         self.bestLabel.setTextColor(.greenColor())
-      }
+         date: date)
 
       Realm.write {
          realm in
-         interval.history.addData(accelerationData, toInterval: interval)
+         recordSession.interval.history.addData(accelerationData, toInterval: recordSession.interval)
       }
 
+      let result = recordSession.analyzer.analyzeData(accelerationData)
+      if let peak = result.peak {
+         Realm.write {
+            realm in
+            let activity = Activity(name: peak.attributes.description)
+            peak.data.activity = activity
+            realm.add(activity)
+         }
+      }
+
+      if !result.data.isEmpty {
+         ServerSynchronizer.defaultServer.sendPackage(.Data(recordSession.interval.id, result.data))
+      }
+
+      if accelerationData.total > recordSession.interval.best {
+         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
+      }
+
+      if accelerationData.total > recordSession.interval.history.best {
+         WKInterfaceDevice.currentDevice().playHaptic(.Success)
+         self.bestLabel.setTextColor(.greenColor())
+      }
    }
 }

@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import WatchConnectivity
 import RealmSwift
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+   private lazy var healthStore = HKHealthStore()
    var window: UIWindow?
 
    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -43,5 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
    func applicationWillTerminate(application: UIApplication) {
       // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+   }
+
+   func applicationShouldRequestHealthAuthorization(application: UIApplication) {
+      self.healthStore.handleAuthorizationForExtensionWithCompletion {
+         success, error in
+
+      }
    }
 }

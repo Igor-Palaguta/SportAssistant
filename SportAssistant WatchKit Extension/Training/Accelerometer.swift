@@ -19,7 +19,7 @@ class Accelerometer {
       self.stop()
 
       let manager = CMMotionManager()
-      manager.accelerometerUpdateInterval = 0.2
+      manager.accelerometerUpdateInterval = 0.1
 
       if manager.accelerometerAvailable {
          manager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) {

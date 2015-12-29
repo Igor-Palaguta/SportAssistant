@@ -17,7 +17,7 @@ final class ServerSynchronizer: NSObject {
 
    func sendPackage(package: Package) {
       let message = package.toMessage()
-      NSLog("sendPackage: %@", message)
+      //NSLog("sendPackage: %@", message)
       self.session!.transferUserInfo(message)
    }
 }

@@ -23,6 +23,7 @@
                             </items>
                         </group>
                         <button width="1" alignment="left" title="Start" id="Che-Hz-tXw">
+                            <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="AgC-eL-Hgc" kind="modal" identifier="TrainingInterfaceController" id="kpt-Lc-IPJ"/>
                             </connections>
@@ -87,6 +88,7 @@
                             </items>
                         </group>
                         <button width="1" alignment="left" title="Done" id="Z6I-aa-HVH">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="stopAction:" destination="AgC-eL-Hgc" id="fXP-uR-oHo"/>
                             </connections>
@@ -97,6 +99,7 @@
                             </connections>
                         </button>
                     </items>
+                    <edgeInsets key="margins" left="1" right="1" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="V7n-gw-cXm" id="Uad-wG-Vvm"/>
                     </connections>

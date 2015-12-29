@@ -4,7 +4,11 @@ import RealmSwift
 
 private extension AccelerationData {
    func toMessage() -> [String: AnyObject] {
-      return ["x": x, "y": y, "z": z, "date": date]
+      var message = ["x": x, "y": y, "z": z, "date": date]
+      if let activity = self.activity {
+         message["activity"] = activity.toMessage()
+      }
+      return message
    }
 
    convenience init?(message: [String: AnyObject]) {
@@ -16,6 +20,22 @@ private extension AccelerationData {
       }
 
       self.init(x: x, y: y, z: z, date: date)
+      let activityMessage = message["activity"] as? [String: AnyObject]
+      self.activity = activityMessage.flatMap { Activity(message: $0) }
+   }
+}
+
+private extension Activity {
+   func toMessage() -> [String: AnyObject] {
+      return ["name": name]
+   }
+
+   convenience init?(message: [String: AnyObject]) {
+      guard let name = message["name"] as? String else {
+         return nil
+      }
+
+      self.init(name: name)
    }
 }
 

@@ -28,16 +28,7 @@ class History: Object {
          self.best = data.total
       }
 
-      if data.total > interval.best {
-         interval.best = data.total
-      }
-
-      if interval.data.isEmpty {
-         interval.start = data.date
-      }
-
-      interval.data.append(data)
-      interval.currentCount = interval.data.count
+      interval.addData(data)
    }
 
    static var currentHistory: History {
