@@ -22,6 +22,7 @@
 		784090981C2F3561003DF043 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; };
 		784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D25071C1F1856006491A0 /* MenuInterfaceController.swift */; };
 		7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7854643D1C22A95E00F399D9 /* JSONAble.swift */; };
+		786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */; };
 		787636121C31F00300E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636111C31F00300E84348 /* HealthKit.framework */; };
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
 		787636151C3284B100E84348 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
@@ -174,6 +175,7 @@
 		784090961C2F2E6E003DF043 /* HistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTests.swift; sourceTree = "<group>"; };
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
 		7854643D1C22A95E00F399D9 /* JSONAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAble.swift; sourceTree = "<group>"; };
+		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		788A51951C15835600A166A0 /* SportAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +272,7 @@
 		78045FD11C26072200FEEB87 /* Intervals */ = {
 			isa = PBXGroup;
 			children = (
+				786C3F4D1C340B2B00CBCC54 /* Detail */,
 				78045FD21C26073700FEEB87 /* IntervalViewController.swift */,
 				78045FD31C26073700FEEB87 /* IntervalCell.swift */,
 				78045FD41C26073700FEEB87 /* IntervalsViewController.swift */,
@@ -312,6 +315,14 @@
 				784D25071C1F1856006491A0 /* MenuInterfaceController.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		786C3F4D1C340B2B00CBCC54 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		788A518C1C15835600A166A0 = {
@@ -709,6 +720,7 @@
 				78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */,
 				78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,
+				786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */,
 				78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */,
 				78045FCD1C25FF1000FEEB87 /* Interval.swift in Sources */,
 				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,

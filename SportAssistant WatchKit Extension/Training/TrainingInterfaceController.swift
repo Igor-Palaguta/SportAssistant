@@ -119,32 +119,16 @@ extension TrainingInterfaceController: AccelerometerDelegate {
          return
       }
 
-      let bootTime = NSDate(timeIntervalSinceNow: NSProcessInfo.processInfo().systemUptime)
+      let bootTime = NSDate(timeIntervalSinceNow: -NSProcessInfo.processInfo().systemUptime)
       let date = NSDate(timeInterval: data.timestamp, sinceDate: bootTime)
 
       let accelerationData = AccelerationData(x: data.acceleration.x,
          y: data.acceleration.y,
          z: data.acceleration.z,
          date: date)
-
-      Realm.write {
-         realm in
-         recordSession.interval.history.addData(accelerationData, toInterval: recordSession.interval)
-      }
-
-      let result = recordSession.analyzer.analyzeData(accelerationData)
-      if let peak = result.peak {
-         Realm.write {
-            realm in
-            let activity = Activity(name: peak.attributes.description)
-            peak.data.activity = activity
-            realm.add(activity)
-         }
-      }
-
-      if !result.data.isEmpty {
-         ServerSynchronizer.defaultServer.sendPackage(.Data(recordSession.interval.id, result.data))
-      }
+      //NSLog("data[%@]: %@",
+      //   recordSession.interval.data.count.description,
+      //   accelerationData.total.description)
 
       if accelerationData.total > recordSession.interval.best {
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
@@ -153,6 +137,23 @@ extension TrainingInterfaceController: AccelerometerDelegate {
       if accelerationData.total > recordSession.interval.history.best {
          WKInterfaceDevice.currentDevice().playHaptic(.Success)
          self.bestLabel.setTextColor(.greenColor())
+      }
+
+      let result = recordSession.analyzer.analyzeData(accelerationData)
+
+      Realm.write {
+         realm in
+         recordSession.interval.history.addData(accelerationData, toInterval: recordSession.interval)
+
+         if let peak = result.peak {
+            let activity = Activity(name: peak.attributes.description)
+            peak.data.activity = activity
+            realm.add(activity)
+         }
+      }
+
+      if !result.data.isEmpty {
+         ServerSynchronizer.defaultServer.sendPackage(.Data(recordSession.interval.id, result.data))
       }
    }
 }

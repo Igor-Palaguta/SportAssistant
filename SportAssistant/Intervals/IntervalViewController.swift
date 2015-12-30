@@ -4,23 +4,23 @@ import RealmSwift
 import ReactiveCocoa
 
 private func colorAtIndex(index: Int) -> UIColor {
-   let colors = ChartColorTemplates.joyful()
+   let colors = ChartColorTemplates.colorful()
    if index < colors.count {
       return colors[index]
    }
-   return ChartColorTemplates.colorful()[index - colors.count]
+   return ChartColorTemplates.joyful()[index - colors.count]
 }
 
 private enum Attributes {
    case Line(UIColor, Bool, CGFloat)
    case Bar(UIColor)
 
-   func dataEntryForValue(value: Double, atIndex index: Int, context: AnyObject?) -> ChartDataEntry {
+   func dataEntryForValue(value: Double, atIndex index: Int, data: AccelerationData) -> ChartDataEntry {
       switch self {
       case Line(_):
-         return ChartDataEntry(value: value, xIndex: index, data: context)
+         return ChartDataEntry(value: value, xIndex: index, data: data)
       case Bar(_):
-         return BarChartDataEntry(value: value, xIndex: index, data: context)
+         return BarChartDataEntry(value: value, xIndex: index, data: data)
       }
    }
 }
@@ -54,7 +54,7 @@ private enum DataExtractor {
       case .Activity(let motion):
          return motion.description
       case .AnyActivity:
-         return "Activity"
+         return "motion"
       }
    }
 }
@@ -74,10 +74,8 @@ private class IntervalDataSet {
       let chartDataSet: ChartDataSet
       switch self.attributes {
       case .Bar(let color):
-         print(self.initialDataEntries)
          let barDataSet = BarChartDataSet(yVals: self.initialDataEntries,
             label: self.data.label)
-         print(barDataSet.yVals)
          barDataSet.barShadowColor = .clearColor()
          barDataSet.setColor(color)
          chartDataSet = barDataSet
@@ -90,6 +88,7 @@ private class IntervalDataSet {
          lineDataSet.lineWidth = width
          lineDataSet.drawCirclesEnabled = false
          lineDataSet.drawValuesEnabled = false
+         lineDataSet.highlightEnabled = false
          chartDataSet = lineDataSet
       }
 
@@ -114,7 +113,7 @@ private class IntervalDataSet {
 
    func dataEntryForData(data: AccelerationData, atIndex index: Int) -> ChartDataEntry? {
       if let value = self.data.valueForData(data) {
-         return self.attributes.dataEntryForValue(value, atIndex: index, context: data)
+         return self.attributes.dataEntryForValue(value, atIndex: index, data: data)
       }
       return nil
    }
@@ -135,8 +134,8 @@ private struct IntervalDataSource {
    private let dataSets: [IntervalDataSet] = [/*IntervalDataSet(data: .Field(.x), attributes: .Line(colorAtIndex(0), false, 1)),
       IntervalDataSet(data: .Field(.y), attributes: .Line(colorAtIndex(1), false, 1)),
       IntervalDataSet(data: .Field(.z), attributes: .Line(colorAtIndex(2), false, 1)),*/
-      IntervalDataSet(data: .Field(.total), attributes: .Line(colorAtIndex(3), true, 2)),
-      IntervalDataSet(data: .AnyActivity, attributes: .Bar(colorAtIndex(0)))
+      IntervalDataSet(data: .Field(.total), attributes: .Line(colorAtIndex(0), true, 2)),
+      IntervalDataSet(data: .AnyActivity, attributes: .Bar(colorAtIndex(1)))
       /*IntervalDataSet(data: .Activity(.RightTopSpin(.Right)), attributes: .Bar(colorAtIndex(4))),
       IntervalDataSet(data: .Activity(.LeftTopSpin(.Right)), attributes: .Bar(colorAtIndex(5))),
       IntervalDataSet(data: .Activity(.RightTopSpin(.Left)), attributes: .Bar(colorAtIndex(6))),
@@ -211,6 +210,8 @@ final class IntervalViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
 
+      self.chartView.delegate = self
+
       self.chartView.descriptionText = tr(.AccelerationData)
       self.chartView.noDataTextDescription = tr(.AccelerationDataEmpty)
 
@@ -244,6 +245,8 @@ final class IntervalViewController: UIViewController {
       self.chartView.leftAxis.addLimitLine(bestLine)
       self.chartView.leftAxis.customAxisMax = best * 1.1
       self.chartView.rightAxis.customAxisMax = best * 1.1
+
+      self.chartView.marker = BalloonMarker(color: .lightGrayColor(), font: UIFont.systemFontOfSize(12))
 
       self.addData()
 
@@ -293,9 +296,22 @@ final class IntervalViewController: UIViewController {
 
    private func addData() {
       if !self.interval.data.isEmpty {
+         /*let analyzer = TableTennisAnalyzer()
+         for data in self.interval.data {
+            let result = analyzer.analyzeData(data)
+            if let peak = result.peak {
+               print("\(peak.data.total) \(peak.attributes.description)")
+            }
+         }*/
+
          let dataSource = IntervalDataSource(interval: self.interval)
          self.chartView.data = dataSource.chartData
          self.dataSource = dataSource
       }
+   }
+}
+
+extension IntervalViewController: ChartViewDelegate {
+   func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
    }
 }

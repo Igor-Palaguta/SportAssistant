@@ -9,6 +9,21 @@
 import XCTest
 @testable import SportAssistant
 
+private extension AccelerationData {
+   func p(value: Double) -> PointValue {
+      return PointValue(value: value, data: self)
+   }
+
+   convenience init(total: Double) {
+      self.init()
+      self.x = 1
+      self.y = 1
+      self.z = 1
+      self.date = NSDate()
+      self.total = total
+   }
+}
+
 class AnalyzerTests: XCTestCase {
 
    override func setUp() {
@@ -42,29 +57,44 @@ class AnalyzerTests: XCTestCase {
    }
 
    func testRange() {
-      let range = Range(initial: 7)
-      XCTAssert(range.final == 7)
-      XCTAssert(range.initial == 7)
-      XCTAssert(range.globalMax == 7)
-      XCTAssert(range.globalMin == 7)
-      XCTAssert(range.localMinMax.isEmpty)
-      XCTAssert(range.growSign == .Zero)
+      let data = AccelerationData(x: 1, y: 1, z: 1, date: NSDate())
 
-      range.addValue(8)
-      range.addValue(-1)
-      range.addValue(-3)
-      range.addValue(-7)
-      range.addValue(-5)
-      range.addValue(-3)
-      range.addValue(-5)
-      range.addValue(-8)
-      range.addValue(5)
-      XCTAssert(range.final == 5)
-      XCTAssert(range.initial == 7)
-      XCTAssert(range.globalMax == 8)
-      XCTAssert(range.globalMin == -8)
-      XCTAssert(range.localMinMax == [8, -7, -3, -8])
-      XCTAssert(range.growSign == .Plus)
+      let range = Range(initial: data.p(7))
+      XCTAssertTrue(range.final.value == 7)
+      XCTAssertTrue(range.initial.value == 7)
+      XCTAssertTrue(range.globalMax.value == 7)
+      XCTAssertTrue(range.globalMin.value == 7)
+      XCTAssertTrue(range.localMinMax.isEmpty)
+      XCTAssertTrue(range.growSign == .Zero)
+
+      range.addValue(data.p(8))
+      range.addValue(data.p(-1))
+      range.addValue(data.p(-3))
+      range.addValue(data.p(-7))
+      range.addValue(data.p(-5))
+      range.addValue(data.p(-3))
+      range.addValue(data.p(-5))
+      range.addValue(data.p(-8))
+      range.addValue(data.p(5))
+      XCTAssertTrue(range.final.value == 5)
+      XCTAssertTrue(range.initial.value == 7)
+      XCTAssertTrue(range.globalMax.value == 8)
+      XCTAssertTrue(range.globalMin.value == -8)
+      XCTAssertTrue(range.localMinMax.map({$0.value}) == [8, -7, -3, -8])
+      XCTAssertTrue(range.growSign == .Plus)
    }
 
+   func testTableTennisAnalyzer() {
+      let analyzer = TableTennisAnalyzer()
+      let result1 = analyzer.analyzeData(AccelerationData(total: 1.24684542980376))
+      XCTAssertTrue(result1.data.isEmpty)
+      let result2 = analyzer.analyzeData(AccelerationData(total: 3.57171658045749))
+      XCTAssertTrue(result2.data.isEmpty)
+      let result3 = analyzer.analyzeData(AccelerationData(total: 5.45520732717584))
+      XCTAssertTrue(result3.data.isEmpty)
+      let result4 = analyzer.analyzeData(AccelerationData(total: 4.69492818116718))
+      XCTAssertTrue(result4.data.isEmpty)
+      let result5 = analyzer.analyzeData(AccelerationData(total: 0.791985977568311))
+      XCTAssertTrue(result5.data.count == 4)
+   }
 }

@@ -28,6 +28,7 @@ struct PointValue {
 
 func <(point: PointValue, value: Double) -> Bool { return point.value < value }
 func >(point: PointValue, value: Double) -> Bool { return point.value > value }
+func ==(point: PointValue, value: Double) -> Bool { return point.value == value }
 
 final class Range {
 
@@ -102,9 +103,8 @@ final class AccelerationDataRange: CustomStringConvertible {
       self.y.addValue(data.point(.y))
       self.z.addValue(data.point(.z))
       self.total.addValue(data.point(.total))
-      self.all.append(data)
       if !final {
-         self.all = [data]
+         self.all.append(data)
       }
    }
 
