@@ -2,9 +2,9 @@ import Foundation
 import RealmSwift
 
 class History: Object {
-   dynamic var best: Double = 0
-   dynamic var intervalsCount = 0
-   dynamic var active: Interval?
+   private(set) dynamic var best: Double = 0
+   private(set) dynamic var intervalsCount = 0
+   private(set) dynamic var active: Interval?
 
    let intervals = List<Interval>()
 

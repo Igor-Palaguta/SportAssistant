@@ -3,24 +3,20 @@ import Charts
 import RealmSwift
 import ReactiveCocoa
 
-private func colorAtIndex(index: Int) -> UIColor {
-   let colors = ChartColorTemplates.colorful()
-   if index < colors.count {
-      return colors[index]
-   }
-   return ChartColorTemplates.joyful()[index - colors.count]
-}
-
 private enum Attributes {
    case Line(UIColor, Bool, CGFloat)
+   case Point(UIColor, Bool)
    case Bar(UIColor)
+   case Bubble
 
    func dataEntryForValue(value: Double, atIndex index: Int, data: AccelerationData) -> ChartDataEntry {
       switch self {
-      case Line(_):
+      case Line(_), Point(_):
          return ChartDataEntry(value: value, xIndex: index, data: data)
       case Bar(_):
          return BarChartDataEntry(value: value, xIndex: index, data: data)
+      case Bubble:
+         return BubbleChartDataEntry(xIndex: index, value: value, size: 3, data: data)
       }
    }
 }
@@ -59,6 +55,18 @@ private enum DataExtractor {
    }
 }
 
+private extension LineChartDataSet {
+   convenience init(yVals: [ChartDataEntry]?, label: String?, color: UIColor, points: Bool = false) {
+      self.init(yVals: yVals, label: label)
+      let lineColor = points ? color.colorWithAlphaComponent(0) : color
+      self.setColor(lineColor)
+      self.setCircleColor(color)
+      self.drawCirclesEnabled = points
+      self.drawValuesEnabled = points
+      self.highlightEnabled = points
+   }
+}
+
 private class IntervalDataSet {
 
    private var initialDataEntries: [ChartDataEntry] = []
@@ -81,30 +89,25 @@ private class IntervalDataSet {
          chartDataSet = barDataSet
       case .Line(let color, let cubicEnabled, let width):
          let lineDataSet = LineChartDataSet(yVals: self.initialDataEntries,
-            label: self.data.label)
-         lineDataSet.setColor(color)
-         lineDataSet.setCircleColor(color)
+            label: self.data.label, color: color)
          lineDataSet.drawCubicEnabled = cubicEnabled
          lineDataSet.lineWidth = width
-         lineDataSet.drawCirclesEnabled = false
-         lineDataSet.drawValuesEnabled = false
-         lineDataSet.highlightEnabled = false
          chartDataSet = lineDataSet
+      case .Point(let color, let cubicEnabled):
+         let lineDataSet = LineChartDataSet(yVals: self.initialDataEntries,
+            label: self.data.label, color: color, points: true)
+         lineDataSet.drawCubicEnabled = cubicEnabled
+         chartDataSet = lineDataSet
+      case .Bubble:
+         let bubbleDataSet = BubbleChartDataSet(yVals: self.initialDataEntries,
+            label: self.data.label)
+         bubbleDataSet.colors = [.redColor()]
+         chartDataSet = bubbleDataSet
       }
 
       _chartDataSet = chartDataSet
       return chartDataSet
    }
-
-   private lazy var barChartDataSet: BarChartDataSet? = {
-      [unowned self] in
-      return self.chartDataSet as? BarChartDataSet
-   }()
-
-   private lazy var lineChartDataSet: LineChartDataSet? = {
-      [unowned self] in
-      return self.chartDataSet as? LineChartDataSet
-      }()
 
    init(data: DataExtractor, attributes: Attributes) {
       self.data = data
@@ -134,8 +137,8 @@ private struct IntervalDataSource {
    private let dataSets: [IntervalDataSet] = [/*IntervalDataSet(data: .Field(.x), attributes: .Line(colorAtIndex(0), false, 1)),
       IntervalDataSet(data: .Field(.y), attributes: .Line(colorAtIndex(1), false, 1)),
       IntervalDataSet(data: .Field(.z), attributes: .Line(colorAtIndex(2), false, 1)),*/
-      IntervalDataSet(data: .Field(.total), attributes: .Line(colorAtIndex(0), true, 2)),
-      IntervalDataSet(data: .AnyActivity, attributes: .Bar(colorAtIndex(1)))
+      IntervalDataSet(data: .Field(.total), attributes: .Line(ChartColorTemplates.joyful()[0], true, 2)),
+      IntervalDataSet(data: .AnyActivity, attributes: .Point(ChartColorTemplates.joyful()[1], true))/*(colorAtIndex(1))*/
       /*IntervalDataSet(data: .Activity(.RightTopSpin(.Right)), attributes: .Bar(colorAtIndex(4))),
       IntervalDataSet(data: .Activity(.LeftTopSpin(.Right)), attributes: .Bar(colorAtIndex(5))),
       IntervalDataSet(data: .Activity(.RightTopSpin(.Left)), attributes: .Bar(colorAtIndex(6))),
@@ -161,15 +164,19 @@ private struct IntervalDataSource {
          }
       }
 
-      let lineData = LineChartData()
-      lineData.dataSets = self.dataSets.flatMap { $0.lineChartDataSet }
+      let lineData = LineChartData(xVals: xVals)
+      lineData.dataSets = self.dataSets.flatMap { $0.chartDataSet as? LineChartDataSet }
 
-      let barData = BarChartData()
-      barData.dataSets = self.dataSets.flatMap { $0.barChartDataSet }
+      let barData = BarChartData(xVals: xVals)
+      barData.dataSets = self.dataSets.flatMap { $0.chartDataSet as? BarChartDataSet }
+
+      let bubbleData = BubbleChartData(xVals: xVals)
+      bubbleData.dataSets = self.dataSets.flatMap { $0.chartDataSet as? BubbleChartDataSet }
 
       let allData = CombinedChartData(xVals: xVals)
       allData.lineData = lineData
-      allData.barData = barData
+      //allData.barData = barData
+      allData.bubbleData = bubbleData
       
       self.chartData = allData
    }
@@ -230,7 +237,7 @@ final class IntervalViewController: UIViewController {
       self.chartView.pinchZoomEnabled = false
       self.chartView.autoScaleMinMaxEnabled = true
 
-      self.chartView.drawOrder = [CombinedChartDrawOrder.Bar.rawValue, CombinedChartDrawOrder.Line.rawValue]
+      self.chartView.drawOrder = [CombinedChartDrawOrder.Bar.rawValue, CombinedChartDrawOrder.Line.rawValue, CombinedChartDrawOrder.Bubble.rawValue]
 
       self.chartView.legend.position = .BelowChartCenter
 

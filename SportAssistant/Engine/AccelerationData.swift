@@ -9,11 +9,11 @@ enum AccelerationDataField: String {
 }
 
 class AccelerationData: Object {
-   dynamic var date: NSDate!
-   dynamic var x: Double = 0
-   dynamic var y: Double = 0
-   dynamic var z: Double = 0
-   dynamic var total: Double = 0
+   private(set) dynamic var date: NSDate!
+   private(set) dynamic var x: Double = 0
+   private(set) dynamic var y: Double = 0
+   private(set) dynamic var z: Double = 0
+   private(set) dynamic var total: Double = 0
    dynamic var activity: Activity?
 
    convenience init(x: Double, y: Double, z: Double, date: NSDate) {

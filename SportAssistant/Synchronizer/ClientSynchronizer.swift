@@ -35,8 +35,7 @@ extension ClientSynchronizer: WCSessionDelegate {
          for package in packages {
             switch package {
             case .Start(let id):
-               let interval = Interval()
-               interval.id = id
+               let interval = Interval(id: id)
                history.addInterval(interval)
                history.activateInterval(interval)
             case .Stop(let id):

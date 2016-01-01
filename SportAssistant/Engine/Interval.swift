@@ -2,11 +2,11 @@ import Foundation
 import RealmSwift
 
 class Interval: Object {
-   dynamic var id = NSUUID().UUIDString
-   dynamic var best: Double = 0
-   dynamic var start: NSDate?
+   private(set) dynamic var id = NSUUID().UUIDString
+   private(set) dynamic var best: Double = 0
+   private(set) dynamic var start: NSDate?
    dynamic var totalCount = 0
-   dynamic var currentCount = 0
+   private(set) dynamic var currentCount = 0
 
    let data = List<AccelerationData>()
 
@@ -19,6 +19,11 @@ class Interval: Object {
 
    var history: History {
       return self.linkingObjects(History.self, forProperty: "intervals").first!
+   }
+
+   convenience init(id: String) {
+      self.init()
+      self.id = id
    }
 
    func addData(data: AccelerationData) {

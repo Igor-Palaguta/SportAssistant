@@ -9,9 +9,9 @@ class HistoryInterfaceController: WKInterfaceController {
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      let realm = try! Realm()
+      let historyController = HistoryController()
 
-      let intervals = realm.currentHistory.intervals
+      let intervals = historyController.intervals
       self.table.setNumberOfRows(intervals.count, withRowType: String(TrainingController.self))
 
       for (index, interval) in intervals.enumerate() {

@@ -12,15 +12,12 @@ final class IntervalsViewController: UITableViewController {
       if let intervals = self._intervals {
          return intervals
       }
-      let intervals = self.history.intervals
+      let intervals = self.historyController.intervals
       self._intervals = intervals
       return intervals
    }
 
-   private lazy var history: History = {
-      let realm = try! Realm()
-      return realm.currentHistory
-   }()
+   private lazy var historyController = HistoryController()
 
    override func viewDidLoad() {
       super.viewDidLoad()
