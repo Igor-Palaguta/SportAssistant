@@ -1,6 +1,5 @@
 import UIKit
 import Charts
-import RealmSwift
 import ReactiveCocoa
 
 private enum Attributes {
@@ -203,15 +202,11 @@ private struct IntervalDataSource {
 
 final class IntervalViewController: UIViewController {
 
-   var interval: Interval! {
-      didSet {
-         self.history = self.interval?.history
-      }
-   }
+   var interval: Interval!
 
    @IBOutlet private weak var chartView: CombinedChartView!
 
-   private var history: History!
+   private lazy var historyController = HistoryController()
    private var dataSource: IntervalDataSource?
 
    override func viewDidLoad() {
@@ -241,7 +236,7 @@ final class IntervalViewController: UIViewController {
 
       self.chartView.legend.position = .BelowChartCenter
 
-      let best = self.interval.history.best
+      let best = self.historyController.best
 
       let bestLine = ChartLimitLine(limit: best, label: tr(.AccelerationRecord))
 
@@ -257,7 +252,7 @@ final class IntervalViewController: UIViewController {
 
       self.addData()
 
-      DynamicProperty(object: self.interval.history, keyPath: "best")
+      DynamicProperty(object: self.historyController, keyPath: "best")
          .producer
          .map { $0 as! Double }
          .skipRepeats()
@@ -303,14 +298,6 @@ final class IntervalViewController: UIViewController {
 
    private func addData() {
       if !self.interval.data.isEmpty {
-         /*let analyzer = TableTennisAnalyzer()
-         for data in self.interval.data {
-            let result = analyzer.analyzeData(data)
-            if let peak = result.peak {
-               print("\(peak.data.total) \(peak.attributes.description)")
-            }
-         }*/
-
          let dataSource = IntervalDataSource(interval: self.interval)
          self.chartView.data = dataSource.chartData
          self.dataSource = dataSource

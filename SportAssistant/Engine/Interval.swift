@@ -17,10 +17,6 @@ class Interval: Object {
       return 0
    }
 
-   var history: History {
-      return self.linkingObjects(History.self, forProperty: "intervals").first!
-   }
-
    convenience init(id: String) {
       self.init()
       self.id = id
@@ -48,6 +44,6 @@ class Interval: Object {
    }
 
    override static func ignoredProperties() -> [String] {
-      return ["duration", "history"]
+      return ["duration"]
    }
 }

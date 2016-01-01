@@ -12,7 +12,7 @@ class BackgroundSuspender {
       NSProcessInfo.processInfo().performExpiringActivityWithReason(String(Accelerometer)) {
          expired in
          if !expired {
-            let delay: Int64 = 30
+            let delay: Int64 = 5 * 60
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, delay * Int64(NSEC_PER_SEC))
             dispatch_semaphore_wait(semaphore, delayTime)
          } else {

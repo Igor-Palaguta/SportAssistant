@@ -15,12 +15,7 @@ private extension AccelerationData {
    }
 
    convenience init(total: Double) {
-      self.init()
-      self.x = 1
-      self.y = 1
-      self.z = 1
-      self.date = NSDate()
-      self.total = total
+      self.init(x: total, y: 0, z: 0, date: NSDate())
    }
 }
 

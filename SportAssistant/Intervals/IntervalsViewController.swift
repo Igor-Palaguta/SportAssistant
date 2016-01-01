@@ -1,6 +1,6 @@
 import UIKit
-import RealmSwift
 import ReactiveCocoa
+import RealmSwift
 
 final class IntervalsViewController: UITableViewController {
 
@@ -24,7 +24,7 @@ final class IntervalsViewController: UITableViewController {
 
       let integralFont = self.bestLabel.font
       DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
-         DynamicProperty(object: self.history, keyPath: "best")
+         DynamicProperty(object: self.historyController, keyPath: "best")
             .producer
             .map { $0 as! Double }
             .map {
@@ -32,7 +32,7 @@ final class IntervalsViewController: UITableViewController {
                return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
       }
 
-      DynamicProperty(object: self.history, keyPath: "intervalsCount")
+      DynamicProperty(object: self.historyController, keyPath: "intervalsCount")
          .producer
          .map { $0 as! Int }
          .skip(1)

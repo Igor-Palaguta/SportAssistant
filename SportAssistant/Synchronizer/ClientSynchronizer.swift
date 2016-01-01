@@ -1,6 +1,5 @@
 import Foundation
 import WatchConnectivity
-import RealmSwift
 
 final class ClientSynchronizer: NSObject {
 
@@ -29,25 +28,19 @@ extension ClientSynchronizer: WCSessionDelegate {
          return Package(name: name, arguments: arguments)
       }
 
-      Realm.write {
-         realm in
-         let history = realm.currentHistory
-         for package in packages {
-            switch package {
-            case .Start(let id):
-               let interval = Interval(id: id)
-               history.addInterval(interval)
-               history.activateInterval(interval)
-            case .Stop(let id):
-               if let interval = realm.objectForPrimaryKey(Interval.self, key: id) {
-                  history.deactivateInterval(interval)
-               }
-            case .Data(let id, let data):
-               if let interval = realm.objectForPrimaryKey(Interval.self, key: id) {
-                  data.forEach {
-                     history.addData($0, toInterval: interval)
-                  }
-               }
+      let historyController = HistoryController()
+      for package in packages {
+         switch package {
+         case .Start(let id):
+            let interval = Interval(id: id)
+            historyController.addInterval(interval, activate: true)
+         case .Stop(let id):
+            if let interval = historyController[id] {
+               historyController.deactivateInterval(interval)
+            }
+         case .Data(let id, let data):
+            if let interval = historyController[id] {
+               historyController.addData(data, toInterval: interval)
             }
          }
       }

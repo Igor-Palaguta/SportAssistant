@@ -1,6 +1,5 @@
 import WatchKit
 import Foundation
-import RealmSwift
 import CoreMotion
 import HealthKit
 
@@ -16,10 +15,8 @@ private class Session: NSObject {
 
    init(healthStore: HKHealthStore) {
       let interval = Interval()
-      Realm.write {
-         realm in
-         realm.currentHistory.addInterval(interval)
-      }
+      let historyController = HistoryController()
+      historyController.addInterval(interval)
       self.interval = interval
       self.accelerometer = Accelerometer()
       self.accelerometer.start()
@@ -83,7 +80,8 @@ class TrainingInterfaceController: WKInterfaceController {
          recordSession.suspender.suspend()
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(recordSession.interval.best))
 
-         if recordSession.interval.best == recordSession.interval.history.best {
+         let historyController = HistoryController()
+         if recordSession.interval.best == historyController.best {
             self.bestLabel.setTextColor(.greenColor())
          }
       }
@@ -134,22 +132,20 @@ extension TrainingInterfaceController: AccelerometerDelegate {
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
       }
 
-      if accelerationData.total > recordSession.interval.history.best {
+      let historyController = HistoryController()
+
+      if accelerationData.total > historyController.best {
          WKInterfaceDevice.currentDevice().playHaptic(.Success)
          self.bestLabel.setTextColor(.greenColor())
       }
 
       let result = recordSession.analyzer.analyzeData(accelerationData)
 
-      Realm.write {
-         realm in
-         recordSession.interval.history.addData(accelerationData, toInterval: recordSession.interval)
+      historyController.addData([accelerationData], toInterval: recordSession.interval)
 
-         if let peak = result.peak {
-            let activity = Activity(name: peak.attributes.description)
-            peak.data.activity = activity
-            realm.add(activity)
-         }
+      if let peak = result.peak {
+         historyController.addActivityWithName(peak.attributes.description,
+            toData: peak.data)
       }
 
       if !result.data.isEmpty {

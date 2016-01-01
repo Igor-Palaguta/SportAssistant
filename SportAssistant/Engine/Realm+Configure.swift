@@ -14,13 +14,6 @@ extension Realm {
          .path
 
       Realm.Configuration.defaultConfiguration = config
-
-      let realm = try! Realm()
-      if realm.objects(History.self).isEmpty {
-         try! realm.write {
-            realm.add(History())
-         }
-      }
    }
 
    class func write(@noescape transaction: (Realm) -> ()) {

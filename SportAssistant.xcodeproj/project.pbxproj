@@ -11,6 +11,12 @@
 		78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD21C26073700FEEB87 /* IntervalViewController.swift */; };
 		78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD31C26073700FEEB87 /* IntervalCell.swift */; };
 		78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD41C26073700FEEB87 /* IntervalsViewController.swift */; };
+		78176C641C37167700EB2638 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
+		78176C651C37183800EB2638 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
+		78176C661C37183E00EB2638 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Interval.swift */; };
+		78176C671C37183E00EB2638 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
+		78176C681C37183E00EB2638 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
+		78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
 		7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */; };
 		7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6371C21845B00A7CBB1 /* Accelerometer.swift */; };
@@ -139,8 +145,6 @@
 		78D391951C34A3DC00BF3B71 /* ChartTransformerHorizontalBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3913A1C34A3DC00BF3B71 /* ChartTransformerHorizontalBarChart.swift */; };
 		78D391961C34A3DC00BF3B71 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3913B1C34A3DC00BF3B71 /* ChartUtils.swift */; };
 		78D391971C34A3DC00BF3B71 /* ChartViewPortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3913C1C34A3DC00BF3B71 /* ChartViewPortHandler.swift */; };
-		78D391991C36B75900BF3B71 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D391981C36B75900BF3B71 /* HistoryController.swift */; };
-		78D3919A1C36BAD500BF3B71 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D391981C36B75900BF3B71 /* HistoryController.swift */; };
 		78D5A40A1C3499E80024F95F /* Charts.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4041C3499E80024F95F /* Charts.framework.dSYM */; };
 		78D5A40B1C3499E80024F95F /* ReactiveCocoa.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4051C3499E80024F95F /* ReactiveCocoa.framework.dSYM */; };
 		78D5A40C1C3499E80024F95F /* Realm.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4061C3499E80024F95F /* Realm.framework.dSYM */; };
@@ -409,7 +413,6 @@
 		78D3913A1C34A3DC00BF3B71 /* ChartTransformerHorizontalBarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTransformerHorizontalBarChart.swift; sourceTree = "<group>"; };
 		78D3913B1C34A3DC00BF3B71 /* ChartUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartUtils.swift; sourceTree = "<group>"; };
 		78D3913C1C34A3DC00BF3B71 /* ChartViewPortHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewPortHandler.swift; sourceTree = "<group>"; };
-		78D391981C36B75900BF3B71 /* HistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		78D5A4041C3499E80024F95F /* Charts.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Charts.framework.dSYM; path = Carthage/Build/iOS/Charts.framework.dSYM; sourceTree = "<group>"; };
 		78D5A4051C3499E80024F95F /* ReactiveCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveCocoa.framework.dSYM; path = Carthage/Build/iOS/ReactiveCocoa.framework.dSYM; sourceTree = "<group>"; };
 		78D5A4061C3499E80024F95F /* Realm.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Realm.framework.dSYM; path = Carthage/Build/iOS/Realm.framework.dSYM; sourceTree = "<group>"; };
@@ -877,7 +880,6 @@
 				789DE8F01C27571400B8CA98 /* History.swift */,
 				78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */,
 				784090911C2D84A4003DF043 /* Activity.swift */,
-				78D391981C36B75900BF3B71 /* HistoryController.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -1197,7 +1199,6 @@
 				78D391731C34A3DC00BF3B71 /* ChartRange.swift in Sources */,
 				78D391741C34A3DC00BF3B71 /* CombinedHighlighter.swift in Sources */,
 				78D3918E1C34A3DC00BF3B71 /* LineScatterCandleRadarChartRenderer.swift in Sources */,
-				78D391991C36B75900BF3B71 /* HistoryController.swift in Sources */,
 				78D391751C34A3DC00BF3B71 /* HorizontalBarChartHighlighter.swift in Sources */,
 				78D3915E1C34A3DC00BF3B71 /* ChartDataEntry.swift in Sources */,
 				78D391561C34A3DC00BF3B71 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
@@ -1233,9 +1234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78176C651C37183800EB2638 /* AccelerationData.swift in Sources */,
 				788A51AE1C15835600A166A0 /* SportAssistantTests.swift in Sources */,
+				78176C671C37183E00EB2638 /* History.swift in Sources */,
+				78176C661C37183E00EB2638 /* Interval.swift in Sources */,
 				784090941C2F2A54003DF043 /* AnalyzerTests.swift in Sources */,
+				78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */,
 				784090971C2F2E6E003DF043 /* HistoryTests.swift in Sources */,
+				78176C681C37183E00EB2638 /* Activity.swift in Sources */,
+				78176C641C37167700EB2638 /* Analyzer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,7 +1271,6 @@
 				78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */,
 				789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */,
 				7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */,
-				78D3919A1C36BAD500BF3B71 /* HistoryController.swift in Sources */,
 				78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */,
 				784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */,
 				78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */,

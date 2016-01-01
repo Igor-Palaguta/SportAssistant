@@ -1,6 +1,5 @@
 import WatchKit
 import Foundation
-import RealmSwift
 
 class HistoryInterfaceController: WKInterfaceController {
 

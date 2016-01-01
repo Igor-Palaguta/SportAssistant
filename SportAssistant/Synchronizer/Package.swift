@@ -1,6 +1,5 @@
 import Foundation
 import WatchConnectivity
-import RealmSwift
 
 private extension AccelerationData {
    func toMessage() -> [String: AnyObject] {
