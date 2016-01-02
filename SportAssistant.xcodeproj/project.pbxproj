@@ -26,8 +26,13 @@
 		784090951C2F2B3D003DF043 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; };
 		784090971C2F2E6E003DF043 /* HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090961C2F2E6E003DF043 /* HistoryTests.swift */; };
 		784090981C2F3561003DF043 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; };
+		784846681C386D92009E4CDD /* IntervalInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846671C386D92009E4CDD /* IntervalInterfaceController.swift */; };
+		7848466A1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */; };
+		7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */; };
+		7848466D1C3879DF009E4CDD /* YOChartImageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */; };
+		7848466E1C3879DF009E4CDD /* YOChartImageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		784846711C387A50009E4CDD /* ChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */; };
 		784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D25071C1F1856006491A0 /* MenuInterfaceController.swift */; };
-		7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7854643D1C22A95E00F399D9 /* JSONAble.swift */; };
 		786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */; };
 		787636121C31F00300E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636111C31F00300E84348 /* HealthKit.framework */; };
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
@@ -145,12 +150,6 @@
 		78D391951C34A3DC00BF3B71 /* ChartTransformerHorizontalBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3913A1C34A3DC00BF3B71 /* ChartTransformerHorizontalBarChart.swift */; };
 		78D391961C34A3DC00BF3B71 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3913B1C34A3DC00BF3B71 /* ChartUtils.swift */; };
 		78D391971C34A3DC00BF3B71 /* ChartViewPortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3913C1C34A3DC00BF3B71 /* ChartViewPortHandler.swift */; };
-		78D5A40A1C3499E80024F95F /* Charts.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4041C3499E80024F95F /* Charts.framework.dSYM */; };
-		78D5A40B1C3499E80024F95F /* ReactiveCocoa.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4051C3499E80024F95F /* ReactiveCocoa.framework.dSYM */; };
-		78D5A40C1C3499E80024F95F /* Realm.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4061C3499E80024F95F /* Realm.framework.dSYM */; };
-		78D5A40D1C3499E80024F95F /* RealmSwift.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4071C3499E80024F95F /* RealmSwift.framework.dSYM */; };
-		78D5A40E1C3499E80024F95F /* Result.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4081C3499E80024F95F /* Result.framework.dSYM */; };
-		78D5A40F1C3499E80024F95F /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78D5A4091C3499E80024F95F /* SwiftDate.framework.dSYM */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; };
 		78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -247,27 +246,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78D5A4031C3499A40024F95F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				78D5A40A1C3499E80024F95F /* Charts.framework.dSYM in CopyFiles */,
-				78D5A40B1C3499E80024F95F /* ReactiveCocoa.framework.dSYM in CopyFiles */,
-				78D5A40C1C3499E80024F95F /* Realm.framework.dSYM in CopyFiles */,
-				78D5A40D1C3499E80024F95F /* RealmSwift.framework.dSYM in CopyFiles */,
-				78D5A40E1C3499E80024F95F /* Result.framework.dSYM in CopyFiles */,
-				78D5A40F1C3499E80024F95F /* SwiftDate.framework.dSYM in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		78E51D1B1C2AA7C600E5D26B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7848466E1C3879DF009E4CDD /* YOChartImageKit.framework in Embed Frameworks */,
 				78E51D1A1C2AA7C500E5D26B /* RealmSwift.framework in Embed Frameworks */,
 				78E51D181C2AA7C500E5D26B /* Realm.framework in Embed Frameworks */,
 			);
@@ -288,8 +273,11 @@
 		784090911C2D84A4003DF043 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		784090931C2F2A54003DF043 /* AnalyzerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzerTests.swift; sourceTree = "<group>"; };
 		784090961C2F2E6E003DF043 /* HistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTests.swift; sourceTree = "<group>"; };
+		784846671C386D92009E4CDD /* IntervalInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalInterfaceController.swift; sourceTree = "<group>"; };
+		784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Duration.swift"; sourceTree = "<group>"; };
+		7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YOChartImageKit.framework; path = Carthage/Build/watchOS/YOChartImageKit.framework; sourceTree = "<group>"; };
+		7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInterfaceController.swift; sourceTree = "<group>"; };
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
-		7854643D1C22A95E00F399D9 /* JSONAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAble.swift; sourceTree = "<group>"; };
 		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -413,12 +401,6 @@
 		78D3913A1C34A3DC00BF3B71 /* ChartTransformerHorizontalBarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTransformerHorizontalBarChart.swift; sourceTree = "<group>"; };
 		78D3913B1C34A3DC00BF3B71 /* ChartUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartUtils.swift; sourceTree = "<group>"; };
 		78D3913C1C34A3DC00BF3B71 /* ChartViewPortHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewPortHandler.swift; sourceTree = "<group>"; };
-		78D5A4041C3499E80024F95F /* Charts.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Charts.framework.dSYM; path = Carthage/Build/iOS/Charts.framework.dSYM; sourceTree = "<group>"; };
-		78D5A4051C3499E80024F95F /* ReactiveCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveCocoa.framework.dSYM; path = Carthage/Build/iOS/ReactiveCocoa.framework.dSYM; sourceTree = "<group>"; };
-		78D5A4061C3499E80024F95F /* Realm.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Realm.framework.dSYM; path = Carthage/Build/iOS/Realm.framework.dSYM; sourceTree = "<group>"; };
-		78D5A4071C3499E80024F95F /* RealmSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RealmSwift.framework.dSYM; path = Carthage/Build/iOS/RealmSwift.framework.dSYM; sourceTree = "<group>"; };
-		78D5A4081C3499E80024F95F /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = Carthage/Build/iOS/Result.framework.dSYM; sourceTree = "<group>"; };
-		78D5A4091C3499E80024F95F /* SwiftDate.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftDate.framework.dSYM; path = Carthage/Build/iOS/SwiftDate.framework.dSYM; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78E51D031C2AA77700E5D26B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
@@ -473,6 +455,7 @@
 			files = (
 				787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */,
 				78E51D191C2AA7C500E5D26B /* RealmSwift.framework in Frameworks */,
+				7848466D1C3879DF009E4CDD /* YOChartImageKit.framework in Frameworks */,
 				78E51D171C2AA7C500E5D26B /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,9 +479,9 @@
 			isa = PBXGroup;
 			children = (
 				7831F62F1C217B7600A7CBB1 /* ReusableView.swift */,
-				7854643D1C22A95E00F399D9 /* JSONAble.swift */,
 				789DE8EE1C27484000B8CA98 /* RACHelpers.swift */,
 				789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */,
+				784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -540,12 +523,7 @@
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
-				78D5A4041C3499E80024F95F /* Charts.framework.dSYM */,
-				78D5A4051C3499E80024F95F /* ReactiveCocoa.framework.dSYM */,
-				78D5A4061C3499E80024F95F /* Realm.framework.dSYM */,
-				78D5A4071C3499E80024F95F /* RealmSwift.framework.dSYM */,
-				78D5A4081C3499E80024F95F /* Result.framework.dSYM */,
-				78D5A4091C3499E80024F95F /* SwiftDate.framework.dSYM */,
+				7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */,
 				787636131C31F00E00E84348 /* HealthKit.framework */,
 				787636111C31F00300E84348 /* HealthKit.framework */,
 				78E51D151C2AA7C500E5D26B /* Realm.framework */,
@@ -665,6 +643,8 @@
 			children = (
 				78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */,
 				78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */,
+				784846671C386D92009E4CDD /* IntervalInterfaceController.swift */,
+				7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -897,7 +877,6 @@
 				788A51931C15835600A166A0 /* Resources */,
 				788A51E51C15835600A166A0 /* Embed Watch Content */,
 				78BFF8BC1C257D7D00F3CD98 /* Embed Frameworks */,
-				78D5A4031C3499A40024F95F /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1147,6 +1126,7 @@
 				786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */,
 				78D3918D1C34A3DC00BF3B71 /* LineChartRenderer.swift in Sources */,
 				78D3913E1C34A3DC00BF3B71 /* ChartAnimator.swift in Sources */,
+				7848466A1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				78D391611C34A3DC00BF3B71 /* LineChartData.swift in Sources */,
 				78D3915C1C34A3DC00BF3B71 /* CandleChartDataSet.swift in Sources */,
 				78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */,
@@ -1206,7 +1186,6 @@
 				78D391771C34A3DC00BF3B71 /* BarLineScatterCandleBubbleChartDataProvider.swift in Sources */,
 				78D391591C34A3DC00BF3B71 /* BubbleChartDataSet.swift in Sources */,
 				78D391811C34A3DC00BF3B71 /* ChartDataRendererBase.swift in Sources */,
-				7854643E1C22A95E00F399D9 /* JSONAble.swift in Sources */,
 				78D3913F1C34A3DC00BF3B71 /* BarChartView.swift in Sources */,
 				78D3918C1C34A3DC00BF3B71 /* HorizontalBarChartRenderer.swift in Sources */,
 				78D3914A1C34A3DC00BF3B71 /* ScatterChartView.swift in Sources */,
@@ -1258,11 +1237,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784846711C387A50009E4CDD /* ChartInterfaceController.swift in Sources */,
 				78E51D231C2ACB5A00E5D26B /* History.swift in Sources */,
+				784846681C386D92009E4CDD /* IntervalInterfaceController.swift in Sources */,
 				78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */,
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
 				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
+				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				78E61E641C2C25A3003C59F1 /* Package.swift in Sources */,
 				787636151C3284B100E84348 /* Activity.swift in Sources */,
 				78E51D221C2ACB5A00E5D26B /* Interval.swift in Sources */,

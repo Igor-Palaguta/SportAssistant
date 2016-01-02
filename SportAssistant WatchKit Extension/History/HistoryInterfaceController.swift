@@ -28,4 +28,11 @@ class HistoryInterfaceController: WKInterfaceController {
       // This method is called when watch view controller is no longer visible
       super.didDeactivate()
    }
+
+   override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+      let historyController = HistoryController()
+      let intervals = historyController.intervals
+      let selectedInterval = intervals[rowIndex]
+      self.presentControllerWithNames([String(IntervalInterfaceController.self), String(ChartInterfaceController.self)], contexts: [selectedInterval, selectedInterval])
+   }
 }

@@ -75,16 +75,6 @@ class ProgressView: UIView {
    }
 }
 
-extension NSTimeInterval {
-   func toDurationString() -> String {
-      let formatter = NSDateComponentsFormatter()
-      let duration = max(self, 0)
-      return formatter
-         .stringFromTimeInterval(duration)!
-         .stringByAppendingString(" s")
-   }
-}
-
 final class IntervalCell: UITableViewCell, ReusableNibView {
 
    @IBOutlet private weak var dateLabel: UILabel!

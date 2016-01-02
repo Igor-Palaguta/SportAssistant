@@ -26,6 +26,4 @@ extension Realm {
          }
       }
    }
-
-
 }

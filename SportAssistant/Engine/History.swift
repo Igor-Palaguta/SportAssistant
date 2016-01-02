@@ -51,7 +51,9 @@ class HistoryController: NSObject {
 
    private dynamic lazy var history: History = {
       [unowned self] in
-      assert(HistoryController.historyPrepared)
+      guard HistoryController.historyPrepared else {
+         fatalError()
+      }
       return self.realm.objects(History).first!
       }()
 
