@@ -15,8 +15,7 @@ private class Session: NSObject {
 
    init(healthStore: HKHealthStore) {
       let interval = Interval()
-      let historyController = HistoryController()
-      historyController.addInterval(interval)
+      HistoryController.mainThreadController.addInterval(interval)
       self.interval = interval
       self.accelerometer = Accelerometer()
       self.accelerometer.start()
@@ -80,8 +79,7 @@ class TrainingInterfaceController: WKInterfaceController {
          recordSession.suspender.suspend()
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(recordSession.interval.best))
 
-         let historyController = HistoryController()
-         if recordSession.interval.best == historyController.best {
+         if recordSession.interval.best == HistoryController.mainThreadController.best {
             self.bestLabel.setTextColor(.greenColor())
          }
       }

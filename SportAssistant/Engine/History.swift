@@ -13,6 +13,20 @@ class History: Object {
       self.intervalsCount = self.intervals.count
    }
 
+   private func deleteInterval(interval: Interval) {
+      guard let index = self.intervals.indexOf(interval) else {
+         return
+      }
+
+      self.deactivateInterval(interval)
+      self.intervals.removeAtIndex(index)
+      self.intervalsCount = self.intervals.count
+
+      if self.best == interval.best {
+         self.best = self.intervals.max("best") ?? 0
+      }
+   }
+
    private func activateInterval(interval: Interval) {
       self.active = interval
    }
@@ -34,7 +48,14 @@ class History: Object {
 
 class HistoryController: NSObject {
 
-   static let historyPrepared: Bool = {
+   static var mainThreadController: HistoryController {
+      assert(NSThread.isMainThread())
+      return self._mainThreadController
+   }
+
+   private static let _mainThreadController = HistoryController()
+
+   private static let historyPrepared: Bool = {
       let realm = try! Realm()
       if !realm.objects(History).isEmpty {
          return true
@@ -91,6 +112,12 @@ class HistoryController: NSObject {
          if activate {
             self.history.activateInterval(interval)
          }
+      }
+   }
+
+   func deleteInterval(interval: Interval) {
+      try! self.realm.write {
+         self.history.deleteInterval(interval)
       }
    }
 

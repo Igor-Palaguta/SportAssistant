@@ -18,7 +18,9 @@ class Interval: Object {
    }
 
    var activities: [Activity] {
-      return self.data.filter(NSPredicate(format: "activity != nil")).map { $0.activity! }
+      return self.data
+         .filter(NSPredicate(format: "activity != nil"))
+         .map { $0.activity! }
    }
 
    convenience init(id: String) {

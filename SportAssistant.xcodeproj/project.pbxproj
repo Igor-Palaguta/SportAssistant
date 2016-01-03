@@ -11,6 +11,9 @@
 		78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD21C26073700FEEB87 /* IntervalViewController.swift */; };
 		78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD31C26073700FEEB87 /* IntervalCell.swift */; };
 		78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD41C26073700FEEB87 /* IntervalsViewController.swift */; };
+		78159A391C39D022001C8031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78159A381C39D022001C8031 /* Assets.xcassets */; };
+		78159A3B1C39D051001C8031 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78159A3A1C39D051001C8031 /* Localizable.strings */; };
+		78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78159A3D1C39D180001C8031 /* LocalizableStrings.swift */; };
 		78176C641C37167700EB2638 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
 		78176C651C37183800EB2638 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 		78176C661C37183E00EB2638 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Interval.swift */; };
@@ -50,7 +53,6 @@
 		788A51C61C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C51C15835600A166A0 /* Assets.xcassets */; };
 		788A51CD1C15835600A166A0 /* SportAssistant WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
-		788A51DA1C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51D91C15835600A166A0 /* Assets.xcassets */; };
 		788C3B421C28AB680081BD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 788C3B411C28AB680081BD13 /* Localizable.strings */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
@@ -266,6 +268,9 @@
 		78045FD21C26073700FEEB87 /* IntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalViewController.swift; sourceTree = "<group>"; };
 		78045FD31C26073700FEEB87 /* IntervalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalCell.swift; sourceTree = "<group>"; };
 		78045FD41C26073700FEEB87 /* IntervalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalsViewController.swift; sourceTree = "<group>"; };
+		78159A381C39D022001C8031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		78159A3A1C39D051001C8031 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
 		7831F6371C21845B00A7CBB1 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
@@ -301,7 +306,6 @@
 		788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SportAssistant WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		788A51D21C15835600A166A0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		788A51D91C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
@@ -475,6 +479,16 @@
 			path = Intervals;
 			sourceTree = "<group>";
 		};
+		78159A371C39D00B001C8031 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78159A381C39D022001C8031 /* Assets.xcassets */,
+				78159A3A1C39D051001C8031 /* Localizable.strings */,
+				78159A3D1C39D180001C8031 /* LocalizableStrings.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7831F62E1C21793300A7CBB1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,12 +623,12 @@
 			isa = PBXGroup;
 			children = (
 				78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */,
+				78159A371C39D00B001C8031 /* Resources */,
 				78E61E671C2C2ADF003C59F1 /* Synchronizer */,
 				78A2D1DF1C2C135400EEBDD7 /* History */,
 				7831F6351C21843D00A7CBB1 /* Training */,
 				784D25051C1F1806006491A0 /* Menu */,
 				788A51D51C15835600A166A0 /* ExtensionDelegate.swift */,
-				788A51D91C15835600A166A0 /* Assets.xcassets */,
 				788A51DB1C15835600A166A0 /* Info.plist */,
 				788A51D11C15835600A166A0 /* Supporting Files */,
 			);
@@ -945,6 +959,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 788A51DE1C15835600A166A0 /* Build configuration list for PBXNativeTarget "SportAssistant WatchKit Extension" */;
 			buildPhases = (
+				78159A3C1C39D0A4001C8031 /* Swiftgen */,
 				788A51C81C15835600A166A0 /* Sources */,
 				788A51C91C15835600A166A0 /* Frameworks */,
 				788A51CA1C15835600A166A0 /* Resources */,
@@ -1068,13 +1083,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				788A51DA1C15835600A166A0 /* Assets.xcassets in Resources */,
+				78159A391C39D022001C8031 /* Assets.xcassets in Resources */,
+				78159A3B1C39D051001C8031 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		78159A3C1C39D0A4001C8031 /* Swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftgen;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"";
+		};
 		788C3B431C28ABD30081BD13 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1244,6 +1274,7 @@
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
 				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
+				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
 				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				78E61E641C2C25A3003C59F1 /* Package.swift in Sources */,
 				787636151C3284B100E84348 /* Activity.swift in Sources */,

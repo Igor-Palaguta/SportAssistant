@@ -38,6 +38,10 @@ extension ClientSynchronizer: WCSessionDelegate {
             if let interval = historyController[id] {
                historyController.deactivateInterval(interval)
             }
+         case .Delete(let id):
+            if let interval = historyController[id] {
+               historyController.deleteInterval(interval)
+            }
          case .Data(let id, let data):
             if let interval = historyController[id] {
                historyController.addData(data, toInterval: interval)

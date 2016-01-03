@@ -1,16 +1,16 @@
 import WatchKit
 import Foundation
 
-class HistoryInterfaceController: WKInterfaceController {
+final class HistoryInterfaceController: WKInterfaceController {
 
-   @IBOutlet weak var table: WKInterfaceTable!
+   @IBOutlet private weak var table: WKInterfaceTable!
+
+   private var removedIndex: Int?
 
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      let historyController = HistoryController()
-
-      let intervals = historyController.intervals
+      let intervals = HistoryController.mainThreadController.intervals
       self.table.setNumberOfRows(intervals.count, withRowType: String(TrainingController.self))
 
       for (index, interval) in intervals.enumerate() {
@@ -22,6 +22,11 @@ class HistoryInterfaceController: WKInterfaceController {
    override func willActivate() {
       // This method is called when watch view controller is about to be visible to user
       super.willActivate()
+
+      if let removedIndex = self.removedIndex {
+         self.table.removeRowsAtIndexes(NSIndexSet(index: removedIndex))
+         self.removedIndex = nil
+      }
    }
 
    override func didDeactivate() {
@@ -30,9 +35,18 @@ class HistoryInterfaceController: WKInterfaceController {
    }
 
    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-      let historyController = HistoryController()
-      let intervals = historyController.intervals
+      let intervals = HistoryController.mainThreadController.intervals
       let selectedInterval = intervals[rowIndex]
-      self.presentControllerWithNames([String(IntervalInterfaceController.self), String(ChartInterfaceController.self)], contexts: [selectedInterval, selectedInterval])
+      self.presentControllerWithNames([String(IntervalInterfaceController.self), String(ChartInterfaceController.self)], contexts: [[selectedInterval, self], selectedInterval])
+   }
+}
+
+extension HistoryInterfaceController: IntervalInterfaceControllerDelegate {
+   func deleteIntervalInterfaceController(controller: IntervalInterfaceController) {
+      let historyController = HistoryController.mainThreadController
+      self.removedIndex = historyController.intervals.indexOf(controller.interval)
+      historyController.deleteInterval(controller.interval)
+      ServerSynchronizer.defaultServer.sendPackage(.Delete(controller.interval.id))
+      controller.dismissController()
    }
 }

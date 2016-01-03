@@ -1,7 +1,7 @@
 import WatchKit
 import Foundation
 
-class TrainingController: NSObject {
+final class TrainingController: NSObject {
 
    @IBOutlet private weak var dateLabel: WKInterfaceLabel!
    @IBOutlet private weak var resultLabel: WKInterfaceLabel!

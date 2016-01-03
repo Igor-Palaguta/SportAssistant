@@ -41,6 +41,7 @@ private extension Activity {
 enum Package {
    case Start(String)
    case Stop(String)
+   case Delete(String)
    case Data(String, [AccelerationData])
 
    func toMessage() -> [String: AnyObject] {
@@ -49,6 +50,8 @@ enum Package {
          return ["start": id]
       case Stop(let id):
          return ["stop": id]
+      case Delete(let id):
+         return ["delete": id]
       case Data(let id, let data):
          return ["data": ["id": id, "data": data.map { $0.toMessage() }]]
       }
@@ -60,6 +63,8 @@ enum Package {
          self = Start(id)
       case ("stop", let id as String):
          self = Stop(id)
+      case ("delete", let id as String):
+         self = Delete(id)
       case ("data", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
             dataMessage = arguments["data"] as? [[String: AnyObject]] {

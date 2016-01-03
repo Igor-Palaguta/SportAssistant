@@ -93,7 +93,7 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
                                 <label alignment="right" verticalAlignment="bottom" text="-" id="UGe-0d-juz">
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
                             </items>
                         </group>
@@ -103,10 +103,16 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
                                 <label alignment="right" verticalAlignment="bottom" text="-" id="Qnx-HG-7L3">
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
                             </items>
                         </group>
+                        <button width="1" alignment="left" title="Delete" id="7Dt-Ub-YAV">
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deleteAction:" destination="rxU-gG-mSZ" id="H6n-9A-UDA"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="bestLabel" destination="iC3-Ln-mXC" id="WE4-HG-61n"/>

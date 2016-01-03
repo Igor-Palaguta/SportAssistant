@@ -2,7 +2,7 @@ import WatchKit
 import Foundation
 import YOChartImageKit
 
-class ChartInterfaceController: WKInterfaceController {
+final class ChartInterfaceController: WKInterfaceController {
 
    @IBOutlet private weak var chartView: WKInterfaceImage!
 
