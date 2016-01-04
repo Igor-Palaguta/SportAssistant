@@ -3,6 +3,7 @@ import UIKit
 
 private let _accelerationFormatter: NSNumberFormatter = {
    let formatter = NSNumberFormatter()
+   formatter.minimumIntegerDigits = 1
    formatter.maximumFractionDigits = 2
    return formatter
 }()

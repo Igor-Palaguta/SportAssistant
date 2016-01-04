@@ -20,6 +20,8 @@
 		78176C671C37183E00EB2638 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
 		78176C681C37183E00EB2638 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
 		78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
+		78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */; };
+		78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */; };
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
 		7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */; };
 		7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6371C21845B00A7CBB1 /* Accelerometer.swift */; };
@@ -271,6 +273,8 @@
 		78159A381C39D022001C8031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78159A3A1C39D051001C8031 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rotation.swift"; sourceTree = "<group>"; };
+		78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationDataCell.swift; sourceTree = "<group>"; };
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
 		7831F6371C21845B00A7CBB1 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
@@ -496,6 +500,7 @@
 				789DE8EE1C27484000B8CA98 /* RACHelpers.swift */,
 				789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */,
 				784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */,
+				78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */,
+				78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1135,6 +1141,7 @@
 				78D391781C34A3DC00BF3B71 /* BubbleChartDataProvider.swift in Sources */,
 				78D3914E1C34A3DC00BF3B71 /* ChartLimitLine.swift in Sources */,
 				788A519B1C15835600A166A0 /* ViewController.swift in Sources */,
+				78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */,
 				78D391681C34A3DC00BF3B71 /* RadarChartDataSet.swift in Sources */,
 				78D391651C34A3DC00BF3B71 /* PieChartData.swift in Sources */,
 				78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */,
@@ -1203,6 +1210,7 @@
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				78D3915D1C34A3DC00BF3B71 /* ChartData.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
+				78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */,
 				78D391441C34A3DC00BF3B71 /* CombinedChartView.swift in Sources */,
 				78D391691C34A3DC00BF3B71 /* ScatterChartData.swift in Sources */,
 				78D391761C34A3DC00BF3B71 /* BarChartDataProvider.swift in Sources */,

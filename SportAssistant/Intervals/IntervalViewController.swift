@@ -205,12 +205,19 @@ final class IntervalViewController: UIViewController {
    var interval: Interval!
 
    @IBOutlet private weak var chartView: CombinedChartView!
+   @IBOutlet private weak var tableView: UITableView!
+   @IBOutlet private weak var visibleTableConstraint: NSLayoutConstraint!
+
+   //!Out of hierarchy
+   @IBOutlet private var tableHeaderView: UIView!
 
    private lazy var historyController = HistoryController()
    private var dataSource: IntervalDataSource?
 
    override func viewDidLoad() {
       super.viewDidLoad()
+
+      self.automaticallyAdjustsScrollViewInsets = false
 
       self.chartView.delegate = self
 
@@ -290,9 +297,27 @@ final class IntervalViewController: UIViewController {
             if let dataSource = strongSelf.dataSource {
                dataSource.addNewDataFromInterval(strongSelf.interval)
                strongSelf.chartView.notifyDataSetChanged()
+               strongSelf.tableView.reloadData()
             } else {
                strongSelf.addData()
             }
+      }
+   }
+
+   override func shouldAutorotate() -> Bool {
+      return true
+   }
+
+   override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+      return [.Portrait, .Landscape]
+   }
+
+   override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+      self.navigationController?.setNavigationBarHidden(toInterfaceOrientation.isLandscape, animated: true)
+
+      UIView.animateWithDuration(duration) {
+         self.visibleTableConstraint.priority = toInterfaceOrientation.isPortrait ? 750 : 250
+         self.view.layoutIfNeeded()
       }
    }
 
@@ -305,7 +330,26 @@ final class IntervalViewController: UIViewController {
    }
 }
 
+extension IntervalViewController: UITableViewDataSource {
+   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return self.interval.currentCount
+   }
+
+   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      let cell: AccelerationDataCell = tableView.dequeueCellForIndexPath(indexPath)
+      let data = self.interval.data[indexPath.row]
+      cell.data = data
+      cell.timestampLabel.text = data.date.timeIntervalSinceDate(self.interval.start!).toDurationString()
+      return cell
+   }
+}
+
 extension IntervalViewController: ChartViewDelegate {
    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+      if let data = entry.data as? AccelerationData, index = self.interval.data.indexOf(data) {
+         self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
+            atScrollPosition: .Top,
+            animated: true)
+      }
    }
 }

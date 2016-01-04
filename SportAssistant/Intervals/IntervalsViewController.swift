@@ -48,6 +48,14 @@ final class IntervalsViewController: UITableViewController {
       self.tableView.tableFooterView = UIView()
    }
 
+   override func shouldAutorotate() -> Bool {
+      return true
+   }
+
+   override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+      return [.Portrait]
+   }
+
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return self.intervals.count
    }
