@@ -17,7 +17,7 @@ enum Sign {
 
 private extension Double {
    var isSignificant: Bool {
-      return self > 2
+      return self > 4
    }
 }
 
@@ -259,19 +259,19 @@ final class TableTennisAnalyzer: Analyzer<TableTennisMotion> {
             }
          ])
 
-      let rightHandLeftTopSpin = Template(attributes: TableTennisMotion.RightTopSpin(.Left),
+      let rightHandLeftTopSpin = Template(attributes: TableTennisMotion.LeftTopSpin(.Right),
          predicates: [
             predicateForField(.x) { $0.globalMin < 0 && abs($0.globalMin.value) > abs($0.globalMax.value) },
             predicateForField(.z) { $0.initial > 0 }
          ])
 
-      let leftHandRightTopSpin = Template(attributes: TableTennisMotion.RightTopSpin(.Right),
+      let leftHandRightTopSpin = Template(attributes: TableTennisMotion.RightTopSpin(.Left),
          predicates: [
             predicateForField(.x) { $0.globalMax > 0 && abs($0.globalMax.value) > abs($0.globalMin.value) },
             predicateForField(.z) { $0.initial < 0 }
          ])
 
-      let leftHandLeftTopSpin = Template(attributes: TableTennisMotion.RightTopSpin(.Right),
+      let leftHandLeftTopSpin = Template(attributes: TableTennisMotion.LeftTopSpin(.Left),
          predicates: [
             predicateForField(.x) { $0.globalMax > 0 && abs($0.globalMax.value) > abs($0.globalMin.value) },
             predicateForField(.z) { $0.initial > 0 }
