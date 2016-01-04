@@ -15,7 +15,7 @@ private extension AccelerationData {
    }
 
    convenience init(total: Double) {
-      self.init(x: total, y: 0, z: 0, date: NSDate())
+      self.init(x: total, y: 0, z: 0, timestamp: 0)
    }
 }
 
@@ -52,7 +52,7 @@ class AnalyzerTests: XCTestCase {
    }
 
    func testRange() {
-      let data = AccelerationData(x: 1, y: 1, z: 1, date: NSDate())
+      let data = AccelerationData(x: 1, y: 1, z: 1, timestamp: 0)
 
       let range = Range(initial: data.p(7))
       XCTAssertTrue(range.final.value == 7)
