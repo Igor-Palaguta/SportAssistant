@@ -26,9 +26,9 @@ struct PointValue {
    let data: AccelerationData
 }
 
-func <(point: PointValue, value: Double) -> Bool { return point.value < value }
-func >(point: PointValue, value: Double) -> Bool { return point.value > value }
-func ==(point: PointValue, value: Double) -> Bool { return point.value == value }
+func < (point: PointValue, value: Double) -> Bool { return point.value < value }
+func > (point: PointValue, value: Double) -> Bool { return point.value > value }
+func == (point: PointValue, value: Double) -> Bool { return point.value == value }
 
 final class Range {
 
@@ -234,11 +234,12 @@ enum TableTennisMotion: CustomStringConvertible {
    }
 }
 
-private func predicateForField(field: AccelerationDataField, predicate: RangePredicate) -> AccelerationDataRangePredicate {
-   return {
-      accelerationDataRange in
-      return predicate(accelerationDataRange[field])
-   }
+private func predicateForField(field: AccelerationDataField,
+   predicate: RangePredicate) -> AccelerationDataRangePredicate {
+      return {
+         accelerationDataRange in
+         return predicate(accelerationDataRange[field])
+      }
 }
 
 final class TableTennisAnalyzer: Analyzer<TableTennisMotion> {
@@ -282,4 +283,3 @@ final class TableTennisAnalyzer: Analyzer<TableTennisMotion> {
          leftHandLeftTopSpin], defaultValue: .Unknown)
    }
 }
-

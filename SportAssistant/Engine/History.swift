@@ -149,4 +149,3 @@ class HistoryController: NSObject {
       }
    }
 }
-

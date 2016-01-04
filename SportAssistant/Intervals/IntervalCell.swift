@@ -35,7 +35,8 @@ class ProgressView: UIView {
    override func awakeFromNib() {
       super.awakeFromNib()
 
-      NSNotificationCenter.defaultCenter().rac_addObserverForName(UIApplicationDidBecomeActiveNotification,
+      NSNotificationCenter.defaultCenter()
+         .rac_addObserverForName(UIApplicationDidBecomeActiveNotification,
          object: nil)
          .takeUntil(self.rac_willDeallocSignal())
          .subscribeNext {

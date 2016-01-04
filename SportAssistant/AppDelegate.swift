@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    private lazy var healthStore = HKHealthStore()
    var window: UIWindow?
 
-   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+   func application(application: UIApplication,
+      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
       Realm.configure()
       ClientSynchronizer.defaultClient.start()

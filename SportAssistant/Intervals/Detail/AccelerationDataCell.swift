@@ -6,7 +6,9 @@ class AccelerationDataCell: UITableViewCell, ReusableNibView {
       didSet {
          self.timestampLabel.text = self.data.timestamp.toDurationString(true)
          self.activityLabel.text = self.data.activity?.name
-         self.accelerationLabel.attributedText = NSNumberFormatter.attributedStringForAcceleration(self.data.total, integralFont: self.accelerationFont)
+         self.accelerationLabel.attributedText =
+            NSNumberFormatter.attributedStringForAcceleration(self.data.total,
+               integralFont: self.accelerationFont)
       }
    }
 
