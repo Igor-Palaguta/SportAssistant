@@ -9,20 +9,20 @@ enum AccelerationDataField: String {
 }
 
 class AccelerationData: Object {
-   private(set) dynamic var date: NSDate!
+   private(set) dynamic var timestamp: Double = 0
    private(set) dynamic var x: Double = 0
    private(set) dynamic var y: Double = 0
    private(set) dynamic var z: Double = 0
    private(set) dynamic var total: Double = 0
    dynamic var activity: Activity?
 
-   convenience init(x: Double, y: Double, z: Double, date: NSDate) {
+   convenience init(x: Double, y: Double, z: Double, timestamp: Double) {
       self.init()
-      self.date = date
       self.x = x
       self.y = y
       self.z = z
       self.total = sqrt(x * x + y * y + z * z)
+      self.timestamp = timestamp
    }
 
    subscript(id: AccelerationDataField) -> Double {

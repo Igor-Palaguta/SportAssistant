@@ -3,7 +3,7 @@ import WatchConnectivity
 
 private extension AccelerationData {
    func toMessage() -> [String: AnyObject] {
-      var message = ["x": x, "y": y, "z": z, "date": date]
+      var message: [String: AnyObject] = ["x": x, "y": y, "z": z, "timestamp": timestamp]
       if let activity = self.activity {
          message["activity"] = activity.toMessage()
       }
@@ -14,11 +14,11 @@ private extension AccelerationData {
       guard let x = message["x"] as? Double,
          y = message["y"] as? Double,
          z = message["z"] as? Double,
-         date = message["date"] as? NSDate else {
+         timestamp = message["timestamp"] as? Double else {
             return nil
       }
 
-      self.init(x: x, y: y, z: z, date: date)
+      self.init(x: x, y: y, z: z, timestamp: timestamp)
       let activityMessage = message["activity"] as? [String: AnyObject]
       self.activity = activityMessage.flatMap { Activity(message: $0) }
    }
@@ -39,15 +39,15 @@ private extension Activity {
 }
 
 enum Package {
-   case Start(String)
+   case Start(String, NSDate)
    case Stop(String)
    case Delete(String)
    case Data(String, [AccelerationData])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
-      case Start(let id):
-         return ["start": id]
+      case Start(let id, let date):
+         return ["start": ["id": id, "date": date]]
       case Stop(let id):
          return ["stop": id]
       case Delete(let id):
@@ -59,8 +59,13 @@ enum Package {
 
    init?(name: String, arguments: AnyObject) {
       switch (name, arguments) {
-      case ("start", let id as String):
-         self = Start(id)
+      case ("start", let arguments as [String: AnyObject]):
+         if let id = arguments["id"] as? String,
+            date = arguments["date"] as? NSDate {
+               self = Start(id, date)
+         } else {
+            return nil
+         }
       case ("stop", let id as String):
          self = Stop(id)
       case ("delete", let id as String):
@@ -76,23 +81,5 @@ enum Package {
       default:
          return nil
       }
-   }
-
-   static func packageWithName(name: String, arguments: AnyObject) -> Package? {
-      switch (name, arguments) {
-      case ("start", let id as String):
-         return Start(id)
-      case ("stop", let id as String):
-         return Stop(id)
-      case ("data", let arguments as [String: AnyObject]):
-         if let id = arguments["id"] as? String,
-            dataMessage = arguments["data"] as? [[String: AnyObject]] {
-               let data = dataMessage.flatMap { AccelerationData(message: $0) }
-               return Data(id, data)
-         }
-      default:
-         return nil
-      }
-      return nil
    }
 }

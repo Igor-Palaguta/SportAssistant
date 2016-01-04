@@ -149,11 +149,8 @@ private struct IntervalDataSource {
 
    init(interval: Interval) {
 
-      let startDate = interval.data.first!.date
       let xVals = interval.data.map {
-         data -> String in
-         let timestamp = data.date.timeIntervalSinceDate(startDate)
-         return timestamp.toDurationString()
+         return $0.timestamp.toDurationString()
       }
 
       for (i, data) in interval.data.enumerate() {
@@ -184,7 +181,6 @@ private struct IntervalDataSource {
       let previousCount = self.chartData.xValCount
 
       let newData = interval.data[previousCount..<interval.currentCount]
-      let startDate = interval.data.first!.date
 
       for (i, data) in newData.enumerate() {
          self.dataSets.forEach {
@@ -194,8 +190,7 @@ private struct IntervalDataSource {
             }
          }
 
-         let timestamp = data.date.timeIntervalSinceDate(startDate)
-         self.chartData.addXValue(timestamp.toDurationString())
+         self.chartData.addXValue(data.timestamp.toDurationString())
       }
    }
 }
@@ -339,7 +334,6 @@ extension IntervalViewController: UITableViewDataSource {
       let cell: AccelerationDataCell = tableView.dequeueCellForIndexPath(indexPath)
       let data = self.interval.data[indexPath.row]
       cell.data = data
-      cell.timestampLabel.text = data.date.timeIntervalSinceDate(self.interval.start!).toDurationString()
       return cell
    }
 }

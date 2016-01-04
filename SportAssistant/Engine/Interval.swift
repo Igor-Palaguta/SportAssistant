@@ -4,17 +4,13 @@ import RealmSwift
 class Interval: Object {
    private(set) dynamic var id = NSUUID().UUIDString
    private(set) dynamic var best: Double = 0
-   private(set) dynamic var start: NSDate?
-   dynamic var totalCount = 0
+   private(set) dynamic var start = NSDate()
    private(set) dynamic var currentCount = 0
 
    let data = List<AccelerationData>()
 
    dynamic var duration: NSTimeInterval {
-      if let start = self.start, end = self.data.last?.date {
-         return end.timeIntervalSinceDate(start)
-      }
-      return 0
+      return self.data.last?.timestamp ?? 0
    }
 
    var activities: [Activity] {
@@ -23,18 +19,15 @@ class Interval: Object {
          .map { $0.activity! }
    }
 
-   convenience init(id: String) {
+   convenience init(id: String, start: NSDate) {
       self.init()
       self.id = id
+      self.start = start
    }
 
    func addData(data: AccelerationData) {
       if data.total > self.best {
          self.best = data.total
-      }
-
-      if self.data.isEmpty {
-         self.start = data.date
       }
 
       self.data.append(data)

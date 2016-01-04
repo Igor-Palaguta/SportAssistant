@@ -8,13 +8,10 @@ final class TrainingController: NSObject {
 
    var interval: Interval! {
       didSet {
-         let dateString: String? = self.interval.start.map {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .ShortStyle
-            dateFormatter.timeStyle = .NoStyle
-            return dateFormatter.stringFromDate($0)
-         }
-         self.dateLabel.setText(dateString)
+         let dateFormatter = NSDateFormatter()
+         dateFormatter.dateStyle = .ShortStyle
+         dateFormatter.timeStyle = .NoStyle
+         self.dateLabel.setText(dateFormatter.stringFromDate(self.interval.start))
          self.resultLabel.setText(NSNumberFormatter.stringForAcceleration(self.interval.best))
          let historyController = HistoryController()
          let isRecord = self.interval.best == historyController.best

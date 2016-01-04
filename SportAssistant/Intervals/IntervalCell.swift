@@ -82,7 +82,6 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
    @IBOutlet private weak var bestLast: UILabel!
    @IBOutlet private weak var progressView: ProgressView!
 
-   private lazy var historyController = HistoryController()
    private lazy var accelerationFont: UIFont = self.bestLast.font
 
    var interval: Interval! {
@@ -91,7 +90,7 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
 
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
 
-            let activeSignal = DynamicProperty(object: self.historyController, keyPath: "active")
+            let activeSignal = DynamicProperty(object: HistoryController.mainThreadController, keyPath: "active")
                .producer
                .map { $0 as? Interval }
                .map {

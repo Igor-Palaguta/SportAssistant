@@ -69,7 +69,7 @@ class TrainingInterfaceController: WKInterfaceController {
          let recordSession = Session(healthStore: self.healthStore!)
          recordSession.accelerometer.delegate = self
          self.recordSession = recordSession
-         ServerSynchronizer.defaultServer.sendPackage(.Start(recordSession.interval.id))
+         ServerSynchronizer.defaultServer.sendPackage(.Start(recordSession.interval.id, recordSession.interval.start))
       }
    }
 
@@ -121,7 +121,7 @@ extension TrainingInterfaceController: AccelerometerDelegate {
       let accelerationData = AccelerationData(x: data.acceleration.x,
          y: data.acceleration.y,
          z: data.acceleration.z,
-         date: date)
+         timestamp: date.timeIntervalSinceDate(recordSession.interval.start))
       //NSLog("data[%@]: %@",
       //   recordSession.interval.data.count.description,
       //   accelerationData.total.description)
