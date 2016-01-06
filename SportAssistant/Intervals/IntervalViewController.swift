@@ -42,14 +42,14 @@ private enum DataExtractor {
       }
    }
 
-   var label: String {
+   var label: String? {
       switch self {
       case .Field(let id):
          return id.rawValue
       case .Activity(let motion):
          return motion.description
       case .AnyActivity:
-         return "motion"
+         return nil
       }
    }
 }
@@ -63,6 +63,23 @@ private extension LineChartDataSet {
       self.drawCirclesEnabled = points
       self.drawValuesEnabled = points
       self.highlightEnabled = points
+   }
+}
+
+private extension BarLineChartViewBase {
+   var yMin: Double? {
+      set {
+         if let yMin = newValue {
+            self.leftAxis.customAxisMin = yMin
+            self.rightAxis.customAxisMin = yMin
+         } else {
+            self.leftAxis.resetCustomAxisMin()
+            self.rightAxis.resetCustomAxisMin()
+         }
+      }
+      get {
+         return self.leftAxis.customAxisMin
+      }
    }
 }
 
@@ -133,16 +150,12 @@ private class IntervalDataSet {
 
 private struct IntervalDataSource {
 
-   private let dataSets: [IntervalDataSet] = [/*IntervalDataSet(data: .Field(.x), attributes: .Line(colorAtIndex(0), false, 1)),
-      IntervalDataSet(data: .Field(.y), attributes: .Line(colorAtIndex(1), false, 1)),
-      IntervalDataSet(data: .Field(.z), attributes: .Line(colorAtIndex(2), false, 1)),*/
-      IntervalDataSet(data: .Field(.total), attributes: .Line(ChartColorTemplates.joyful()[0], true, 2)),
-      IntervalDataSet(data: .AnyActivity, attributes: .Point(ChartColorTemplates.joyful()[1], true))/*(colorAtIndex(1))*/
-      /*IntervalDataSet(data: .Activity(.RightTopSpin(.Right)), attributes: .Bar(colorAtIndex(4))),
-      IntervalDataSet(data: .Activity(.LeftTopSpin(.Right)), attributes: .Bar(colorAtIndex(5))),
-      IntervalDataSet(data: .Activity(.RightTopSpin(.Left)), attributes: .Bar(colorAtIndex(6))),
-      IntervalDataSet(data: .Activity(.LeftTopSpin(.Left)), attributes: .Bar(colorAtIndex(7))),
-      IntervalDataSet(data: .Activity(.Unknown), attributes: .Bar(.grayColor()))*/
+   private let dataSets: [IntervalDataSet] =
+   [IntervalDataSet(data: .Field(.x), attributes: .Line(ChartColorTemplates.joyful()[0], false, 1)),
+      IntervalDataSet(data: .Field(.y), attributes: .Line(ChartColorTemplates.joyful()[1], false, 1)),
+      IntervalDataSet(data: .Field(.z), attributes: .Line(ChartColorTemplates.joyful()[2], false, 1)),
+      IntervalDataSet(data: .Field(.total), attributes: .Line(ChartColorTemplates.joyful()[3], true, 2)),
+      IntervalDataSet(data: .AnyActivity, attributes: .Point(ChartColorTemplates.joyful()[4], true))
    ]
 
    private let chartData: ChartData
@@ -177,10 +190,8 @@ private struct IntervalDataSource {
       self.chartData = allData
    }
 
-   func addNewDataFromInterval(interval: Interval) {
+   func addNewData<T: SequenceType where T.Generator.Element == AccelerationData>(newData: T) {
       let previousCount = self.chartData.xValCount
-
-      let newData = interval.data[previousCount..<interval.currentCount]
 
       for (i, data) in newData.enumerate() {
          self.dataSets.forEach {
@@ -191,6 +202,17 @@ private struct IntervalDataSource {
          }
 
          self.chartData.addXValue(data.timestamp.toDurationString())
+      }
+   }
+
+   func setXYZVisible(visible: Bool) {
+      for dataSet in self.dataSets {
+         switch dataSet.data {
+         case .Field(.x), .Field(.y), .Field(.z):
+            dataSet.chartDataSet.visible = visible
+         default:
+            continue
+         }
       }
    }
 }
@@ -204,15 +226,100 @@ final class IntervalViewController: UIViewController {
    @IBOutlet private weak var visibleTableConstraint: NSLayoutConstraint!
 
    //!Out of hierarchy
-   @IBOutlet private var tableHeaderView: UIView!
+   @IBOutlet private var filterControl: UISegmentedControl!
+   @IBOutlet private var dataHeaderView: UIView!
 
    private lazy var historyController = HistoryController()
    private var dataSource: IntervalDataSource?
+
+
+   private enum Filter: Int {
+      case Activities
+      case All
+
+      func filterData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) -> [AccelerationData] {
+         switch self {
+         case .Activities:
+            return data.filter { $0.activity != nil }
+         case .All:
+            return Array(data)
+         }
+      }
+   }
+
+   private func differenceForOldData(oldData: [AccelerationData], newData: [AccelerationData]) -> (inserted: [NSIndexPath], deleted: [NSIndexPath]) {
+
+      if oldData.count == newData.count {
+         return (inserted: [], deleted: [])
+      }
+
+      let (all, activities) = oldData.count > newData.count
+         ? (oldData, newData)
+         : (newData, oldData)
+
+      var currentIndex = 0
+      let indexPaths: [NSIndexPath] = all.flatMap {
+         data in
+
+         defer {
+            currentIndex += 1
+         }
+
+         if activities.contains({$0 == data}) {
+            return nil
+         }
+
+         return NSIndexPath(forRow: currentIndex, inSection: 0)
+      }
+
+      if oldData.count > newData.count {
+         return (inserted: [], deleted: indexPaths)
+      } else {
+         return (inserted: indexPaths, deleted: [])
+      }
+   }
+
+   private var filter: Filter = .Activities {
+      didSet {
+         let showAll = self.filter == .All
+         self.dataSource?.setXYZVisible(showAll)
+         self.chartView.yMin = showAll ? nil : 0
+
+         self.chartView.notifyDataSetChanged()
+
+         //let oldData = self.data
+         self.data = self.filter.filterData(self.interval.data)
+         self.tableView.contentOffset = .zero
+         self.tableView.reloadData()
+
+         /*let (inserted, deleted) = self.differenceForOldData(oldData, newData: self.data)
+         if inserted.isEmpty && deleted.isEmpty {
+            return
+         }
+
+         self.tableView.beginUpdates()
+
+         if !inserted.isEmpty {
+            self.tableView.insertRowsAtIndexPaths(inserted, withRowAnimation: .Fade)
+         }
+
+         if !deleted.isEmpty {
+            self.tableView.deleteRowsAtIndexPaths(deleted, withRowAnimation: .Fade)
+         }
+
+         self.tableView.endUpdates()*/
+      }
+   }
+
+   private var data: [AccelerationData] = []
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
       self.automaticallyAdjustsScrollViewInsets = false
+
+      self.tableView.estimatedRowHeight = 40
+      self.tableView.rowHeight = UITableViewAutomaticDimension
 
       self.chartView.delegate = self
 
@@ -290,13 +397,23 @@ final class IntervalViewController: UIViewController {
             }
 
             if let dataSource = strongSelf.dataSource {
-               dataSource.addNewDataFromInterval(strongSelf.interval)
+               let previousCount = strongSelf.chartView.data!.xValCount
+               let newData = strongSelf.interval.data[previousCount..<count]
+
+               dataSource.addNewData(newData)
                strongSelf.chartView.notifyDataSetChanged()
-               strongSelf.tableView.reloadData()
+
+               let filteredData = strongSelf.filter.filterData(newData)
+               if !filteredData.isEmpty {
+                  strongSelf.data.appendContentsOf(filteredData)
+                  strongSelf.tableView.reloadData()
+               }
             } else {
                strongSelf.addData()
             }
       }
+
+      self.navigationItem.titleView = self.filterControl
    }
 
    override func shouldAutorotate() -> Bool {
@@ -319,31 +436,46 @@ final class IntervalViewController: UIViewController {
    private func addData() {
       if !self.interval.data.isEmpty {
          let dataSource = IntervalDataSource(interval: self.interval)
-         self.chartView.data = dataSource.chartData
          self.dataSource = dataSource
+
+         dataSource.setXYZVisible(self.filter == .All)
+         self.chartView.yMin = self.filter == .All ? nil : 0
+         self.chartView.data = dataSource.chartData
+
+         self.data = self.filter.filterData(self.interval.data)
+         self.tableView.reloadData()
       }
+   }
+
+   @IBAction private func changeFilterAction(control: UISegmentedControl) {
+      self.filter = Filter(rawValue: control.selectedSegmentIndex)!
    }
 }
 
-extension IntervalViewController: UITableViewDataSource {
+extension IntervalViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return self.interval.currentCount
+      return self.data.count
    }
 
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell: AccelerationDataCell = tableView.dequeueCellForIndexPath(indexPath)
-      let data = self.interval.data[indexPath.row]
+      let data = self.data[indexPath.row]
       cell.data = data
       return cell
+   }
+
+   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      return self.dataHeaderView
    }
 }
 
 extension IntervalViewController: ChartViewDelegate {
    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-      if let data = entry.data as? AccelerationData, index = self.interval.data.indexOf(data) {
-         self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
-            atScrollPosition: .Top,
-            animated: true)
+      if let data = entry.data as? AccelerationData,
+         index = self.data.indexOf({$0 == data}) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
+               atScrollPosition: .Top,
+               animated: true)
       }
    }
 }

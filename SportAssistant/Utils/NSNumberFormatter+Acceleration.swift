@@ -32,7 +32,8 @@ extension NSNumberFormatter {
          return attributedAcceleration
    }
 
-   class func attributedStringForAcceleration(acceleration: Double, integralFont: UIFont) -> NSAttributedString {
+   class func attributedStringForAcceleration(acceleration: Double,
+      integralFont: UIFont) -> NSAttributedString {
          let fractionalFont = integralFont.fontWithSize(integralFont.pointSize * 0.8)
          return self.attributedStringForAcceleration(acceleration, integralAttributes: [NSFontAttributeName: integralFont], fractionalAttributes: [NSFontAttributeName: fractionalFont])
    }
