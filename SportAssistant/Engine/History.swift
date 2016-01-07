@@ -18,7 +18,7 @@ class History: Object {
          return
       }
 
-      self.deactivateInterval(interval, totalCount: nil)
+      self.deactivateInterval(interval)
       self.intervals.removeAtIndex(index)
       self.intervalsCount = self.intervals.count
 
@@ -31,21 +31,18 @@ class History: Object {
       self.active = interval
    }
 
-   private func deactivateInterval(interval: Interval, totalCount: Int?) {
-      if let totalCount = totalCount {
-         interval.updateTotalCount(totalCount)
-      }
+   private func deactivateInterval(interval: Interval) {
       if self.active == interval {
          self.active = nil
       }
    }
 
-   private func addData(data: AccelerationData, toInterval interval: Interval) {
+   private func appendData(data: AccelerationData, toInterval interval: Interval) {
       if data.total > self.best {
          self.best = data.total
       }
 
-      interval.addData(data)
+      interval.append(data)
    }
 }
 
@@ -105,8 +102,8 @@ class HistoryController: NSObject {
       return NSSet(object: "history.active")
    }
 
-   var intervals: List<Interval> {
-      return self.history.intervals
+   var intervals: Results<Interval> {
+      return self.history.intervals.sorted("start", ascending: false)
    }
 
    func addInterval(interval: Interval, activate: Bool = false) {
@@ -118,22 +115,36 @@ class HistoryController: NSObject {
       }
    }
 
+   func synchronizeIntervalWithId(id: String, start: NSDate, data: [AccelerationData]) {
+      try! self.realm.write {
+         if let interval = self[id] {
+            let newData = data[interval.data.count..<data.count]
+            interval.appendContentsOf(newData)
+         } else {
+            let interval = Interval(id: id, start: start)
+            interval.appendContentsOf(data)
+            self.history.addInterval(interval)
+         }
+      }
+   }
+
    func deleteInterval(interval: Interval) {
       try! self.realm.write {
          self.history.deleteInterval(interval)
+         self.realm.delete(interval)
       }
    }
 
-   func deactivateInterval(interval: Interval, totalCount: Int?) {
+   func deactivateInterval(interval: Interval) {
       try! self.realm.write {
-         self.history.deactivateInterval(interval, totalCount: totalCount)
+         self.history.deactivateInterval(interval)
       }
    }
 
-   func addData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
+   func appendData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
       try! self.realm.write {
          data.forEach {
-            self.history.addData($0, toInterval: interval)
+            self.history.appendData($0, toInterval: interval)
          }
       }
    }

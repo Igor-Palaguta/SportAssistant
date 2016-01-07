@@ -46,7 +46,7 @@ final class IntervalInterfaceController: WKInterfaceController {
       super.didDeactivate()
    }
 
-   @IBAction private func deleteAction(_: WKInterfaceButton) {
+   @IBAction private func deleteAction() {
       let cancelAction = WKAlertAction(title: tr(.Cancel), style: .Cancel) {}
 
       let deleteAction = WKAlertAction(title: tr(.Delete), style: .Destructive) {
@@ -59,5 +59,9 @@ final class IntervalInterfaceController: WKInterfaceController {
          message: nil,
          preferredStyle: .Alert,
          actions: [cancelAction, deleteAction])
+   }
+
+   @IBAction private func sendAction() {
+      ServerSynchronizer.defaultServer.synchronizeInterval(self.interval)
    }
 }

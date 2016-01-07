@@ -13,8 +13,7 @@ final class TrainingController: NSObject {
          dateFormatter.timeStyle = .NoStyle
          self.dateLabel.setText(dateFormatter.stringFromDate(self.interval.start))
          self.resultLabel.setText(NSNumberFormatter.stringForAcceleration(self.interval.best))
-         let historyController = HistoryController()
-         let isRecord = self.interval.best == historyController.best
+         let isRecord = self.interval.best == HistoryController.mainThreadController.best
 
          let resultColor = isRecord
             ? UIColor.greenColor()

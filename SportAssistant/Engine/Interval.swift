@@ -6,7 +6,6 @@ class Interval: Object {
    private(set) dynamic var best: Double = 0
    private(set) dynamic var start = NSDate()
    private(set) dynamic var currentCount = 0
-   private(set) dynamic var totalCount: Int = 0
 
    let data = List<AccelerationData>()
 
@@ -26,18 +25,28 @@ class Interval: Object {
       self.start = start
    }
 
-   func updateTotalCount(count: Int) {
-      if self.totalCount == 0 {
-         self.totalCount = count
-      }
-   }
-
-   func addData(data: AccelerationData) {
+   func append(data: AccelerationData) {
       if data.total > self.best {
          self.best = data.total
       }
 
       self.data.append(data)
+      self.currentCount = self.data.count
+   }
+
+   func appendContentsOf<T: CollectionType where T.Generator.Element == AccelerationData>(data: T) {
+
+      if data.isEmpty {
+         return
+      }
+
+      let best = data.maxElement { $0.total < $1.total }!.total
+
+      if best > self.best {
+         self.best = best
+      }
+
+      self.data.appendContentsOf(data)
       self.currentCount = self.data.count
    }
 

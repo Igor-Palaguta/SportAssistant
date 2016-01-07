@@ -110,10 +110,24 @@
                         <button width="1" alignment="left" title="Delete" id="7Dt-Ub-YAV">
                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="deleteAction:" destination="rxU-gG-mSZ" id="H6n-9A-UDA"/>
+                                <action selector="deleteAction" destination="rxU-gG-mSZ" id="HTN-dF-ExH"/>
                             </connections>
                         </button>
                     </items>
+                    <menu key="menu" id="fkq-4W-xUb">
+                        <items>
+                            <menuItem title="Delete" icon="trash" id="Qyc-6J-edw">
+                                <connections>
+                                    <action selector="deleteAction" destination="rxU-gG-mSZ" id="w35-Tk-ryg"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Send" icon="add" id="db5-fe-G8V">
+                                <connections>
+                                    <action selector="sendAction" destination="rxU-gG-mSZ" id="jOe-zs-fmr"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="bestLabel" destination="iC3-Ln-mXC" id="WE4-HG-61n"/>
                         <outlet property="countLabel" destination="UGe-0d-juz" id="VQx-6g-DZh"/>

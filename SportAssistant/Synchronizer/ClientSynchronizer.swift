@@ -31,13 +31,15 @@ extension ClientSynchronizer: WCSessionDelegate {
       let historyController = HistoryController()
       for package in packages {
          switch package {
-         case .Start(let id, let date):
-            let interval = Interval(id: id, start: date)
+         case .Start(let id, let start):
+            let interval = Interval(id: id, start: start)
             historyController.addInterval(interval, activate: true)
-         case .Stop(let id, let count):
+         case .Stop(let id):
             if let interval = historyController[id] {
-               historyController.deactivateInterval(interval, totalCount: count)
+               historyController.deactivateInterval(interval)
             }
+         case .Synchronize(let id, let start, let data):
+            historyController.synchronizeIntervalWithId(id, start: start, data: data)
          case .Delete(let id):
             if let interval = historyController[id] {
                historyController.deleteInterval(interval)
@@ -47,7 +49,7 @@ extension ClientSynchronizer: WCSessionDelegate {
                where (interval.currentCount < index + data.count)
                   && (interval.currentCount >= index) {
                      let newData = data[interval.currentCount-index..<data.count]
-                     historyController.addData(newData, toInterval: interval)
+                     historyController.appendData(newData, toInterval: interval)
             }
          }
       }

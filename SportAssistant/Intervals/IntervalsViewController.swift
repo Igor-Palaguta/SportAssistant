@@ -6,25 +6,23 @@ final class IntervalsViewController: UITableViewController {
 
    @IBOutlet weak private var bestLabel: UILabel!
 
-   private var _intervals: List<Interval>?
+   private var _intervals: Results<Interval>?
 
-   private var intervals: List<Interval> {
+   private var intervals: Results<Interval> {
       if let intervals = self._intervals {
          return intervals
       }
-      let intervals = self.historyController.intervals
+      let intervals = HistoryController.mainThreadController.intervals
       self._intervals = intervals
       return intervals
    }
-
-   private lazy var historyController = HistoryController()
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
       let integralFont = self.bestLabel.font
       DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
-         DynamicProperty(object: self.historyController, keyPath: "best")
+         DynamicProperty(object: HistoryController.mainThreadController, keyPath: "best")
             .producer
             .map { $0 as! Double }
             .map {
@@ -32,7 +30,7 @@ final class IntervalsViewController: UITableViewController {
                return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
       }
 
-      DynamicProperty(object: self.historyController, keyPath: "intervalsCount")
+      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "intervalsCount")
          .producer
          .map { $0 as! Int }
          .skip(1)
@@ -64,6 +62,17 @@ final class IntervalsViewController: UITableViewController {
       let cell: IntervalCell = tableView.dequeueCellForIndexPath(indexPath)
       cell.interval = self.intervals[indexPath.row]
       return cell
+   }
+
+   override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+
+      let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
+         _, indexPath in
+         let interval = self.intervals[indexPath.row]
+         HistoryController.mainThreadController.deleteInterval(interval)
+      }
+
+      return [deleteAction];
    }
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

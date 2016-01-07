@@ -54,13 +54,11 @@ class TrainingInterfaceController: WKInterfaceController {
       if let recordSession = self.recordSession {
          let outstandingData = recordSession.analyzer.outstandingData
 
-         if let first = outstandingData.first, position = recordSession.interval.data.indexOf(first) {
-            let package = Package.Data(recordSession.interval.id, position, outstandingData)
-            ServerSynchronizer.defaultServer.sendPackage(package)
+         if !outstandingData.isEmpty {
+            ServerSynchronizer.defaultServer.sendData(outstandingData, forInterval: recordSession.interval)
          }
 
-         ServerSynchronizer.defaultServer.sendPackage(.Stop(recordSession.interval.id,
-            recordSession.interval.data.count))
+         ServerSynchronizer.defaultServer.stopInterval(recordSession.interval)
 
          recordSession.stop()
          self.recordSession = nil
@@ -72,7 +70,7 @@ class TrainingInterfaceController: WKInterfaceController {
          let recordSession = Session(healthStore: self.healthStore!)
          recordSession.accelerometer.delegate = self
          self.recordSession = recordSession
-         ServerSynchronizer.defaultServer.sendPackage(.Start(recordSession.interval.id, recordSession.interval.start))
+         ServerSynchronizer.defaultServer.startInterval(recordSession.interval)
       }
    }
 
@@ -139,16 +137,15 @@ extension TrainingInterfaceController: AccelerometerDelegate {
 
       let result = recordSession.analyzer.analyzeData(accelerationData)
 
-      historyController.addData([accelerationData], toInterval: recordSession.interval)
+      historyController.appendData([accelerationData], toInterval: recordSession.interval)
 
       if let peak = result.peak {
          historyController.addActivityWithName(peak.attributes.description,
             toData: peak.data)
       }
 
-      if let first = result.data.first, position = recordSession.interval.data.indexOf(first) {
-         let package = Package.Data(recordSession.interval.id, position, result.data)
-         ServerSynchronizer.defaultServer.sendPackage(package)
+      if !result.data.isEmpty {
+         ServerSynchronizer.defaultServer.sendData(result.data, forInterval: recordSession.interval)
       }
    }
 }

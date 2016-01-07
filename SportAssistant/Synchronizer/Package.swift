@@ -39,21 +39,26 @@ private extension Activity {
 }
 
 enum Package {
-   case Start(String, NSDate)
-   case Stop(String, Int)
-   case Delete(String)
-   case Data(String, Int, [AccelerationData])
+   case Start(id: String, start: NSDate)
+   case Stop(id: String)
+   case Synchronize(id: String, start: NSDate, data: [AccelerationData])
+   case Delete(id: String)
+   case Data(id: String, position: Int, data: [AccelerationData])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
-      case Start(let id, let date):
-         return ["start": ["id": id, "date": date]]
-      case Stop(let id, let count):
-         return ["stop": ["id": id, "count": count]]
+      case Start(let id, let start):
+         return ["start": ["id": id, "start": start]]
+      case Synchronize(let id, let start, let data):
+         return ["synchronize": ["id": id,
+            "start": start,
+            "data": data.map { $0.toMessage() }]]
+      case Stop(let id):
+         return ["stop": id]
       case Delete(let id):
          return ["delete": id]
-      case Data(let id, let index, let data):
-         return ["data": ["id": id, "index": index, "data": data.map { $0.toMessage() }]]
+      case Data(let id, let position, let data):
+         return ["data": ["id": id, "position": position, "data": data.map { $0.toMessage() }]]
       }
    }
 
@@ -61,26 +66,30 @@ enum Package {
       switch (name, arguments) {
       case ("start", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
-            date = arguments["date"] as? NSDate {
-               self = Start(id, date)
+            start = arguments["start"] as? NSDate {
+               self = Start(id: id, start: start)
          } else {
             return nil
          }
-      case ("stop", let arguments as [String: AnyObject]):
+      case ("synchronize", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
-            count = arguments["count"] as? Int {
-               self = Stop(id, count)
-         } else {
-            return nil
-         }
-      case ("delete", let id as String):
-         self = Delete(id)
-      case ("data", let arguments as [String: AnyObject]):
-         if let id = arguments["id"] as? String,
-            index = arguments["index"] as? Int,
+            start = arguments["start"] as? NSDate,
             dataMessage = arguments["data"] as? [[String: AnyObject]] {
                let data = dataMessage.flatMap { AccelerationData(message: $0) }
-               self = Data(id, index, data)
+               self = Synchronize(id: id, start: start, data: data)
+         } else {
+            return nil
+         }
+      case ("stop", let id as String):
+         self = Stop(id: id)
+      case ("delete", let id as String):
+         self = Delete(id: id)
+      case ("data", let arguments as [String: AnyObject]):
+         if let id = arguments["id"] as? String,
+            position = arguments["position"] as? Int,
+            dataMessage = arguments["data"] as? [[String: AnyObject]] {
+               let data = dataMessage.flatMap { AccelerationData(message: $0) }
+               self = Data(id: id, position: position, data: data)
          } else {
             return nil
          }

@@ -9,6 +9,10 @@ enum L10n {
   case AccelerationData
   /// No data
   case AccelerationDataEmpty
+  /// No peaks
+  case NoPeaks
+  /// Delete
+  case Delete
 }
 
 extension L10n : CustomStringConvertible {
@@ -22,6 +26,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("AccelerationData")
       case .AccelerationDataEmpty:
         return L10n.tr("AccelerationDataEmpty")
+      case .NoPeaks:
+        return L10n.tr("NoPeaks")
+      case .Delete:
+        return L10n.tr("Delete")
     }
   }
 

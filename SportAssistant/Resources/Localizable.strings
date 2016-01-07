@@ -1,5 +1,5 @@
 "AccelerationRecord" = "Record";
-
 "AccelerationData" = "Accelerometer";
-
 "AccelerationDataEmpty" = "No data";
+"NoPeaks" = "No peaks";
+"Delete" = "Delete";

@@ -4,13 +4,13 @@ import WatchConnectivity
 struct DataBuffer {
    let createdDate: NSDate
    let intervalId: String
-   let offset: Int
+   let position: Int
    let data: [AccelerationData]
 
    func dataBufferByAddingData(data: [AccelerationData]) -> DataBuffer {
       return DataBuffer(createdDate: self.createdDate,
          intervalId: self.intervalId,
-         offset: self.offset,
+         position: self.position,
          data: self.data + data)
    }
 }
@@ -31,10 +31,10 @@ class DataBufferManager {
       self.delegate = delegate
    }
 
-   func sendData(data: [AccelerationData], fromInterval intervalId: String, withOffset offset: Int) {
+   func sendData(data: [AccelerationData], fromInterval intervalId: String, position: Int) {
       if let buffer = self.buffer
          where buffer.intervalId == intervalId
-            && buffer.offset + buffer.data.count == offset {
+            && buffer.position + buffer.data.count == position {
                let combinedBuffer = buffer.dataBufferByAddingData(data)
                self.buffer = combinedBuffer
                let shouldFlush = combinedBuffer.data.count >= self.sendLimit
@@ -46,7 +46,7 @@ class DataBufferManager {
          self.flush()
          self.buffer = DataBuffer(createdDate: NSDate(),
             intervalId: intervalId,
-            offset: offset,
+            position: position,
             data: data)
       }
    }
@@ -75,23 +75,30 @@ final class ServerSynchronizer: NSObject {
       return nil
    }()
 
-   private func forceSendPackage(package: Package) {
+   private func sendPackage(package: Package) {
       let message = package.toMessage()
       self.session!.transferUserInfo(message)
    }
 
-   func sendPackage(package: Package) {
-      switch package {
-      case .Data(let intervalId, let offset, let data):
-         self.bufferManager.sendData(data, fromInterval: intervalId, withOffset: offset)
-         return
-      case .Stop(_):
-         self.bufferManager.flush()
-      default:
-         break
-      }
+   func startInterval(interval: Interval) {
+      self.sendPackage(.Start(id: interval.id, start: interval.start))
+   }
 
-      self.forceSendPackage(package)
+   func stopInterval(interval: Interval) {
+      self.bufferManager.flush()
+      self.sendPackage(.Stop(id: interval.id))
+   }
+
+   func synchronizeInterval(interval: Interval) {
+      self.sendPackage(.Synchronize(id: interval.id, start: interval.start, data: Array(interval.data)))
+   }
+
+   func sendData(data: [AccelerationData], forInterval interval: Interval) {
+      if let first = data.first, position = interval.data.indexOf(first) {
+         self.bufferManager.sendData(data, fromInterval: interval.id, position: position)
+      } else {
+         fatalError("Incorrect interval data")
+      }
    }
 }
 
@@ -102,6 +109,6 @@ extension ServerSynchronizer: WCSessionDelegate {
 
 extension ServerSynchronizer: DataBufferManagerDelegate {
    func dataBufferManager(manager: DataBufferManager, sendBuffer buffer: DataBuffer) {
-      self.forceSendPackage(.Data(buffer.intervalId, buffer.offset, buffer.data))
+      self.sendPackage(.Data(id: buffer.intervalId, position: buffer.position, data: buffer.data))
    }
 }

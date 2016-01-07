@@ -217,69 +217,51 @@ private struct IntervalDataSource {
    }
 }
 
+private enum Filter: Int {
+   case Peaks
+   case All
+
+   var emptyMessage: String {
+      switch self {
+      case Peaks:
+         return tr(.NoPeaks)
+      case All:
+         return tr(.AccelerationDataEmpty)
+      }
+   }
+
+   func filterData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) -> [AccelerationData] {
+      switch self {
+      case Peaks:
+         return data.filter { $0.activity != nil }
+      case All:
+         return Array(data)
+      }
+   }
+}
+
 final class IntervalViewController: UIViewController {
 
    var interval: Interval!
 
    @IBOutlet private weak var chartView: CombinedChartView!
    @IBOutlet private weak var tableView: UITableView!
+   @IBOutlet private weak var emptyLabel: UILabel!
    @IBOutlet private weak var visibleTableConstraint: NSLayoutConstraint!
 
    //!Out of hierarchy
    @IBOutlet private var filterControl: UISegmentedControl!
    @IBOutlet private var dataHeaderView: UIView!
 
-   private lazy var historyController = HistoryController()
    private var dataSource: IntervalDataSource?
 
-
-   private enum Filter: Int {
-      case Activities
-      case All
-
-      func filterData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) -> [AccelerationData] {
-         switch self {
-         case .Activities:
-            return data.filter { $0.activity != nil }
-         case .All:
-            return Array(data)
-         }
+   private var data: [AccelerationData] = [] {
+      didSet {
+         self.tableView.hidden = self.data.isEmpty
       }
    }
 
-   private func differenceForOldData(oldData: [AccelerationData], newData: [AccelerationData]) -> (inserted: [NSIndexPath], deleted: [NSIndexPath]) {
-
-      if oldData.count == newData.count {
-         return (inserted: [], deleted: [])
-      }
-
-      let (all, activities) = oldData.count > newData.count
-         ? (oldData, newData)
-         : (newData, oldData)
-
-      var currentIndex = 0
-      let indexPaths: [NSIndexPath] = all.flatMap {
-         data in
-
-         defer {
-            currentIndex += 1
-         }
-
-         if activities.contains({$0 == data}) {
-            return nil
-         }
-
-         return NSIndexPath(forRow: currentIndex, inSection: 0)
-      }
-
-      if oldData.count > newData.count {
-         return (inserted: [], deleted: indexPaths)
-      } else {
-         return (inserted: indexPaths, deleted: [])
-      }
-   }
-
-   private var filter: Filter = .Activities {
+   private var filter: Filter = .Peaks {
       didSet {
          let showAll = self.filter == .All
          self.dataSource?.setXYZVisible(showAll)
@@ -287,31 +269,12 @@ final class IntervalViewController: UIViewController {
 
          self.chartView.notifyDataSetChanged()
 
-         //let oldData = self.data
          self.data = self.filter.filterData(self.interval.data)
+         self.emptyLabel.text = self.filter.emptyMessage
          self.tableView.contentOffset = .zero
          self.tableView.reloadData()
-
-         /*let (inserted, deleted) = self.differenceForOldData(oldData, newData: self.data)
-         if inserted.isEmpty && deleted.isEmpty {
-            return
-         }
-
-         self.tableView.beginUpdates()
-
-         if !inserted.isEmpty {
-            self.tableView.insertRowsAtIndexPaths(inserted, withRowAnimation: .Fade)
-         }
-
-         if !deleted.isEmpty {
-            self.tableView.deleteRowsAtIndexPaths(deleted, withRowAnimation: .Fade)
-         }
-
-         self.tableView.endUpdates()*/
       }
    }
-
-   private var data: [AccelerationData] = []
 
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -345,7 +308,7 @@ final class IntervalViewController: UIViewController {
 
       self.chartView.legend.position = .BelowChartCenter
 
-      let best = self.historyController.best
+      let best = HistoryController.mainThreadController.best
 
       let bestLine = ChartLimitLine(limit: best, label: tr(.AccelerationRecord))
 
@@ -359,7 +322,7 @@ final class IntervalViewController: UIViewController {
 
       self.chartView.marker = BalloonMarker(color: .lightGrayColor(), font: UIFont.systemFontOfSize(12))
 
-      DynamicProperty(object: self.historyController, keyPath: "best")
+      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "best")
          .producer
          .map { $0 as! Double }
          .skipRepeats()
@@ -404,6 +367,7 @@ final class IntervalViewController: UIViewController {
                let filteredData = strongSelf.filter.filterData(newData)
                if !filteredData.isEmpty {
                   strongSelf.data.appendContentsOf(filteredData)
+                  strongSelf.tableView.hidden = false
                   strongSelf.tableView.reloadData()
                }
             } else {

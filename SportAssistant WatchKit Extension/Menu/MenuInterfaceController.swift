@@ -35,8 +35,7 @@ class MenuInterfaceController: WKInterfaceController {
    override func didAppear() {
       super.didAppear()
 
-      let historyController = HistoryController()
-      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(historyController.best))
+      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(HistoryController.mainThreadController.best))
    }
 
    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {

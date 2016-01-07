@@ -46,7 +46,6 @@ extension HistoryInterfaceController: IntervalInterfaceControllerDelegate {
       let historyController = HistoryController.mainThreadController
       self.removedIndex = historyController.intervals.indexOf(controller.interval)
       historyController.deleteInterval(controller.interval)
-      ServerSynchronizer.defaultServer.sendPackage(.Delete(controller.interval.id))
       controller.dismissController()
    }
 }
