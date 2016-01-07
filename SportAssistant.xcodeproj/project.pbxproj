@@ -90,6 +90,7 @@
 		78EB0B641C3AA3F2006672BD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; };
 		78EB0B651C3AA3F2006672BD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
+		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +247,7 @@
 		78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSynchronizer.swift; sourceTree = "<group>"; };
 		78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSynchronizer.swift; sourceTree = "<group>"; };
 		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
+		78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,10 +420,11 @@
 		788A51AC1C15835600A166A0 /* SportAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
+				78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */,
 				788A51AD1C15835600A166A0 /* SportAssistantTests.swift */,
-				788A51AF1C15835600A166A0 /* Info.plist */,
 				784090931C2F2A54003DF043 /* AnalyzerTests.swift */,
 				784090961C2F2E6E003DF043 /* HistoryTests.swift */,
+				788A51AF1C15835600A166A0 /* Info.plist */,
 			);
 			path = SportAssistantTests;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */,
 				784090971C2F2E6E003DF043 /* HistoryTests.swift in Sources */,
 				78176C681C37183E00EB2638 /* Activity.swift in Sources */,
+				78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */,
 				78176C641C37167700EB2638 /* Analyzer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

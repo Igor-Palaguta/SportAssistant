@@ -18,7 +18,7 @@ class History: Object {
          return
       }
 
-      self.deactivateInterval(interval)
+      self.deactivateInterval(interval, totalCount: nil)
       self.intervals.removeAtIndex(index)
       self.intervalsCount = self.intervals.count
 
@@ -31,7 +31,10 @@ class History: Object {
       self.active = interval
    }
 
-   private func deactivateInterval(interval: Interval) {
+   private func deactivateInterval(interval: Interval, totalCount: Int?) {
+      if let totalCount = totalCount {
+         interval.updateTotalCount(totalCount)
+      }
       if self.active == interval {
          self.active = nil
       }
@@ -121,13 +124,13 @@ class HistoryController: NSObject {
       }
    }
 
-   func deactivateInterval(interval: Interval) {
+   func deactivateInterval(interval: Interval, totalCount: Int?) {
       try! self.realm.write {
-         self.history.deactivateInterval(interval)
+         self.history.deactivateInterval(interval, totalCount: totalCount)
       }
    }
 
-   func addData(data: [AccelerationData], toInterval interval: Interval) {
+   func addData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
       try! self.realm.write {
          data.forEach {
             self.history.addData($0, toInterval: interval)

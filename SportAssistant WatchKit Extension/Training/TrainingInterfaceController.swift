@@ -54,11 +54,14 @@ class TrainingInterfaceController: WKInterfaceController {
       if let recordSession = self.recordSession {
          let outstandingData = recordSession.analyzer.outstandingData
 
-         if !outstandingData.isEmpty {
-            ServerSynchronizer.defaultServer.sendPackage(.Data(recordSession.interval.id, outstandingData))
+         if let first = outstandingData.first, position = recordSession.interval.data.indexOf(first) {
+            let package = Package.Data(recordSession.interval.id, position, outstandingData)
+            ServerSynchronizer.defaultServer.sendPackage(package)
          }
 
-         ServerSynchronizer.defaultServer.sendPackage(.Stop(recordSession.interval.id))
+         ServerSynchronizer.defaultServer.sendPackage(.Stop(recordSession.interval.id,
+            recordSession.interval.data.count))
+
          recordSession.stop()
          self.recordSession = nil
       }
@@ -122,9 +125,6 @@ extension TrainingInterfaceController: AccelerometerDelegate {
          y: data.acceleration.y,
          z: data.acceleration.z,
          timestamp: date.timeIntervalSinceDate(recordSession.interval.start))
-      //NSLog("data[%@]: %@",
-      //   recordSession.interval.data.count.description,
-      //   accelerationData.total.description)
 
       if accelerationData.total > recordSession.interval.best {
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
@@ -146,8 +146,9 @@ extension TrainingInterfaceController: AccelerometerDelegate {
             toData: peak.data)
       }
 
-      if !result.data.isEmpty {
-         ServerSynchronizer.defaultServer.sendPackage(.Data(recordSession.interval.id, result.data))
+      if let first = result.data.first, position = recordSession.interval.data.indexOf(first) {
+         let package = Package.Data(recordSession.interval.id, position, result.data)
+         ServerSynchronizer.defaultServer.sendPackage(package)
       }
    }
 }

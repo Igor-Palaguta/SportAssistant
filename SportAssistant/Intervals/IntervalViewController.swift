@@ -359,8 +359,6 @@ final class IntervalViewController: UIViewController {
 
       self.chartView.marker = BalloonMarker(color: .lightGrayColor(), font: UIFont.systemFontOfSize(12))
 
-      self.addData()
-
       DynamicProperty(object: self.historyController, keyPath: "best")
          .producer
          .map { $0 as! Double }
@@ -387,7 +385,7 @@ final class IntervalViewController: UIViewController {
       DynamicProperty(object: self.interval, keyPath: "currentCount")
          .producer
          .map { $0 as! Int }
-         .skip(1)
+         .filter { $0 != 0 }
          .skipRepeats()
          .takeUntil(self.rac_willDeallocSignalProducer())
          .startWithNext {
@@ -409,7 +407,15 @@ final class IntervalViewController: UIViewController {
                   strongSelf.tableView.reloadData()
                }
             } else {
-               strongSelf.addData()
+               let dataSource = IntervalDataSource(interval: strongSelf.interval)
+               strongSelf.dataSource = dataSource
+
+               dataSource.setXYZVisible(strongSelf.filter == .All)
+               strongSelf.chartView.yMin = strongSelf.filter == .All ? nil : 0
+               strongSelf.chartView.data = dataSource.chartData
+
+               strongSelf.data = strongSelf.filter.filterData(strongSelf.interval.data)
+               strongSelf.tableView.reloadData()
             }
       }
 
@@ -430,20 +436,6 @@ final class IntervalViewController: UIViewController {
       UIView.animateWithDuration(duration) {
          self.visibleTableConstraint.priority = toInterfaceOrientation.isPortrait ? 750 : 250
          self.view.layoutIfNeeded()
-      }
-   }
-
-   private func addData() {
-      if !self.interval.data.isEmpty {
-         let dataSource = IntervalDataSource(interval: self.interval)
-         self.dataSource = dataSource
-
-         dataSource.setXYZVisible(self.filter == .All)
-         self.chartView.yMin = self.filter == .All ? nil : 0
-         self.chartView.data = dataSource.chartData
-
-         self.data = self.filter.filterData(self.interval.data)
-         self.tableView.reloadData()
       }
    }
 

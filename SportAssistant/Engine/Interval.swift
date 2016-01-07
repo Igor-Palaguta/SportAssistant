@@ -6,6 +6,7 @@ class Interval: Object {
    private(set) dynamic var best: Double = 0
    private(set) dynamic var start = NSDate()
    private(set) dynamic var currentCount = 0
+   private(set) dynamic var totalCount: Int = 0
 
    let data = List<AccelerationData>()
 
@@ -23,6 +24,12 @@ class Interval: Object {
       self.init()
       self.id = id
       self.start = start
+   }
+
+   func updateTotalCount(count: Int) {
+      if self.totalCount == 0 {
+         self.totalCount = count
+      }
    }
 
    func addData(data: AccelerationData) {

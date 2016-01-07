@@ -40,20 +40,20 @@ private extension Activity {
 
 enum Package {
    case Start(String, NSDate)
-   case Stop(String)
+   case Stop(String, Int)
    case Delete(String)
-   case Data(String, [AccelerationData])
+   case Data(String, Int, [AccelerationData])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
       case Start(let id, let date):
          return ["start": ["id": id, "date": date]]
-      case Stop(let id):
-         return ["stop": id]
+      case Stop(let id, let count):
+         return ["stop": ["id": id, "count": count]]
       case Delete(let id):
          return ["delete": id]
-      case Data(let id, let data):
-         return ["data": ["id": id, "data": data.map { $0.toMessage() }]]
+      case Data(let id, let index, let data):
+         return ["data": ["id": id, "index": index, "data": data.map { $0.toMessage() }]]
       }
    }
 
@@ -66,15 +66,21 @@ enum Package {
          } else {
             return nil
          }
-      case ("stop", let id as String):
-         self = Stop(id)
+      case ("stop", let arguments as [String: AnyObject]):
+         if let id = arguments["id"] as? String,
+            count = arguments["count"] as? Int {
+               self = Stop(id, count)
+         } else {
+            return nil
+         }
       case ("delete", let id as String):
          self = Delete(id)
       case ("data", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
+            index = arguments["index"] as? Int,
             dataMessage = arguments["data"] as? [[String: AnyObject]] {
                let data = dataMessage.flatMap { AccelerationData(message: $0) }
-               self = Data(id, data)
+               self = Data(id, index, data)
          } else {
             return nil
          }
