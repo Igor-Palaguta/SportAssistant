@@ -137,7 +137,7 @@ extension TrainingInterfaceController: AccelerometerDelegate {
 
       let result = recordSession.analyzer.analyzeData(accelerationData)
 
-      historyController.appendData([accelerationData], toInterval: recordSession.interval)
+      historyController.appendDataFromArray([accelerationData], toInterval: recordSession.interval)
 
       if let peak = result.peak {
          historyController.addActivityWithName(peak.attributes.description,

@@ -49,7 +49,7 @@ extension ClientSynchronizer: WCSessionDelegate {
                where (interval.currentCount < index + data.count)
                   && (interval.currentCount >= index) {
                      let newData = data[interval.currentCount-index..<data.count]
-                     historyController.appendData(newData, toInterval: interval)
+                     historyController.appendDataFromArray(newData, toInterval: interval)
             }
          }
       }

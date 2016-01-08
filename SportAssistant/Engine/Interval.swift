@@ -25,7 +25,7 @@ class Interval: Object {
       self.start = start
    }
 
-   func append(data: AccelerationData) {
+   func appendData(data: AccelerationData) {
       if data.total > self.best {
          self.best = data.total
       }
@@ -34,16 +34,14 @@ class Interval: Object {
       self.currentCount = self.data.count
    }
 
-   func appendContentsOf<T: CollectionType where T.Generator.Element == AccelerationData>(data: T) {
+   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) {
 
-      if data.isEmpty {
+      guard let max = data.maxElement({ $0.total < $1.total }) else {
          return
       }
 
-      let best = data.maxElement { $0.total < $1.total }!.total
-
-      if best > self.best {
-         self.best = best
+      if max.total > self.best {
+         self.best = max.total
       }
 
       self.data.appendContentsOf(data)

@@ -37,12 +37,12 @@ class History: Object {
       }
    }
 
-   private func appendData(data: AccelerationData, toInterval interval: Interval) {
-      if data.total > self.best {
-         self.best = data.total
-      }
+   private func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
+      interval.appendDataFromArray(data)
 
-      interval.append(data)
+      if interval.best > self.best {
+         self.best = interval.best
+      }
    }
 }
 
@@ -119,11 +119,11 @@ class HistoryController: NSObject {
       try! self.realm.write {
          if let interval = self[id] {
             let newData = data[interval.data.count..<data.count]
-            interval.appendContentsOf(newData)
+            self.history.appendDataFromArray(newData, toInterval: interval)
          } else {
             let interval = Interval(id: id, start: start)
-            interval.appendContentsOf(data)
             self.history.addInterval(interval)
+            self.history.appendDataFromArray(data, toInterval: interval)
          }
       }
    }
@@ -141,11 +141,9 @@ class HistoryController: NSObject {
       }
    }
 
-   func appendData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
+   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
       try! self.realm.write {
-         data.forEach {
-            self.history.appendData($0, toInterval: interval)
-         }
+         self.history.appendDataFromArray(data, toInterval: interval)
       }
    }
 
