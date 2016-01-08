@@ -3,3 +3,7 @@
 "AccelerationDataEmpty" = "No data";
 "NoPeaks" = "No peaks";
 "Delete" = "Delete";
+"Cancel" = "Cancel";
+"OK" = "Ok";
+"EmailShare" = "Share via Email";
+"CannotSendMail" = "No email accounts. Please add an account Settings->Mail->Add Account";

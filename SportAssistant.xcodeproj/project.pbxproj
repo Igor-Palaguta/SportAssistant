@@ -63,6 +63,7 @@
 		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */; };
 		78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */; };
+		78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; };
 		78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -231,6 +232,7 @@
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
 		78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingController.swift; sourceTree = "<group>"; };
+		78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78E51D031C2AA77700E5D26B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */,
 				784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */,
 				78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */,
+				78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */,
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				78045FD71C26073700FEEB87 /* IntervalsViewController.swift in Sources */,
+				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
 				78045FD61C26073700FEEB87 /* IntervalCell.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,
 				786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */,

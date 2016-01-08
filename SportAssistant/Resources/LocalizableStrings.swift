@@ -13,6 +13,14 @@ enum L10n {
   case NoPeaks
   /// Delete
   case Delete
+  /// Cancel
+  case Cancel
+  /// Ok
+  case OK
+  /// Share via Email
+  case EmailShare
+  /// No email accounts. Please add an account Settings->Mail->Add Account
+  case CannotSendMail
 }
 
 extension L10n : CustomStringConvertible {
@@ -30,6 +38,14 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("NoPeaks")
       case .Delete:
         return L10n.tr("Delete")
+      case .Cancel:
+        return L10n.tr("Cancel")
+      case .OK:
+        return L10n.tr("OK")
+      case .EmailShare:
+        return L10n.tr("EmailShare")
+      case .CannotSendMail:
+        return L10n.tr("CannotSendMail")
     }
   }
 

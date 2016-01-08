@@ -326,7 +326,13 @@
                             <constraint firstItem="2OS-L9-Xzh" firstAttribute="top" secondItem="v6u-Zk-niK" secondAttribute="bottom" priority="500" id="t7n-zP-QtR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rJJ-ud-hDV"/>
+                    <navigationItem key="navigationItem" id="rJJ-ud-hDV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="jPH-T5-eqf">
+                            <connections>
+                                <action selector="showOptionsAction:" destination="3eW-Fv-zfJ" id="6QC-C5-36D"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="chartView" destination="v6u-Zk-niK" id="Fpq-Ts-xC3"/>

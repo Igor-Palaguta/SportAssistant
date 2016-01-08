@@ -1,4 +1,5 @@
 import UIKit
+import MessageUI
 import Charts
 import ReactiveCocoa
 
@@ -406,6 +407,35 @@ final class IntervalViewController: UIViewController {
    @IBAction private func changeFilterAction(control: UISegmentedControl) {
       self.filter = Filter(rawValue: control.selectedSegmentIndex)!
    }
+
+   @IBAction private func showOptionsAction(_: UIBarButtonItem) {
+      let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+
+      let emailAction = UIAlertAction(title: tr(.EmailShare), style: .Default) {
+         [unowned self] _ in
+         guard MFMailComposeViewController.canSendMail() else {
+            UIAlertController.presentInController(self, title: nil, message: tr(.CannotSendMail))
+            return
+         }
+
+         let mailController = MFMailComposeViewController()
+         mailController.mailComposeDelegate = self
+         mailController.setSubject(self.interval.start.toString(.ShortStyle, inRegion: .LocalRegion())!)
+         let csvLines = self.interval.data.map { "\($0.timestamp), \($0.x), \($0.y) \($0.z) \($0.total)" }
+         let csv = csvLines.joinWithSeparator("\n")
+         mailController.addAttachmentData(csv.dataUsingEncoding(NSUTF8StringEncoding)!,
+            mimeType: "text/plain",
+            fileName: "interval.txt")
+         self.presentViewController(mailController, animated: true, completion: nil)
+      }
+
+      alert.addAction(emailAction)
+
+      let cancelAction = UIAlertAction(title: tr(.Cancel), style: .Cancel, handler: nil)
+      alert.addAction(cancelAction)
+
+      self.presentViewController(alert, animated: true, completion: nil)
+   }
 }
 
 extension IntervalViewController: UITableViewDataSource, UITableViewDelegate {
@@ -432,6 +462,16 @@ extension IntervalViewController: ChartViewDelegate {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
                atScrollPosition: .Top,
                animated: true)
+      }
+   }
+}
+
+extension IntervalViewController: MFMailComposeViewControllerDelegate {
+   func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+      if let error = error {
+         error.presentInController(self)
+      } else {
+         controller.dismissViewControllerAnimated(true, completion: nil)
       }
    }
 }
