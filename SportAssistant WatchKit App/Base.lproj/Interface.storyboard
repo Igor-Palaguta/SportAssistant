@@ -10,30 +10,33 @@
             <objects>
                 <controller id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
-                        <group width="134" alignment="left" id="in6-fX-Png">
+                        <group width="134" alignment="left" layout="vertical" id="in6-fX-Png">
                             <items>
-                                <label alignment="left" verticalAlignment="bottom" text="record" id="cu2-RT-uW1">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                </label>
-                                <label alignment="right" text="-" id="Hsg-D2-QcP">
-                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label alignment="center" text="-" textAlignment="center" id="Hsg-D2-QcP">
+                                    <color key="textColor" red="0.38823529411764707" green="0.80392156862745101" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="36"/>
                                 </label>
                             </items>
                         </group>
-                        <button width="1" alignment="left" title="Start" id="Che-Hz-tXw">
-                            <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="AgC-eL-Hgc" kind="modal" identifier="TrainingInterfaceController" id="kpt-Lc-IPJ"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Results" id="3kb-av-udU">
-                            <connections>
-                                <segue destination="4Vm-e0-XGA" kind="push" identifier="TrainingsInterfaceController" id="uO8-f3-dZv"/>
-                            </connections>
-                        </button>
+                        <group width="1" alignment="left" verticalAlignment="bottom" layout="vertical" id="6Xo-1T-RM5">
+                            <items>
+                                <button width="1" alignment="left" title="Start" id="Che-Hz-tXw">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <segue destination="AgC-eL-Hgc" kind="modal" identifier="TrainingInterfaceController" id="kpt-Lc-IPJ"/>
+                                    </connections>
+                                </button>
+                                <button width="1" alignment="left" title="Results" id="3kb-av-udU">
+                                    <connections>
+                                        <segue destination="4Vm-e0-XGA" kind="push" identifier="TrainingsInterfaceController" id="uO8-f3-dZv"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
+                        </group>
                     </items>
+                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="Hsg-D2-QcP" id="ggz-xr-LMh"/>
                     </connections>
@@ -56,6 +59,7 @@
                                             </label>
                                             <label alignment="right" verticalAlignment="bottom" text="12 Dec" id="RcS-fa-WFJ"/>
                                         </items>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
                                     <connections>
                                         <outlet property="dateLabel" destination="RcS-fa-WFJ" id="JRV-6e-UiB"/>
@@ -65,6 +69,7 @@
                             </items>
                         </table>
                     </items>
+                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="table" destination="l0d-aT-5AZ" id="HW9-aG-o0P"/>
                     </connections>
@@ -79,40 +84,36 @@
                     <items>
                         <group width="1" alignment="left" id="X09-vk-OPZ">
                             <items>
-                                <label alignment="left" verticalAlignment="bottom" text="best" id="Caz-Ha-lfr">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </label>
-                                <label alignment="right" verticalAlignment="bottom" text="-" id="iC3-Ln-mXC">
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label alignment="center" verticalAlignment="bottom" text="0" id="iC3-Ln-mXC">
+                                    <fontDescription key="font" type="system" pointSize="36"/>
                                 </label>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="20" bottom="0.0"/>
                         </group>
-                        <group width="1" alignment="left" id="Xtb-ew-osT">
+                        <group width="1" alignment="left" verticalAlignment="bottom" spacing="5" id="Xtb-ew-osT">
                             <items>
-                                <label alignment="left" verticalAlignment="bottom" text="moves" id="ZsC-8p-iRX">
+                                <label alignment="right" verticalAlignment="bottom" text="moves" id="ZsC-8p-iRX">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </label>
+                                <label alignment="left" verticalAlignment="bottom" text="00:00" id="dWj-27-7wV">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
                                 <label alignment="right" verticalAlignment="bottom" text="-" id="UGe-0d-juz">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
                             </items>
                         </group>
-                        <group width="1" alignment="left" id="7vI-Mx-RcF">
+                        <group width="1" alignment="left" verticalAlignment="bottom" id="MKk-An-wok">
                             <items>
-                                <label alignment="left" verticalAlignment="bottom" text="duration" id="dWj-27-7wV">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </label>
-                                <label alignment="right" verticalAlignment="bottom" text="-" id="Qnx-HG-7L3">
-                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                </label>
+                                <button width="1" alignment="left" verticalAlignment="bottom" title="Delete" id="7Dt-Ub-YAV">
+                                    <color key="backgroundColor" red="1" green="0.17254901960784313" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="deleteAction" destination="rxU-gG-mSZ" id="HTN-dF-ExH"/>
+                                    </connections>
+                                </button>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
                         </group>
-                        <button width="1" alignment="left" title="Delete" id="7Dt-Ub-YAV">
-                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="deleteAction" destination="rxU-gG-mSZ" id="HTN-dF-ExH"/>
-                            </connections>
-                        </button>
                     </items>
                     <menu key="menu" id="fkq-4W-xUb">
                         <items>
@@ -128,10 +129,11 @@
                             </menuItem>
                         </items>
                     </menu>
+                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="iC3-Ln-mXC" id="WE4-HG-61n"/>
                         <outlet property="countLabel" destination="UGe-0d-juz" id="VQx-6g-DZh"/>
-                        <outlet property="durationLabel" destination="Qnx-HG-7L3" id="9vj-Cf-8Tl"/>
+                        <outlet property="durationLabel" destination="dWj-27-7wV" id="m1P-wi-SOp"/>
                         <segue destination="uLD-ez-mz2" kind="relationship" relationship="nextPage" id="m2e-Re-Gmm"/>
                     </connections>
                 </controller>
@@ -152,40 +154,58 @@
             </objects>
             <point key="canvasLocation" x="643" y="575"/>
         </scene>
-        <!--Done-->
+        <!--Training Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Done" id="AgC-eL-Hgc" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Done" id="AgC-eL-Hgc" userLabel="Training Controller" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
-                        <group width="1" alignment="left" id="zUC-WC-caW">
+                        <group width="1" alignment="left" layout="vertical" id="Hbz-BX-IXP">
                             <items>
-                                <label alignment="left" verticalAlignment="bottom" text="best" id="1uu-IJ-4j2">
+                                <group width="134" alignment="left" verticalAlignment="center" spacing="10" id="zUC-WC-caW">
+                                    <items>
+                                        <label alignment="center" verticalAlignment="bottom" text="0" id="V7n-gw-cXm">
+                                            <fontDescription key="font" type="system" pointSize="36"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="20" bottom="0.0"/>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="134" alignment="left" verticalAlignment="bottom" spacing="5" id="orv-gE-TUR">
+                            <items>
+                                <label alignment="left" text="00:00" id="ecM-5T-IFD"/>
+                                <label alignment="right" verticalAlignment="bottom" text="last" id="sr8-TQ-KUE">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
-                                <label alignment="right" verticalAlignment="bottom" text="-" id="V7n-gw-cXm">
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label alignment="right" verticalAlignment="bottom" text="-" id="h5S-4o-Vj6">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
                             </items>
                         </group>
-                        <button width="1" alignment="left" title="Done" id="Z6I-aa-HVH">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="stopAction:" destination="AgC-eL-Hgc" id="fXP-uR-oHo"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="New" id="Pfo-8v-sgd">
-                            <connections>
-                                <action selector="restartAction:" destination="AgC-eL-Hgc" id="NNM-mZ-5cb"/>
-                            </connections>
-                        </button>
+                        <group width="1" alignment="left" verticalAlignment="bottom" id="ZVd-HC-V22">
+                            <items>
+                                <button width="1" alignment="left" verticalAlignment="bottom" title="Start" id="Z6I-aa-HVH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="toggleStartAction:" destination="AgC-eL-Hgc" id="BGt-57-uSd"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
+                        </group>
                     </items>
-                    <edgeInsets key="margins" left="1" right="1" top="0.0" bottom="0.0"/>
+                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="V7n-gw-cXm" id="Uad-wG-Vvm"/>
+                        <outlet property="durationLabel" destination="ecM-5T-IFD" id="f7f-Ij-YGp"/>
+                        <outlet property="lastLabel" destination="h5S-4o-Vj6" id="FA4-BN-JWL"/>
+                        <outlet property="startButton" destination="Z6I-aa-HVH" id="1lI-tK-xwg"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -1,0 +1,5 @@
+//http://colorscheme.ru/#3q31Tw0w0w0w0
+
+Base: #3AA6D0
+Destructive: #FF2C00
+Record: #63CD90

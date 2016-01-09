@@ -44,6 +44,8 @@
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
 		787636151C3284B100E84348 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
 		78805AF91C308D80002E1845 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
+		78898AC41C419ECE00907629 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78898AC31C419ECE00907629 /* colors.txt */; };
+		78898AC61C419FFF00907629 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78898AC51C419FFF00907629 /* Colors.swift */; };
 		788A51991C15835600A166A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51981C15835600A166A0 /* AppDelegate.swift */; };
 		788A519E1C15835600A166A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788A519C1C15835600A166A0 /* Main.storyboard */; };
 		788A51A01C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A519F1C15835600A166A0 /* Assets.xcassets */; };
@@ -205,6 +207,8 @@
 		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		78898AC31C419ECE00907629 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = colors.txt; sourceTree = "<group>"; };
+		78898AC51C419FFF00907629 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		788A51951C15835600A166A0 /* SportAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		788A51981C15835600A166A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		788A519D1C15835600A166A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 				78159A381C39D022001C8031 /* Assets.xcassets */,
 				78159A3A1C39D051001C8031 /* Localizable.strings */,
 				78159A3D1C39D180001C8031 /* LocalizableStrings.swift */,
+				78898AC31C419ECE00907629 /* colors.txt */,
+				78898AC51C419FFF00907629 /* Colors.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 			files = (
 				78159A391C39D022001C8031 /* Assets.xcassets in Resources */,
 				78159A3B1C39D051001C8031 /* Localizable.strings in Resources */,
+				78898AC41C419ECE00907629 /* colors.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,7 +759,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"\n";
+			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"\n\n./tools/swiftgen/bin/swiftgen colors \"./SportAssistant WatchKit Extension/Resources/colors.txt\" > \"./SportAssistant WatchKit Extension/Resources/Colors.swift\"\n";
 		};
 		788C3B431C28ABD30081BD13 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -867,6 +874,7 @@
 				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
 				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				78E61E641C2C25A3003C59F1 /* Package.swift in Sources */,
+				78898AC61C419FFF00907629 /* Colors.swift in Sources */,
 				787636151C3284B100E84348 /* Activity.swift in Sources */,
 				78E51D221C2ACB5A00E5D26B /* Interval.swift in Sources */,
 				78805AF91C308D80002E1845 /* Analyzer.swift in Sources */,

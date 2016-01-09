@@ -16,7 +16,7 @@ final class TrainingController: NSObject {
          let isRecord = self.interval.best == HistoryController.mainThreadController.best
 
          let resultColor = isRecord
-            ? UIColor.greenColor()
+            ? UIColor(named: .Record)
             : UIColor.whiteColor()
          self.resultLabel.setTextColor(resultColor)
       }

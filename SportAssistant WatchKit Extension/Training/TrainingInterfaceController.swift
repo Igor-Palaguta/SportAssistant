@@ -46,6 +46,9 @@ extension Session: HKWorkoutSessionDelegate {
 class TrainingInterfaceController: WKInterfaceController {
 
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
+   @IBOutlet weak var lastLabel: WKInterfaceLabel!
+   @IBOutlet weak var durationLabel: WKInterfaceLabel!
+   @IBOutlet weak var startButton: WKInterfaceButton!
 
    private var recordSession: Session?
    private var healthStore: HKHealthStore?
@@ -62,15 +65,58 @@ class TrainingInterfaceController: WKInterfaceController {
 
          recordSession.stop()
          self.recordSession = nil
+
+         self.startButton.setBackgroundColor(UIColor(named: .Base))
+         self.startButton.setTitle(tr(.Start))
       }
    }
 
    private func startRecording() {
       if self.recordSession == nil {
+
+         self.lastLabel.setText("-")
+         self.durationLabel.setText(0.toDurationString())
+
+         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(0))
+         self.bestLabel.setTextColor(UIColor.whiteColor())
+
          let recordSession = Session(healthStore: self.healthStore!)
          recordSession.accelerometer.delegate = self
          self.recordSession = recordSession
          ServerSynchronizer.defaultServer.startInterval(recordSession.interval)
+
+         self.startButton.setBackgroundColor(UIColor(named: .Destructive))
+         self.startButton.setTitle(tr(.Stop))
+      }
+   }
+
+   private func reloadDataWithTotal(total: Double, last: Double?, duration: Double?, playHaptic: Bool = false) {
+      guard let recordSession = self.recordSession else {
+         return
+      }
+
+      if let last = last {
+         self.lastLabel.setText(NSNumberFormatter.stringForAcceleration(last))
+      }
+
+      if let duration = duration {
+         self.durationLabel.setText(duration.toDurationString())
+      }
+
+      if total < recordSession.interval.best {
+         return
+      }
+
+      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(total))
+
+      if total < HistoryController.mainThreadController.best {
+         return
+      }
+
+      self.bestLabel.setTextColor(UIColor(named: .Record))
+
+      if playHaptic {
+         WKInterfaceDevice.currentDevice().playHaptic(.Success)
       }
    }
 
@@ -78,11 +124,10 @@ class TrainingInterfaceController: WKInterfaceController {
       super.willActivate()
       if let recordSession = self.recordSession {
          recordSession.suspender.suspend()
-         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(recordSession.interval.best))
 
-         if recordSession.interval.best == HistoryController.mainThreadController.best {
-            self.bestLabel.setTextColor(.greenColor())
-         }
+         self.reloadDataWithTotal(recordSession.interval.best,
+            last: recordSession.interval.activitiesData.last?.total,
+            duration: recordSession.interval.data.last?.timestamp)
       }
    }
 
@@ -104,9 +149,12 @@ class TrainingInterfaceController: WKInterfaceController {
       self.dismissController()
    }
 
-   @IBAction private func restartAction(_: WKInterfaceButton) {
-      self.stopRecording()
-      self.startRecording()
+   @IBAction private func toggleStartAction(_: WKInterfaceButton) {
+      if self.recordSession == nil {
+         self.startRecording()
+      } else {
+         self.stopRecording()
+      }
    }
 }
 
@@ -124,23 +172,16 @@ extension TrainingInterfaceController: AccelerometerDelegate {
          z: data.acceleration.z,
          timestamp: date.timeIntervalSinceDate(recordSession.interval.start))
 
-      if accelerationData.total > recordSession.interval.best {
-         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(accelerationData.total))
-      }
-
-      let historyController = HistoryController()
-
-      if accelerationData.total > historyController.best {
-         WKInterfaceDevice.currentDevice().playHaptic(.Success)
-         self.bestLabel.setTextColor(.greenColor())
-      }
-
       let result = recordSession.analyzer.analyzeData(accelerationData)
+      self.reloadDataWithTotal(accelerationData.total,
+         last: result.peak?.data.total,
+         duration: accelerationData.timestamp,
+         playHaptic: true)
 
-      historyController.appendDataFromArray([accelerationData], toInterval: recordSession.interval)
+      HistoryController.mainThreadController.appendDataFromArray([accelerationData], toInterval: recordSession.interval)
 
       if let peak = result.peak {
-         historyController.addActivityWithName(peak.attributes.description,
+         HistoryController.mainThreadController.addActivityWithName(peak.attributes.description,
             toData: peak.data)
       }
 

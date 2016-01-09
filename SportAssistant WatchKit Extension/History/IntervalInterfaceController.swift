@@ -16,7 +16,7 @@ final class IntervalInterfaceController: WKInterfaceController {
          self.countLabel.setText(interval.activities.count.description)
 
          if interval.best == HistoryController.mainThreadController.best {
-            self.bestLabel.setTextColor(.greenColor())
+            self.bestLabel.setTextColor(UIColor(named: .Record))
          }
       }
    }

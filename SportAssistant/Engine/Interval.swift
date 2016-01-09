@@ -14,9 +14,11 @@ class Interval: Object {
    }
 
    var activities: [Activity] {
-      return self.data
-         .filter(NSPredicate(format: "activity != nil"))
-         .map { $0.activity! }
+      return self.activitiesData.map { $0.activity! }
+   }
+
+   var activitiesData: Results<AccelerationData> {
+      return self.data.filter(NSPredicate(format: "activity != nil"))
    }
 
    convenience init(id: String, start: NSDate) {
@@ -57,6 +59,6 @@ class Interval: Object {
    }
 
    override static func ignoredProperties() -> [String] {
-      return ["duration", "activities"]
+      return ["duration", "activities", "activitiesData"]
    }
 }

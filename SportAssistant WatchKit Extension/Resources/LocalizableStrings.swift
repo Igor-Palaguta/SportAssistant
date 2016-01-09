@@ -9,6 +9,10 @@ enum L10n {
   case Delete
   /// Cancel
   case Cancel
+  /// Start
+  case Start
+  /// Stop
+  case Stop
 }
 
 extension L10n : CustomStringConvertible {
@@ -22,6 +26,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("Delete")
       case .Cancel:
         return L10n.tr("Cancel")
+      case .Start:
+        return L10n.tr("Start")
+      case .Stop:
+        return L10n.tr("Stop")
     }
   }
 
