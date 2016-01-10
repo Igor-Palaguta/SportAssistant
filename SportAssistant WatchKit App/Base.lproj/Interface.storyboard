@@ -5,18 +5,19 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
-        <!--Menu Interface Controller-->
+        <!--Record-->
         <scene sceneID="zbt-Ow-m9C">
             <objects>
-                <controller id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Record" id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
-                        <group width="134" alignment="left" layout="vertical" id="in6-fX-Png">
+                        <group width="134" alignment="left" id="in6-fX-Png">
                             <items>
                                 <label alignment="center" text="-" textAlignment="center" id="Hsg-D2-QcP">
-                                    <color key="textColor" red="0.38823529411764707" green="0.80392156862745101" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="36"/>
                                 </label>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="0.0"/>
                         </group>
                         <group width="1" alignment="left" verticalAlignment="bottom" layout="vertical" id="6Xo-1T-RM5">
                             <items>
@@ -24,10 +25,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <segue destination="AgC-eL-Hgc" kind="modal" identifier="TrainingInterfaceController" id="kpt-Lc-IPJ"/>
+                                        <segue destination="AgC-eL-Hgc" kind="push" identifier="TrainingInterfaceController" id="kpt-Lc-IPJ"/>
                                     </connections>
                                 </button>
-                                <button width="1" alignment="left" title="Results" id="3kb-av-udU">
+                                <button width="1" alignment="left" title="Trainings (12)" id="3kb-av-udU">
                                     <connections>
                                         <segue destination="4Vm-e0-XGA" kind="push" identifier="TrainingsInterfaceController" id="uO8-f3-dZv"/>
                                     </connections>
@@ -39,31 +40,61 @@
                     <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="Hsg-D2-QcP" id="ggz-xr-LMh"/>
+                        <outlet property="trainingsButton" destination="3kb-av-udU" id="bSz-vH-Lgx"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-19" y="481"/>
         </scene>
-        <!--History Interface Controller-->
+        <!--Trainings-->
         <scene sceneID="Ydg-Ue-tWj">
             <objects>
-                <controller id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Trainings" id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
+                        <group width="1" alignment="left" id="juf-G4-Uk9">
+                            <items>
+                                <button width="0.5" alignment="left" title="By Result" id="ui7-Aj-YhA">
+                                    <connections>
+                                        <action selector="orderByResultAction:" destination="4Vm-e0-XGA" id="rdb-x7-Yah"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" alignment="right" title="By Date" id="uwc-fR-1Ic">
+                                    <color key="backgroundColor" red="0.2274509804" green="0.65098039220000004" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="orderByDateAction:" destination="4Vm-e0-XGA" id="UjH-Pc-tSc"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
                                 <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="SportAssistant_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="Dxk-sW-opS">
                                         <items>
-                                            <label alignment="left" verticalAlignment="bottom" text="12.3" id="GGQ-un-L2V">
-                                                <fontDescription key="font" type="system" pointSize="30"/>
-                                            </label>
-                                            <label alignment="right" verticalAlignment="bottom" text="12 Dec" id="RcS-fa-WFJ"/>
+                                            <group alignment="left" id="4vQ-ab-Ckl">
+                                                <items>
+                                                    <label alignment="left" verticalAlignment="bottom" text="12.3" id="GGQ-un-L2V">
+                                                        <fontDescription key="font" type="system" pointSize="30"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <group alignment="right" layout="vertical" id="CgI-6V-FS3">
+                                                <items>
+                                                    <label alignment="right" text="10:03" id="17d-xa-fDt">
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                    <label alignment="right" verticalAlignment="bottom" text="12 Dec" id="RcS-fa-WFJ">
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                </items>
+                                            </group>
                                         </items>
                                         <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
                                     <connections>
                                         <outlet property="dateLabel" destination="RcS-fa-WFJ" id="JRV-6e-UiB"/>
                                         <outlet property="resultLabel" destination="GGQ-un-L2V" id="hzf-V8-2W9"/>
+                                        <outlet property="timeLabel" destination="17d-xa-fDt" id="Wj1-PP-o6o"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -71,6 +102,8 @@
                     </items>
                     <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
+                        <outlet property="orderByDateButton" destination="uwc-fR-1Ic" id="JEV-p6-GQs"/>
+                        <outlet property="orderByResultButton" destination="ui7-Aj-YhA" id="OHy-v4-0eC"/>
                         <outlet property="table" destination="l0d-aT-5AZ" id="HW9-aG-o0P"/>
                     </connections>
                 </controller>

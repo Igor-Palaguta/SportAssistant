@@ -24,8 +24,8 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff2c00"></span>
     /// Alpha: 100% <br/> (0xff2c00ff)
     case Destructive
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#63cd90"></span>
-    /// Alpha: 100% <br/> (0x63cd90ff)
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#00ff00"></span>
+    /// Alpha: 100% <br/> (0x00ff00ff)
     case Record
 
     var rgbaValue: UInt32! {
@@ -33,7 +33,7 @@ extension UIColor {
       case .__Http: return 0x00000000
       case .Base: return 0x3aa6d0ff
       case .Destructive: return 0xff2c00ff
-      case .Record: return 0x63cd90ff
+      case .Record: return 0x00ff00ff
       }
     }
   }

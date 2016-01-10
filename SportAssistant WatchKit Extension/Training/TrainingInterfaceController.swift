@@ -43,7 +43,7 @@ extension Session: HKWorkoutSessionDelegate {
    }
 }
 
-class TrainingInterfaceController: WKInterfaceController {
+final class TrainingInterfaceController: WKInterfaceController {
 
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
    @IBOutlet weak var lastLabel: WKInterfaceLabel!
@@ -142,11 +142,6 @@ class TrainingInterfaceController: WKInterfaceController {
       self.healthStore = context as? HKHealthStore
 
       self.startRecording()
-   }
-
-   @IBAction private func stopAction(_: WKInterfaceButton) {
-      self.stopRecording()
-      self.dismissController()
    }
 
    @IBAction private func toggleStartAction(_: WKInterfaceButton) {

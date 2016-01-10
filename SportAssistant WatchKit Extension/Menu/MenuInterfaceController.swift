@@ -7,12 +7,7 @@ class MenuInterfaceController: WKInterfaceController {
    private lazy var healthStore = HKHealthStore()
 
    @IBOutlet private weak var bestLabel: WKInterfaceLabel!
-
-   override func awakeWithContext(context: AnyObject?) {
-      super.awakeWithContext(context)
-
-      // Configure interface objects here.
-   }
+   @IBOutlet private weak var trainingsButton: WKInterfaceButton!
 
    override func willActivate() {
       // This method is called when watch view controller is about to be visible to user
@@ -25,6 +20,8 @@ class MenuInterfaceController: WKInterfaceController {
                NSLog("requestAuthorizationToShareTypes: %@", error)
             }
       }
+
+      self.reloadData()
    }
 
    override func didDeactivate() {
@@ -35,7 +32,7 @@ class MenuInterfaceController: WKInterfaceController {
    override func didAppear() {
       super.didAppear()
 
-      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(HistoryController.mainThreadController.best))
+      self.reloadData()
    }
 
    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
@@ -43,5 +40,11 @@ class MenuInterfaceController: WKInterfaceController {
          return self.healthStore
       }
       return nil
+   }
+
+   private func reloadData() {
+      let historyController = HistoryController.mainThreadController
+      self.trainingsButton.setTitle(tr(.TrainingsCountFormat(historyController.intervalsCount)))
+      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(historyController.best))
    }
 }

@@ -106,6 +106,10 @@ class HistoryController: NSObject {
       return self.history.intervals.sorted("start", ascending: false)
    }
 
+   var bestIntervals: Results<Interval> {
+      return self.history.intervals.sorted("best", ascending: false)
+   }
+
    func addInterval(interval: Interval, activate: Bool = false) {
       try! self.realm.write {
          self.history.addInterval(interval)
