@@ -7,9 +7,10 @@ final class HistoryInterfaceController: WKInterfaceController {
    @IBOutlet private weak var table: WKInterfaceTable!
    @IBOutlet private weak var orderByResultButton: WKInterfaceButton!
    @IBOutlet private weak var orderByDateButton: WKInterfaceButton!
+   @IBOutlet private weak var showMoreButton: WKInterfaceButton!
 
    private var removedIndex: Int?
-   private var intervals: Results<Interval>?
+   private var intervals: Results<Interval>!
 
    private enum OrderBy: Int {
       case Date
@@ -35,6 +36,8 @@ final class HistoryInterfaceController: WKInterfaceController {
       }
    }
 
+   private let pageSize = 5
+
    private func reloadData() {
       guard let orderBy = self.orderBy else {
          return
@@ -43,12 +46,16 @@ final class HistoryInterfaceController: WKInterfaceController {
       let historyController = HistoryController.mainThreadController
       let intervals = orderBy == .Date ? historyController.intervals : historyController.bestIntervals
 
-      self.table.setNumberOfRows(intervals.count, withRowType: String(TrainingController.self))
+      let currentPageSize = min(intervals.count, self.pageSize)
+      self.table.setNumberOfRows(currentPageSize, withRowType: String(TrainingController.self))
 
-      for (index, interval) in intervals.enumerate() {
+      (0..<currentPageSize).forEach {
+         index in
          let row = self.table.rowControllerAtIndex(index) as! TrainingController
-         row.interval = interval
+         row.interval = intervals[index]
       }
+
+      self.showMoreButton.setHidden(currentPageSize == intervals.count)
 
       self.intervals = intervals
    }
@@ -76,7 +83,7 @@ final class HistoryInterfaceController: WKInterfaceController {
    }
 
    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-      let selectedInterval = self.intervals![rowIndex]
+      let selectedInterval = self.intervals[rowIndex]
       self.presentControllerWithNames([String(IntervalInterfaceController.self), String(ChartInterfaceController.self)], contexts: [[selectedInterval, self], selectedInterval])
    }
 
@@ -86,6 +93,22 @@ final class HistoryInterfaceController: WKInterfaceController {
 
    @IBAction private func orderByResultAction(button: WKInterfaceButton) {
       self.orderBy = .Result
+   }
+
+   @IBAction private func showMoreAction(button: WKInterfaceButton) {
+      let startIndex = self.table.numberOfRows
+      let currentPageSize = min(self.pageSize, self.intervals.count - startIndex)
+      if currentPageSize >= 0 {
+         let pageIndexes = NSIndexSet(indexesInRange: NSRange(location: startIndex, length: currentPageSize))
+         self.table.insertRowsAtIndexes(pageIndexes, withRowType: String(TrainingController.self))
+         pageIndexes.forEach {
+            index in
+            let row = self.table.rowControllerAtIndex(index) as! TrainingController
+            row.interval = self.intervals[index]
+         }
+      }
+
+      self.showMoreButton.setHidden(currentPageSize < self.pageSize)
    }
 }
 

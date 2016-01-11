@@ -99,11 +99,17 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <button width="1" alignment="left" title="More" id="IKe-Nq-d0V">
+                            <connections>
+                                <action selector="showMoreAction:" destination="4Vm-e0-XGA" id="EC4-aH-q8T"/>
+                            </connections>
+                        </button>
                     </items>
                     <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="orderByDateButton" destination="uwc-fR-1Ic" id="JEV-p6-GQs"/>
                         <outlet property="orderByResultButton" destination="ui7-Aj-YhA" id="OHy-v4-0eC"/>
+                        <outlet property="showMoreButton" destination="IKe-Nq-d0V" id="W6j-a0-XZ4"/>
                         <outlet property="table" destination="l0d-aT-5AZ" id="HW9-aG-o0P"/>
                     </connections>
                 </controller>
