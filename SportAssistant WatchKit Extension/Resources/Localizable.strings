@@ -4,3 +4,5 @@
 "Start" = "Start";
 "Stop" = "Stop";
 "TrainingsCountFormat" = "Trainings (%d)";
+"Ascending" = "↑";
+"Descending" = "↓";

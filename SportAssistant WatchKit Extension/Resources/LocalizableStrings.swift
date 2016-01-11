@@ -15,6 +15,10 @@ enum L10n {
   case Stop
   /// Trainings (%d)
   case TrainingsCountFormat(Int)
+  /// ↑
+  case Ascending
+  /// ↓
+  case Descending
 }
 
 extension L10n : CustomStringConvertible {
@@ -34,6 +38,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("Stop")
       case .TrainingsCountFormat(let p0):
         return L10n.tr("TrainingsCountFormat", p0)
+      case .Ascending:
+        return L10n.tr("Ascending")
+      case .Descending:
+        return L10n.tr("Descending")
     }
   }
 

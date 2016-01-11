@@ -46,6 +46,20 @@ class History: Object {
    }
 }
 
+enum OrderBy: String {
+   case Date
+   case Result
+
+   private var fieldName: String {
+      switch self {
+      case Date:
+         return "start"
+      case Result:
+         return "best"
+      }
+   }
+}
+
 class HistoryController: NSObject {
 
    static var mainThreadController: HistoryController {
@@ -108,6 +122,10 @@ class HistoryController: NSObject {
 
    var bestIntervals: Results<Interval> {
       return self.history.intervals.sorted("best", ascending: false)
+   }
+
+   func intervalsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Interval> {
+      return self.history.intervals.sorted(orderBy.fieldName, ascending: ascending)
    }
 
    func addInterval(interval: Interval, activate: Bool = false) {

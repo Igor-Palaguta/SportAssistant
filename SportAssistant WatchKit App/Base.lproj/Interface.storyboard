@@ -53,13 +53,15 @@
                     <items>
                         <group width="1" alignment="left" id="juf-G4-Uk9">
                             <items>
-                                <button width="0.5" alignment="left" title="By Result" id="ui7-Aj-YhA">
+                                <button width="0.5" alignment="left" title="Result" id="ui7-Aj-YhA">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
                                     <connections>
                                         <action selector="orderByResultAction:" destination="4Vm-e0-XGA" id="rdb-x7-Yah"/>
                                     </connections>
                                 </button>
-                                <button width="0.5" alignment="right" title="By Date" id="uwc-fR-1Ic">
+                                <button width="0.5" alignment="right" title="Date" id="uwc-fR-1Ic">
                                     <color key="backgroundColor" red="0.2274509804" green="0.65098039220000004" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="12"/>
                                     <connections>
                                         <action selector="orderByDateAction:" destination="4Vm-e0-XGA" id="UjH-Pc-tSc"/>
                                     </connections>

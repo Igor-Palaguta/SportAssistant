@@ -2,6 +2,33 @@ import WatchKit
 import Foundation
 import RealmSwift
 
+private struct Ordering: Equatable {
+   let orderBy: OrderBy
+   let ascending: Bool
+}
+
+private func == (lhs: Ordering, rhs: Ordering) -> Bool {
+   return lhs.orderBy == rhs.orderBy && lhs.ascending == rhs.ascending
+}
+
+private extension NSUserDefaults {
+   var ordering: Ordering? {
+      set {
+         if let ordering = self.ordering {
+            self.setObject(ordering.orderBy.rawValue, forKey: "Ordering.orderBy")
+            self.setBool(ordering.ascending, forKey: "Ordering.ascending")
+            self.synchronize()
+         }
+      }
+      get {
+         if let orderByValue = self.objectForKey("Ordering.orderBy") as? String, orderBy = OrderBy(rawValue: orderByValue) {
+            return Ordering(orderBy: orderBy, ascending: self.boolForKey("Ordering.ascending"))
+         }
+         return nil
+      }
+   }
+}
+
 final class HistoryInterfaceController: WKInterfaceController {
 
    @IBOutlet private weak var table: WKInterfaceTable!
@@ -12,39 +39,36 @@ final class HistoryInterfaceController: WKInterfaceController {
    private var removedIndex: Int?
    private var intervals: Results<Interval>!
 
-   private enum OrderBy: Int {
-      case Date
-      case Result
+   private func applyOrdering(ordering: Ordering) {
+      let (activeButton, inactiveButton) = ordering.orderBy == .Date
+         ? (self.orderByDateButton, self.orderByResultButton)
+         : (self.orderByResultButton, self.orderByDateButton)
+
+      let ascendingString = ordering.ascending ? tr(.Ascending) : tr(.Descending)
+      activeButton.setTitle(ascendingString + ordering.orderBy.rawValue)
+
+      let anotherField: OrderBy = ordering.orderBy == .Date ? .Result : .Date
+      inactiveButton.setTitle(anotherField.rawValue)
+
+      inactiveButton.setBackgroundColor(nil)
+      activeButton.setBackgroundColor(UIColor(named: .Base))
+      self.reloadData()
    }
 
-   private var orderBy: OrderBy? {
+   private var ordering = Ordering(orderBy: .Date, ascending: false) {
       didSet {
-         guard let orderBy = self.orderBy where orderBy != oldValue else {
-            return
+         if self.ordering != oldValue {
+            NSUserDefaults.standardUserDefaults().ordering = self.ordering
+            self.applyOrdering(self.ordering)
          }
-
-         NSUserDefaults.standardUserDefaults().setInteger(orderBy.rawValue, forKey: "orderBy")
-         NSUserDefaults.standardUserDefaults().synchronize()
-
-         let (activeButton, inactiveButton) = orderBy == .Date
-            ? (self.orderByDateButton, self.orderByResultButton)
-            : (self.orderByResultButton, self.orderByDateButton)
-
-         inactiveButton.setBackgroundColor(nil)
-         activeButton.setBackgroundColor(UIColor(named: .Base))
-         self.reloadData()
       }
    }
 
    private let pageSize = 5
 
    private func reloadData() {
-      guard let orderBy = self.orderBy else {
-         return
-      }
-
       let historyController = HistoryController.mainThreadController
-      let intervals = orderBy == .Date ? historyController.intervals : historyController.bestIntervals
+      let intervals = historyController.intervalsOrderedBy(self.ordering.orderBy, ascending: self.ordering.ascending)
 
       let currentPageSize = min(intervals.count, self.pageSize)
       self.table.setNumberOfRows(currentPageSize, withRowType: String(TrainingController.self))
@@ -63,8 +87,11 @@ final class HistoryInterfaceController: WKInterfaceController {
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      let orderBy = OrderBy(rawValue: NSUserDefaults.standardUserDefaults().integerForKey("orderBy"))!
-      self.orderBy = orderBy
+      if let ordering = NSUserDefaults.standardUserDefaults().ordering {
+         self.ordering = ordering
+      } else {
+         self.applyOrdering(self.ordering)
+      }
    }
 
    override func willActivate() {
@@ -88,11 +115,17 @@ final class HistoryInterfaceController: WKInterfaceController {
    }
 
    @IBAction private func orderByDateAction(button: WKInterfaceButton) {
-      self.orderBy = .Date
+      let ascending = self.ordering.orderBy == .Date
+         ? !self.ordering.ascending
+         : false
+      self.ordering = Ordering(orderBy: .Date, ascending: ascending)
    }
 
    @IBAction private func orderByResultAction(button: WKInterfaceButton) {
-      self.orderBy = .Result
+      let ascending = self.ordering.orderBy == .Result
+         ? !self.ordering.ascending
+         : false
+      self.ordering = Ordering(orderBy: .Result, ascending: ascending)
    }
 
    @IBAction private func showMoreAction(button: WKInterfaceButton) {
