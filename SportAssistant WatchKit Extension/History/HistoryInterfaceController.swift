@@ -5,6 +5,10 @@ import RealmSwift
 private struct Ordering: Equatable {
    let orderBy: OrderBy
    let ascending: Bool
+
+   func reversedOrdering() -> Ordering {
+      return Ordering(orderBy: self.orderBy, ascending: !self.ascending)
+   }
 }
 
 private func == (lhs: Ordering, rhs: Ordering) -> Bool {
@@ -14,7 +18,7 @@ private func == (lhs: Ordering, rhs: Ordering) -> Bool {
 private extension NSUserDefaults {
    var ordering: Ordering? {
       set {
-         if let ordering = self.ordering {
+         if let ordering = newValue {
             self.setObject(ordering.orderBy.rawValue, forKey: "Ordering.orderBy")
             self.setBool(ordering.ascending, forKey: "Ordering.ascending")
             self.synchronize()
@@ -39,27 +43,22 @@ final class HistoryInterfaceController: WKInterfaceController {
    private var removedIndex: Int?
    private var intervals: Results<Interval>!
 
-   private func applyOrdering(ordering: Ordering) {
-      let (activeButton, inactiveButton) = ordering.orderBy == .Date
-         ? (self.orderByDateButton, self.orderByResultButton)
-         : (self.orderByResultButton, self.orderByDateButton)
-
-      let ascendingString = ordering.ascending ? tr(.Ascending) : tr(.Descending)
-      activeButton.setTitle(ascendingString + ordering.orderBy.rawValue)
-
-      let anotherField: OrderBy = ordering.orderBy == .Date ? .Result : .Date
-      inactiveButton.setTitle(anotherField.rawValue)
-
-      inactiveButton.setBackgroundColor(nil)
-      activeButton.setBackgroundColor(UIColor(named: .Base))
-      self.reloadData()
-   }
-
-   private var ordering = Ordering(orderBy: .Date, ascending: false) {
+   private var ordering: Ordering! {
       didSet {
          if self.ordering != oldValue {
-            NSUserDefaults.standardUserDefaults().ordering = self.ordering
-            self.applyOrdering(self.ordering)
+            let (activeButton, inactiveButton) = ordering.orderBy == .Date
+               ? (self.orderByDateButton, self.orderByResultButton)
+               : (self.orderByResultButton, self.orderByDateButton)
+
+            let ascendingString = ordering.ascending ? tr(.Ascending) : tr(.Descending)
+            activeButton.setTitle(ascendingString + ordering.orderBy.rawValue)
+
+            let anotherField: OrderBy = ordering.orderBy == .Date ? .Result : .Date
+            inactiveButton.setTitle(anotherField.rawValue)
+
+            inactiveButton.setBackgroundColor(nil)
+            activeButton.setBackgroundColor(UIColor(named: .Base))
+            self.reloadData()
          }
       }
    }
@@ -90,7 +89,7 @@ final class HistoryInterfaceController: WKInterfaceController {
       if let ordering = NSUserDefaults.standardUserDefaults().ordering {
          self.ordering = ordering
       } else {
-         self.applyOrdering(self.ordering)
+         self.ordering = Ordering(orderBy: .Date, ascending: false)
       }
    }
 
@@ -114,18 +113,19 @@ final class HistoryInterfaceController: WKInterfaceController {
       self.presentControllerWithNames([String(IntervalInterfaceController.self), String(ChartInterfaceController.self)], contexts: [[selectedInterval, self], selectedInterval])
    }
 
+   private func selectOrderBy(orderBy: OrderBy) {
+      self.ordering = self.ordering.orderBy == orderBy
+         ? self.ordering.reversedOrdering()
+         : Ordering(orderBy: orderBy, ascending: false)
+      NSUserDefaults.standardUserDefaults().ordering = self.ordering
+   }
+
    @IBAction private func orderByDateAction(button: WKInterfaceButton) {
-      let ascending = self.ordering.orderBy == .Date
-         ? !self.ordering.ascending
-         : false
-      self.ordering = Ordering(orderBy: .Date, ascending: ascending)
+      self.selectOrderBy(.Date)
    }
 
    @IBAction private func orderByResultAction(button: WKInterfaceButton) {
-      let ascending = self.ordering.orderBy == .Result
-         ? !self.ordering.ascending
-         : false
-      self.ordering = Ordering(orderBy: .Result, ascending: ascending)
+      self.selectOrderBy(.Result)
    }
 
    @IBAction private func showMoreAction(button: WKInterfaceButton) {
