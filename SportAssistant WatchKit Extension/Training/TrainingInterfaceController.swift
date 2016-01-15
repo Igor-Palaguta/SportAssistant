@@ -47,7 +47,7 @@ final class TrainingInterfaceController: WKInterfaceController {
 
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
    @IBOutlet weak var lastLabel: WKInterfaceLabel!
-   @IBOutlet weak var durationLabel: WKInterfaceLabel!
+   @IBOutlet weak var durationLabel: WKInterfaceTimer!
    @IBOutlet weak var startButton: WKInterfaceButton!
 
    private var recordSession: Session?
@@ -55,6 +55,8 @@ final class TrainingInterfaceController: WKInterfaceController {
 
    private func stopRecording() {
       if let recordSession = self.recordSession {
+         WKInterfaceDevice.currentDevice().playHaptic(.Stop)
+
          let outstandingData = recordSession.analyzer.outstandingData
 
          if !outstandingData.isEmpty {
@@ -66,16 +68,24 @@ final class TrainingInterfaceController: WKInterfaceController {
          recordSession.stop()
          self.recordSession = nil
 
-         self.startButton.setBackgroundColor(UIColor(named: .Base))
-         self.startButton.setTitle(tr(.Start))
+         self.animateWithDuration(0.3) {
+            self.startButton.setBackgroundColor(UIColor(named: .Base))
+            self.startButton.setTitle(tr(.Start))
+         }
+
+         self.durationLabel.stop()
+
+         //self.updateUserActivity(<#T##type: String##String#>, userInfo: <#T##[NSObject : AnyObject]?#>, webpageURL: <#T##NSURL?#>)
       }
    }
 
    private func startRecording() {
       if self.recordSession == nil {
+         WKInterfaceDevice.currentDevice().playHaptic(.Start)
 
          self.lastLabel.setText("-")
-         self.durationLabel.setText(0.toDurationString())
+         self.durationLabel.setDate(NSDate())
+         self.durationLabel.start()
 
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(0))
          self.bestLabel.setTextColor(UIColor.whiteColor())
@@ -85,8 +95,10 @@ final class TrainingInterfaceController: WKInterfaceController {
          self.recordSession = recordSession
          ServerSynchronizer.defaultServer.startInterval(recordSession.interval)
 
-         self.startButton.setBackgroundColor(UIColor(named: .Destructive))
-         self.startButton.setTitle(tr(.Stop))
+         self.animateWithDuration(0.3) {
+            self.startButton.setBackgroundColor(UIColor(named: .Destructive))
+            self.startButton.setTitle(tr(.Stop))
+         }
       }
    }
 
@@ -99,9 +111,9 @@ final class TrainingInterfaceController: WKInterfaceController {
          self.lastLabel.setText(NSNumberFormatter.stringForAcceleration(last))
       }
 
-      if let duration = duration {
-         self.durationLabel.setText(duration.toDurationString())
-      }
+      //if let duration = duration {
+      //   self.durationLabel.setText(duration.toDurationString())
+      //}
 
       if total < recordSession.interval.best {
          return
@@ -116,7 +128,7 @@ final class TrainingInterfaceController: WKInterfaceController {
       self.bestLabel.setTextColor(UIColor(named: .Record))
 
       if playHaptic {
-         WKInterfaceDevice.currentDevice().playHaptic(.Success)
+         WKInterfaceDevice.currentDevice().playHaptic(.DirectionUp)
       }
    }
 

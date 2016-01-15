@@ -14,7 +14,6 @@ final class IntervalInterfaceController: WKInterfaceController {
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(interval.best))
          self.durationLabel.setText(interval.duration.toDurationString())
          self.countLabel.setText(interval.activities.count.description)
-
          if interval.best == HistoryController.mainThreadController.best {
             self.bestLabel.setTextColor(UIColor(named: .Record))
          }
@@ -57,7 +56,7 @@ final class IntervalInterfaceController: WKInterfaceController {
 
       self.presentAlertControllerWithTitle(tr(.DeleteIntervalTitle),
          message: nil,
-         preferredStyle: .Alert,
+         preferredStyle: .SideBySideButtonsAlert,
          actions: [cancelAction, deleteAction])
    }
 

@@ -214,10 +214,10 @@
                         </group>
                         <group width="134" alignment="left" verticalAlignment="bottom" spacing="5" id="orv-gE-TUR">
                             <items>
-                                <label alignment="left" text="00:00" id="ecM-5T-IFD"/>
                                 <label alignment="right" verticalAlignment="bottom" text="last" id="sr8-TQ-KUE">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
+                                <timer alignment="left" id="JVt-ga-dfB"/>
                                 <label alignment="right" verticalAlignment="bottom" text="-" id="h5S-4o-Vj6">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
@@ -239,7 +239,7 @@
                     <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="V7n-gw-cXm" id="Uad-wG-Vvm"/>
-                        <outlet property="durationLabel" destination="ecM-5T-IFD" id="f7f-Ij-YGp"/>
+                        <outlet property="durationLabel" destination="JVt-ga-dfB" id="4Cz-Zf-r2M"/>
                         <outlet property="lastLabel" destination="h5S-4o-Vj6" id="FA4-BN-JWL"/>
                         <outlet property="startButton" destination="Z6I-aa-HVH" id="1lI-tK-xwg"/>
                     </connections>
