@@ -4,6 +4,7 @@ import YOChartImageKit
 
 final class ChartInterfaceController: WKInterfaceController {
 
+   @IBOutlet private weak var emptyView: WKInterfaceObject!
    @IBOutlet private weak var chartView: WKInterfaceImage!
 
    private var interval: Interval!
@@ -19,17 +20,27 @@ final class ChartInterfaceController: WKInterfaceController {
       // This method is called when watch view controller is about to be visible to user
       super.willActivate()
 
-      NSLog("willActivate")
-      if !self.didActivateBefore {
+      guard !self.didActivateBefore else {
+         return
+      }
+
+      let activities = self.interval.activitiesData.map { $0.total }
+
+      if activities.isEmpty {
+         self.emptyView.setHidden(false)
+      } else {
          let chart = YOLineChartImage()
          chart.strokeWidth = 1.0
-         chart.values = self.interval.data.map { $0.total }
+         chart.strokeColor = UIColor(named: .Base)
+         chart.fillColor = UIColor(named: .Base).colorWithAlphaComponent(0.5)
+         chart.values = activities
          let frame = CGRect(origin: .zero, size: contentFrame.size)
          let image = chart.drawImage(frame, scale: WKInterfaceDevice.currentDevice().screenScale)
          self.chartView.setImage(image)
-         self.didActivateBefore = true
+         self.chartView.setHidden(false)
       }
-      NSLog("did willActivate")
+
+      self.didActivateBefore = true
    }
 
    override func didDeactivate() {

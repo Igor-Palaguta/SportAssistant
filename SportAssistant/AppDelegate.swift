@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import HealthKit
+import ReactiveCocoa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,5 +53,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          success, error in
 
       }
+   }
+
+   private func showInterval(interval: Interval) {
+      guard let rootController = self.window?.rootViewController as? UINavigationController else {
+         fatalError()
+      }
+      let intervalController = StoryboardScene.Main.intervalViewController()
+      intervalController.interval = interval
+      rootController.viewControllers = [rootController.viewControllers.first!, intervalController]
+   }
+
+   func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+      return true
+   }
+
+   func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+      guard let userInfo = userActivity.userInfo as? [String: AnyObject],
+         intervalId = userInfo["id"] as? String,
+         start = userInfo["start"] as? NSDate else {
+            return false
+      }
+
+      let interval = HistoryController.mainThreadController.addIntervalWithId(intervalId, start: start)
+      self.showInterval(interval)
+      return true
    }
 }

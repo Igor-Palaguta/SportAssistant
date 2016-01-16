@@ -21,12 +21,6 @@ class Interval: Object {
       return self.data.filter(NSPredicate(format: "activity != nil"))
    }
 
-   convenience init(id: String, start: NSDate) {
-      self.init()
-      self.id = id
-      self.start = start
-   }
-
    func appendData(data: AccelerationData) {
       if data.total > self.best {
          self.best = data.total

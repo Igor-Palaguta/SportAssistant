@@ -128,13 +128,23 @@ class HistoryController: NSObject {
       return self.history.intervals.sorted(orderBy.fieldName, ascending: ascending)
    }
 
-   func addInterval(interval: Interval, activate: Bool = false) {
+   private func intervalWithId(id: String, start: NSDate) -> Interval {
+      return self.realm.create(Interval.self,
+         value: ["id": id, "start": start],
+         update: true)
+   }
+
+   func addIntervalWithId(id: String, start: NSDate, activate: Bool = false) -> Interval {
+      var createdInterval: Interval!
       try! self.realm.write {
+         let interval = self.intervalWithId(id, start: start)
          self.history.addInterval(interval)
          if activate {
             self.history.activateInterval(interval)
          }
+         createdInterval = interval
       }
+      return createdInterval
    }
 
    func synchronizeIntervalWithId(id: String, start: NSDate, data: [AccelerationData]) {
@@ -143,8 +153,7 @@ class HistoryController: NSObject {
             let newData = data[interval.data.count..<data.count]
             self.history.appendDataFromArray(newData, toInterval: interval)
          } else {
-            let interval = Interval(id: id, start: start)
-            self.history.addInterval(interval)
+            let interval = self.addIntervalWithId(id, start: start)
             self.history.appendDataFromArray(data, toInterval: interval)
          }
       }
@@ -161,6 +170,14 @@ class HistoryController: NSObject {
       try! self.realm.write {
          self.history.deactivateInterval(interval)
       }
+   }
+
+   func createInterval() -> Interval {
+      let interval = Interval()
+      try! self.realm.write {
+         self.history.addInterval(interval)
+      }
+      return interval
    }
 
    func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {

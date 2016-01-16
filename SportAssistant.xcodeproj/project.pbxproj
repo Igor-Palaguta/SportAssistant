@@ -23,6 +23,8 @@
 		78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
 		78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */; };
 		78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */; };
+		78317C741C4ADC8A002DD2AA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
+		78317C751C4ADC8A002DD2AA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
 		7831F6381C21845B00A7CBB1 /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */; };
 		7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6371C21845B00A7CBB1 /* Accelerometer.swift */; };
@@ -66,6 +68,7 @@
 		78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */; };
 		78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */; };
 		78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */; };
+		78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C38DDE1C491658003CD041 /* TimerLabel.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; };
 		78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -192,6 +195,7 @@
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rotation.swift"; sourceTree = "<group>"; };
 		78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationDataCell.swift; sourceTree = "<group>"; };
+		78317C731C4ADC8A002DD2AA /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
 		7831F6371C21845B00A7CBB1 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 		78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingController.swift; sourceTree = "<group>"; };
 		78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
+		78C38DDE1C491658003CD041 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78E51D031C2AA77700E5D26B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
@@ -460,6 +465,7 @@
 		788A51D01C15835600A166A0 /* SportAssistant WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				78C38DDD1C491567003CD041 /* Utils */,
 				78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */,
 				78159A371C39D00B001C8031 /* Resources */,
 				78E61E671C2C2ADF003C59F1 /* Synchronizer */,
@@ -502,6 +508,14 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		78C38DDD1C491567003CD041 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				78C38DDE1C491658003CD041 /* TimerLabel.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		78E61E611C2C257B003C59F1 /* Synchronizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +541,7 @@
 				789DE8F01C27571400B8CA98 /* History.swift */,
 				78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */,
 				784090911C2D84A4003DF043 /* Activity.swift */,
+				78317C731C4ADC8A002DD2AA /* Tag.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -810,6 +825,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78317C741C4ADC8A002DD2AA /* Tag.swift in Sources */,
 				78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */,
 				78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */,
 				78045FD51C26073700FEEB87 /* IntervalViewController.swift in Sources */,
@@ -873,10 +889,12 @@
 				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
 				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
 				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
+				78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */,
 				78E61E641C2C25A3003C59F1 /* Package.swift in Sources */,
 				78898AC61C419FFF00907629 /* Colors.swift in Sources */,
 				787636151C3284B100E84348 /* Activity.swift in Sources */,
 				78E51D221C2ACB5A00E5D26B /* Interval.swift in Sources */,
+				78317C751C4ADC8A002DD2AA /* Tag.swift in Sources */,
 				78805AF91C308D80002E1845 /* Analyzer.swift in Sources */,
 				788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */,
 				78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */,

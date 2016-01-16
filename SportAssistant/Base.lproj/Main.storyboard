@@ -160,7 +160,7 @@
         <!--Interval View Controller-->
         <scene sceneID="Ngv-HL-Gv0">
             <objects>
-                <viewController id="3eW-Fv-zfJ" customClass="IntervalViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Interval" id="3eW-Fv-zfJ" customClass="IntervalViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JSa-eG-7K4"/>
                         <viewControllerLayoutGuide type="bottom" id="2OS-L9-Xzh"/>

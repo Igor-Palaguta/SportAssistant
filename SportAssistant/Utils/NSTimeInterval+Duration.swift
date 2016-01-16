@@ -6,14 +6,22 @@ extension NSTimeInterval {
       return self - Double(Int(self))
    }
 
-   func toDurationString(showMilliseconds: Bool = false) -> String {
+   func formattedSeconds() -> String {
       let formatter = NSDateComponentsFormatter()
       let duration = max(self, 0)
+      return formatter.stringFromTimeInterval(duration)!
+   }
 
-      var durationString = formatter.stringFromTimeInterval(duration)!
+   func formattedMilliseconds() -> String {
+      let duration = max(self, 0)
+      let fractional = Int(duration.fractional * 10)
+      return ".\(fractional)"
+   }
+
+   func toDurationString(showMilliseconds: Bool = false) -> String {
+      var durationString = self.formattedSeconds()
       if showMilliseconds {
-         let fractional = Int(duration.fractional * 10)
-         durationString = durationString.stringByAppendingString(".\(fractional)")
+         durationString = durationString + self.formattedMilliseconds()
       }
 
       return durationString.stringByAppendingString(" s")

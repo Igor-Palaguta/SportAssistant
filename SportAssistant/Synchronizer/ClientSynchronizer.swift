@@ -28,12 +28,15 @@ extension ClientSynchronizer: WCSessionDelegate {
          return Package(name: name, arguments: arguments)
       }
 
+      if packages.isEmpty {
+         return
+      }
+
       let historyController = HistoryController()
       for package in packages {
          switch package {
          case .Start(let id, let start):
-            let interval = Interval(id: id, start: start)
-            historyController.addInterval(interval, activate: true)
+            historyController.addIntervalWithId(id, start: start, activate: true)
          case .Stop(let id):
             if let interval = historyController[id] {
                historyController.deactivateInterval(interval)

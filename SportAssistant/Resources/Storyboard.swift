@@ -38,8 +38,13 @@ struct StoryboardScene {
   enum LaunchScreen : StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }
-  enum Main : StoryboardSceneType {
+  enum Main : String, StoryboardSceneType {
     static let storyboardName = "Main"
+
+    case Interval = "Interval"
+    static func intervalViewController() -> IntervalViewController {
+      return StoryboardScene.Main.Interval.viewController() as! IntervalViewController
+    }
   }
 }
 
