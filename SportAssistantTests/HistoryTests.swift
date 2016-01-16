@@ -38,17 +38,14 @@ class HistoryTests: XCTestCase {
 
    func testHistory() {
       let historyController = HistoryController()
-      print("historyController count \(historyController.intervalsCount)")
-      XCTAssertTrue(historyController.intervalsCount == 0)
+      XCTAssertTrue(historyController.version == 0)
 
-      let interval1 = Interval()
-      historyController.addInterval(interval1, activate: true)
+      let interval1 = historyController.createInterval()
       XCTAssertTrue(historyController.intervals.count == 1)
-      XCTAssertTrue(historyController.intervalsCount == 1)
+      XCTAssertTrue(historyController.version == 1)
       XCTAssertTrue(historyController.active == interval1)
 
-      let interval2 = Interval()
-      historyController.addInterval(interval2)
+      let interval2 = historyController.createInterval()
       XCTAssertTrue(historyController.active == interval1)
 
       historyController.deactivateInterval(interval2)

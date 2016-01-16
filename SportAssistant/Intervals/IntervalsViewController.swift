@@ -6,15 +6,8 @@ final class IntervalsViewController: UITableViewController {
 
    @IBOutlet weak private var bestLabel: UILabel!
 
-   private var _intervals: Results<Interval>?
-
    private var intervals: Results<Interval> {
-      if let intervals = self._intervals {
-         return intervals
-      }
-      let intervals = HistoryController.mainThreadController.intervals
-      self._intervals = intervals
-      return intervals
+      return HistoryController.mainThreadController.intervalsOrderedBy(.Date, ascending: false)
    }
 
    override func viewDidLoad() {
@@ -30,7 +23,7 @@ final class IntervalsViewController: UITableViewController {
                return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
       }
 
-      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "intervalsCount")
+      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "version")
          .producer
          .map { $0 as! Int }
          .skip(1)
@@ -38,7 +31,6 @@ final class IntervalsViewController: UITableViewController {
          .startWithNext {
             [weak self] _ in
             if let strongSelf = self {
-               strongSelf._intervals = nil
                strongSelf.tableView.reloadData()
             }
       }

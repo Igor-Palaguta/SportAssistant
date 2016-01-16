@@ -3,29 +3,8 @@ import RealmSwift
 
 class History: Object {
    private dynamic var best: Double = 0
-   private dynamic var intervalsCount = 0
+   private dynamic var version = 0
    private dynamic var active: Interval?
-
-   private let intervals = List<Interval>()
-
-   private func addInterval(interval: Interval) {
-      self.intervals.insert(interval, atIndex: 0)
-      self.intervalsCount = self.intervals.count
-   }
-
-   private func deleteInterval(interval: Interval) {
-      guard let index = self.intervals.indexOf(interval) else {
-         return
-      }
-
-      self.deactivateInterval(interval)
-      self.intervals.removeAtIndex(index)
-      self.intervalsCount = self.intervals.count
-
-      if self.best == interval.best {
-         self.best = self.intervals.max("best") ?? 0
-      }
-   }
 
    private func activateInterval(interval: Interval) {
       self.active = interval
@@ -100,12 +79,12 @@ class HistoryController: NSObject {
       return NSSet(object: "history.best")
    }
 
-   dynamic var intervalsCount: Int {
-      return self.history.intervalsCount
+   dynamic var version: Int {
+      return self.history.version
    }
 
-   class func keyPathsForValuesAffectingIntervalsCount() -> NSSet {
-      return NSSet(object: "history.intervalsCount")
+   class func keyPathsForValuesAffectingVersion() -> NSSet {
+      return NSSet(object: "history.version")
    }
 
    dynamic var active: Interval? {
@@ -117,28 +96,20 @@ class HistoryController: NSObject {
    }
 
    var intervals: Results<Interval> {
-      return self.history.intervals.sorted("start", ascending: false)
-   }
-
-   var bestIntervals: Results<Interval> {
-      return self.history.intervals.sorted("best", ascending: false)
+      return self.realm.objects(Interval.self)
    }
 
    func intervalsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Interval> {
-      return self.history.intervals.sorted(orderBy.fieldName, ascending: ascending)
-   }
-
-   private func intervalWithId(id: String, start: NSDate) -> Interval {
-      return self.realm.create(Interval.self,
-         value: ["id": id, "start": start],
-         update: true)
+      return self.realm.objects(Interval.self).sorted(orderBy.fieldName, ascending: ascending)
    }
 
    func addIntervalWithId(id: String, start: NSDate, activate: Bool = false) -> Interval {
       var createdInterval: Interval!
       try! self.realm.write {
-         let interval = self.intervalWithId(id, start: start)
-         self.history.addInterval(interval)
+         let interval = self.realm.create(Interval.self,
+            value: ["id": id, "start": start],
+            update: true)
+         self.history.version += 1
          if activate {
             self.history.activateInterval(interval)
          }
@@ -161,8 +132,12 @@ class HistoryController: NSObject {
 
    func deleteInterval(interval: Interval) {
       try! self.realm.write {
-         self.history.deleteInterval(interval)
+         let isBest = self.best == interval.best
          self.realm.delete(interval)
+         if isBest {
+            self.history.best = self.intervals.max("best") ?? 0
+         }
+         self.history.version += 1
       }
    }
 
@@ -175,7 +150,8 @@ class HistoryController: NSObject {
    func createInterval() -> Interval {
       let interval = Interval()
       try! self.realm.write {
-         self.history.addInterval(interval)
+         self.realm.add(interval)
+         self.history.version += 1
       }
       return interval
    }
