@@ -21,15 +21,15 @@ final class TrainingController: NSObject {
    @IBOutlet private weak var timeLabel: WKInterfaceLabel!
    @IBOutlet private weak var resultLabel: WKInterfaceLabel!
 
-   var interval: Interval! {
+   var training: Training! {
       didSet {
 
-         self.dateLabel.setText(TrainingController.dateFormatter.stringFromDate(self.interval.start))
-         self.timeLabel.setText(TrainingController.timeFormatter.stringFromDate(self.interval.start))
+         self.dateLabel.setText(TrainingController.dateFormatter.stringFromDate(self.training.start))
+         self.timeLabel.setText(TrainingController.timeFormatter.stringFromDate(self.training.start))
 
-         let attributedAcceleration = NSNumberFormatter.attributedStringForAcceleration(self.interval.best, integralFont: UIFont.systemFontOfSize(30))
+         let attributedAcceleration = NSNumberFormatter.attributedStringForAcceleration(self.training.best, integralFont: UIFont.systemFontOfSize(30))
          self.resultLabel.setAttributedText(attributedAcceleration)
-         let isRecord = self.interval.best == HistoryController.mainThreadController.best
+         let isRecord = self.training.best == HistoryController.mainThreadController.best
 
          let resultColor = isRecord
             ? UIColor(named: .Record)

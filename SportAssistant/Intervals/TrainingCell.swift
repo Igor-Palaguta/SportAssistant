@@ -76,7 +76,7 @@ class ProgressView: UIView {
    }
 }
 
-final class IntervalCell: UITableViewCell, ReusableNibView {
+final class TrainingCell: UITableViewCell, ReusableNibView {
 
    @IBOutlet private weak var dateLabel: UILabel!
    @IBOutlet private weak var durationLabel: UILabel!
@@ -85,19 +85,19 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
 
    private lazy var accelerationFont: UIFont = self.bestLast.font
 
-   var interval: Interval! {
+   var training: Training! {
       didSet {
-         if let interval = self.interval {
+         if let training = self.training {
 
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
 
             let activeSignal = DynamicProperty(object: HistoryController.mainThreadController, keyPath: "active")
                .producer
-               .map { $0 as? Interval }
+               .map { $0 as? Training }
                .map {
                   active -> Bool in
                   if let active = active {
-                     return active == interval
+                     return active == training
                   }
                   return false
                }
@@ -108,9 +108,9 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
                   .flatMap(.Latest) {
                      active -> SignalProducer<NSTimeInterval, NoError> in
                      if active {
-                        return everySecondSignalProducer().map { _ in interval.duration }
+                        return everySecondSignalProducer().map { _ in training.duration }
                      } else {
-                        return SignalProducer(value: interval.duration)
+                        return SignalProducer(value: training.duration)
                      }
                   }
                   .map { $0.toDurationString() }
@@ -122,7 +122,7 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
                   .takeUntil(reuseSignal)
 
             DynamicProperty(object: self.dateLabel, keyPath: "text") <~
-               DynamicProperty(object: interval, keyPath: "start").producer
+               DynamicProperty(object: training, keyPath: "start").producer
                   .takeUntil(reuseSignal)
                   .map {
                      if let date = $0 as? NSDate {
@@ -133,7 +133,7 @@ final class IntervalCell: UITableViewCell, ReusableNibView {
 
             let integralFont = self.accelerationFont
             DynamicProperty(object: self.bestLast, keyPath: "attributedText") <~
-               DynamicProperty(object: interval, keyPath: "best").producer
+               DynamicProperty(object: training, keyPath: "best").producer
                   .takeUntil(reuseSignal)
                   .map { $0 as! Double }
                   .map {

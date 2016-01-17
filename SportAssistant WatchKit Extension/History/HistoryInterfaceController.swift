@@ -41,7 +41,7 @@ final class HistoryInterfaceController: WKInterfaceController {
    @IBOutlet private weak var showMoreButton: WKInterfaceButton!
 
    private var removedIndex: Int?
-   private var intervals: Results<Interval>!
+   private var trainings: Results<Training>!
 
    private var ordering: Ordering! {
       didSet {
@@ -67,20 +67,20 @@ final class HistoryInterfaceController: WKInterfaceController {
 
    private func reloadData() {
       let historyController = HistoryController.mainThreadController
-      let intervals = historyController.intervalsOrderedBy(self.ordering.orderBy, ascending: self.ordering.ascending)
+      let trainings = historyController.trainingsOrderedBy(self.ordering.orderBy, ascending: self.ordering.ascending)
 
-      let currentPageSize = min(intervals.count, self.pageSize)
+      let currentPageSize = min(trainings.count, self.pageSize)
       self.table.setNumberOfRows(currentPageSize, withRowType: String(TrainingController.self))
 
       (0..<currentPageSize).forEach {
          index in
          let row = self.table.rowControllerAtIndex(index) as! TrainingController
-         row.interval = intervals[index]
+         row.training = trainings[index]
       }
 
-      self.showMoreButton.setHidden(currentPageSize == intervals.count)
+      self.showMoreButton.setHidden(currentPageSize == trainings.count)
 
-      self.intervals = intervals
+      self.trainings = trainings
    }
 
    override func awakeWithContext(context: AnyObject?) {
@@ -109,8 +109,8 @@ final class HistoryInterfaceController: WKInterfaceController {
    }
 
    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-      let selectedInterval = self.intervals[rowIndex]
-      self.presentControllerWithNames([String(IntervalInterfaceController.self), String(ChartInterfaceController.self)], contexts: [[selectedInterval, self], selectedInterval])
+      let selectedTraining = self.trainings[rowIndex]
+      self.presentControllerWithNames([String(TrainingInterfaceController.self), String(ChartInterfaceController.self)], contexts: [[selectedTraining, self], selectedTraining])
    }
 
    private func selectOrderBy(orderBy: OrderBy) {
@@ -130,14 +130,14 @@ final class HistoryInterfaceController: WKInterfaceController {
 
    @IBAction private func showMoreAction(button: WKInterfaceButton) {
       let startIndex = self.table.numberOfRows
-      let currentPageSize = min(self.pageSize, self.intervals.count - startIndex)
+      let currentPageSize = min(self.pageSize, self.trainings.count - startIndex)
       if currentPageSize >= 0 {
          let pageIndexes = NSIndexSet(indexesInRange: NSRange(location: startIndex, length: currentPageSize))
          self.table.insertRowsAtIndexes(pageIndexes, withRowType: String(TrainingController.self))
          pageIndexes.forEach {
             index in
             let row = self.table.rowControllerAtIndex(index) as! TrainingController
-            row.interval = self.intervals[index]
+            row.training = self.trainings[index]
          }
       }
 
@@ -145,11 +145,11 @@ final class HistoryInterfaceController: WKInterfaceController {
    }
 }
 
-extension HistoryInterfaceController: IntervalInterfaceControllerDelegate {
-   func deleteIntervalInterfaceController(controller: IntervalInterfaceController) {
+extension HistoryInterfaceController: TrainingInterfaceControllerDelegate {
+   func deleteTrainingInterfaceController(controller: TrainingInterfaceController) {
       let historyController = HistoryController.mainThreadController
-      self.removedIndex = self.intervals!.indexOf(controller.interval)
-      historyController.deleteInterval(controller.interval)
+      self.removedIndex = self.trainings!.indexOf(controller.training)
+      historyController.deleteTraining(controller.training)
       controller.dismissController()
    }
 }

@@ -2,12 +2,12 @@ import UIKit
 import ReactiveCocoa
 import RealmSwift
 
-final class IntervalsViewController: UITableViewController {
+final class TrainingsViewController: UITableViewController {
 
    @IBOutlet weak private var bestLabel: UILabel!
 
-   private var intervals: Results<Interval> {
-      return HistoryController.mainThreadController.intervalsOrderedBy(.Date, ascending: false)
+   private var trainings: Results<Training> {
+      return HistoryController.mainThreadController.trainingsOrderedBy(.Date, ascending: false)
    }
 
    override func viewDidLoad() {
@@ -25,6 +25,7 @@ final class IntervalsViewController: UITableViewController {
 
       DynamicProperty(object: HistoryController.mainThreadController, keyPath: "version")
          .producer
+         .takeUntil(self.rac_willDeallocSignal().toVoidNoErrorSignalProducer())
          .map { $0 as! Int }
          .skip(1)
          .skipRepeats()
@@ -47,12 +48,12 @@ final class IntervalsViewController: UITableViewController {
    }
 
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return self.intervals.count
+      return self.trainings.count
    }
 
    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let cell: IntervalCell = tableView.dequeueCellForIndexPath(indexPath)
-      cell.interval = self.intervals[indexPath.row]
+      let cell: TrainingCell = tableView.dequeueCellForIndexPath(indexPath)
+      cell.training = self.trainings[indexPath.row]
       return cell
    }
 
@@ -60,18 +61,18 @@ final class IntervalsViewController: UITableViewController {
 
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
          _, indexPath in
-         let interval = self.intervals[indexPath.row]
-         HistoryController.mainThreadController.deleteInterval(interval)
+         let training = self.trainings[indexPath.row]
+         HistoryController.mainThreadController.deleteTraining(training)
       }
 
       return [deleteAction];
    }
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      if let intervalViewController = segue.destinationViewController as? IntervalViewController,
+      if let trainingViewController = segue.destinationViewController as? TrainingViewController,
       cell = sender as? UITableViewCell,
       index = self.tableView.indexPathForCell(cell) {
-         intervalViewController.interval = self.intervals[index.row]
+         trainingViewController.training = self.trainings[index.row]
       }
    }
 }

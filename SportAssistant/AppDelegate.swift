@@ -55,13 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
    }
 
-   private func showInterval(interval: Interval) {
+   private func showTraining(training: Training) {
       guard let rootController = self.window?.rootViewController as? UINavigationController else {
          fatalError()
       }
-      let intervalController = StoryboardScene.Main.intervalViewController()
-      intervalController.interval = interval
-      rootController.viewControllers = [rootController.viewControllers.first!, intervalController]
+      let trainingController = StoryboardScene.Main.trainingViewController()
+      trainingController.training = training
+      rootController.viewControllers = [rootController.viewControllers.first!, trainingController]
    }
 
    func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
@@ -69,14 +69,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    }
 
    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+      print("\(userActivity.userInfo)")
       guard let userInfo = userActivity.userInfo as? [String: AnyObject],
-         intervalId = userInfo["id"] as? String,
+         trainingId = userInfo["id"] as? String,
          start = userInfo["start"] as? NSDate else {
             return false
       }
 
-      let interval = HistoryController.mainThreadController.addIntervalWithId(intervalId, start: start)
-      self.showInterval(interval)
+      let training = HistoryController.mainThreadController.addTrainingWithId(trainingId, start: start)
+      self.showTraining(training)
       return true
    }
 }

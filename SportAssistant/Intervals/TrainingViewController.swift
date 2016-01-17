@@ -84,7 +84,7 @@ private extension BarLineChartViewBase {
    }
 }
 
-private class IntervalDataSet {
+private class TrainingDataSet {
 
    private var initialDataEntries: [ChartDataEntry] = []
    private let data: DataExtractor
@@ -149,25 +149,25 @@ private class IntervalDataSet {
    }
 }
 
-private struct IntervalDataSource {
+private struct TrainingDataSource {
 
-   private let dataSets: [IntervalDataSet] =
-   [IntervalDataSet(data: .Field(.x), attributes: .Line(ChartColorTemplates.joyful()[0], false, 1)),
-      IntervalDataSet(data: .Field(.y), attributes: .Line(ChartColorTemplates.joyful()[1], false, 1)),
-      IntervalDataSet(data: .Field(.z), attributes: .Line(ChartColorTemplates.joyful()[2], false, 1)),
-      IntervalDataSet(data: .Field(.total), attributes: .Line(ChartColorTemplates.joyful()[3], true, 2)),
-      IntervalDataSet(data: .AnyActivity, attributes: .Point(ChartColorTemplates.joyful()[4], true))
+   private let dataSets: [TrainingDataSet] =
+   [TrainingDataSet(data: .Field(.x), attributes: .Line(ChartColorTemplates.joyful()[0], false, 1)),
+      TrainingDataSet(data: .Field(.y), attributes: .Line(ChartColorTemplates.joyful()[1], false, 1)),
+      TrainingDataSet(data: .Field(.z), attributes: .Line(ChartColorTemplates.joyful()[2], false, 1)),
+      TrainingDataSet(data: .Field(.total), attributes: .Line(ChartColorTemplates.joyful()[3], true, 2)),
+      TrainingDataSet(data: .AnyActivity, attributes: .Point(ChartColorTemplates.joyful()[4], true))
    ]
 
    private let chartData: ChartData
 
-   init(interval: Interval) {
+   init(training: Training) {
 
-      let xVals = interval.data.map {
+      let xVals = training.data.map {
          return $0.timestamp.toDurationString()
       }
 
-      for (i, data) in interval.data.enumerate() {
+      for (i, data) in training.data.enumerate() {
          self.dataSets.forEach {
             dataSet in
             dataSet.addData(data, atIndex: i)
@@ -241,9 +241,9 @@ private enum Filter: Int {
    }
 }
 
-final class IntervalViewController: UIViewController {
+final class TrainingViewController: UIViewController {
 
-   var interval: Interval!
+   var training: Training!
 
    @IBOutlet private weak var chartView: CombinedChartView!
    @IBOutlet private weak var tableView: UITableView!
@@ -254,7 +254,7 @@ final class IntervalViewController: UIViewController {
    @IBOutlet private var filterControl: UISegmentedControl!
    @IBOutlet private var dataHeaderView: UIView!
 
-   private var dataSource: IntervalDataSource?
+   private var dataSource: TrainingDataSource?
 
    private var data: [AccelerationData] = [] {
       didSet {
@@ -270,7 +270,7 @@ final class IntervalViewController: UIViewController {
 
          self.chartView.notifyDataSetChanged()
 
-         self.data = self.filter.filterData(self.interval.data)
+         self.data = self.filter.filterData(self.training.data)
          self.emptyLabel.text = self.filter.emptyMessage
          self.tableView.contentOffset = .zero
          self.tableView.reloadData()
@@ -339,14 +339,14 @@ final class IntervalViewController: UIViewController {
       }
 
       DynamicProperty(object: self, keyPath: "title") <~
-         DynamicProperty(object: self.interval, keyPath: "best")
+         DynamicProperty(object: self.training, keyPath: "best")
             .producer
             .takeUntil(self.rac_willDeallocSignalProducer())
             .map { $0 as! Double }
             .skipRepeats()
             .map { NSNumberFormatter.stringForAcceleration($0) }
 
-      DynamicProperty(object: self.interval, keyPath: "currentCount")
+      DynamicProperty(object: self.training, keyPath: "currentCount")
          .producer
          .map { $0 as! Int }
          .filter { $0 != 0 }
@@ -360,7 +360,7 @@ final class IntervalViewController: UIViewController {
 
             if let dataSource = strongSelf.dataSource {
                let previousCount = strongSelf.chartView.data!.xValCount
-               let newData = strongSelf.interval.data[previousCount..<count]
+               let newData = strongSelf.training.data[previousCount..<count]
 
                dataSource.addNewData(newData)
                strongSelf.chartView.notifyDataSetChanged()
@@ -372,14 +372,14 @@ final class IntervalViewController: UIViewController {
                   strongSelf.tableView.reloadData()
                }
             } else {
-               let dataSource = IntervalDataSource(interval: strongSelf.interval)
+               let dataSource = TrainingDataSource(training: strongSelf.training)
                strongSelf.dataSource = dataSource
 
                dataSource.setXYZVisible(strongSelf.filter == .All)
                strongSelf.chartView.yMin = strongSelf.filter == .All ? nil : 0
                strongSelf.chartView.data = dataSource.chartData
 
-               strongSelf.data = strongSelf.filter.filterData(strongSelf.interval.data)
+               strongSelf.data = strongSelf.filter.filterData(strongSelf.training.data)
                strongSelf.tableView.reloadData()
             }
       }
@@ -420,12 +420,12 @@ final class IntervalViewController: UIViewController {
 
          let mailController = MFMailComposeViewController()
          mailController.mailComposeDelegate = self
-         mailController.setSubject(self.interval.start.toString(.ShortStyle, inRegion: .LocalRegion())!)
-         let csvLines = self.interval.data.map { "\($0.timestamp), \($0.x), \($0.y) \($0.z) \($0.total)" }
+         mailController.setSubject(self.training.start.toString(.ShortStyle, inRegion: .LocalRegion())!)
+         let csvLines = self.training.data.map { "\($0.timestamp), \($0.x), \($0.y) \($0.z) \($0.total)" }
          let csv = csvLines.joinWithSeparator("\n")
          mailController.addAttachmentData(csv.dataUsingEncoding(NSUTF8StringEncoding)!,
             mimeType: "text/plain",
-            fileName: "interval.txt")
+            fileName: "training.txt")
          self.presentViewController(mailController, animated: true, completion: nil)
       }
 
@@ -438,7 +438,7 @@ final class IntervalViewController: UIViewController {
    }
 }
 
-extension IntervalViewController: UITableViewDataSource, UITableViewDelegate {
+extension TrainingViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return self.data.count
    }
@@ -455,7 +455,7 @@ extension IntervalViewController: UITableViewDataSource, UITableViewDelegate {
    }
 }
 
-extension IntervalViewController: ChartViewDelegate {
+extension TrainingViewController: ChartViewDelegate {
    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
       if let data = entry.data as? AccelerationData,
          index = self.data.indexOf({$0 == data}) {
@@ -466,7 +466,7 @@ extension IntervalViewController: ChartViewDelegate {
    }
 }
 
-extension IntervalViewController: MFMailComposeViewControllerDelegate {
+extension TrainingViewController: MFMailComposeViewControllerDelegate {
    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
       if let error = error {
          error.presentInController(self)

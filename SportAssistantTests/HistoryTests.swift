@@ -40,33 +40,33 @@ class HistoryTests: XCTestCase {
       let historyController = HistoryController()
       XCTAssertTrue(historyController.version == 0)
 
-      let interval1 = historyController.createInterval()
-      XCTAssertTrue(historyController.intervals.count == 1)
+      let training1 = historyController.createTraining()
+      XCTAssertTrue(historyController.trainings.count == 1)
       XCTAssertTrue(historyController.version == 1)
-      XCTAssertTrue(historyController.active == interval1)
+      XCTAssertTrue(historyController.active == training1)
 
-      let interval2 = historyController.createInterval()
-      XCTAssertTrue(historyController.active == interval1)
+      let training2 = historyController.createTraining()
+      XCTAssertTrue(historyController.active == training1)
 
-      historyController.deactivateInterval(interval2)
-      XCTAssertTrue(historyController.active == interval1)
+      historyController.deactivateTraining(training2)
+      XCTAssertTrue(historyController.active == training1)
 
-      historyController.deactivateInterval(interval1)
+      historyController.deactivateTraining(training1)
       XCTAssertTrue(historyController.active == nil)
 
       let data1 = AccelerationData(x: 1, y: 2, z: 3, timestamp: 0)
       let data2 = AccelerationData(x: 3, y: 4, z: 12, timestamp: 0)
-      historyController.addData([data1, data2], toInterval: interval1)
+      historyController.addData([data1, data2], toTraining: training1)
 
-      XCTAssertTrue(interval1.currentCount == 2)
+      XCTAssertTrue(training1.currentCount == 2)
 
       let data3 = AccelerationData(x: 3, y: 5, z: 11, timestamp: 0)
       let data4 = AccelerationData(x: 3, y: 6, z: 10, timestamp: 0)
-      historyController.addData([data3, data4], toInterval: interval1)
+      historyController.addData([data3, data4], toTraining: training1)
 
-      XCTAssertTrue(interval1.data.count == 4)
-      XCTAssertTrue(interval1.currentCount == 4)
-      XCTAssertTrue(interval1.best == 13)
+      XCTAssertTrue(training1.data.count == 4)
+      XCTAssertTrue(training1.currentCount == 4)
+      XCTAssertTrue(training1.best == 13)
       XCTAssertTrue(historyController.best == 13)
    }
 }

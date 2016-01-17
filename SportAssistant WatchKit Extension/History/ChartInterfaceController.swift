@@ -7,13 +7,13 @@ final class ChartInterfaceController: WKInterfaceController {
    @IBOutlet private weak var emptyView: WKInterfaceObject!
    @IBOutlet private weak var chartView: WKInterfaceImage!
 
-   private var interval: Interval!
+   private var training: Training!
    private var didActivateBefore = false
 
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      self.interval = context as! Interval
+      self.training = context as! Training
    }
 
    override func willActivate() {
@@ -24,7 +24,7 @@ final class ChartInterfaceController: WKInterfaceController {
          return
       }
 
-      let activities = self.interval.activitiesData.map { $0.total }
+      let activities = self.training.activitiesData.map { $0.total }
 
       if activities.isEmpty {
          self.emptyView.setHidden(false)

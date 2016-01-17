@@ -5,7 +5,7 @@ import HealthKit
 
 private class Session: NSObject {
 
-   let interval: Interval
+   let training: Training
    let accelerometer: Accelerometer
    let suspender = BackgroundSuspender()
    let analyzer = TableTennisAnalyzer()
@@ -14,9 +14,8 @@ private class Session: NSObject {
    let healthStore: HKHealthStore
 
    init(healthStore: HKHealthStore) {
-      let interval = Interval()
-      HistoryController.mainThreadController.addInterval(interval)
-      self.interval = interval
+      let training = HistoryController.mainThreadController.createTraining()
+      self.training = training
       self.accelerometer = Accelerometer()
       self.accelerometer.start()
       self.healthStore = healthStore
@@ -43,11 +42,11 @@ extension Session: HKWorkoutSessionDelegate {
    }
 }
 
-final class TrainingInterfaceController: WKInterfaceController {
+final class RecordTrainingInterfaceController: WKInterfaceController {
 
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
    @IBOutlet weak var lastLabel: WKInterfaceLabel!
-   @IBOutlet weak var durationLabel: WKInterfaceTimer!
+   @IBOutlet weak var durationLabel: WKInterfaceLabel!
    @IBOutlet weak var startButton: WKInterfaceButton!
 
    private var recordSession: Session?
@@ -60,10 +59,10 @@ final class TrainingInterfaceController: WKInterfaceController {
          let outstandingData = recordSession.analyzer.outstandingData
 
          if !outstandingData.isEmpty {
-            ServerSynchronizer.defaultServer.sendData(outstandingData, forInterval: recordSession.interval)
+            ServerSynchronizer.defaultServer.sendData(outstandingData, forTraining: recordSession.training)
          }
 
-         ServerSynchronizer.defaultServer.stopInterval(recordSession.interval)
+         ServerSynchronizer.defaultServer.stopTraining(recordSession.training)
 
          recordSession.stop()
          self.recordSession = nil
@@ -74,8 +73,6 @@ final class TrainingInterfaceController: WKInterfaceController {
          }
 
          self.durationLabel.stop()
-
-         //self.updateUserActivity(<#T##type: String##String#>, userInfo: <#T##[NSObject : AnyObject]?#>, webpageURL: <#T##NSURL?#>)
       }
    }
 
@@ -84,8 +81,6 @@ final class TrainingInterfaceController: WKInterfaceController {
          WKInterfaceDevice.currentDevice().playHaptic(.Start)
 
          self.lastLabel.setText("-")
-         self.durationLabel.setDate(NSDate())
-         self.durationLabel.start()
 
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(0))
          self.bestLabel.setTextColor(UIColor.whiteColor())
@@ -93,7 +88,13 @@ final class TrainingInterfaceController: WKInterfaceController {
          let recordSession = Session(healthStore: self.healthStore!)
          recordSession.accelerometer.delegate = self
          self.recordSession = recordSession
-         ServerSynchronizer.defaultServer.startInterval(recordSession.interval)
+         ServerSynchronizer.defaultServer.startTraining(recordSession.training)
+         self.durationLabel.start(recordSession.training.start)
+
+         self.updateUserActivity("com.spangleapp.Test.watchkitapp.watchkitextension.Training",
+            userInfo: ["id": recordSession.training.id,
+               "start": recordSession.training.start],
+            webpageURL: nil)
 
          self.animateWithDuration(0.3) {
             self.startButton.setBackgroundColor(UIColor(named: .Destructive))
@@ -115,7 +116,7 @@ final class TrainingInterfaceController: WKInterfaceController {
       //   self.durationLabel.setText(duration.toDurationString())
       //}
 
-      if total < recordSession.interval.best {
+      if total < recordSession.training.best {
          return
       }
 
@@ -137,15 +138,19 @@ final class TrainingInterfaceController: WKInterfaceController {
       if let recordSession = self.recordSession {
          recordSession.suspender.suspend()
 
-         self.reloadDataWithTotal(recordSession.interval.best,
-            last: recordSession.interval.activitiesData.last?.total,
-            duration: recordSession.interval.data.last?.timestamp)
+         self.reloadDataWithTotal(recordSession.training.best,
+            last: recordSession.training.activitiesData.last?.total,
+            duration: recordSession.training.data.last?.timestamp)
+
+         self.durationLabel.start(recordSession.training.start)
       }
    }
 
    override func willDisappear() {
       super.willDisappear()
       self.stopRecording()
+      self.durationLabel.stop()
+      self.invalidateUserActivity()
    }
 
    override func awakeWithContext(context: AnyObject?) {
@@ -165,7 +170,7 @@ final class TrainingInterfaceController: WKInterfaceController {
    }
 }
 
-extension TrainingInterfaceController: AccelerometerDelegate {
+extension RecordTrainingInterfaceController: AccelerometerDelegate {
    func accelerometer(accelerometer: Accelerometer, didReceiveData data: CMAccelerometerData) {
       guard let recordSession = self.recordSession else {
          return
@@ -177,7 +182,7 @@ extension TrainingInterfaceController: AccelerometerDelegate {
       let accelerationData = AccelerationData(x: data.acceleration.x,
          y: data.acceleration.y,
          z: data.acceleration.z,
-         timestamp: date.timeIntervalSinceDate(recordSession.interval.start))
+         timestamp: date.timeIntervalSinceDate(recordSession.training.start))
 
       let result = recordSession.analyzer.analyzeData(accelerationData)
       self.reloadDataWithTotal(accelerationData.total,
@@ -185,7 +190,7 @@ extension TrainingInterfaceController: AccelerometerDelegate {
          duration: accelerationData.timestamp,
          playHaptic: true)
 
-      HistoryController.mainThreadController.appendDataFromArray([accelerationData], toInterval: recordSession.interval)
+      HistoryController.mainThreadController.appendDataFromArray([accelerationData], toTraining: recordSession.training)
 
       if let peak = result.peak {
          HistoryController.mainThreadController.addActivityWithName(peak.attributes.description,
@@ -193,7 +198,7 @@ extension TrainingInterfaceController: AccelerometerDelegate {
       }
 
       if !result.data.isEmpty {
-         ServerSynchronizer.defaultServer.sendData(result.data, forInterval: recordSession.interval)
+         ServerSynchronizer.defaultServer.sendData(result.data, forTraining: recordSession.training)
       }
    }
 }

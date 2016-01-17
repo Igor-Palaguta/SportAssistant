@@ -4,23 +4,24 @@ import RealmSwift
 class History: Object {
    private dynamic var best: Double = 0
    private dynamic var version = 0
-   private dynamic var active: Interval?
+   private dynamic var tagsVersion = 0
+   private dynamic var active: Training?
 
-   private func activateInterval(interval: Interval) {
-      self.active = interval
+   private func activateTraining(training: Training) {
+      self.active = training
    }
 
-   private func deactivateInterval(interval: Interval) {
-      if self.active == interval {
+   private func deactivateTraining(training: Training) {
+      if self.active == training {
          self.active = nil
       }
    }
 
-   private func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
-      interval.appendDataFromArray(data)
+   private func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toTraining training: Training) {
+      training.appendDataFromArray(data)
 
-      if interval.best > self.best {
-         self.best = interval.best
+      if training.best > self.best {
+         self.best = training.best
       }
    }
 }
@@ -87,7 +88,15 @@ class HistoryController: NSObject {
       return NSSet(object: "history.version")
    }
 
-   dynamic var active: Interval? {
+   dynamic var tagsVersion: Int {
+      return self.history.tagsVersion
+   }
+
+   class func keyPathsForValuesAffectingTagsVersion() -> NSSet {
+      return NSSet(object: "history.tagsVersion")
+   }
+
+   dynamic var active: Training? {
       return self.history.active
    }
 
@@ -95,84 +104,99 @@ class HistoryController: NSObject {
       return NSSet(object: "history.active")
    }
 
-   var intervals: Results<Interval> {
-      return self.realm.objects(Interval.self)
+   var tags: Results<Tag> {
+      return self.realm.objects(Tag)
    }
 
-   func intervalsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Interval> {
-      return self.realm.objects(Interval.self).sorted(orderBy.fieldName, ascending: ascending)
+   var trainings: Results<Training> {
+      return self.realm.objects(Training)
    }
 
-   func addIntervalWithId(id: String, start: NSDate, activate: Bool = false) -> Interval {
-      var createdInterval: Interval!
-      try! self.realm.write {
-         let interval = self.realm.create(Interval.self,
+   func trainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
+      return self.realm.objects(Training).sorted(orderBy.fieldName, ascending: ascending)
+   }
+
+   private func write(@noescape transaction: () -> ()) {
+      try! self.realm.write(transaction)
+   }
+
+   func addTrainingWithId(id: String, start: NSDate, activate: Bool = false) -> Training {
+      var createdTraining: Training!
+      self.write {
+         let training = self.realm.create(Training.self,
             value: ["id": id, "start": start],
             update: true)
          self.history.version += 1
          if activate {
-            self.history.activateInterval(interval)
+            self.history.activateTraining(training)
          }
-         createdInterval = interval
+         createdTraining = training
       }
-      return createdInterval
+      return createdTraining
    }
 
-   func synchronizeIntervalWithId(id: String, start: NSDate, data: [AccelerationData]) {
-      try! self.realm.write {
-         if let interval = self[id] {
-            let newData = data[interval.data.count..<data.count]
-            self.history.appendDataFromArray(newData, toInterval: interval)
+   func synchronizeTrainingWithId(id: String, start: NSDate, data: [AccelerationData]) {
+      self.write {
+         if let training = self[id] {
+            let newData = data[training.data.count..<data.count]
+            self.history.appendDataFromArray(newData, toTraining: training)
          } else {
-            let interval = self.addIntervalWithId(id, start: start)
-            self.history.appendDataFromArray(data, toInterval: interval)
+            let training = self.addTrainingWithId(id, start: start)
+            self.history.appendDataFromArray(data, toTraining: training)
          }
       }
    }
 
-   func deleteInterval(interval: Interval) {
-      try! self.realm.write {
-         let isBest = self.best == interval.best
-         self.realm.delete(interval)
+   func deleteTraining(training: Training) {
+      self.write {
+         let isBest = self.best == training.best
+         self.realm.delete(training)
          if isBest {
-            self.history.best = self.intervals.max("best") ?? 0
+            self.history.best = self.trainings.max("best") ?? 0
          }
          self.history.version += 1
       }
    }
 
-   func deactivateInterval(interval: Interval) {
-      try! self.realm.write {
-         self.history.deactivateInterval(interval)
+   func deactivateTraining(training: Training) {
+      self.write {
+         self.history.deactivateTraining(training)
       }
    }
 
-   func createInterval() -> Interval {
-      let interval = Interval()
-      try! self.realm.write {
-         self.realm.add(interval)
+   func createTraining() -> Training {
+      let training = Training()
+      self.write {
+         self.realm.add(training)
          self.history.version += 1
       }
-      return interval
+      return training
    }
 
-   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toInterval interval: Interval) {
-      try! self.realm.write {
-         self.history.appendDataFromArray(data, toInterval: interval)
+   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toTraining training: Training) {
+      self.write {
+         self.history.appendDataFromArray(data, toTraining: training)
       }
    }
 
    func addActivityWithName(name: String, toData data: AccelerationData) {
-      try! self.realm.write {
+      self.write {
          let activity = Activity(name: name)
          data.activity = activity
          self.realm.add(activity)
       }
    }
 
-   subscript(id: String) -> Interval? {
+   func addTag(tag: Tag) {
+      self.write {
+         self.realm.add(tag)
+         self.history.tagsVersion += 1
+      }
+   }
+
+   subscript(id: String) -> Training? {
       get {
-         return self.realm.objectForPrimaryKey(Interval.self, key: id)
+         return self.realm.objectForPrimaryKey(Training.self, key: id)
       }
    }
 }

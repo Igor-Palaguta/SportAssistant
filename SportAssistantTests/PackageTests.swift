@@ -37,7 +37,7 @@ class PackageTests: XCTestCase {
 
       let serializedStart = packages.first!
 
-      if case .Start(let intervalId, let startDate) = serializedStart where intervalId == "1" && startDate == date {
+      if case .Start(let trainingId, let startDate) = serializedStart where trainingId == "1" && startDate == date {
          XCTAssertTrue(true)
       } else {
          XCTAssertTrue(false)

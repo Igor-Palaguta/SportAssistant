@@ -4,7 +4,7 @@ import Foundation
 
 enum L10n {
   /// Are you sure?
-  case DeleteIntervalTitle
+  case DeleteTrainingTitle
   /// Delete
   case Delete
   /// Cancel
@@ -26,8 +26,8 @@ extension L10n : CustomStringConvertible {
 
   var string : String {
     switch self {
-      case .DeleteIntervalTitle:
-        return L10n.tr("DeleteIntervalTitle")
+      case .DeleteTrainingTitle:
+        return L10n.tr("DeleteTrainingTitle")
       case .Delete:
         return L10n.tr("Delete")
       case .Cancel:

@@ -36,23 +36,23 @@ extension ClientSynchronizer: WCSessionDelegate {
       for package in packages {
          switch package {
          case .Start(let id, let start):
-            historyController.addIntervalWithId(id, start: start, activate: true)
+            historyController.addTrainingWithId(id, start: start, activate: true)
          case .Stop(let id):
-            if let interval = historyController[id] {
-               historyController.deactivateInterval(interval)
+            if let training = historyController[id] {
+               historyController.deactivateTraining(training)
             }
          case .Synchronize(let id, let start, let data):
-            historyController.synchronizeIntervalWithId(id, start: start, data: data)
+            historyController.synchronizeTrainingWithId(id, start: start, data: data)
          case .Delete(let id):
-            if let interval = historyController[id] {
-               historyController.deleteInterval(interval)
+            if let training = historyController[id] {
+               historyController.deleteTraining(training)
             }
          case .Data(let id, let index, let data):
-            if let interval = historyController[id]
-               where (interval.currentCount < index + data.count)
-                  && (interval.currentCount >= index) {
-                     let newData = data[interval.currentCount-index..<data.count]
-                     historyController.appendDataFromArray(newData, toInterval: interval)
+            if let training = historyController[id]
+               where (training.currentCount < index + data.count)
+                  && (training.currentCount >= index) {
+                     let newData = data[training.currentCount-index..<data.count]
+                     historyController.appendDataFromArray(newData, toTraining: training)
             }
          }
       }

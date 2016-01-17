@@ -41,9 +41,9 @@ struct StoryboardScene {
   enum Main : String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    case Interval = "Interval"
-    static func intervalViewController() -> IntervalViewController {
-      return StoryboardScene.Main.Interval.viewController() as! IntervalViewController
+    case Training = "Training"
+    static func trainingViewController() -> TrainingViewController {
+      return StoryboardScene.Main.Training.viewController() as! TrainingViewController
     }
   }
 }

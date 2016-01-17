@@ -118,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="581"/>
         </scene>
-        <!--IntervalInterfaceController-->
+        <!--TrainingInterfaceController-->
         <scene sceneID="gwI-Y9-Opt">
             <objects>
-                <controller identifier="IntervalInterfaceController" id="rxU-gG-mSZ" customClass="IntervalInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller identifier="TrainingInterfaceController" id="rxU-gG-mSZ" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="left" id="X09-vk-OPZ">
                             <items>
@@ -206,7 +206,7 @@
         <!--Training Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Done" id="AgC-eL-Hgc" userLabel="Training Controller" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Done" id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Hbz-BX-IXP">
                             <items>

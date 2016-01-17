@@ -1,20 +1,20 @@
 import WatchKit
 import Foundation
 
-protocol IntervalInterfaceControllerDelegate: class {
-   func deleteIntervalInterfaceController(controller: IntervalInterfaceController)
+protocol TrainingInterfaceControllerDelegate: class {
+   func deleteTrainingInterfaceController(controller: TrainingInterfaceController)
 }
 
-final class IntervalInterfaceController: WKInterfaceController {
+final class TrainingInterfaceController: WKInterfaceController {
 
-   private weak var delegate: IntervalInterfaceControllerDelegate?
+   private weak var delegate: TrainingInterfaceControllerDelegate?
 
-   private(set) var interval: Interval! {
+   private(set) var training: Training! {
       didSet {
-         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(interval.best))
-         self.durationLabel.setDuration(interval.duration)
-         self.countLabel.setText(interval.activities.count.description)
-         if interval.best == HistoryController.mainThreadController.best {
+         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(training.best))
+         self.durationLabel.setDuration(training.duration)
+         self.countLabel.setText(training.activities.count.description)
+         if training.best == HistoryController.mainThreadController.best {
             self.bestLabel.setTextColor(UIColor(named: .Record))
          }
       }
@@ -31,8 +31,8 @@ final class IntervalInterfaceController: WKInterfaceController {
          return
       }
 
-      self.interval = contexts.flatMap { $0 as? Interval }.first
-      self.delegate = contexts.flatMap { $0 as? IntervalInterfaceControllerDelegate }.first
+      self.training = contexts.flatMap { $0 as? Training }.first
+      self.delegate = contexts.flatMap { $0 as? TrainingInterfaceControllerDelegate }.first
    }
 
    override func willActivate() {
@@ -50,16 +50,16 @@ final class IntervalInterfaceController: WKInterfaceController {
 
       let deleteAction = WKAlertAction(title: tr(.Delete), style: .Destructive) {
          [unowned self] in
-         self.delegate?.deleteIntervalInterfaceController(self)
+         self.delegate?.deleteTrainingInterfaceController(self)
       }
 
-      self.presentAlertControllerWithTitle(tr(.DeleteIntervalTitle),
+      self.presentAlertControllerWithTitle(tr(.DeleteTrainingTitle),
          message: nil,
          preferredStyle: .SideBySideButtonsAlert,
          actions: [cancelAction, deleteAction])
    }
 
    @IBAction private func sendAction() {
-      ServerSynchronizer.defaultServer.synchronizeInterval(self.interval)
+      ServerSynchronizer.defaultServer.synchronizeTraining(self.training)
    }
 }

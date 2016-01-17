@@ -1,11 +1,12 @@
 import Foundation
 import RealmSwift
 
-class Interval: Object {
+class Training: Object {
    private(set) dynamic var id = NSUUID().UUIDString
    private(set) dynamic var best: Double = 0
    private(set) dynamic var start = NSDate()
    private(set) dynamic var currentCount = 0
+   dynamic var tag: Tag?
 
    let data = List<AccelerationData>()
 
