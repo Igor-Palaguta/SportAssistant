@@ -162,7 +162,7 @@
         <!--Training View Controller-->
         <scene sceneID="Ngv-HL-Gv0">
             <objects>
-                <viewController storyboardIdentifier="Training" id="3eW-Fv-zfJ" customClass="TrainingViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Training" hidesBottomBarWhenPushed="YES" id="3eW-Fv-zfJ" customClass="TrainingViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JSa-eG-7K4"/>
                         <viewControllerLayoutGuide type="bottom" id="2OS-L9-Xzh"/>
@@ -171,17 +171,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-SN-zjF">
-                                <rect key="frame" x="0.0" y="277" width="320" height="290.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-SN-zjF">
+                                <rect key="frame" x="0.0" y="277" width="320" height="242"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" misplaced="YES" text="No peaks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KZ-d4-vXL">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="290.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="No peaks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KZ-d4-vXL">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Fq-La-d2S">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="290.5"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Fq-La-d2S">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AccelerationDataCell" rowHeight="66" id="wf8-rI-Ir1" customClass="AccelerationDataCell" customModule="SportAssistant" customModuleProvider="target">
@@ -421,12 +421,12 @@
         <scene sceneID="TxN-NW-1fi">
             <objects>
                 <tableViewController id="U8J-8M-xfo" customClass="TagsViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ONA-lS-dUS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ONA-lS-dUS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagCell" id="iXZ-tr-9xI" customClass="TagCell" customModule="SportAssistant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagCell" editingAccessoryType="disclosureIndicator" id="iXZ-tr-9xI" customClass="TagCell" customModule="SportAssistant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iXZ-tr-9xI" id="kY1-Sb-OFE">
@@ -434,18 +434,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0s-yf-3ZC">
-                                            <rect key="frame" x="10" y="11.5" width="277" height="20.5"/>
+                                            <rect key="frame" x="15" y="11.5" width="272" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="M0s-yf-3ZC" firstAttribute="leading" secondItem="kY1-Sb-OFE" secondAttribute="leading" constant="10" id="C7u-58-ByW"/>
+                                        <constraint firstItem="M0s-yf-3ZC" firstAttribute="leading" secondItem="kY1-Sb-OFE" secondAttribute="leading" constant="15" id="C7u-58-ByW"/>
                                         <constraint firstItem="M0s-yf-3ZC" firstAttribute="centerY" secondItem="kY1-Sb-OFE" secondAttribute="centerY" id="Je7-Ea-bDo"/>
                                         <constraint firstAttribute="trailing" secondItem="M0s-yf-3ZC" secondAttribute="trailing" id="rUO-q3-aj1"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="M0s-yf-3ZC" id="obu-l6-xhS"/>
                                 </connections>
@@ -459,11 +460,14 @@
                     <navigationItem key="navigationItem" title="Tags" id="sU4-g2-S68">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="DXF-Lx-IJQ">
                             <connections>
-                                <segue destination="NDa-Sq-Wze" kind="push" id="QjG-Nn-9Tn"/>
+                                <segue destination="NDa-Sq-Wze" kind="push" identifier="Add" id="QjG-Nn-9Tn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="NDa-Sq-Wze" kind="push" identifier="Edit" id="L9r-kH-qil"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNP-39-4bd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -471,16 +475,16 @@
         <!--Add Tag-->
         <scene sceneID="Er8-zV-rIq">
             <objects>
-                <tableViewController id="NDa-Sq-Wze" customClass="AddTagViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZtU-Sk-ZPj">
+                <tableViewController id="NDa-Sq-Wze" customClass="TagViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZtU-Sk-ZPj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="CDi-UQ-jZd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="k4R-kU-Nne">
-                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k4R-kU-Nne" id="jhY-cN-nhj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -522,7 +526,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4c-rB-nXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="965"/>
+            <point key="canvasLocation" x="-632" y="1289"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8xk-Ol-Kie">
@@ -558,4 +562,7 @@
             </objects>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="L9r-kH-qil"/>
+    </inferredMetricsTieBreakers>
 </document>

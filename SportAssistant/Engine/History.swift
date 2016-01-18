@@ -187,16 +187,37 @@ class HistoryController: NSObject {
       }
    }
 
-   func addTag(tag: Tag) {
+   subscript(id: String) -> Training? {
+      get {
+         return self.realm.objectForPrimaryKey(Training.self, key: id)
+      }
+   }
+}
+
+extension HistoryController {
+
+   private func changeTags(@noescape transaction: () -> ()) {
       self.write {
-         self.realm.add(tag)
+         transaction()
          self.history.tagsVersion += 1
       }
    }
 
-   subscript(id: String) -> Training? {
-      get {
-         return self.realm.objectForPrimaryKey(Training.self, key: id)
+   func addTag(tag: Tag) {
+      self.changeTags {
+         self.realm.add(tag)
+      }
+   }
+
+   func editTag(tag: Tag, name: String) {
+      self.changeTags {
+         tag.name = name
+      }
+   }
+
+   func removeTag(tag: Tag) {
+      self.changeTags {
+         self.realm.delete(tag)
       }
    }
 }

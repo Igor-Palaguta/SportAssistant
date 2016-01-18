@@ -21,6 +21,10 @@ enum L10n {
   case EmailShare
   /// No email accounts. Please add an account Settings->Mail->Add Account
   case CannotSendMail
+  /// Add Tag
+  case AddTag
+  /// Edit Tag
+  case EditTag
 }
 
 extension L10n : CustomStringConvertible {
@@ -46,6 +50,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("EmailShare")
       case .CannotSendMail:
         return L10n.tr("CannotSendMail")
+      case .AddTag:
+        return L10n.tr("AddTag")
+      case .EditTag:
+        return L10n.tr("EditTag")
     }
   }
 

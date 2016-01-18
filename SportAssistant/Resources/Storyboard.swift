@@ -49,5 +49,9 @@ struct StoryboardScene {
 }
 
 struct StoryboardSegue {
+  enum Main : String, StoryboardSegueType {
+    case Add = "Add"
+    case Edit = "Edit"
+  }
 }
 

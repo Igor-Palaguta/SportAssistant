@@ -7,3 +7,5 @@
 "OK" = "Ok";
 "EmailShare" = "Share via Email";
 "CannotSendMail" = "No email accounts. Please add an account Settings->Mail->Add Account";
+"AddTag" = "Add Tag";
+"EditTag" = "Edit Tag";

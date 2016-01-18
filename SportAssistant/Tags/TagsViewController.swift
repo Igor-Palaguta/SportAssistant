@@ -9,7 +9,7 @@ class TagsViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "tagsVersion")
+      /*DynamicProperty(object: HistoryController.mainThreadController, keyPath: "tagsVersion")
          .producer
          .takeUntil(self.rac_willDeallocSignal().toVoidNoErrorSignalProducer())
          .map { $0 as! Int }
@@ -20,7 +20,7 @@ class TagsViewController: UITableViewController {
             if let strongSelf = self {
                strongSelf.tableView.reloadData()
             }
-      }
+      }*/
 
       self.navigationItem.rightBarButtonItem = self.editButtonItem()
       self.tableView.tableFooterView = UIView()
@@ -36,49 +36,71 @@ class TagsViewController: UITableViewController {
       return cell
    }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+      // Return false if you do not want the specified item to be editable.
+      return true
+   }
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+      if editingStyle == .Delete {
+         let tag = self.tags[indexPath.row]
+         HistoryController.mainThreadController.removeTag(tag)
+         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      }
+   }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+   /*
+   // Override to support rearranging the table view.
+   override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
-    }
-    */
+   }
+   */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+   //override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+   //   return true
+   //}
 
-    /*
-    // MARK: - Navigation
+   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      if self.editing {
+         let tag = self.tags[indexPath.row]
+         self.performSegue(StoryboardSegue.Main.Edit, sender: tag)
+      }
+   }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+      guard let tagController = segue.destinationViewController as? TagViewController else {
+         return
+      }
 
+      if let tag = sender as? Tag where segue.identifier == StoryboardSegue.Main.Edit.rawValue {
+         tagController.operation = .Edit(tag)
+      } else if segue.identifier == StoryboardSegue.Main.Add.rawValue {
+         tagController.operation = .Add
+      } else {
+         fatalError()
+      }
+
+      tagController.delegate = self
+   }
+}
+
+extension TagsViewController: TagViewControllerDelegate {
+   func didCancelTagViewController(controller: TagViewController) {
+      self.navigationController?.popViewControllerAnimated(true)
+   }
+
+   func tagViewController(controller: TagViewController,
+      didCompleteOperation operation: TagOperation,
+      withTag tag: Tag) {
+         guard let index = self.tags.indexOf(tag) else {
+            return
+         }
+         let indexPath = [NSIndexPath(forRow: index, inSection: 0)]
+         if case .Add = operation {
+            self.tableView.insertRowsAtIndexPaths(indexPath, withRowAnimation: .Fade)
+         } else {
+            self.tableView.reloadRowsAtIndexPaths(indexPath, withRowAnimation: .Fade)
+         }
+         self.navigationController?.popViewControllerAnimated(true)
+   }
 }
