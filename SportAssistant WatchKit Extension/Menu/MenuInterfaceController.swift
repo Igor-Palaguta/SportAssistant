@@ -36,10 +36,14 @@ class MenuInterfaceController: WKInterfaceController {
    }
 
    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-      if segueIdentifier == String(TrainingInterfaceController.self) {
+      switch segueIdentifier {
+      case String(RecordTrainingInterfaceController.self):
+         return TrainingContext(healthStore: self.healthStore, tag: nil)
+      case String(TagsInterfaceController.self):
          return self.healthStore
+      default:
+         return nil
       }
-      return nil
    }
 
    private func reloadData() {

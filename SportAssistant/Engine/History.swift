@@ -55,8 +55,10 @@ class HistoryController: NSObject {
          return true
       } else {
          let history = History()
+         let tableTennis = Tag(id: "1", name: "Table Tennis")
+         let boxing = Tag(id: "2", name: "Boxing")
          try! realm.write {
-            realm.add(history)
+            realm.add([history, tableTennis, boxing])
          }
          return true
       }
@@ -120,12 +122,15 @@ class HistoryController: NSObject {
       try! self.realm.write(transaction)
    }
 
-   func addTrainingWithId(id: String, start: NSDate, activate: Bool = false) -> Training {
+   func addTrainingWithId(id: String, start: NSDate, tagId: String?, activate: Bool = false) -> Training {
       var createdTraining: Training!
       self.write {
-         let training = self.realm.create(Training.self,
-            value: ["id": id, "start": start],
-            update: true)
+         let tag: Tag? = tagId.flatMap { self.realm.objectForPrimaryKey(Tag.self, key: $0) }
+         var trainingValue = ["id": id, "start": start]
+         if let tag = tag {
+            trainingValue["tag"] = tag
+         }
+         let training = self.realm.create(Training.self, value: trainingValue, update: true)
          self.history.version += 1
          if activate {
             self.history.activateTraining(training)
@@ -135,16 +140,19 @@ class HistoryController: NSObject {
       return createdTraining
    }
 
-   func synchronizeTrainingWithId(id: String, start: NSDate, data: [AccelerationData]) {
-      self.write {
-         if let training = self[id] {
-            let newData = data[training.data.count..<data.count]
-            self.history.appendDataFromArray(newData, toTraining: training)
-         } else {
-            let training = self.addTrainingWithId(id, start: start)
-            self.history.appendDataFromArray(data, toTraining: training)
+   func synchronizeTrainingWithId(id: String,
+      start: NSDate,
+      tagId: String?,
+      data: [AccelerationData]) {
+         self.write {
+            if let training = self[id] {
+               let newData = data[training.data.count..<data.count]
+               self.history.appendDataFromArray(newData, toTraining: training)
+            } else {
+               let training = self.addTrainingWithId(id, start: start, tagId: tagId)
+               self.history.appendDataFromArray(data, toTraining: training)
+            }
          }
-      }
    }
 
    func deleteTraining(training: Training) {
@@ -164,8 +172,9 @@ class HistoryController: NSObject {
       }
    }
 
-   func createTraining() -> Training {
+   func createTraining(tag: Tag?) -> Training {
       let training = Training()
+      training.tag = tag
       self.write {
          self.realm.add(training)
          self.history.version += 1
@@ -218,6 +227,19 @@ extension HistoryController {
    func removeTag(tag: Tag) {
       self.changeTags {
          self.realm.delete(tag)
+      }
+   }
+
+   func assignTags<T: SequenceType where T.Generator.Element == Tag>(tags: T) {
+      self.changeTags {
+         let deleteTags = self.tags.filter {
+            oldTag -> Bool in
+            return !tags.contains {$0.id == oldTag.id}
+         }
+         if !deleteTags.isEmpty {
+            self.realm.delete(deleteTags)
+         }
+         self.realm.add(tags, update: true)
       }
    }
 }

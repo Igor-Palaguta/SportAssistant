@@ -25,12 +25,12 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <segue destination="AgC-eL-Hgc" kind="push" identifier="TrainingInterfaceController" id="kpt-Lc-IPJ"/>
+                                        <segue destination="vRZ-7m-PNx" kind="push" identifier="TagsInterfaceController" id="814-zO-7LG"/>
                                     </connections>
                                 </button>
                                 <button width="1" alignment="left" title="Trainings (12)" id="3kb-av-udU">
                                     <connections>
-                                        <segue destination="4Vm-e0-XGA" kind="push" identifier="TrainingsInterfaceController" id="uO8-f3-dZv"/>
+                                        <segue destination="4Vm-e0-XGA" kind="push" id="ajb-c4-fhj"/>
                                     </connections>
                                 </button>
                             </items>
@@ -45,6 +45,41 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="-19" y="481"/>
+        </scene>
+        <!--Tags-->
+        <scene sceneID="8JM-g2-1Yt">
+            <objects>
+                <controller title="Tags" id="vRZ-7m-PNx" customClass="TagsInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="N3i-JU-t4m">
+                            <items>
+                                <tableRow identifier="TagController" id="bvi-a6-Zjx" customClass="TagController" customModule="SportAssistant_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="HBE-kX-TXc">
+                                        <items>
+                                            <label alignment="left" text="Label" id="b6n-NQ-zM8"/>
+                                            <label alignment="left" text="Label" id="Dwl-MZ-R8U">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                            </label>
+                                        </items>
+                                        <connections>
+                                            <segue destination="AgC-eL-Hgc" kind="push" identifier="RecordTrainingInterfaceController" id="v2q-Aj-gLz"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dateLabel" destination="Dwl-MZ-R8U" id="9fj-fc-XI3"/>
+                                        <outlet property="nameLabel" destination="b6n-NQ-zM8" id="HXt-yy-ibZ"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="N3i-JU-t4m" id="wEN-Ne-AMN"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-61" y="227"/>
         </scene>
         <!--Trainings-->
         <scene sceneID="Ydg-Ue-tWj">

@@ -11,6 +11,8 @@
 		78045FD51C26073700FEEB87 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD21C26073700FEEB87 /* TrainingViewController.swift */; };
 		78045FD61C26073700FEEB87 /* TrainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD31C26073700FEEB87 /* TrainingCell.swift */; };
 		78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD41C26073700FEEB87 /* TrainingsViewController.swift */; };
+		7807AC581C4EE96A00D2BCE5 /* TagsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807AC571C4EE96A00D2BCE5 /* TagsInterfaceController.swift */; };
+		7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807AC591C4EE9F500D2BCE5 /* TagController.swift */; };
 		780E49C81C4BC271004FBB7E /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
 		780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CC1C4C359A004FBB7E /* TagsViewController.swift */; };
 		780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CE1C4C35AC004FBB7E /* TagCell.swift */; };
@@ -193,6 +195,8 @@
 		78045FD21C26073700FEEB87 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		78045FD31C26073700FEEB87 /* TrainingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingCell.swift; sourceTree = "<group>"; };
 		78045FD41C26073700FEEB87 /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
+		7807AC571C4EE96A00D2BCE5 /* TagsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsInterfaceController.swift; sourceTree = "<group>"; };
+		7807AC591C4EE9F500D2BCE5 /* TagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
 		780E49CC1C4C359A004FBB7E /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 		780E49CE1C4C35AC004FBB7E /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		780E49D01C4C3DDC004FBB7E /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +326,15 @@
 				78045FD41C26073700FEEB87 /* TrainingsViewController.swift */,
 			);
 			path = Intervals;
+			sourceTree = "<group>";
+		};
+		7807AC561C4EE8F300D2BCE5 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				7807AC571C4EE96A00D2BCE5 /* TagsInterfaceController.swift */,
+				7807AC591C4EE9F500D2BCE5 /* TagController.swift */,
+			);
+			path = Tags;
 			sourceTree = "<group>";
 		};
 		780E49C91C4BC327004FBB7E /* Tags */ = {
@@ -483,14 +496,15 @@
 		788A51D01C15835600A166A0 /* SportAssistant WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7807AC561C4EE8F300D2BCE5 /* Tags */,
 				78C38DDD1C491567003CD041 /* Utils */,
-				78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */,
 				78159A371C39D00B001C8031 /* Resources */,
 				78E61E671C2C2ADF003C59F1 /* Synchronizer */,
 				78A2D1DF1C2C135400EEBDD7 /* History */,
 				7831F6351C21843D00A7CBB1 /* Training */,
 				784D25051C1F1806006491A0 /* Menu */,
 				788A51D51C15835600A166A0 /* ExtensionDelegate.swift */,
+				78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */,
 				788A51DB1C15835600A166A0 /* Info.plist */,
 				788A51D11C15835600A166A0 /* Supporting Files */,
 			);
@@ -531,7 +545,7 @@
 			children = (
 				78C38DDE1C491658003CD041 /* TimerLabel.swift */,
 			);
-			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		78E61E611C2C257B003C59F1 /* Synchronizer */ = {
@@ -908,6 +922,7 @@
 				78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */,
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
+				7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */,
 				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
 				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
 				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
@@ -922,6 +937,7 @@
 				78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */,
 				789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */,
 				7831F6381C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift in Sources */,
+				7807AC581C4EE96A00D2BCE5 /* TagsInterfaceController.swift in Sources */,
 				78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */,
 				784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */,
 				78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */,

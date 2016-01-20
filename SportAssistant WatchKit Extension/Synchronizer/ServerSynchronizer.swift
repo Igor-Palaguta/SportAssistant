@@ -65,23 +65,27 @@ final class ServerSynchronizer: NSObject {
 
    private lazy var bufferManager: DataBufferManager = DataBufferManager(delegate: self)
 
-   private lazy var session: WCSession? = {
-      if WCSession.isSupported() {
+   private var session: WCSession?
+
+   func start() {
+      if self.session == nil && WCSession.isSupported() {
          let session = WCSession.defaultSession()
          session.delegate = self
          session.activateSession()
-         return session
+         self.session = session
       }
-      return nil
-   }()
+   }
 
    private func sendPackage(package: Package) {
       let message = package.toMessage()
+      NSLog("sendPackage %@", message)
       self.session!.transferUserInfo(message)
    }
 
    func startTraining(training: Training) {
-      self.sendPackage(.Start(id: training.id, start: training.start))
+      self.sendPackage(.Start(id: training.id,
+         start: training.start,
+         tagId: training.tag?.id))
    }
 
    func stopTraining(training: Training) {
@@ -90,7 +94,10 @@ final class ServerSynchronizer: NSObject {
    }
 
    func synchronizeTraining(training: Training) {
-      self.sendPackage(.Synchronize(id: training.id, start: training.start, data: Array(training.data)))
+      self.sendPackage(.Synchronize(id: training.id,
+         start: training.start,
+         tagId: training.tag?.id,
+         data: Array(training.data)))
    }
 
    func sendData(data: [AccelerationData], forTraining training: Training) {
@@ -104,6 +111,27 @@ final class ServerSynchronizer: NSObject {
 
 extension ServerSynchronizer: WCSessionDelegate {
    func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?) {
+   }
+
+   func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+      let packages = applicationContext.flatMap {
+         name, arguments in
+         return Package(name: name, arguments: arguments)
+      }
+
+      if packages.isEmpty {
+         return
+      }
+
+      let historyController = HistoryController()
+      for package in packages {
+         switch package {
+         case .Tags(let tags):
+            historyController.assignTags(tags)
+         default:
+            fatalError()
+         }
+      }
    }
 }
 

@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
       }
 
-      let training = HistoryController.mainThreadController.addTrainingWithId(trainingId, start: start)
+      let training = HistoryController.mainThreadController.addTrainingWithId(trainingId, start: start, tagId: userInfo["tag"] as? String)
       self.showTraining(training)
       return true
    }

@@ -81,6 +81,7 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
    @IBOutlet private weak var dateLabel: UILabel!
    @IBOutlet private weak var durationLabel: UILabel!
    @IBOutlet private weak var bestLast: UILabel!
+   @IBOutlet private weak var tagLabel: UILabel!
    @IBOutlet private weak var progressView: ProgressView!
 
    private lazy var accelerationFont: UIFont = self.bestLast.font
@@ -90,6 +91,10 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
          if let training = self.training {
 
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
+
+            DynamicProperty(object: self.tagLabel, keyPath: "text") <~ DynamicProperty(object: training, keyPath: "tag.name").producer
+               .map { $0 as? String }
+               .takeUntil(reuseSignal)
 
             let activeSignal = DynamicProperty(object: HistoryController.mainThreadController, keyPath: "active")
                .producer

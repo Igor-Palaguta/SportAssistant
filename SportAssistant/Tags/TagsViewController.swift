@@ -9,19 +9,6 @@ class TagsViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      /*DynamicProperty(object: HistoryController.mainThreadController, keyPath: "tagsVersion")
-         .producer
-         .takeUntil(self.rac_willDeallocSignal().toVoidNoErrorSignalProducer())
-         .map { $0 as! Int }
-         .skip(1)
-         .skipRepeats()
-         .startWithNext {
-            [weak self] _ in
-            if let strongSelf = self {
-               strongSelf.tableView.reloadData()
-            }
-      }*/
-
       self.navigationItem.rightBarButtonItem = self.editButtonItem()
       self.tableView.tableFooterView = UIView()
    }
@@ -45,6 +32,7 @@ class TagsViewController: UITableViewController {
       if editingStyle == .Delete {
          let tag = self.tags[indexPath.row]
          HistoryController.mainThreadController.removeTag(tag)
+         ClientSynchronizer.defaultClient.synchronizeTags()
          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       }
    }
@@ -95,6 +83,7 @@ extension TagsViewController: TagViewControllerDelegate {
          guard let index = self.tags.indexOf(tag) else {
             return
          }
+         ClientSynchronizer.defaultClient.synchronizeTags()
          let indexPath = [NSIndexPath(forRow: index, inSection: 0)]
          if case .Add = operation {
             self.tableView.insertRowsAtIndexPaths(indexPath, withRowAnimation: .Fade)

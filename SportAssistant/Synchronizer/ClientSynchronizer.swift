@@ -15,6 +15,15 @@ final class ClientSynchronizer: NSObject {
          self.session = session
       }
    }
+
+   func synchronizeTags() {
+      let historyController = HistoryController()
+      let message = Package.Tags(Array(historyController.tags)).toMessage()
+      do {
+         try self.session?.updateApplicationContext(message)
+      } catch {
+      }
+   }
 }
 
 extension ClientSynchronizer: WCSessionDelegate {
@@ -23,6 +32,9 @@ extension ClientSynchronizer: WCSessionDelegate {
    }
 
    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+
+      NSLog("didReceiveUserInfo %@", userInfo)
+
       let packages = userInfo.flatMap {
          name, arguments in
          return Package(name: name, arguments: arguments)
@@ -35,14 +47,14 @@ extension ClientSynchronizer: WCSessionDelegate {
       let historyController = HistoryController()
       for package in packages {
          switch package {
-         case .Start(let id, let start):
-            historyController.addTrainingWithId(id, start: start, activate: true)
+         case .Start(let id, let start, let tagId):
+            historyController.addTrainingWithId(id, start: start, tagId: tagId, activate: true)
          case .Stop(let id):
             if let training = historyController[id] {
                historyController.deactivateTraining(training)
             }
-         case .Synchronize(let id, let start, let data):
-            historyController.synchronizeTrainingWithId(id, start: start, data: data)
+         case .Synchronize(let id, let start, let tagId, let data):
+            historyController.synchronizeTrainingWithId(id, start: start, tagId: tagId, data: data)
          case .Delete(let id):
             if let training = historyController[id] {
                historyController.deleteTraining(training)
@@ -54,6 +66,8 @@ extension ClientSynchronizer: WCSessionDelegate {
                      let newData = data[training.currentCount-index..<data.count]
                      historyController.appendDataFromArray(newData, toTraining: training)
             }
+         case .Tags(_):
+            fatalError()
          }
       }
    }

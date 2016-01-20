@@ -13,12 +13,12 @@ private class Session: NSObject {
    let workoutSession: HKWorkoutSession
    let healthStore: HKHealthStore
 
-   init(healthStore: HKHealthStore) {
-      let training = HistoryController.mainThreadController.createTraining()
+   init(context: TrainingContext) {
+      let training = HistoryController.mainThreadController.createTraining(context.tag)
       self.training = training
       self.accelerometer = Accelerometer()
       self.accelerometer.start()
-      self.healthStore = healthStore
+      self.healthStore = context.healthStore
       self.workoutSession = HKWorkoutSession(activityType: .TableTennis, locationType: .Indoor)
       super.init()
       self.workoutSession.delegate = self
@@ -42,6 +42,16 @@ extension Session: HKWorkoutSessionDelegate {
    }
 }
 
+final class TrainingContext {
+   let healthStore: HKHealthStore
+   let tag: Tag?
+
+   init(healthStore: HKHealthStore, tag: Tag? = nil) {
+      self.healthStore = healthStore
+      self.tag = tag
+   }
+}
+
 final class RecordTrainingInterfaceController: WKInterfaceController {
 
    @IBOutlet weak var bestLabel: WKInterfaceLabel!
@@ -50,7 +60,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
    @IBOutlet weak var startButton: WKInterfaceButton!
 
    private var recordSession: Session?
-   private var healthStore: HKHealthStore?
+   private var context: TrainingContext!
 
    private func stopRecording() {
       if let recordSession = self.recordSession {
@@ -83,17 +93,21 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
          self.lastLabel.setText("-")
 
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(0))
-         self.bestLabel.setTextColor(UIColor.whiteColor())
+         self.bestLabel.setTextColor(.whiteColor())
 
-         let recordSession = Session(healthStore: self.healthStore!)
+         let recordSession = Session(context: self.context)
          recordSession.accelerometer.delegate = self
          self.recordSession = recordSession
          ServerSynchronizer.defaultServer.startTraining(recordSession.training)
          self.durationLabel.start(recordSession.training.start)
 
+         var userInfo = ["id": recordSession.training.id, "start": recordSession.training.start]
+         if let tag = recordSession.training.tag {
+            userInfo["tag"] = tag.id
+         }
+
          self.updateUserActivity("com.spangleapp.Test.watchkitapp.watchkitextension.Training",
-            userInfo: ["id": recordSession.training.id,
-               "start": recordSession.training.start],
+            userInfo: userInfo,
             webpageURL: nil)
 
          self.animateWithDuration(0.3) {
@@ -156,7 +170,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)
 
-      self.healthStore = context as? HKHealthStore
+      self.context = context as! TrainingContext
 
       self.startRecording()
    }

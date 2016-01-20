@@ -65,7 +65,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W12-1G-TTb">
-                                            <rect key="frame" x="75.5" y="10" width="42" height="20.5"/>
+                                            <rect key="frame" x="75" y="10" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -77,13 +77,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="best" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QD-hP-etj">
-                                            <rect key="frame" x="38.5" y="13.5" width="27" height="16"/>
+                                            <rect key="frame" x="38" y="13" width="27" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRK-Yp-cmU">
-                                            <rect key="frame" x="75.5" y="40.5" width="42" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRK-Yp-cmU">
+                                            <rect key="frame" x="75" y="40" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -107,11 +107,19 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaI-40-We0">
+                                            <rect key="frame" x="339" y="40" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="VRK-Yp-cmU" firstAttribute="leading" secondItem="W12-1G-TTb" secondAttribute="leading" id="30m-o5-FIU"/>
                                         <constraint firstItem="LeY-sH-Rdi" firstAttribute="leading" secondItem="2IG-yS-SDx" secondAttribute="leading" constant="5" id="3yK-6S-1qi"/>
                                         <constraint firstItem="W12-1G-TTb" firstAttribute="centerY" secondItem="2IG-yS-SDx" secondAttribute="centerY" id="E2M-hT-qYZ"/>
+                                        <constraint firstItem="aaI-40-We0" firstAttribute="baseline" secondItem="VRK-Yp-cmU" secondAttribute="baseline" id="Ipt-it-U8A"/>
+                                        <constraint firstAttribute="trailing" secondItem="aaI-40-We0" secondAttribute="trailing" id="Isn-Fr-kxh"/>
                                         <constraint firstAttribute="trailing" secondItem="sHf-OD-UEm" secondAttribute="trailing" id="Krr-N4-czy"/>
                                         <constraint firstItem="VRK-Yp-cmU" firstAttribute="baseline" secondItem="Wqj-JT-gaJ" secondAttribute="baseline" id="OuW-NJ-JXD"/>
                                         <constraint firstItem="W12-1G-TTb" firstAttribute="leading" secondItem="7QD-hP-etj" secondAttribute="trailing" constant="10" id="Rya-IT-Qa8"/>
@@ -139,6 +147,7 @@
                                     <outlet property="dateLabel" destination="sHf-OD-UEm" id="rzj-fu-DWz"/>
                                     <outlet property="durationLabel" destination="VRK-Yp-cmU" id="8IY-Kc-pUB"/>
                                     <outlet property="progressView" destination="LeY-sH-Rdi" id="dnX-uG-Rr9"/>
+                                    <outlet property="tagLabel" destination="aaI-40-We0" id="Rva-i5-L4Z"/>
                                     <segue destination="3eW-Fv-zfJ" kind="push" id="x6p-39-Khj"/>
                                 </connections>
                             </tableViewCell>
