@@ -123,11 +123,11 @@ extension ServerSynchronizer: WCSessionDelegate {
          return
       }
 
-      let historyController = HistoryController()
+      let storage = StorageController()
       for package in packages {
          switch package {
          case .Tags(let tags):
-            historyController.assignTags(tags)
+            storage.assignTags(tags)
          default:
             fatalError()
          }

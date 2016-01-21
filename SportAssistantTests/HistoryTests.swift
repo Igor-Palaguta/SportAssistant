@@ -37,36 +37,36 @@ class HistoryTests: XCTestCase {
    }
 
    func testHistory() {
-      let historyController = HistoryController()
-      XCTAssertTrue(historyController.version == 0)
+      let storage = StorageController()
+      XCTAssertTrue(storage.version == 0)
 
-      let training1 = historyController.createTraining()
-      XCTAssertTrue(historyController.trainings.count == 1)
-      XCTAssertTrue(historyController.version == 1)
-      XCTAssertTrue(historyController.active == training1)
+      let training1 = storage.createTraining()
+      XCTAssertTrue(storage.trainings.count == 1)
+      XCTAssertTrue(storage.version == 1)
+      XCTAssertTrue(storage.active == training1)
 
-      let training2 = historyController.createTraining()
-      XCTAssertTrue(historyController.active == training1)
+      let training2 = storage.createTraining()
+      XCTAssertTrue(storage.active == training1)
 
-      historyController.deactivateTraining(training2)
-      XCTAssertTrue(historyController.active == training1)
+      storage.deactivateTraining(training2)
+      XCTAssertTrue(storage.active == training1)
 
-      historyController.deactivateTraining(training1)
-      XCTAssertTrue(historyController.active == nil)
+      storage.deactivateTraining(training1)
+      XCTAssertTrue(storage.active == nil)
 
       let data1 = AccelerationData(x: 1, y: 2, z: 3, timestamp: 0)
       let data2 = AccelerationData(x: 3, y: 4, z: 12, timestamp: 0)
-      historyController.addData([data1, data2], toTraining: training1)
+      storage.addData([data1, data2], toTraining: training1)
 
       XCTAssertTrue(training1.currentCount == 2)
 
       let data3 = AccelerationData(x: 3, y: 5, z: 11, timestamp: 0)
       let data4 = AccelerationData(x: 3, y: 6, z: 10, timestamp: 0)
-      historyController.addData([data3, data4], toTraining: training1)
+      storage.addData([data3, data4], toTraining: training1)
 
       XCTAssertTrue(training1.data.count == 4)
       XCTAssertTrue(training1.currentCount == 4)
       XCTAssertTrue(training1.best == 13)
-      XCTAssertTrue(historyController.best == 13)
+      XCTAssertTrue(storage.best == 13)
    }
 }

@@ -7,3 +7,5 @@
 "Ascending" = "↑";
 "Descending" = "↓";
 "Other" = "Other";
+"BestFormat" = "Best: %@";
+"LastFormat" = "Last: %@";

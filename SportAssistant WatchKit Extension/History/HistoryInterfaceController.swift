@@ -66,8 +66,8 @@ final class HistoryInterfaceController: WKInterfaceController {
    private let pageSize = 5
 
    private func reloadData() {
-      let historyController = HistoryController.mainThreadController
-      let trainings = historyController.trainingsOrderedBy(self.ordering.orderBy, ascending: self.ordering.ascending)
+      let storage = StorageController.UIController
+      let trainings = storage.trainingsOrderedBy(self.ordering.orderBy, ascending: self.ordering.ascending)
 
       let currentPageSize = min(trainings.count, self.pageSize)
       self.table.setNumberOfRows(currentPageSize, withRowType: String(TrainingController.self))
@@ -147,9 +147,9 @@ final class HistoryInterfaceController: WKInterfaceController {
 
 extension HistoryInterfaceController: TrainingInterfaceControllerDelegate {
    func deleteTrainingInterfaceController(controller: TrainingInterfaceController) {
-      let historyController = HistoryController.mainThreadController
+      let storage = StorageController.UIController
       self.removedIndex = self.trainings!.indexOf(controller.training)
-      historyController.deleteTraining(controller.training)
+      storage.deleteTraining(controller.training)
       controller.dismissController()
    }
 }

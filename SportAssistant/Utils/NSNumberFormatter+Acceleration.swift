@@ -8,6 +8,12 @@ private let _accelerationFormatter: NSNumberFormatter = {
    return formatter
 }()
 
+extension Double {
+   func formattedAcceleration() -> String {
+      return NSNumberFormatter.stringForAcceleration(self)
+   }
+}
+
 extension NSNumberFormatter {
    static var accelerationFormatter: NSNumberFormatter {
       return _accelerationFormatter

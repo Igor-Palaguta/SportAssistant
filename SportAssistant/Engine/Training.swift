@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class Training: Object {
+final class Training: Object {
    private(set) dynamic var id = NSUUID().UUIDString
    private(set) dynamic var best: Double = 0
    private(set) dynamic var start = NSDate()

@@ -29,7 +29,7 @@ final class TrainingController: NSObject {
 
          let attributedAcceleration = NSNumberFormatter.attributedStringForAcceleration(self.training.best, integralFont: UIFont.systemFontOfSize(30))
          self.resultLabel.setAttributedText(attributedAcceleration)
-         let isRecord = self.training.best == HistoryController.mainThreadController.best
+         let isRecord = self.training.best == StorageController.UIController.best
 
          let resultColor = isRecord
             ? UIColor(named: .Record)

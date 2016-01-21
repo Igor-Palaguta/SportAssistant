@@ -4,18 +4,24 @@ import RealmSwift
 
 final class TrainingsViewController: UITableViewController {
 
+   var trainingsCollection: TrainingsCollection!
+
    @IBOutlet weak private var bestLabel: UILabel!
 
-   private var trainings: Results<Training> {
-      return HistoryController.mainThreadController.trainingsOrderedBy(.Date, ascending: false)
-   }
+   private lazy var trainings: Results<Training> = {
+      return self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
+   }()
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
+      if self.trainingsCollection == nil {
+         self.trainingsCollection = StorageController.UIController.history
+      }
+
       let integralFont = self.bestLabel.font
       DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
-         DynamicProperty(object: HistoryController.mainThreadController, keyPath: "best")
+         DynamicProperty(object: self.trainingsCollection, keyPath: "best")
             .producer
             .map { $0 as! Double }
             .map {
@@ -23,7 +29,7 @@ final class TrainingsViewController: UITableViewController {
                return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
       }
 
-      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "version")
+      DynamicProperty(object: self.trainingsCollection, keyPath: "version")
          .producer
          .takeUntil(self.rac_willDeallocSignal().toVoidNoErrorSignalProducer())
          .map { $0 as! Int }
@@ -62,7 +68,7 @@ final class TrainingsViewController: UITableViewController {
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
          _, indexPath in
          let training = self.trainings[indexPath.row]
-         HistoryController.mainThreadController.deleteTraining(training)
+         StorageController.UIController.deleteTraining(training)
       }
 
       return [deleteAction];
@@ -70,9 +76,9 @@ final class TrainingsViewController: UITableViewController {
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let trainingViewController = segue.destinationViewController as? TrainingViewController,
-      cell = sender as? UITableViewCell,
-      index = self.tableView.indexPathForCell(cell) {
-         trainingViewController.training = self.trainings[index.row]
+         cell = sender as? UITableViewCell,
+         index = self.tableView.indexPathForCell(cell) {
+            trainingViewController.training = self.trainings[index.row]
       }
    }
 }

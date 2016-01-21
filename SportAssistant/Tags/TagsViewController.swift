@@ -4,7 +4,7 @@ import ReactiveCocoa
 
 class TagsViewController: UITableViewController {
 
-   private lazy var tags = HistoryController.mainThreadController.tags
+   private lazy var tags = StorageController.UIController.tags
 
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -31,44 +31,34 @@ class TagsViewController: UITableViewController {
    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
       if editingStyle == .Delete {
          let tag = self.tags[indexPath.row]
-         HistoryController.mainThreadController.removeTag(tag)
+         StorageController.UIController.removeTag(tag)
          ClientSynchronizer.defaultClient.synchronizeTags()
          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       }
    }
 
-   /*
-   // Override to support rearranging the table view.
-   override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-   }
-   */
-
-   //override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-   //   return true
-   //}
-
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      let tag = self.tags[indexPath.row]
       if self.editing {
-         let tag = self.tags[indexPath.row]
          self.performSegue(StoryboardSegue.Main.Edit, sender: tag)
+      } else {
+         self.performSegue(StoryboardSegue.Main.Trainings, sender: tag)
       }
    }
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      guard let tagController = segue.destinationViewController as? TagViewController else {
-         return
-      }
-
-      if let tag = sender as? Tag where segue.identifier == StoryboardSegue.Main.Edit.rawValue {
-         tagController.operation = .Edit(tag)
-      } else if segue.identifier == StoryboardSegue.Main.Add.rawValue {
+      if let tag = sender as? Tag {
+         if let tagController = segue.destinationViewController as? TagViewController {
+            tagController.operation = .Edit(tag)
+            tagController.delegate = self
+         } else if let trainingsController = segue.destinationViewController as? TrainingsViewController {
+            trainingsController.title = tag.name
+            trainingsController.trainingsCollection = tag
+         }
+      } else if let tagController = segue.destinationViewController as? TagViewController {
          tagController.operation = .Add
-      } else {
-         fatalError()
+         tagController.delegate = self
       }
-
-      tagController.delegate = self
    }
 }
 

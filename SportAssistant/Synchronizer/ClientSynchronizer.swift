@@ -17,8 +17,8 @@ final class ClientSynchronizer: NSObject {
    }
 
    func synchronizeTags() {
-      let historyController = HistoryController()
-      let message = Package.Tags(Array(historyController.tags)).toMessage()
+      let storage = StorageController()
+      let message = Package.Tags(Array(storage.tags)).toMessage()
       do {
          try self.session?.updateApplicationContext(message)
       } catch {
@@ -44,27 +44,27 @@ extension ClientSynchronizer: WCSessionDelegate {
          return
       }
 
-      let historyController = HistoryController()
+      let storage = StorageController()
       for package in packages {
          switch package {
          case .Start(let id, let start, let tagId):
-            historyController.addTrainingWithId(id, start: start, tagId: tagId, activate: true)
+            storage.addTrainingWithId(id, start: start, tagId: tagId, activate: true)
          case .Stop(let id):
-            if let training = historyController[id] {
-               historyController.deactivateTraining(training)
+            if let training = storage[id] {
+               storage.deactivateTraining(training)
             }
          case .Synchronize(let id, let start, let tagId, let data):
-            historyController.synchronizeTrainingWithId(id, start: start, tagId: tagId, data: data)
+            storage.synchronizeTrainingWithId(id, start: start, tagId: tagId, data: data)
          case .Delete(let id):
-            if let training = historyController[id] {
-               historyController.deleteTraining(training)
+            if let training = storage[id] {
+               storage.deleteTraining(training)
             }
          case .Data(let id, let index, let data):
-            if let training = historyController[id]
+            if let training = storage[id]
                where (training.currentCount < index + data.count)
                   && (training.currentCount >= index) {
                      let newData = data[training.currentCount-index..<data.count]
-                     historyController.appendDataFromArray(newData, toTraining: training)
+                     storage.appendDataFromArray(newData, toTraining: training)
             }
          case .Tags(_):
             fatalError()

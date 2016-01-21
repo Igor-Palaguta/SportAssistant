@@ -54,19 +54,25 @@
                         <table alignment="left" id="N3i-JU-t4m">
                             <items>
                                 <tableRow identifier="TagController" id="bvi-a6-Zjx" customClass="TagController" customModule="SportAssistant_WatchKit_Extension">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="HBE-kX-TXc">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="HBE-kX-TXc">
                                         <items>
                                             <label alignment="left" text="Label" id="b6n-NQ-zM8"/>
-                                            <label alignment="left" text="Label" id="Dwl-MZ-R8U">
+                                            <label alignment="left" text="Best: 12.3" id="GJC-tZ-FjD">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                            </label>
+                                            <label alignment="left" text="Last: 12.07.1985" id="Dwl-MZ-R8U">
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="font" type="system" pointSize="12"/>
                                             </label>
                                         </items>
+                                        <edgeInsets key="margins" left="5" right="5" top="5" bottom="5"/>
                                         <connections>
                                             <segue destination="AgC-eL-Hgc" kind="push" identifier="RecordTrainingInterfaceController" id="v2q-Aj-gLz"/>
                                         </connections>
                                     </group>
                                     <connections>
+                                        <outlet property="bestLabel" destination="GJC-tZ-FjD" id="WgZ-9B-MXq"/>
                                         <outlet property="dateLabel" destination="Dwl-MZ-R8U" id="9fj-fc-XI3"/>
                                         <outlet property="nameLabel" destination="b6n-NQ-zM8" id="HXt-yy-ibZ"/>
                                     </connections>

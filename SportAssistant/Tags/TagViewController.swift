@@ -22,14 +22,14 @@ enum TagOperation {
    }
 
    private func processWithName(name: String) -> Tag {
-      let historyController = HistoryController.mainThreadController
+      let storage = StorageController.UIController
       switch self {
       case .Add:
          let tag = Tag(name: name)
-         historyController.addTag(tag)
+         storage.addTag(tag)
          return tag
       case .Edit(let tag):
-         historyController.editTag(tag, name: name)
+         storage.editTag(tag, name: name)
          return tag
       }
    }

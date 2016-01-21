@@ -76,6 +76,12 @@
 		78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */; };
 		78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C38DDE1C491658003CD041 /* TimerLabel.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
+		78DB531C1C50232100DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
+		78DB531E1C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
+		78DB531F1C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
+		78DB53201C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
+		78DB53211C50237500DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
+		78DB53221C50237600DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
 		78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; };
 		78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78E51D0D1C2AA77700E5D26B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; };
@@ -254,6 +260,8 @@
 		78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
 		78C38DDE1C491658003CD041 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsCollection.swift; sourceTree = "<group>"; };
+		78DB531D1C50235400DDF7E3 /* StorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		78E51D031C2AA77700E5D26B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		78E51D051C2AA77700E5D26B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
@@ -574,6 +582,8 @@
 				78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */,
 				784090911C2D84A4003DF043 /* Activity.swift */,
 				78317C731C4ADC8A002DD2AA /* Tag.swift */,
+				78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */,
+				78DB531D1C50235400DDF7E3 /* StorageController.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -862,6 +872,7 @@
 				78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */,
 				78045FD51C26073700FEEB87 /* TrainingViewController.swift in Sources */,
 				789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */,
+				78DB531C1C50232100DDF7E3 /* TrainingsCollection.swift in Sources */,
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,
 				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
@@ -875,6 +886,7 @@
 				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,
 				784090901C2D81C0003DF043 /* Analyzer.swift in Sources */,
 				780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */,
+				78DB531E1C50235400DDF7E3 /* StorageController.swift in Sources */,
 				780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */,
 				789DE8F11C27571400B8CA98 /* History.swift in Sources */,
 				78E61E631C2C2597003C59F1 /* Package.swift in Sources */,
@@ -893,6 +905,7 @@
 				78176C651C37183800EB2638 /* AccelerationData.swift in Sources */,
 				788A51AE1C15835600A166A0 /* SportAssistantTests.swift in Sources */,
 				78176C671C37183E00EB2638 /* History.swift in Sources */,
+				78DB53211C50237500DDF7E3 /* TrainingsCollection.swift in Sources */,
 				78176C661C37183E00EB2638 /* Training.swift in Sources */,
 				784090941C2F2A54003DF043 /* AnalyzerTests.swift in Sources */,
 				78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */,
@@ -901,6 +914,7 @@
 				78176C681C37183E00EB2638 /* Activity.swift in Sources */,
 				78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */,
 				78176C641C37167700EB2638 /* Analyzer.swift in Sources */,
+				78DB531F1C50235400DDF7E3 /* StorageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,7 +933,9 @@
 				784846711C387A50009E4CDD /* ChartInterfaceController.swift in Sources */,
 				78E51D231C2ACB5A00E5D26B /* History.swift in Sources */,
 				784846681C386D92009E4CDD /* TrainingInterfaceController.swift in Sources */,
+				78DB53201C50235400DDF7E3 /* StorageController.swift in Sources */,
 				78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */,
+				78DB53221C50237600DDF7E3 /* TrainingsCollection.swift in Sources */,
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
 				7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */,

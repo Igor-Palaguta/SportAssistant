@@ -14,7 +14,7 @@ private class Session: NSObject {
    let healthStore: HKHealthStore
 
    init(context: TrainingContext) {
-      let training = HistoryController.mainThreadController.createTraining(context.tag)
+      let training = StorageController.UIController.createTraining(context.tag)
       self.training = training
       self.accelerometer = Accelerometer()
       self.accelerometer.start()
@@ -136,7 +136,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
 
       self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(total))
 
-      if total < HistoryController.mainThreadController.best {
+      if total < StorageController.UIController.best {
          return
       }
 
@@ -171,6 +171,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
       super.awakeWithContext(context)
 
       self.context = context as! TrainingContext
+      self.setTitle(self.context.tag?.name ?? tr(.Other))
 
       self.startRecording()
    }
@@ -204,10 +205,10 @@ extension RecordTrainingInterfaceController: AccelerometerDelegate {
          duration: accelerationData.timestamp,
          playHaptic: true)
 
-      HistoryController.mainThreadController.appendDataFromArray([accelerationData], toTraining: recordSession.training)
+      StorageController.UIController.appendDataFromArray([accelerationData], toTraining: recordSession.training)
 
       if let peak = result.peak {
-         HistoryController.mainThreadController.addActivityWithName(peak.attributes.description,
+         StorageController.UIController.addActivityWithName(peak.attributes.description,
             toData: peak.data)
       }
 

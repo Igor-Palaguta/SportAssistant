@@ -309,7 +309,7 @@ final class TrainingViewController: UIViewController {
 
       self.chartView.legend.position = .BelowChartCenter
 
-      let best = HistoryController.mainThreadController.best
+      let best = StorageController.UIController.best
 
       let bestLine = ChartLimitLine(limit: best, label: tr(.AccelerationRecord))
 
@@ -323,7 +323,7 @@ final class TrainingViewController: UIViewController {
 
       self.chartView.marker = BalloonMarker(color: .lightGrayColor(), font: UIFont.systemFontOfSize(12))
 
-      DynamicProperty(object: HistoryController.mainThreadController, keyPath: "best")
+      DynamicProperty(object: StorageController.UIController, keyPath: "best")
          .producer
          .map { $0 as! Double }
          .skipRepeats()

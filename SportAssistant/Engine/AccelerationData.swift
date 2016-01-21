@@ -8,7 +8,7 @@ enum AccelerationDataField: String {
    case total
 }
 
-class AccelerationData: Object {
+final class AccelerationData: Object {
    private(set) dynamic var timestamp: Double = 0
    private(set) dynamic var x: Double = 0
    private(set) dynamic var y: Double = 0

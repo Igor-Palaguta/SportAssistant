@@ -14,7 +14,7 @@ final class TrainingInterfaceController: WKInterfaceController {
          self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(training.best))
          self.durationLabel.setDuration(training.duration)
          self.countLabel.setText(training.activities.count.description)
-         if training.best == HistoryController.mainThreadController.best {
+         if training.best == StorageController.UIController.best {
             self.bestLabel.setTextColor(UIColor(named: .Record))
          }
       }

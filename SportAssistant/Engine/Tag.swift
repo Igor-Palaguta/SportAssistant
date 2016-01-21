@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class Tag: Object {
+final class Tag: TrainingsCollection {
 
    private(set) dynamic var id = NSUUID().UUIDString
    dynamic var name = ""

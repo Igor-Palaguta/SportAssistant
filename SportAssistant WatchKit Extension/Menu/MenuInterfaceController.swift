@@ -47,8 +47,8 @@ class MenuInterfaceController: WKInterfaceController {
    }
 
    private func reloadData() {
-      let historyController = HistoryController.mainThreadController
-      self.trainingsButton.setTitle(tr(.TrainingsCountFormat(historyController.trainings.count)))
-      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(historyController.best))
+      let storage = StorageController.UIController
+      self.trainingsButton.setTitle(tr(.TrainingsCountFormat(storage.trainingsCount)))
+      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(storage.best))
    }
 }

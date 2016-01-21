@@ -9,14 +9,10 @@ final class TagsInterfaceController: WKInterfaceController {
 
    private var healthStore: HKHealthStore!
 
-   private lazy var tags: [Tag] = {
-      return Array(HistoryController.mainThreadController.tags)
-   }()
+   private var tags: [Tag]!
 
-   override func awakeWithContext(context: AnyObject?) {
-      super.awakeWithContext(context)
-
-      self.healthStore = context as! HKHealthStore
+   private func reloadData() {
+      self.tags = Array(StorageController.UIController.tags)
 
       self.table.setNumberOfRows(self.tags.count + 1, withRowType: String(TagController.self))
 
@@ -27,6 +23,19 @@ final class TagsInterfaceController: WKInterfaceController {
       let otherRow = self.table.rowControllerAtIndex(self.tags.count) as! TagController
       otherRow.nameLabel.setText(tr(.Other))
       otherRow.dateLabel.setText(nil)
+      otherRow.bestLabel.setText(nil)
+   }
+
+   override func awakeWithContext(context: AnyObject?) {
+      super.awakeWithContext(context)
+
+      self.healthStore = context as! HKHealthStore
+   }
+
+   override func didAppear() {
+      super.didAppear()
+
+      self.reloadData()
    }
 
    override func willActivate() {

@@ -96,7 +96,7 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
                .map { $0 as? String }
                .takeUntil(reuseSignal)
 
-            let activeSignal = DynamicProperty(object: HistoryController.mainThreadController, keyPath: "active")
+            let activeSignal = DynamicProperty(object: StorageController.UIController, keyPath: "active")
                .producer
                .map { $0 as? Training }
                .map {
