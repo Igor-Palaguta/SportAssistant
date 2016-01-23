@@ -1,24 +1,149 @@
 import UIKit
 
+private extension Array where Element: Equatable {
+   func arrayByTogglingElement(element: Element) -> [Element] {
+      var result: [Element] = self
+      if let index = self.indexOf(element) {
+         result.removeAtIndex(index)
+      } else {
+         result.append(element)
+      }
+      return result
+   }
+
+   func arrayByRemovingElement(element: Element) -> [Element] {
+      if let index = self.indexOf(element) {
+         var result: [Element] = self
+         result.removeAtIndex(index)
+         return result
+      }
+      return self
+   }
+}
+
+enum TagsFilter {
+   case All
+   case Selected([Tag])
+
+   private var tags: [Tag] {
+      switch self {
+      case .All:
+         return Array(StorageController.UIController.tags)
+      case .Selected(let tags):
+         return tags
+      }
+   }
+}
+
 final class TagsViewController: UITableViewController {
 
-   enum SelectionStyle {
-      case Single(Tag)
-      case Multiple([Tag])
+   enum Style {
+      case Single
+      case Multiple
+   }
+
+   enum Restrictions {
+      case EmptyAllowed
+      case EmptyNotAllowed
    }
 
    enum Mode {
       case Navigator
-      case Picker(TrainingFilter/*, Bool*/)
+      case Picker(TagsFilter, Style, Restrictions)
 
-      private func accessoryForTag(tag: Tag?) -> UITableViewCellAccessoryType {
+      private func accessoryForAll() -> UITableViewCellAccessoryType {
          switch self {
          case Navigator:
             return .DisclosureIndicator
-         case Picker(.All/*, _*/):
-            return tag == nil ? .Checkmark : .None
-         case Picker(.SelectedTag(let selectedTag)):
-            return selectedTag == tag ? .Checkmark : .None
+         case Picker(.All, _, _):
+            return .Checkmark
+         default:
+            return .None
+         }
+      }
+
+      private func isSelectedTag(tag: Tag) -> Bool {
+         switch self {
+         case Navigator:
+            fatalError()
+         case Picker(.All, let style, _):
+            return style == .Multiple
+         case Picker(.Selected(let tags), _, _):
+            return tags.contains(tag)
+         }
+      }
+
+      private func accessoryForTag(tag: Tag) -> UITableViewCellAccessoryType {
+         switch self {
+         case Navigator:
+            return .DisclosureIndicator
+         case Picker(_):
+            return self.isSelectedTag(tag) ? .Checkmark : .None
+         }
+      }
+
+      private func modeWithFilter(filter: TagsFilter) -> Mode {
+         guard case Picker(_, let style, let restrictions) = self else {
+            fatalError()
+         }
+
+         if case .Selected(let selectedTags) = filter where selectedTags.count == TagsFilter.All.tags.count {
+            return Picker(.All, style, restrictions)
+         }
+
+         return Picker(filter, style, restrictions)
+      }
+
+      private var tags: [Tag] {
+         switch self {
+         case Navigator:
+            fatalError()
+         case Picker(let filter, _, _):
+            return filter.tags
+         }
+      }
+
+      private func modeByTogglingTag(tag: Tag) -> Mode {
+         switch self {
+         case Navigator:
+            return self
+         case Picker(_, .Multiple, .EmptyNotAllowed):
+            let newTags = self.tags.arrayByTogglingElement(tag)
+            return newTags.isEmpty ? self : self.modeWithFilter(.Selected(newTags))
+         case Picker(_, .Multiple, .EmptyAllowed):
+            let newTags = self.tags.arrayByTogglingElement(tag)
+            return self.modeWithFilter(.Selected(newTags))
+         case Picker(.All, .Single, _):
+            return self.modeWithFilter(.Selected([tag]))
+         case Picker(.Selected(let tags), .Single, .EmptyAllowed):
+            if let selectedTag = tags.first where selectedTag == tag {
+               return self.modeWithFilter(.Selected([]))
+            } else {
+               return self.modeWithFilter(.Selected([tag]))
+            }
+         case Picker(.Selected(let tags), .Single, .EmptyNotAllowed):
+            if let selectedTag = tags.first where selectedTag == tag {
+               return self
+            } else {
+               return self.modeWithFilter(.Selected([tag]))
+            }
+         default:
+            fatalError()
+         }
+      }
+
+      private func modeByTogglingAll() -> Mode {
+         switch self {
+         case Navigator:
+            fatalError()
+         case Picker(.All, _, .EmptyNotAllowed):
+            return self
+         case Picker(.All, _, .EmptyAllowed):
+            return self.modeWithFilter(.Selected([]))
+         case Picker(.Selected(_), _, _):
+            return self.modeWithFilter(.All)
+         default:
+            fatalError()
          }
       }
    }
@@ -85,21 +210,28 @@ final class TagsViewController: UITableViewController {
    }
 
    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      if let action = self.actionAtIndexPath(indexPath) where action == .Add {
+      let action = self.actionAtIndexPath(indexPath)
+      if let action = action where action == .Add {
          let addCell: AddTagCell = tableView.dequeueCellForIndexPath(indexPath)
          return addCell
       }
 
       let cell: TagCell = tableView.dequeueCellForIndexPath(indexPath)
-      let tag = self.tagAtIndexPath(indexPath)
-      cell.nameLabel.text = tag?.name ?? tr(.AllTrainings)
-      cell.accessoryType = self.mode.accessoryForTag(tag)
+      if let action = action where action == .SelectAll {
+         cell.nameLabel.text = tr(.AllTrainings)
+         cell.accessoryType = self.mode.accessoryForAll()
+      } else if let tag = self.tagAtIndexPath(indexPath) {
+         cell.nameLabel.text = tag.name
+         cell.accessoryType = self.mode.accessoryForTag(tag)
+      } else {
+         fatalError()
+      }
 
       return cell
    }
 
    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return indexPath.row >= self.actions.count
+      return self.tagAtIndexPath(indexPath) != nil
    }
 
    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -111,6 +243,10 @@ final class TagsViewController: UITableViewController {
       let editAction = UITableViewRowAction(style: .Normal, title: tr(.Edit)) {
          _, indexPath in
          self.performSegue(StoryboardSegue.Main.Edit, sender: tag)
+      }
+
+      if self.mode.isSelectedTag(tag) {
+         return [editAction]
       }
 
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
@@ -128,27 +264,21 @@ final class TagsViewController: UITableViewController {
          self.performSegue(StoryboardSegue.Main.Add, sender: nil)
       } else if case .Navigator = self.mode {
          self.performSegue(StoryboardSegue.Main.Trainings, sender: self.tagAtIndexPath(indexPath))
-      } else if let action = self.actionAtIndexPath(indexPath) where action == .Add {
-         self.mode = .Picker(.All)
+      } else if let action = self.actionAtIndexPath(indexPath) where action == .SelectAll {
+         self.mode = self.mode.modeByTogglingAll()
       } else if let tag = self.tagAtIndexPath(indexPath) {
-         self.mode = .Picker(.SelectedTag(tag))
+         self.mode = self.mode.modeByTogglingTag(tag)
       }
    }
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      let tag = sender as? Tag
-      if let trainingsController = segue.destinationViewController as? TrainingsViewController {
-         trainingsController.filter = tag.map { .SelectedTag($0) } ?? .All
-         return
-      }
-
       guard let tagController = segue.destinationViewController as? TagViewController else {
          return
       }
 
       tagController.delegate = self
 
-      if let tag = tag {
+      if let tag = sender as? Tag {
          tagController.operation = .Edit(tag)
       } else {
          tagController.operation = .Add
@@ -161,6 +291,10 @@ final class TagsViewController: UITableViewController {
 }
 
 extension TagsViewController: TagViewControllerDelegate {
+
+   func didCancelTagViewController(controller: TagViewController) {
+      self.navigationController?.popViewControllerAnimated(true)
+   }
 
    func tagViewController(controller: TagViewController,
       didCompleteOperation operation: TagOperation,

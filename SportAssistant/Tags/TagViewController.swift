@@ -36,6 +36,7 @@ enum TagOperation {
 }
 
 protocol TagViewControllerDelegate: class {
+   func didCancelTagViewController(controller: TagViewController)
    func tagViewController(controller: TagViewController, didCompleteOperation operation: TagOperation, withTag tag: Tag)
 }
 
@@ -53,7 +54,13 @@ class TagViewController: UITableViewController {
       self.title = self.operation.title
       self.nameField.text = self.operation.name
 
-      let saveItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("doneAction:"))
+      self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel,
+         target: self,
+         action: Selector("cancelAction:"))
+
+      let saveItem = UIBarButtonItem(barButtonSystemItem: .Done,
+         target: self,
+         action: Selector("doneAction:"))
       DynamicProperty(object: saveItem, keyPath: "enabled") <~
          self.nameField.rac_textSignal()
             .toSignalProducer()
@@ -68,8 +75,12 @@ class TagViewController: UITableViewController {
 
    @IBAction private func doneAction(_: UIBarButtonItem) {
       let tag = self.operation.processWithName(self.nameField.text!)
-      self.delegate?.tagViewController(self,
+      self.delegate!.tagViewController(self,
          didCompleteOperation: self.operation,
          withTag: tag)
+   }
+
+   @IBAction private func cancelAction(_: UIBarButtonItem) {
+      self.delegate!.didCancelTagViewController(self)
    }
 }

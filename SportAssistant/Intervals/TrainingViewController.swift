@@ -447,8 +447,7 @@ final class TrainingViewController: UIViewController {
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let navigationController = segue.destinationViewController as? UINavigationController,
          let tagsViewController = navigationController.viewControllers.first as? TagsViewController {
-            tagsViewController.actions = [.Add]
-            tagsViewController.mode = .Picker(.SelectedTag(self.training.tags.first))
+            tagsViewController.mode = .Picker(.Selected(Array(self.training.tags)), .Multiple, .EmptyAllowed)
             tagsViewController.completionHandler = {
                /*[unowned self] */tagsViewController in
                if case .Picker(let filter) = tagsViewController.mode {

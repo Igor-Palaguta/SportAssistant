@@ -2,39 +2,22 @@ import UIKit
 import ReactiveCocoa
 import RealmSwift
 
-enum TrainingFilter {
-   case All
-   case SelectedTag(Tag?)
-
+extension TagsFilter {
    var name: String? {
       switch self {
       case All:
          return tr(.AllTrainings)
-      case .SelectedTag(let tag):
-         return tag?.name
+      case .Selected(let tags):
+         return tags.map { $0.name }.joinWithSeparator(", ")
       }
-   }
-
-   var allSelected: Bool {
-      if case All = self {
-         return true
-      }
-      return false
-   }
-
-   var tag: Tag? {
-      if case SelectedTag(let tag) = self {
-         return tag
-      }
-      return nil
    }
 
    var trainingsCollection: TrainingsCollection? {
       switch self {
       case All:
          return StorageController.UIController.history
-      case .SelectedTag(let tag):
-         return tag
+      case .Selected(let tags):
+         return tags.first
       }
    }
 }
@@ -43,7 +26,7 @@ final class TrainingsViewController: UITableViewController {
 
    @IBOutlet weak private var bestLabel: UILabel!
 
-   var filter = TrainingFilter.All {
+   var filter = TagsFilter.All {
       didSet {
          self.title = self.filter.name
          self.trainingsCollection = self.filter.trainingsCollection!
@@ -125,10 +108,10 @@ final class TrainingsViewController: UITableViewController {
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let navigationController = segue.destinationViewController as? UINavigationController,
          tagsViewController = navigationController.viewControllers.first as? TagsViewController {
-            tagsViewController.mode = .Picker(self.filter)
+            tagsViewController.mode = .Picker(self.filter, .Single, .EmptyNotAllowed)
             tagsViewController.completionHandler = {
                [unowned self] tagsViewController in
-               if case .Picker(let filter) = tagsViewController.mode {
+               if case .Picker(let filter, _, _) = tagsViewController.mode {
                   self.filter = filter
                }
                tagsViewController.dismissViewControllerAnimated(true, completion: nil)

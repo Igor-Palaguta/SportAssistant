@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-final class Tag: TrainingsCollection {
+final class Tag: TrainingsCollection, Equatable {
 
    private(set) dynamic var id = NSUUID().UUIDString
    dynamic var name = ""
@@ -20,4 +20,8 @@ final class Tag: TrainingsCollection {
    override static func primaryKey() -> String? {
       return "id"
    }
+}
+
+func == (lhs: Tag, rhs: Tag) -> Bool {
+   return lhs.id == rhs.id
 }

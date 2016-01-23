@@ -555,25 +555,13 @@
                             <outlet property="delegate" destination="NDa-Sq-Wze" id="dBk-E4-jPW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Tag" id="BTE-4X-Rx3">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="15d-NH-l2R">
-                            <connections>
-                                <segue destination="q4b-2T-SRl" kind="unwind" unwindAction="dismissTagWithSegue:" id="ay6-Tf-N0t"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="tsE-SW-YKp">
-                            <connections>
-                                <action selector="addAction:" destination="NDa-Sq-Wze" id="St0-NN-kaW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Add Tag" id="BTE-4X-Rx3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="nameField" destination="6Ik-sf-bRB" id="R2X-ai-gOR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4c-rB-nXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="q4b-2T-SRl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="650" y="137"/>
         </scene>
