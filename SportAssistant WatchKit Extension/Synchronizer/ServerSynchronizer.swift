@@ -85,7 +85,7 @@ final class ServerSynchronizer: NSObject {
    func startTraining(training: Training) {
       self.sendPackage(.Start(id: training.id,
          start: training.start,
-         tagId: training.tag?.id))
+         tagId: training.tags.first?.id))
    }
 
    func stopTraining(training: Training) {
@@ -96,7 +96,7 @@ final class ServerSynchronizer: NSObject {
    func synchronizeTraining(training: Training) {
       self.sendPackage(.Synchronize(id: training.id,
          start: training.start,
-         tagId: training.tag?.id,
+         tagId: training.tags.first?.id,
          data: Array(training.data)))
    }
 

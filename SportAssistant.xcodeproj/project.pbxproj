@@ -29,6 +29,7 @@
 		78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
 		78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */; };
 		78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */; };
+		7821E1401C511790001B97A7 /* AddTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821E13F1C511790001B97A7 /* AddTagCell.swift */; };
 		78317C741C4ADC8A002DD2AA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
 		78317C751C4ADC8A002DD2AA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
@@ -212,6 +213,7 @@
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rotation.swift"; sourceTree = "<group>"; };
 		78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationDataCell.swift; sourceTree = "<group>"; };
+		7821E13F1C511790001B97A7 /* AddTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCell.swift; sourceTree = "<group>"; };
 		78317C731C4ADC8A002DD2AA /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTrainingInterfaceController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				780E49CC1C4C359A004FBB7E /* TagsViewController.swift */,
 				780E49CE1C4C35AC004FBB7E /* TagCell.swift */,
 				780E49D01C4C3DDC004FBB7E /* TagViewController.swift */,
+				7821E13F1C511790001B97A7 /* AddTagCell.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,
 				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
 				78045FD61C26073700FEEB87 /* TrainingCell.swift in Sources */,
+				7821E1401C511790001B97A7 /* AddTagCell.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,
 				786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */,
 				7848466A1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,

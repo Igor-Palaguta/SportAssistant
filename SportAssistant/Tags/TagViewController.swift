@@ -36,10 +36,7 @@ enum TagOperation {
 }
 
 protocol TagViewControllerDelegate: class {
-
    func tagViewController(controller: TagViewController, didCompleteOperation operation: TagOperation, withTag tag: Tag)
-
-   func didCancelTagViewController(controller: TagViewController)
 }
 
 class TagViewController: UITableViewController {
@@ -66,10 +63,6 @@ class TagViewController: UITableViewController {
 
       self.navigationItem.rightBarButtonItem = saveItem
 
-      self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel,
-         target: self,
-         action: Selector("cancelAction:"))
-
       self.tableView.tableFooterView = UIView()
    }
 
@@ -78,9 +71,5 @@ class TagViewController: UITableViewController {
       self.delegate?.tagViewController(self,
          didCompleteOperation: self.operation,
          withTag: tag)
-   }
-
-   @IBAction private func cancelAction(_: UIBarButtonItem) {
-      self.delegate?.didCancelTagViewController(self)
    }
 }

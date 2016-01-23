@@ -13,6 +13,8 @@ enum L10n {
   case NoPeaks
   /// Delete
   case Delete
+  /// Edit
+  case Edit
   /// Cancel
   case Cancel
   /// Ok
@@ -25,6 +27,10 @@ enum L10n {
   case AddTag
   /// Edit Tag
   case EditTag
+  /// All Trainings
+  case AllTrainings
+  /// Edit Tags
+  case EditTags
 }
 
 extension L10n : CustomStringConvertible {
@@ -42,6 +48,8 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("NoPeaks")
       case .Delete:
         return L10n.tr("Delete")
+      case .Edit:
+        return L10n.tr("Edit")
       case .Cancel:
         return L10n.tr("Cancel")
       case .OK:
@@ -54,6 +62,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("AddTag")
       case .EditTag:
         return L10n.tr("EditTag")
+      case .AllTrainings:
+        return L10n.tr("AllTrainings")
+      case .EditTags:
+        return L10n.tr("EditTags")
     }
   }
 

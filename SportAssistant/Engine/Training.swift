@@ -6,8 +6,8 @@ final class Training: Object {
    private(set) dynamic var best: Double = 0
    private(set) dynamic var start = NSDate()
    private(set) dynamic var currentCount = 0
-   dynamic var tag: Tag?
 
+   let tags = List<Tag>()
    let data = List<AccelerationData>()
 
    dynamic var duration: NSTimeInterval {

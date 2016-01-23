@@ -92,9 +92,7 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
 
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
 
-            DynamicProperty(object: self.tagLabel, keyPath: "text") <~ DynamicProperty(object: training, keyPath: "tag.name").producer
-               .map { $0 as? String }
-               .takeUntil(reuseSignal)
+            self.tagLabel.text = training.tags.map { $0.name }.joinWithSeparator(", ")
 
             let activeSignal = DynamicProperty(object: StorageController.UIController, keyPath: "active")
                .producer

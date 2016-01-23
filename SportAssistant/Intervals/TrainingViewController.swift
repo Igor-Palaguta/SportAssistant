@@ -218,29 +218,6 @@ private struct TrainingDataSource {
    }
 }
 
-private enum Filter: Int {
-   case Peaks
-   case All
-
-   var emptyMessage: String {
-      switch self {
-      case Peaks:
-         return tr(.NoPeaks)
-      case All:
-         return tr(.AccelerationDataEmpty)
-      }
-   }
-
-   func filterData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) -> [AccelerationData] {
-      switch self {
-      case Peaks:
-         return data.filter { $0.activity != nil }
-      case All:
-         return Array(data)
-      }
-   }
-}
-
 final class TrainingViewController: UIViewController {
 
    var training: Training!
@@ -259,6 +236,29 @@ final class TrainingViewController: UIViewController {
    private var data: [AccelerationData] = [] {
       didSet {
          self.tableView.hidden = self.data.isEmpty
+      }
+   }
+
+   private enum Filter: Int {
+      case Peaks
+      case All
+
+      var emptyMessage: String {
+         switch self {
+         case Peaks:
+            return tr(.NoPeaks)
+         case All:
+            return tr(.AccelerationDataEmpty)
+         }
+      }
+
+      func filterData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) -> [AccelerationData] {
+         switch self {
+         case Peaks:
+            return data.filter { $0.activity != nil }
+         case All:
+            return Array(data)
+         }
       }
    }
 
@@ -431,10 +431,32 @@ final class TrainingViewController: UIViewController {
 
       alert.addAction(emailAction)
 
+      let tagsAction = UIAlertAction(title: tr(.EditTags), style: .Default) {
+         [unowned self] _ in
+         self.performSegue(StoryboardSegue.Main.EditTags)
+      }
+
+      alert.addAction(tagsAction)
+
       let cancelAction = UIAlertAction(title: tr(.Cancel), style: .Cancel, handler: nil)
       alert.addAction(cancelAction)
 
       self.presentViewController(alert, animated: true, completion: nil)
+   }
+
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+      if let navigationController = segue.destinationViewController as? UINavigationController,
+         let tagsViewController = navigationController.viewControllers.first as? TagsViewController {
+            tagsViewController.actions = [.Add]
+            tagsViewController.mode = .Picker(.SelectedTag(self.training.tags.first))
+            tagsViewController.completionHandler = {
+               /*[unowned self] */tagsViewController in
+               if case .Picker(let filter) = tagsViewController.mode {
+                  print(filter)
+               }
+               tagsViewController.dismissViewControllerAnimated(true, completion: nil)
+            }
+      }
    }
 }
 

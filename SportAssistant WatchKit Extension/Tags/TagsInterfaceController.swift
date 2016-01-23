@@ -12,7 +12,7 @@ final class TagsInterfaceController: WKInterfaceController {
    private var tags: [Tag]!
 
    private func reloadData() {
-      self.tags = Array(StorageController.UIController.tags)
+      self.tags = Array(StorageController.UIController.recentTags)
 
       self.table.setNumberOfRows(self.tags.count + 1, withRowType: String(TagController.self))
 

@@ -51,7 +51,11 @@ class StorageController: NSObject {
       return NSSet(object: "history.active")
    }
 
-   var tags: Results<Tag> {
+   var tags: Results<Tag>  {
+      return self.realm.objects(Tag)
+   }
+
+   var recentTags: Results<Tag> {
       return self.realm.objects(Tag).sorted("lastUseDate", ascending: false)
    }
 
@@ -61,6 +65,14 @@ class StorageController: NSObject {
 
    func trainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
       return self.history.trainingsOrderedBy(orderBy, ascending: ascending)
+   }
+
+   func trainingsWithPredicate(predicate: NSPredicate?) -> Results<Training> {
+      if let predicate = predicate {
+         return self.history.trainings.filter(predicate)
+      } else {
+         return self.realm.objects(Training.self)
+      }
    }
 
    private func write(@noescape transaction: () -> ()) {
@@ -73,7 +85,7 @@ class StorageController: NSObject {
          let tag: Tag? = tagId.flatMap { self.realm.objectForPrimaryKey(Tag.self, key: $0) }
          var trainingValue = ["id": id, "start": start]
          if let tag = tag {
-            trainingValue["tag"] = tag
+            trainingValue["tags"] = [tag]
          }
          let training = self.realm.create(Training.self, value: trainingValue, update: true)
          self.history.addTraining(training)
@@ -104,7 +116,9 @@ class StorageController: NSObject {
    func deleteTraining(training: Training) {
       self.write {
          self.history.deleteTraining(training)
-         training.tag?.deleteTraining(training)
+         training.tags.forEach {
+            $0.deleteTraining(training)
+         }
          self.realm.delete(training)
       }
    }
@@ -117,7 +131,9 @@ class StorageController: NSObject {
 
    func createTraining(tag: Tag?) -> Training {
       let training = Training()
-      training.tag = tag
+      if let tag = tag {
+         training.tags.append(tag)
+      }
       self.write {
          self.history.addTraining(training)
          tag?.addTraining(training)
@@ -128,7 +144,7 @@ class StorageController: NSObject {
    func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toTraining training: Training) {
       self.write {
          self.history.appendDataFromArray(data, toTraining: training)
-         training.tag?.checkBestOfTraining(training)
+         training.tags.forEach { $0.checkBestOfTraining(training) }
       }
    }
 
@@ -163,6 +179,11 @@ extension StorageController {
 
    func removeTag(tag: Tag) {
       self.write {
+         tag.trainings.forEach {
+            if let index = $0.tags.indexOf(tag) {
+               $0.tags.removeAtIndex(index)
+            }
+         }
          self.realm.delete(tag)
       }
    }

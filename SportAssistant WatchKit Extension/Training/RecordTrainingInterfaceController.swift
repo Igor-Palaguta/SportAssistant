@@ -102,7 +102,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
          self.durationLabel.start(recordSession.training.start)
 
          var userInfo = ["id": recordSession.training.id, "start": recordSession.training.start]
-         if let tag = recordSession.training.tag {
+         if let tag = self.context.tag {
             userInfo["tag"] = tag.id
          }
 

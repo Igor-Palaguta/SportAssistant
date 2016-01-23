@@ -52,6 +52,8 @@ struct StoryboardSegue {
   enum Main : String, StoryboardSegueType {
     case Add = "Add"
     case Edit = "Edit"
+    case EditTags = "EditTags"
+    case Filter = "Filter"
     case Trainings = "Trainings"
   }
 }
