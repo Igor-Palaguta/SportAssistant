@@ -83,6 +83,8 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
    @IBOutlet private weak var bestLast: UILabel!
    @IBOutlet private weak var tagLabel: UILabel!
    @IBOutlet private weak var progressView: ProgressView!
+   @IBOutlet private weak var tagPrefixLabel: UILabel!
+   @IBOutlet private weak var hiddenTagsConstraint: NSLayoutConstraint!
 
    private lazy var accelerationFont: UIFont = self.bestLast.font
 
@@ -91,8 +93,6 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
          if let training = self.training {
 
             let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
-
-            self.tagLabel.text = training.tags.map { $0.name }.joinWithSeparator(", ")
 
             let activeSignal = DynamicProperty(object: StorageController.UIController, keyPath: "active")
                .producer
@@ -125,7 +125,8 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
                   .takeUntil(reuseSignal)
 
             DynamicProperty(object: self.dateLabel, keyPath: "text") <~
-               DynamicProperty(object: training, keyPath: "start").producer
+               DynamicProperty(object: training, keyPath: "start")
+                  .producer
                   .takeUntil(reuseSignal)
                   .map {
                      if let date = $0 as? NSDate {
@@ -136,13 +137,50 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
 
             let integralFont = self.accelerationFont
             DynamicProperty(object: self.bestLast, keyPath: "attributedText") <~
-               DynamicProperty(object: training, keyPath: "best").producer
+               DynamicProperty(object: training, keyPath: "best")
+                  .producer
                   .takeUntil(reuseSignal)
                   .map { $0 as! Double }
                   .map {
                      best -> NSAttributedString? in
                      return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
             }
+
+            DynamicProperty(object: self.tagLabel, keyPath: "text") <~
+               DynamicProperty(object: training, keyPath: "tagsVersion")
+                  .producer
+                  .takeUntil(reuseSignal)
+                  .map { $0 as! Int }
+                  .skipRepeats()
+                  .map {
+                     [weak training] _ in
+                     if let training = training {
+                        return training.tags.map { $0.name }.joinWithSeparator(", ")
+                     }
+                     return nil
+            }
+
+
+            let hasTagsSignal = DynamicProperty(object: training, keyPath: "tagsVersion")
+               .producer
+               .takeUntil(reuseSignal)
+               .map { $0 as! Int }
+               .skipRepeats()
+               .map {
+                  [weak training] _ -> Bool in
+                  if let training = training where !training.tags.isEmpty {
+                     return true
+                  }
+                  return false
+            }
+
+            DynamicProperty(object: self.tagPrefixLabel, keyPath: "hidden") <~
+               hasTagsSignal
+                  .map { !$0 }
+
+            DynamicProperty(object: self.hiddenTagsConstraint, keyPath: "priority") <~
+               hasTagsSignal
+                  .map { $0 ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh }
          }
       }
    }

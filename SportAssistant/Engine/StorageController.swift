@@ -177,28 +177,32 @@ extension StorageController {
       }
    }
 
-   func removeTag(tag: Tag) {
+   func deleteTag(tag: Tag) {
       self.write {
-         tag.trainings.forEach {
-            if let index = $0.tags.indexOf(tag) {
-               $0.tags.removeAtIndex(index)
-            }
-         }
+         tag.trainings.forEach { $0.deleteTag(tag) }
          self.realm.delete(tag)
       }
    }
 
-   func assignTags<T: SequenceType where T.Generator.Element == Tag>(tags: T) {
+   func assignTags(tags: [Tag]) {
       self.write {
-         let deleteTags = self.tags.filter {
-            oldTag -> Bool in
-            return !tags.contains {$0.id == oldTag.id}
-         }
+         let deleteTags = self.tags.filter { !tags.contains($0) }
          if !deleteTags.isEmpty {
             self.realm.delete(deleteTags)
          }
          self.realm.add(tags, update: true)
       }
    }
+
+   func assignTags(tags: [Tag], forTraining training: Training) {
+      self.write {
+         let oldTags = training.tags.filter { !tags.contains($0) }
+         let newTags = tags.filter { !training.tags.contains($0) }
+
+         oldTags.forEach { training.deleteTag($0) }
+         newTags.forEach { training.addTag($0) }
+      }
+   }
+
 }
 

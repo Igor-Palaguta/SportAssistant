@@ -1,14 +1,37 @@
 import Foundation
 import RealmSwift
 
-final class Training: Object {
+final class Training: Object, Equatable {
    private(set) dynamic var id = NSUUID().UUIDString
    private(set) dynamic var best: Double = 0
    private(set) dynamic var start = NSDate()
    private(set) dynamic var currentCount = 0
+   private(set) dynamic var tagsVersion = 0
 
    let tags = List<Tag>()
    let data = List<AccelerationData>()
+
+   func deleteTag(tag: Tag) {
+      guard let tagIndex = self.tags.indexOf(tag) else {
+         return
+      }
+
+      tag.deleteTraining(self)
+      self.tags.removeAtIndex(tagIndex)
+
+      self.tagsVersion += 1
+   }
+
+   func addTag(tag: Tag) {
+      if self.tags.contains(tag) {
+         return
+      }
+
+      self.tags.append(tag)
+      tag.addTraining(self)
+
+      self.tagsVersion += 1
+   }
 
    dynamic var duration: NSTimeInterval {
       return self.data.last?.timestamp ?? 0
@@ -57,3 +80,8 @@ final class Training: Object {
       return ["duration", "activities", "activitiesData"]
    }
 }
+
+func == (lhs: Training, rhs: Training) -> Bool {
+   return lhs.id == rhs.id
+}
+

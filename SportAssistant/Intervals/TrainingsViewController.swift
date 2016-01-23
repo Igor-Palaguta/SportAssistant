@@ -48,6 +48,9 @@ final class TrainingsViewController: UITableViewController {
 
       self.title = self.filter.name
 
+      self.tableView.estimatedRowHeight = 100
+      self.tableView.rowHeight = UITableViewAutomaticDimension
+
       let integralFont = self.bestLabel.font
       DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
          DynamicProperty(object: self, keyPath: "trainingsCollection.best")
@@ -74,6 +77,12 @@ final class TrainingsViewController: UITableViewController {
       }
 
       self.tableView.tableFooterView = UIView()
+   }
+
+   override func viewWillAppear(animated: Bool) {
+      super.viewWillAppear(animated)
+
+      self.tableView.reloadData()
    }
 
    override func shouldAutorotate() -> Bool {

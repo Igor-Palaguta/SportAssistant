@@ -449,10 +449,9 @@ final class TrainingViewController: UIViewController {
          let tagsViewController = navigationController.viewControllers.first as? TagsViewController {
             tagsViewController.mode = .Picker(.Selected(Array(self.training.tags)), .Multiple, .EmptyAllowed)
             tagsViewController.completionHandler = {
-               /*[unowned self] */tagsViewController in
-               if case .Picker(let filter) = tagsViewController.mode {
-                  print(filter)
-               }
+               [unowned self] tagsViewController in
+               StorageController.UIController.assignTags(tagsViewController.mode.tags,
+                  forTraining: self.training)
                tagsViewController.dismissViewControllerAnimated(true, completion: nil)
             }
       }

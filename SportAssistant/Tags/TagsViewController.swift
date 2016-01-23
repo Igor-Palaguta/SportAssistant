@@ -25,7 +25,7 @@ enum TagsFilter {
    case All
    case Selected([Tag])
 
-   private var tags: [Tag] {
+   var tags: [Tag] {
       switch self {
       case .All:
          return Array(StorageController.UIController.tags)
@@ -51,6 +51,15 @@ final class TagsViewController: UITableViewController {
       case Navigator
       case Picker(TagsFilter, Style, Restrictions)
 
+      var tags: [Tag] {
+         switch self {
+         case Navigator:
+            fatalError()
+         case Picker(let filter, _, _):
+            return filter.tags
+         }
+      }
+
       private func accessoryForAll() -> UITableViewCellAccessoryType {
          switch self {
          case Navigator:
@@ -65,7 +74,7 @@ final class TagsViewController: UITableViewController {
       private func isSelectedTag(tag: Tag) -> Bool {
          switch self {
          case Navigator:
-            fatalError()
+            return false
          case Picker(.All, let style, _):
             return style == .Multiple
          case Picker(.Selected(let tags), _, _):
@@ -92,15 +101,6 @@ final class TagsViewController: UITableViewController {
          }
 
          return Picker(filter, style, restrictions)
-      }
-
-      private var tags: [Tag] {
-         switch self {
-         case Navigator:
-            fatalError()
-         case Picker(let filter, _, _):
-            return filter.tags
-         }
       }
 
       private func modeByTogglingTag(tag: Tag) -> Mode {
@@ -251,7 +251,7 @@ final class TagsViewController: UITableViewController {
 
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
          _, indexPath in
-         StorageController.UIController.removeTag(tag)
+         StorageController.UIController.deleteTag(tag)
          ClientSynchronizer.defaultClient.synchronizeTags()
          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       }
@@ -272,16 +272,12 @@ final class TagsViewController: UITableViewController {
    }
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      guard let tagController = segue.destinationViewController as? TagViewController else {
-         return
-      }
-
-      tagController.delegate = self
-
-      if let tag = sender as? Tag {
-         tagController.operation = .Edit(tag)
-      } else {
-         tagController.operation = .Add
+      let tag = sender as? Tag
+      if let tag = tag, trainingsViewController = segue.destinationViewController as? TrainingsViewController {
+         trainingsViewController.filter = .Selected([tag])
+      } else if let tagViewController = segue.destinationViewController as? TagViewController {
+         tagViewController.delegate = self
+         tagViewController.operation = tag.map { .Edit($0) } ?? .Add
       }
    }
 
