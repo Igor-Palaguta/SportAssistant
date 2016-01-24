@@ -186,11 +186,14 @@ extension StorageController {
 
    func assignTags(tags: [Tag]) {
       self.write {
-         let deleteTags = self.tags.filter { !tags.contains($0) }
-         if !deleteTags.isEmpty {
-            self.realm.delete(deleteTags)
+         let oldTags = self.tags.filter { !tags.contains($0) }
+         let newTags = tags.filter { !self.tags.contains($0) }
+         if !oldTags.isEmpty {
+            self.realm.delete(oldTags)
          }
-         self.realm.add(tags, update: true)
+         if !newTags.isEmpty {
+            self.realm.add(newTags)
+         }
       }
    }
 

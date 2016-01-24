@@ -1,15 +1,6 @@
-//
-//  AppDelegate.swift
-//  SportAssistant
-//
-//  Created by Igor Palaguta on 07.12.15.
-//  Copyright © 2015 Spangle. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 import HealthKit
-import ReactiveCocoa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -28,20 +28,64 @@ final class TrainingsViewController: UITableViewController {
 
    var filter = TagsFilter.All {
       didSet {
-         self.title = self.filter.name
-         self.trainingsCollection = self.filter.trainingsCollection!
-         self.trainings = self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
-         self.tableView.reloadData()
+         if self.isViewLoaded() {
+            self.title = self.filter.name
+            self.trainingsCollection = self.filter.trainingsCollection!
+            self.tableView.reloadData()
+         }
       }
    }
 
-   private lazy var trainings: Results<Training> = {
-      return self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
-   }()
+   private var trainings: Results<Training>!
 
-   private dynamic lazy var trainingsCollection: TrainingsCollection = {
-      return self.filter.trainingsCollection!
-   }()
+   private dynamic var trainingsCollection: TrainingsCollection! {
+      didSet {
+
+         self.trainings = self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
+
+         let invalidatedSignal = DynamicProperty(object: trainingsCollection, keyPath: "invalidated")
+            .producer
+            .map { $0 as! Bool }
+            .filter { $0 }
+            .map { _ in () }
+
+         let changeSignal = DynamicProperty(object: self, keyPath: "trainingsCollection")
+            .producer
+            .map { $0 as! TrainingsCollection }
+            .skip(1)
+            .skipRepeats()
+            .map { _ in () }
+
+         let deallocSignal = self.rac_willDeallocSignalProducer()
+            .map { _ in () }
+
+         let stopSignal = SignalProducer(values: [invalidatedSignal, changeSignal, deallocSignal]).flatten(.Merge)
+
+         let integralFont = self.bestLabel.font
+         DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
+            DynamicProperty(object: self.trainingsCollection, keyPath: "best")
+               .producer
+               .takeUntil(stopSignal)
+               .map { $0 as! Double }
+               .map {
+                  best -> NSAttributedString? in
+                  return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
+         }
+
+         DynamicProperty(object: self.trainingsCollection, keyPath: "version")
+            .producer
+            .takeUntil(stopSignal)
+            .map { $0 as! Int }
+            .skip(1)
+            .skipRepeats()
+            .startWithNext {
+               [weak self] _ in
+               if let strongSelf = self {
+                  strongSelf.tableView.reloadData()
+               }
+         }
+      }
+   }
 
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -51,30 +95,7 @@ final class TrainingsViewController: UITableViewController {
       self.tableView.estimatedRowHeight = 100
       self.tableView.rowHeight = UITableViewAutomaticDimension
 
-      let integralFont = self.bestLabel.font
-      DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
-         DynamicProperty(object: self, keyPath: "trainingsCollection.best")
-            .producer
-            .ignoreNil()
-            .map { $0 as! Double }
-            .map {
-               best -> NSAttributedString? in
-               return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
-      }
-
-      DynamicProperty(object: self, keyPath: "trainingsCollection.version")
-         .producer
-         .ignoreNil()
-         .takeUntil(self.rac_willDeallocSignal().toVoidNoErrorSignalProducer())
-         .map { $0 as! Int }
-         .skip(1)
-         .skipRepeats()
-         .startWithNext {
-            [weak self] _ in
-            if let strongSelf = self {
-               strongSelf.tableView.reloadData()
-            }
-      }
+      self.trainingsCollection = self.filter.trainingsCollection!
 
       self.tableView.tableFooterView = UIView()
    }
@@ -82,7 +103,11 @@ final class TrainingsViewController: UITableViewController {
    override func viewWillAppear(animated: Bool) {
       super.viewWillAppear(animated)
 
-      self.tableView.reloadData()
+      if let invalidated = self.trainingsCollection?.invalidated where invalidated {
+         self.filter = TagsFilter.All
+      } else {
+         self.tableView.reloadData()
+      }
    }
 
    override func shouldAutorotate() -> Bool {

@@ -96,8 +96,9 @@ final class TagsViewController: UITableViewController {
             fatalError()
          }
 
-         if case .Selected(let selectedTags) = filter where selectedTags.count == TagsFilter.All.tags.count {
-            return Picker(.All, style, restrictions)
+         if case .Selected(let selectedTags) = filter
+            where style == .Multiple && selectedTags.count == TagsFilter.All.tags.count {
+               return Picker(.All, style, restrictions)
          }
 
          return Picker(filter, style, restrictions)
@@ -186,6 +187,11 @@ final class TagsViewController: UITableViewController {
       self.tableView.tableFooterView = UIView()
    }
 
+   override func viewWillAppear(animated: Bool) {
+      super.viewWillAppear(animated)
+      //If changed from another screen
+      self.tableView.reloadData()
+   }
 
    override func shouldAutorotate() -> Bool {
       return true
