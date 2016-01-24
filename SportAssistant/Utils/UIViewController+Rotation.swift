@@ -16,3 +16,18 @@ extension UINavigationController {
       return .Portrait
    }
 }
+
+extension UITabBarController {
+
+   public override func shouldAutorotate() -> Bool {
+      return self.selectedViewController?.shouldAutorotate() ?? true
+   }
+
+   public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+      return self.selectedViewController?.preferredInterfaceOrientationForPresentation() ?? .Portrait
+   }
+
+   public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+      return self.selectedViewController?.supportedInterfaceOrientations() ?? .Portrait
+   }
+}

@@ -186,6 +186,15 @@ final class TagsViewController: UITableViewController {
       self.tableView.tableFooterView = UIView()
    }
 
+
+   override func shouldAutorotate() -> Bool {
+      return true
+   }
+
+   override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+      return [.Portrait]
+   }
+
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return self.tags.count + self.actions.count
    }
@@ -219,9 +228,11 @@ final class TagsViewController: UITableViewController {
       let cell: TagCell = tableView.dequeueCellForIndexPath(indexPath)
       if let action = action where action == .SelectAll {
          cell.nameLabel.text = tr(.AllTrainings)
+         cell.trainingsCollection = StorageController.UIController.history
          cell.accessoryType = self.mode.accessoryForAll()
       } else if let tag = self.tagAtIndexPath(indexPath) {
          cell.nameLabel.text = tag.name
+         cell.trainingsCollection = tag
          cell.accessoryType = self.mode.accessoryForTag(tag)
       } else {
          fatalError()

@@ -108,6 +108,7 @@
 		78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */; };
 		78EB0B641C3AA3F2006672BD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; };
 		78EB0B651C3AA3F2006672BD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
 /* End PBXBuildFile section */
@@ -278,6 +279,7 @@
 		78E61E621C2C2597003C59F1 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSynchronizer.swift; sourceTree = "<group>"; };
 		78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSynchronizer.swift; sourceTree = "<group>"; };
+		78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
 		78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -379,6 +381,7 @@
 				784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */,
 				78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */,
 				78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */,
+				78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -898,6 +901,7 @@
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
+				78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */,
 				78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

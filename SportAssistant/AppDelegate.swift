@@ -56,12 +56,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    }
 
    private func showTraining(training: Training) {
-      guard let rootController = self.window?.rootViewController as? UINavigationController else {
-         fatalError()
+      guard let rootController = self.window?.rootViewController else {
+         return
       }
+
       let trainingController = StoryboardScene.Main.trainingViewController()
       trainingController.training = training
-      rootController.viewControllers = [rootController.viewControllers.first!, trainingController]
+      let navigationController = UINavigationController(rootViewController: trainingController)
+      trainingController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: trainingController, action: Selector("dismissAction:"))
+
+      rootController.presentViewController(navigationController, animated: true, completion: nil)
    }
 
    func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
