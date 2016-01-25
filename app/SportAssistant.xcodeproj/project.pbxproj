@@ -38,16 +38,30 @@
 		784090901C2D81C0003DF043 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
 		784090921C2D84A4003DF043 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
 		784090941C2F2A54003DF043 /* AnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090931C2F2A54003DF043 /* AnalyzerTests.swift */; };
-		784090951C2F2B3D003DF043 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; };
 		784090971C2F2E6E003DF043 /* HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090961C2F2E6E003DF043 /* HistoryTests.swift */; };
-		784090981C2F3561003DF043 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; };
 		784846681C386D92009E4CDD /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846671C386D92009E4CDD /* TrainingInterfaceController.swift */; };
 		7848466A1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */; };
 		7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */; };
-		7848466D1C3879DF009E4CDD /* YOChartImageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */; };
-		7848466E1C3879DF009E4CDD /* YOChartImageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		784846711C387A50009E4CDD /* ChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */; };
 		784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D25071C1F1856006491A0 /* MenuInterfaceController.swift */; };
+		786805531C5659F7001AC1F0 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054E1C5659F6001AC1F0 /* SwiftDate.framework */; };
+		786805541C5659F7001AC1F0 /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054E1C5659F6001AC1F0 /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805551C5659F7001AC1F0 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */; };
+		786805561C5659F7001AC1F0 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805571C5659F7001AC1F0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805501C5659F7001AC1F0 /* RealmSwift.framework */; };
+		786805581C5659F7001AC1F0 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805501C5659F7001AC1F0 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805591C5659F7001AC1F0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805511C5659F7001AC1F0 /* Realm.framework */; };
+		7868055A1C5659F7001AC1F0 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805511C5659F7001AC1F0 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7868055B1C5659F7001AC1F0 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805521C5659F7001AC1F0 /* Result.framework */; };
+		7868055C1C5659F7001AC1F0 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805521C5659F7001AC1F0 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805611C565A6B001AC1F0 /* YOChartImageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */; };
+		786805621C565A6B001AC1F0 /* YOChartImageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805631C565A6B001AC1F0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055F1C565A6B001AC1F0 /* RealmSwift.framework */; };
+		786805641C565A6B001AC1F0 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055F1C565A6B001AC1F0 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805651C565A6B001AC1F0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805601C565A6B001AC1F0 /* Realm.framework */; };
+		786805661C565A6B001AC1F0 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805601C565A6B001AC1F0 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805691C565B6A001AC1F0 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805681C565B6A001AC1F0 /* Charts.framework */; };
+		7868056A1C565B6A001AC1F0 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805681C565B6A001AC1F0 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */; };
 		787636121C31F00300E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636111C31F00300E84348 /* HealthKit.framework */; };
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
@@ -83,20 +97,6 @@
 		78DB53201C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
 		78DB53211C50237500DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
 		78DB53221C50237600DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
-		78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; };
-		78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78E51D0D1C2AA77700E5D26B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; };
-		78E51D0E1C2AA77700E5D26B /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D051C2AA77700E5D26B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78E51D0F1C2AA77700E5D26B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; };
-		78E51D101C2AA77700E5D26B /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D061C2AA77700E5D26B /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78E51D111C2AA77700E5D26B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D071C2AA77700E5D26B /* Result.framework */; };
-		78E51D121C2AA77700E5D26B /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D071C2AA77700E5D26B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78E51D131C2AA77700E5D26B /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D081C2AA77700E5D26B /* SwiftDate.framework */; };
-		78E51D141C2AA77700E5D26B /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D081C2AA77700E5D26B /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78E51D171C2AA7C500E5D26B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D151C2AA7C500E5D26B /* Realm.framework */; };
-		78E51D181C2AA7C500E5D26B /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D151C2AA7C500E5D26B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78E51D191C2AA7C500E5D26B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D161C2AA7C500E5D26B /* RealmSwift.framework */; };
-		78E51D1A1C2AA7C500E5D26B /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D161C2AA7C500E5D26B /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
 		78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
 		78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
@@ -106,8 +106,6 @@
 		78E61E641C2C25A3003C59F1 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E621C2C2597003C59F1 /* Package.swift */; };
 		78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */; };
 		78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */; };
-		78EB0B641C3AA3F2006672BD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; };
-		78EB0B651C3AA3F2006672BD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78E51D031C2AA77700E5D26B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
 		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
@@ -145,6 +143,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7868055D1C5659F7001AC1F0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7868055A1C5659F7001AC1F0 /* Realm.framework in Embed Frameworks */,
+				786805541C5659F7001AC1F0 /* SwiftDate.framework in Embed Frameworks */,
+				7868055C1C5659F7001AC1F0 /* Result.framework in Embed Frameworks */,
+				7868056A1C565B6A001AC1F0 /* Charts.framework in Embed Frameworks */,
+				786805561C5659F7001AC1F0 /* ReactiveCocoa.framework in Embed Frameworks */,
+				786805581C5659F7001AC1F0 /* RealmSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805671C565A6B001AC1F0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				786805661C565A6B001AC1F0 /* Realm.framework in Embed Frameworks */,
+				786805641C565A6B001AC1F0 /* RealmSwift.framework in Embed Frameworks */,
+				786805621C565A6B001AC1F0 /* YOChartImageKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		788A51E11C15835600A166A0 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,35 +192,6 @@
 				788A51BE1C15835600A166A0 /* SportAssistant WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		78BFF8BC1C257D7D00F3CD98 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				78E51D0E1C2AA77700E5D26B /* Realm.framework in Embed Frameworks */,
-				78E51D121C2AA77700E5D26B /* Result.framework in Embed Frameworks */,
-				78E51D101C2AA77700E5D26B /* RealmSwift.framework in Embed Frameworks */,
-				78EB0B651C3AA3F2006672BD /* Charts.framework in Embed Frameworks */,
-				78E51D141C2AA77700E5D26B /* SwiftDate.framework in Embed Frameworks */,
-				78E51D0C1C2AA77700E5D26B /* ReactiveCocoa.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		78E51D1B1C2AA7C600E5D26B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7848466E1C3879DF009E4CDD /* YOChartImageKit.framework in Embed Frameworks */,
-				78E51D1A1C2AA7C500E5D26B /* RealmSwift.framework in Embed Frameworks */,
-				78E51D181C2AA7C500E5D26B /* Realm.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -225,9 +223,17 @@
 		784090961C2F2E6E003DF043 /* HistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTests.swift; sourceTree = "<group>"; };
 		784846671C386D92009E4CDD /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
 		784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Duration.swift"; sourceTree = "<group>"; };
-		7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YOChartImageKit.framework; path = Carthage/Build/watchOS/YOChartImageKit.framework; sourceTree = "<group>"; };
 		7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInterfaceController.swift; sourceTree = "<group>"; };
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
+		7868054E1C5659F6001AC1F0 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = ../Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
+		7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		786805501C5659F7001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		786805511C5659F7001AC1F0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		786805521C5659F7001AC1F0 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YOChartImageKit.framework; path = ../Carthage/Build/watchOS/YOChartImageKit.framework; sourceTree = "<group>"; };
+		7868055F1C565A6B001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/watchOS/RealmSwift.framework; sourceTree = "<group>"; };
+		786805601C565A6B001AC1F0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/watchOS/Realm.framework; sourceTree = "<group>"; };
+		786805681C565B6A001AC1F0 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = ../Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -265,14 +271,6 @@
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsCollection.swift; sourceTree = "<group>"; };
 		78DB531D1C50235400DDF7E3 /* StorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
-		78E51D031C2AA77700E5D26B /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
-		78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
-		78E51D051C2AA77700E5D26B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		78E51D061C2AA77700E5D26B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		78E51D071C2AA77700E5D26B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		78E51D081C2AA77700E5D26B /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
-		78E51D151C2AA7C500E5D26B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/watchOS/Realm.framework; sourceTree = "<group>"; };
-		78E51D161C2AA7C500E5D26B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/watchOS/RealmSwift.framework; sourceTree = "<group>"; };
 		78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Configure.swift"; sourceTree = "<group>"; };
 		78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportAssistant.entitlements; sourceTree = "<group>"; };
 		78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SportAssistant WatchKit Extension.entitlements"; sourceTree = "<group>"; };
@@ -289,13 +287,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78E51D0D1C2AA77700E5D26B /* Realm.framework in Frameworks */,
-				78E51D111C2AA77700E5D26B /* Result.framework in Frameworks */,
-				78E51D0F1C2AA77700E5D26B /* RealmSwift.framework in Frameworks */,
-				78EB0B641C3AA3F2006672BD /* Charts.framework in Frameworks */,
+				786805531C5659F7001AC1F0 /* SwiftDate.framework in Frameworks */,
+				786805551C5659F7001AC1F0 /* ReactiveCocoa.framework in Frameworks */,
+				786805571C5659F7001AC1F0 /* RealmSwift.framework in Frameworks */,
+				786805691C565B6A001AC1F0 /* Charts.framework in Frameworks */,
+				7868055B1C5659F7001AC1F0 /* Result.framework in Frameworks */,
 				787636121C31F00300E84348 /* HealthKit.framework in Frameworks */,
-				78E51D131C2AA77700E5D26B /* SwiftDate.framework in Frameworks */,
-				78E51D0B1C2AA77700E5D26B /* ReactiveCocoa.framework in Frameworks */,
+				786805591C5659F7001AC1F0 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,8 +301,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				784090981C2F3561003DF043 /* RealmSwift.framework in Frameworks */,
-				784090951C2F2B3D003DF043 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,10 +315,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786805651C565A6B001AC1F0 /* Realm.framework in Frameworks */,
+				786805611C565A6B001AC1F0 /* YOChartImageKit.framework in Frameworks */,
 				787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */,
-				78E51D191C2AA7C500E5D26B /* RealmSwift.framework in Frameworks */,
-				7848466D1C3879DF009E4CDD /* YOChartImageKit.framework in Frameworks */,
-				78E51D171C2AA7C500E5D26B /* Realm.framework in Frameworks */,
+				786805631C565A6B001AC1F0 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,17 +420,17 @@
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
-				7848466C1C3879DF009E4CDD /* YOChartImageKit.framework */,
+				786805681C565B6A001AC1F0 /* Charts.framework */,
+				7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */,
+				7868055F1C565A6B001AC1F0 /* RealmSwift.framework */,
+				786805601C565A6B001AC1F0 /* Realm.framework */,
+				7868054E1C5659F6001AC1F0 /* SwiftDate.framework */,
+				7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */,
+				786805501C5659F7001AC1F0 /* RealmSwift.framework */,
+				786805511C5659F7001AC1F0 /* Realm.framework */,
+				786805521C5659F7001AC1F0 /* Result.framework */,
 				787636131C31F00E00E84348 /* HealthKit.framework */,
 				787636111C31F00300E84348 /* HealthKit.framework */,
-				78E51D151C2AA7C500E5D26B /* Realm.framework */,
-				78E51D161C2AA7C500E5D26B /* RealmSwift.framework */,
-				78E51D031C2AA77700E5D26B /* Charts.framework */,
-				78E51D041C2AA77700E5D26B /* ReactiveCocoa.framework */,
-				78E51D051C2AA77700E5D26B /* Realm.framework */,
-				78E51D061C2AA77700E5D26B /* RealmSwift.framework */,
-				78E51D071C2AA77700E5D26B /* Result.framework */,
-				78E51D081C2AA77700E5D26B /* SwiftDate.framework */,
 				788A51971C15835600A166A0 /* SportAssistant */,
 				788A51AC1C15835600A166A0 /* SportAssistantTests */,
 				788A51B71C15835600A166A0 /* SportAssistantUITests */,
@@ -607,7 +603,7 @@
 				788A51921C15835600A166A0 /* Frameworks */,
 				788A51931C15835600A166A0 /* Resources */,
 				788A51E51C15835600A166A0 /* Embed Watch Content */,
-				78BFF8BC1C257D7D00F3CD98 /* Embed Frameworks */,
+				7868055D1C5659F7001AC1F0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -681,7 +677,7 @@
 				788A51C81C15835600A166A0 /* Sources */,
 				788A51C91C15835600A166A0 /* Frameworks */,
 				788A51CA1C15835600A166A0 /* Resources */,
-				78E51D1B1C2AA7C600E5D26B /* Embed Frameworks */,
+				786805671C565A6B001AC1F0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -822,7 +818,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"\n\n./tools/swiftgen/bin/swiftgen colors \"./SportAssistant WatchKit Extension/Resources/colors.txt\" > \"./SportAssistant WatchKit Extension/Resources/Colors.swift\"\n";
+			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen colors \"./SportAssistant WatchKit Extension/Resources/colors.txt\" > \"./SportAssistant WatchKit Extension/Resources/Colors.swift\"\n";
 		};
 		788C3B431C28ABD30081BD13 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -836,7 +832,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n\n./tools/swiftgen/bin/swiftgen storyboards \"./SportAssistant/Base.lproj\" > \"./SportAssistant/Resources/Storyboard.swift\"\n";
+			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen storyboards \"./SportAssistant/Base.lproj\" > \"./SportAssistant/Resources/Storyboard.swift\"\n";
 		};
 		78EB0B621C3AA278006672BD /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1112,7 +1108,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+					"$(PROJECT_DIR)/../Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1134,7 +1130,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+					"$(PROJECT_DIR)/../Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1195,8 +1191,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SportAssistant",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1215,8 +1210,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SportAssistant",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
