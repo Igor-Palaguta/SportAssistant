@@ -1,0 +1,93 @@
+
+/* Class = "UILabel"; text = "Нет движения"; ObjectID = "3KZ-d4-vXL"; */
+"3KZ-d4-vXL.text" = "Нет движения";
+
+/* Class = "UILabel"; text = "Добавить Метку"; ObjectID = "4wx-Id-ZBg"; */
+"4wx-Id-ZBg.text" = "Добавить метку";
+
+/* Class = "UITextField"; placeholder = "Имя Метки"; ObjectID = "6Ik-sf-bRB"; */
+"6Ik-sf-bRB.placeholder" = "Имя метки";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6Vn-8b-deX"; */
+"6Vn-8b-deX.text" = "Label";
+
+/* Class = "UILabel"; text = "рекорд"; ObjectID = "7QD-hP-etj"; */
+"7QD-hP-etj.text" = "рекорд";
+
+/* Class = "UILabel"; text = "y"; ObjectID = "9xX-C0-chW"; */
+"9xX-C0-chW.text" = "y";
+
+/* Class = "UINavigationItem"; title = "Добавить Метку"; ObjectID = "BTE-4X-Rx3"; */
+"BTE-4X-Rx3.title" = "Добавить метку";
+
+/* Class = "UILabel"; text = "x"; ObjectID = "Ds5-yA-WOt"; */
+"Ds5-yA-WOt.text" = "x";
+
+/* Class = "UILabel"; text = "x"; ObjectID = "I0N-IT-IWd"; */
+"I0N-IT-IWd.text" = "x";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "M0s-yf-3ZC"; */
+"M0s-yf-3ZC.text" = "Label";
+
+/* Class = "UILabel"; text = "z"; ObjectID = "N1M-Ni-j87"; */
+"N1M-Ni-j87.text" = "z";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "Nyo-0J-FNO"; */
+"Nyo-0J-FNO.text" = "Общее";
+
+/* Class = "UILabel"; text = "рекорд"; ObjectID = "Qac-M8-6SI"; */
+"Qac-M8-6SI.text" = "рекорд";
+
+/* Class = "UINavigationItem"; title = "Тренировки"; ObjectID = "QeE-vZ-Lby"; */
+"QeE-vZ-Lby.title" = "Тренировки";
+
+/* Class = "UISegmentedControl"; T00-3R-5Mc.segmentTitles[0] = "Движения"; ObjectID = "T00-3R-5Mc"; */
+"T00-3R-5Mc.segmentTitles[0]" = "Движения";
+
+/* Class = "UISegmentedControl"; T00-3R-5Mc.segmentTitles[1] = "Все"; ObjectID = "T00-3R-5Mc"; */
+"T00-3R-5Mc.segmentTitles[1]" = "Все";
+
+/* Class = "UILabel"; text = "метки"; ObjectID = "U9F-Gm-bAk"; */
+"U9F-Gm-bAk.text" = "метки";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VRK-Yp-cmU"; */
+"VRK-Yp-cmU.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "W12-1G-TTb"; */
+"W12-1G-TTb.text" = "Label";
+
+/* Class = "UILabel"; text = "длина"; ObjectID = "Wqj-JT-gaJ"; */
+"Wqj-JT-gaJ.text" = "длина";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "Yt6-B4-YMa"; */
+"Yt6-B4-YMa.text" = "10";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aaI-40-We0"; */
+"aaI-40-We0.text" = "Label";
+
+/* Class = "UILabel"; text = "12:03.1"; ObjectID = "fzZ-xl-rqH"; */
+"fzZ-xl-rqH.text" = "12:03.1";
+
+/* Class = "UILabel"; text = "общее"; ObjectID = "gg2-eD-J1U"; */
+"gg2-eD-J1U.text" = "общее";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hku-Ek-90K"; */
+"hku-Ek-90K.text" = "Label";
+
+/* Class = "UILabel"; text = "z"; ObjectID = "kYb-bS-gkO"; */
+"kYb-bS-gkO.text" = "z";
+
+/* Class = "UILabel"; text = "y"; ObjectID = "oKx-gk-qi5"; */
+"oKx-gk-qi5.text" = "y";
+
+/* Class = "UITabBarItem"; title = "Метки"; ObjectID = "pyQ-Tj-VtR"; */
+"pyQ-Tj-VtR.title" = "Метки";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sHf-OD-UEm"; */
+"sHf-OD-UEm.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Метки"; ObjectID = "sU4-g2-S68"; */
+"sU4-g2-S68.title" = "Метки";
+
+/* Class = "UILabel"; text = "Возможное движение:"; ObjectID = "y5l-MQ-92c"; */
+"y5l-MQ-92c.text" = "Возможное движение:";

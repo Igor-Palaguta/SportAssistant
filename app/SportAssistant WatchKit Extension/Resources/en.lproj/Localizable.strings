@@ -1,0 +1,11 @@
+"DeleteTrainingTitle" = "Are you sure?";
+"Delete" = "Delete";
+"Cancel" = "Cancel";
+"Start" = "Start";
+"Stop" = "Stop";
+"TrainingsCountFormat" = "Trainings (%d)";
+"Ascending" = "↑";
+"Descending" = "↓";
+"Other" = "Other";
+"BestFormat" = "Best: %@";
+"LastFormat" = "Last: %@";

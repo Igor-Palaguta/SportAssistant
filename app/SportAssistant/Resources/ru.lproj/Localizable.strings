@@ -1,0 +1,14 @@
+"AccelerationRecord" = "Рекорд";
+"AccelerationData" = "Акселерометр";
+"AccelerationDataEmpty" = "Нет данных";
+"NoPeaks" = "Нет движений";
+"Delete" = "Удалить";
+"Edit" = "Править";
+"Cancel" = "Отмена";
+"OK" = "Ok";
+"EmailShare" = "Отправить на почту";
+"CannotSendMail" = "Не настроена почта. Пожалуйста добавьте учетную запись Settings->Mail->Add Account";
+"AddTag" = "Добавить метку";
+"EditTag" = "Править метку";
+"AllTrainings" = "Тренировки";
+"EditTags" = "Правка меток";

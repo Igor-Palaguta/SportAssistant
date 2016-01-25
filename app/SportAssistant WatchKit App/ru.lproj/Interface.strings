@@ -1,0 +1,87 @@
+
+/* Class = "WKInterfaceLabel"; text = "10:03"; ObjectID = "17d-xa-fDt"; */
+"17d-xa-fDt.text" = "10:03";
+
+/* Class = "WKInterfaceButton"; title = "Тренировки (12)"; ObjectID = "3kb-av-udU"; */
+"3kb-av-udU.title" = "Тренировки (12)";
+
+/* Class = "WKInterfaceController"; title = "Тренировки"; ObjectID = "4Vm-e0-XGA"; */
+"4Vm-e0-XGA.title" = "Тренировки";
+
+/* Class = "WKInterfaceButton"; title = "Удалить"; ObjectID = "7Dt-Ub-YAV"; */
+"7Dt-Ub-YAV.title" = "Удалить";
+
+/* Class = "WKInterfaceButton"; title = "Начать"; ObjectID = "Che-Hz-tXw"; */
+"Che-Hz-tXw.title" = "Начать";
+
+/* Class = "WKInterfaceLabel"; text = "Посл.: 12.07.1985"; ObjectID = "Dwl-MZ-R8U"; */
+"Dwl-MZ-R8U.text" = "Посл.: 12.07.1985";
+
+/* Class = "WKInterfaceLabel"; text = "12.3"; ObjectID = "GGQ-un-L2V"; */
+"GGQ-un-L2V.text" = "12.3";
+
+/* Class = "WKInterfaceLabel"; text = "Рекорд: 12.3"; ObjectID = "GJC-tZ-FjD"; */
+"GJC-tZ-FjD.text" = "Рекорд: 12.3";
+
+/* Class = "WKInterfaceLabel"; text = "Нет Движений"; ObjectID = "HMb-jE-K1Q"; */
+"HMb-jE-K1Q.text" = "Нет Движений";
+
+/* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "Hsg-D2-QcP"; */
+"Hsg-D2-QcP.text" = "-";
+
+/* Class = "WKInterfaceButton"; title = "Еще"; ObjectID = "IKe-Nq-d0V"; */
+"IKe-Nq-d0V.title" = "Еще";
+
+/* Class = "WKInterfaceMenuItem"; title = "Удалить"; ObjectID = "Qyc-6J-edw"; */
+"Qyc-6J-edw.title" = "Удалить";
+
+/* Class = "WKInterfaceController"; title = "Рекорд"; ObjectID = "RMd-Wx-1Ur"; */
+"RMd-Wx-1Ur.title" = "Рекорд";
+
+/* Class = "WKInterfaceLabel"; text = "12 Dec"; ObjectID = "RcS-fa-WFJ"; */
+"RcS-fa-WFJ.text" = "12 Dec";
+
+/* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "UGe-0d-juz"; */
+"UGe-0d-juz.text" = "-";
+
+/* Class = "WKInterfaceLabel"; text = "0"; ObjectID = "V7n-gw-cXm"; */
+"V7n-gw-cXm.text" = "0";
+
+/* Class = "WKInterfaceButton"; title = "Начать"; ObjectID = "Z6I-aa-HVH"; */
+"Z6I-aa-HVH.title" = "Начать";
+
+/* Class = "WKInterfaceLabel"; text = "движ."; ObjectID = "ZsC-8p-iRX"; */
+"ZsC-8p-iRX.text" = "движ.";
+
+/* Class = "WKInterfaceLabel"; text = "01:30.01"; ObjectID = "aVT-rn-Sjf"; */
+"aVT-rn-Sjf.text" = "01:30.01";
+
+/* Class = "WKInterfaceLabel"; text = "Название Метки"; ObjectID = "b6n-NQ-zM8"; */
+"b6n-NQ-zM8.text" = "Название Метки";
+
+/* Class = "WKInterfaceLabel"; text = "00:00"; ObjectID = "dWj-27-7wV"; */
+"dWj-27-7wV.text" = "00:00";
+
+/* Class = "WKInterfaceMenuItem"; title = "Отправить"; ObjectID = "db5-fe-G8V"; */
+"db5-fe-G8V.title" = "Отправить";
+
+/* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "h5S-4o-Vj6"; */
+"h5S-4o-Vj6.text" = "-";
+
+/* Class = "WKInterfaceLabel"; text = "0"; ObjectID = "iC3-Ln-mXC"; */
+"iC3-Ln-mXC.text" = "0";
+
+/* Class = "WKInterfaceLabel"; text = "посл."; ObjectID = "sr8-TQ-KUE"; */
+"sr8-TQ-KUE.text" = "посл.";
+
+/* Class = "WKInterfaceController"; title = "Движения"; ObjectID = "uLD-ez-mz2"; */
+"uLD-ez-mz2.title" = "Движения";
+
+/* Class = "WKInterfaceButton"; title = "Результат"; ObjectID = "ui7-Aj-YhA"; */
+"ui7-Aj-YhA.title" = "Результат";
+
+/* Class = "WKInterfaceButton"; title = "Время"; ObjectID = "uwc-fR-1Ic"; */
+"uwc-fR-1Ic.title" = "Время";
+
+/* Class = "WKInterfaceController"; title = "Метки"; ObjectID = "vRZ-7m-PNx"; */
+"vRZ-7m-PNx.title" = "Метки";

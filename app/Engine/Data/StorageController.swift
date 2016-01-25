@@ -210,6 +210,5 @@ extension StorageController {
          newTags.forEach { training.addTag($0) }
       }
    }
-
 }
 

@@ -17,7 +17,6 @@
 		780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49D01C4C3DDC004FBB7E /* TagViewController.swift */; };
 		7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7813D6541C3C718400775FC7 /* Storyboard.swift */; };
 		78159A391C39D022001C8031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78159A381C39D022001C8031 /* Assets.xcassets */; };
-		78159A3B1C39D051001C8031 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78159A3A1C39D051001C8031 /* Localizable.strings */; };
 		78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78159A3D1C39D180001C8031 /* LocalizableStrings.swift */; };
 		78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */; };
 		78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */; };
@@ -88,6 +87,8 @@
 		786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */; };
 		787636121C31F00300E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636111C31F00300E84348 /* HealthKit.framework */; };
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
+		787953361C56CC6500780275 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 787953381C56CC6500780275 /* Localizable.strings */; };
+		7881FD521C56C78B00574990 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD541C56C78B00574990 /* Localizable.strings */; };
 		78898AC41C419ECE00907629 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78898AC31C419ECE00907629 /* colors.txt */; };
 		78898AC61C419FFF00907629 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78898AC51C419FFF00907629 /* Colors.swift */; };
 		788A51991C15835600A166A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51981C15835600A166A0 /* AppDelegate.swift */; };
@@ -101,7 +102,6 @@
 		788A51C61C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C51C15835600A166A0 /* Assets.xcassets */; };
 		788A51CD1C15835600A166A0 /* SportAssistant WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
-		788C3B421C28AB680081BD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 788C3B411C28AB680081BD13 /* Localizable.strings */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACHelpers.swift */; };
@@ -241,7 +241,6 @@
 		780E49D01C4C3DDC004FBB7E /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		7813D6541C3C718400775FC7 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		78159A381C39D022001C8031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		78159A3A1C39D051001C8031 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rotation.swift"; sourceTree = "<group>"; };
 		78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationDataCell.swift; sourceTree = "<group>"; };
@@ -288,6 +287,13 @@
 		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		787953321C56CB2400780275 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Interface.strings; sourceTree = "<group>"; };
+		787953351C56CC4600780275 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		787953371C56CC6500780275 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		787953391C56CC6D00780275 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7881FD4D1C56C3F500574990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7881FD531C56C78B00574990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7881FD571C56C8BE00574990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78898AC31C419ECE00907629 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = colors.txt; sourceTree = "<group>"; };
 		78898AC51C419FFF00907629 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		788A51951C15835600A166A0 /* SportAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -310,7 +316,6 @@
 		788A51D21C15835600A166A0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpers.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
@@ -432,7 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				78159A381C39D022001C8031 /* Assets.xcassets */,
-				78159A3A1C39D051001C8031 /* Localizable.strings */,
+				7881FD541C56C78B00574990 /* Localizable.strings */,
 				78159A3D1C39D180001C8031 /* LocalizableStrings.swift */,
 				78898AC31C419ECE00907629 /* colors.txt */,
 				78898AC51C419FFF00907629 /* Colors.swift */,
@@ -687,7 +692,7 @@
 			children = (
 				7813D6541C3C718400775FC7 /* Storyboard.swift */,
 				78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */,
-				788C3B411C28AB680081BD13 /* Localizable.strings */,
+				787953381C56CC6500780275 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -997,7 +1002,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				788A51A31C15835600A166A0 /* LaunchScreen.storyboard in Resources */,
-				788C3B421C28AB680081BD13 /* Localizable.strings in Resources */,
+				787953361C56CC6500780275 /* Localizable.strings in Resources */,
 				788A51A01C15835600A166A0 /* Assets.xcassets in Resources */,
 				788A519E1C15835600A166A0 /* Main.storyboard in Resources */,
 			);
@@ -1031,7 +1036,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78159A391C39D022001C8031 /* Assets.xcassets in Resources */,
-				78159A3B1C39D051001C8031 /* Localizable.strings in Resources */,
+				7881FD521C56C78B00574990 /* Localizable.strings in Resources */,
 				78898AC41C419ECE00907629 /* colors.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,7 +1056,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen colors \"./SportAssistant WatchKit Extension/Resources/colors.txt\" > \"./SportAssistant WatchKit Extension/Resources/Colors.swift\"\n";
+			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant WatchKit Extension/Resources/Base.lproj/Localizable.strings\" > \"./SportAssistant WatchKit Extension/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen colors \"./SportAssistant WatchKit Extension/Resources/colors.txt\" > \"./SportAssistant WatchKit Extension/Resources/Colors.swift\"\n";
 		};
 		788C3B431C28ABD30081BD13 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1065,7 +1070,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen storyboards \"./SportAssistant/Base.lproj\" > \"./SportAssistant/Resources/Storyboard.swift\"\n";
+			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Base.lproj/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen storyboards \"./SportAssistant/Base.lproj\" > \"./SportAssistant/Resources/Storyboard.swift\"\n";
 		};
 		78EB0B621C3AA278006672BD /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1256,10 +1261,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		787953381C56CC6500780275 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				787953371C56CC6500780275 /* ru */,
+				787953391C56CC6D00780275 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7881FD541C56C78B00574990 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7881FD531C56C78B00574990 /* ru */,
+				7881FD571C56C8BE00574990 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		788A519C1C15835600A166A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				788A519D1C15835600A166A0 /* Base */,
+				787953351C56CC4600780275 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1268,6 +1292,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				788A51A21C15835600A166A0 /* Base */,
+				7881FD4D1C56C3F500574990 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1276,6 +1301,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				788A51C31C15835600A166A0 /* Base */,
+				787953321C56CB2400780275 /* ru */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -1692,6 +1718,7 @@
 				786805891C565EFE001AC1F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7868058A1C565EFE001AC1F0 /* Build configuration list for PBXNativeTarget "iOSEngineTests" */ = {
 			isa = XCConfigurationList;
@@ -1700,6 +1727,7 @@
 				7868058C1C565EFE001AC1F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		786805C41C56757E001AC1F0 /* Build configuration list for PBXNativeTarget "watchOSEngine" */ = {
 			isa = XCConfigurationList;
@@ -1708,6 +1736,7 @@
 				786805C61C56757E001AC1F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		788A51901C15835600A166A0 /* Build configuration list for PBXProject "SportAssistant" */ = {
 			isa = XCConfigurationList;

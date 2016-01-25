@@ -1,0 +1,11 @@
+"DeleteTrainingTitle" = "Вы уверены?";
+"Delete" = "Удалить";
+"Cancel" = "Отмена";
+"Start" = "Начать";
+"Stop" = "Остановить";
+"TrainingsCountFormat" = "Тренировки (%d)";
+"Ascending" = "↑";
+"Descending" = "↓";
+"Other" = "Другая";
+"BestFormat" = "Рекорд: %@";
+"LastFormat" = "Посл.: %@";
