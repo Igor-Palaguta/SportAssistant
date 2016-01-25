@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78045FCD1C25FF1000FEEB87 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Training.swift */; };
 		78045FD51C26073700FEEB87 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD21C26073700FEEB87 /* TrainingViewController.swift */; };
 		78045FD61C26073700FEEB87 /* TrainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD31C26073700FEEB87 /* TrainingCell.swift */; };
 		78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD41C26073700FEEB87 /* TrainingsViewController.swift */; };
 		7807AC581C4EE96A00D2BCE5 /* TagsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807AC571C4EE96A00D2BCE5 /* TagsInterfaceController.swift */; };
 		7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807AC591C4EE9F500D2BCE5 /* TagController.swift */; };
-		780E49C81C4BC271004FBB7E /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
 		780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CC1C4C359A004FBB7E /* TagsViewController.swift */; };
 		780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CE1C4C35AC004FBB7E /* TagCell.swift */; };
 		780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49D01C4C3DDC004FBB7E /* TagViewController.swift */; };
@@ -21,22 +19,12 @@
 		78159A391C39D022001C8031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78159A381C39D022001C8031 /* Assets.xcassets */; };
 		78159A3B1C39D051001C8031 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78159A3A1C39D051001C8031 /* Localizable.strings */; };
 		78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78159A3D1C39D180001C8031 /* LocalizableStrings.swift */; };
-		78176C641C37167700EB2638 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
-		78176C651C37183800EB2638 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
-		78176C661C37183E00EB2638 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Training.swift */; };
-		78176C671C37183E00EB2638 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
-		78176C681C37183E00EB2638 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
-		78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
 		78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */; };
 		78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */; };
 		7821E1401C511790001B97A7 /* AddTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821E13F1C511790001B97A7 /* AddTagCell.swift */; };
-		78317C741C4ADC8A002DD2AA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
-		78317C751C4ADC8A002DD2AA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78317C731C4ADC8A002DD2AA /* Tag.swift */; };
 		7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F62F1C217B7600A7CBB1 /* ReusableView.swift */; };
 		7831F6381C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6361C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift */; };
 		7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7831F6371C21845B00A7CBB1 /* Accelerometer.swift */; };
-		784090901C2D81C0003DF043 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
-		784090921C2D84A4003DF043 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
 		784090941C2F2A54003DF043 /* AnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090931C2F2A54003DF043 /* AnalyzerTests.swift */; };
 		784090971C2F2E6E003DF043 /* HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090961C2F2E6E003DF043 /* HistoryTests.swift */; };
 		784846681C386D92009E4CDD /* TrainingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784846671C386D92009E4CDD /* TrainingInterfaceController.swift */; };
@@ -62,11 +50,44 @@
 		786805661C565A6B001AC1F0 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805601C565A6B001AC1F0 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805691C565B6A001AC1F0 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805681C565B6A001AC1F0 /* Charts.framework */; };
 		7868056A1C565B6A001AC1F0 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805681C565B6A001AC1F0 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805731C565EFE001AC1F0 /* iOSEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 786805721C565EFE001AC1F0 /* iOSEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7868057A1C565EFE001AC1F0 /* iOSEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805701C565EFE001AC1F0 /* iOSEngine.framework */; };
+		786805811C565EFE001AC1F0 /* iOSEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805801C565EFE001AC1F0 /* iOSEngineTests.swift */; };
+		786805851C565EFE001AC1F0 /* iOSEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805701C565EFE001AC1F0 /* iOSEngine.framework */; };
+		786805861C565EFE001AC1F0 /* iOSEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805701C565EFE001AC1F0 /* iOSEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805951C565F9A001AC1F0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805501C5659F7001AC1F0 /* RealmSwift.framework */; };
+		786805961C565F9A001AC1F0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805511C5659F7001AC1F0 /* Realm.framework */; };
+		786805BE1C56757E001AC1F0 /* watchOSEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 786805BD1C56757E001AC1F0 /* watchOSEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		786805C21C56757E001AC1F0 /* watchOSEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805BB1C56757E001AC1F0 /* watchOSEngine.framework */; };
+		786805C31C56757E001AC1F0 /* watchOSEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805BB1C56757E001AC1F0 /* watchOSEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		786805CD1C567607001AC1F0 /* ClientSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805CC1C567607001AC1F0 /* ClientSynchronizer.swift */; };
+		786805D01C56765E001AC1F0 /* ServerSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805CF1C56765E001AC1F0 /* ServerSynchronizer.swift */; };
+		786805D11C5676DA001AC1F0 /* YOChartImageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */; };
+		786805D21C5676DA001AC1F0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055F1C565A6B001AC1F0 /* RealmSwift.framework */; };
+		786805D31C5676DA001AC1F0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805601C565A6B001AC1F0 /* Realm.framework */; };
+		786805FA1C567758001AC1F0 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805EE1C567758001AC1F0 /* Analyzer.swift */; };
+		786805FB1C567758001AC1F0 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F01C567758001AC1F0 /* AccelerationData.swift */; };
+		786805FC1C567758001AC1F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F11C567758001AC1F0 /* Activity.swift */; };
+		786805FD1C567758001AC1F0 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F21C567758001AC1F0 /* History.swift */; };
+		786805FE1C567758001AC1F0 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F31C567758001AC1F0 /* Realm+Configure.swift */; };
+		786805FF1C567758001AC1F0 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F41C567758001AC1F0 /* StorageController.swift */; };
+		786806001C567758001AC1F0 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F51C567758001AC1F0 /* Tag.swift */; };
+		786806011C567758001AC1F0 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F61C567758001AC1F0 /* Training.swift */; };
+		786806021C567758001AC1F0 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F71C567758001AC1F0 /* TrainingsCollection.swift */; };
+		786806031C567758001AC1F0 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F91C567758001AC1F0 /* Package.swift */; };
+		786806041C56791F001AC1F0 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805EE1C567758001AC1F0 /* Analyzer.swift */; };
+		786806051C567924001AC1F0 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F01C567758001AC1F0 /* AccelerationData.swift */; };
+		786806061C567924001AC1F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F11C567758001AC1F0 /* Activity.swift */; };
+		786806071C567924001AC1F0 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F21C567758001AC1F0 /* History.swift */; };
+		786806081C567924001AC1F0 /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F31C567758001AC1F0 /* Realm+Configure.swift */; };
+		786806091C567924001AC1F0 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F41C567758001AC1F0 /* StorageController.swift */; };
+		7868060A1C567924001AC1F0 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F51C567758001AC1F0 /* Tag.swift */; };
+		7868060B1C567924001AC1F0 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F61C567758001AC1F0 /* Training.swift */; };
+		7868060C1C567924001AC1F0 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F71C567758001AC1F0 /* TrainingsCollection.swift */; };
+		7868060D1C567929001AC1F0 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805F91C567758001AC1F0 /* Package.swift */; };
 		786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */; };
 		787636121C31F00300E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636111C31F00300E84348 /* HealthKit.framework */; };
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
-		787636151C3284B100E84348 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784090911C2D84A4003DF043 /* Activity.swift */; };
-		78805AF91C308D80002E1845 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840908F1C2D81C0003DF043 /* Analyzer.swift */; };
 		78898AC41C419ECE00907629 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78898AC31C419ECE00907629 /* colors.txt */; };
 		78898AC61C419FFF00907629 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78898AC51C419FFF00907629 /* Colors.swift */; };
 		788A51991C15835600A166A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51981C15835600A166A0 /* AppDelegate.swift */; };
@@ -84,34 +105,45 @@
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACHelpers.swift */; };
-		789DE8F11C27571400B8CA98 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
 		789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */; };
 		78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */; };
 		78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */; };
 		78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C38DDE1C491658003CD041 /* TimerLabel.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
-		78DB531C1C50232100DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
-		78DB531E1C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
-		78DB531F1C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
-		78DB53201C50235400DDF7E3 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531D1C50235400DDF7E3 /* StorageController.swift */; };
-		78DB53211C50237500DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
-		78DB53221C50237600DDF7E3 /* TrainingsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */; };
-		78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
-		78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */; };
-		78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
-		78E51D221C2ACB5A00E5D26B /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FCC1C25FF1000FEEB87 /* Training.swift */; };
-		78E51D231C2ACB5A00E5D26B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F01C27571400B8CA98 /* History.swift */; };
-		78E61E631C2C2597003C59F1 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E621C2C2597003C59F1 /* Package.swift */; };
-		78E61E641C2C25A3003C59F1 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E621C2C2597003C59F1 /* Package.swift */; };
-		78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */; };
-		78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */; };
 		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
-		78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAF04C1C258D4700016580 /* AccelerationData.swift */; };
 		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7868057B1C565EFE001AC1F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 788A518D1C15835600A166A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7868056F1C565EFD001AC1F0;
+			remoteInfo = iOSEngine;
+		};
+		7868057D1C565EFE001AC1F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 788A518D1C15835600A166A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 788A51941C15835600A166A0;
+			remoteInfo = SportAssistant;
+		};
+		786805831C565EFE001AC1F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 788A518D1C15835600A166A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7868056F1C565EFD001AC1F0;
+			remoteInfo = iOSEngine;
+		};
+		786805C01C56757E001AC1F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 788A518D1C15835600A166A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 786805BA1C56757E001AC1F0;
+			remoteInfo = watchOSEngine;
+		};
 		788A51AA1C15835600A166A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 788A518D1C15835600A166A0 /* Project object */;
@@ -154,6 +186,7 @@
 				7868055C1C5659F7001AC1F0 /* Result.framework in Embed Frameworks */,
 				7868056A1C565B6A001AC1F0 /* Charts.framework in Embed Frameworks */,
 				786805561C5659F7001AC1F0 /* ReactiveCocoa.framework in Embed Frameworks */,
+				786805861C565EFE001AC1F0 /* iOSEngine.framework in Embed Frameworks */,
 				786805581C5659F7001AC1F0 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -167,6 +200,7 @@
 			files = (
 				786805661C565A6B001AC1F0 /* Realm.framework in Embed Frameworks */,
 				786805641C565A6B001AC1F0 /* RealmSwift.framework in Embed Frameworks */,
+				786805C31C56757E001AC1F0 /* watchOSEngine.framework in Embed Frameworks */,
 				786805621C565A6B001AC1F0 /* YOChartImageKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -197,7 +231,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		78045FCC1C25FF1000FEEB87 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		78045FD21C26073700FEEB87 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		78045FD31C26073700FEEB87 /* TrainingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingCell.swift; sourceTree = "<group>"; };
 		78045FD41C26073700FEEB87 /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
@@ -213,12 +246,9 @@
 		78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rotation.swift"; sourceTree = "<group>"; };
 		78180CDC1C3A785300D3C7CC /* AccelerationDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationDataCell.swift; sourceTree = "<group>"; };
 		7821E13F1C511790001B97A7 /* AddTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCell.swift; sourceTree = "<group>"; };
-		78317C731C4ADC8A002DD2AA /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7831F62F1C217B7600A7CBB1 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7831F6361C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTrainingInterfaceController.swift; sourceTree = "<group>"; };
 		7831F6371C21845B00A7CBB1 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
-		7840908F1C2D81C0003DF043 /* Analyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analyzer.swift; sourceTree = "<group>"; };
-		784090911C2D84A4003DF043 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		784090931C2F2A54003DF043 /* AnalyzerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzerTests.swift; sourceTree = "<group>"; };
 		784090961C2F2E6E003DF043 /* HistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTests.swift; sourceTree = "<group>"; };
 		784846671C386D92009E4CDD /* TrainingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingInterfaceController.swift; sourceTree = "<group>"; };
@@ -234,6 +264,27 @@
 		7868055F1C565A6B001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/watchOS/RealmSwift.framework; sourceTree = "<group>"; };
 		786805601C565A6B001AC1F0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/watchOS/Realm.framework; sourceTree = "<group>"; };
 		786805681C565B6A001AC1F0 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = ../Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+		786805701C565EFE001AC1F0 /* iOSEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		786805721C565EFE001AC1F0 /* iOSEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSEngine.h; sourceTree = "<group>"; };
+		786805741C565EFE001AC1F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		786805791C565EFE001AC1F0 /* iOSEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		786805801C565EFE001AC1F0 /* iOSEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSEngineTests.swift; sourceTree = "<group>"; };
+		786805821C565EFE001AC1F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		786805BB1C56757E001AC1F0 /* watchOSEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = watchOSEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		786805BD1C56757E001AC1F0 /* watchOSEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = watchOSEngine.h; sourceTree = "<group>"; };
+		786805BF1C56757E001AC1F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		786805CC1C567607001AC1F0 /* ClientSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSynchronizer.swift; sourceTree = "<group>"; };
+		786805CF1C56765E001AC1F0 /* ServerSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSynchronizer.swift; sourceTree = "<group>"; };
+		786805EE1C567758001AC1F0 /* Analyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analyzer.swift; sourceTree = "<group>"; };
+		786805F01C567758001AC1F0 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
+		786805F11C567758001AC1F0 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		786805F21C567758001AC1F0 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		786805F31C567758001AC1F0 /* Realm+Configure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Configure.swift"; sourceTree = "<group>"; };
+		786805F41C567758001AC1F0 /* StorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		786805F51C567758001AC1F0 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		786805F61C567758001AC1F0 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
+		786805F71C567758001AC1F0 /* TrainingsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsCollection.swift; sourceTree = "<group>"; };
+		786805F91C567758001AC1F0 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -262,31 +313,51 @@
 		788C3B411C28AB680081BD13 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpers.swift; sourceTree = "<group>"; };
-		789DE8F01C27571400B8CA98 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
 		78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingController.swift; sourceTree = "<group>"; };
 		78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
 		78C38DDE1C491658003CD041 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
-		78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsCollection.swift; sourceTree = "<group>"; };
-		78DB531D1C50235400DDF7E3 /* StorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
-		78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Configure.swift"; sourceTree = "<group>"; };
 		78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportAssistant.entitlements; sourceTree = "<group>"; };
 		78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SportAssistant WatchKit Extension.entitlements"; sourceTree = "<group>"; };
-		78E61E621C2C2597003C59F1 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSynchronizer.swift; sourceTree = "<group>"; };
-		78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSynchronizer.swift; sourceTree = "<group>"; };
 		78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
-		78FAF04C1C258D4700016580 /* AccelerationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationData.swift; sourceTree = "<group>"; };
 		78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7868056C1C565EFD001AC1F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786805951C565F9A001AC1F0 /* RealmSwift.framework in Frameworks */,
+				786805961C565F9A001AC1F0 /* Realm.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805761C565EFE001AC1F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7868057A1C565EFE001AC1F0 /* iOSEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805B71C56757E001AC1F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786805D11C5676DA001AC1F0 /* YOChartImageKit.framework in Frameworks */,
+				786805D21C5676DA001AC1F0 /* RealmSwift.framework in Frameworks */,
+				786805D31C5676DA001AC1F0 /* Realm.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		788A51921C15835600A166A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786805851C565EFE001AC1F0 /* iOSEngine.framework in Frameworks */,
 				786805531C5659F7001AC1F0 /* SwiftDate.framework in Frameworks */,
 				786805551C5659F7001AC1F0 /* ReactiveCocoa.framework in Frameworks */,
 				786805571C5659F7001AC1F0 /* RealmSwift.framework in Frameworks */,
@@ -319,6 +390,7 @@
 				786805611C565A6B001AC1F0 /* YOChartImageKit.framework in Frameworks */,
 				787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */,
 				786805631C565A6B001AC1F0 /* RealmSwift.framework in Frameworks */,
+				786805C21C56757E001AC1F0 /* watchOSEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,20 +464,98 @@
 			path = Training;
 			sourceTree = "<group>";
 		};
-		7840908E1C2D80D7003DF043 /* Analyzer */ = {
-			isa = PBXGroup;
-			children = (
-				7840908F1C2D81C0003DF043 /* Analyzer.swift */,
-			);
-			path = Analyzer;
-			sourceTree = "<group>";
-		};
 		784D25051C1F1806006491A0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				784D25071C1F1856006491A0 /* MenuInterfaceController.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		786805711C565EFE001AC1F0 /* iOSEngine */ = {
+			isa = PBXGroup;
+			children = (
+				786805CB1C567607001AC1F0 /* Synchronizer */,
+				786805721C565EFE001AC1F0 /* iOSEngine.h */,
+				786805741C565EFE001AC1F0 /* Info.plist */,
+			);
+			path = iOSEngine;
+			sourceTree = "<group>";
+		};
+		7868057F1C565EFE001AC1F0 /* iOSEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				786805801C565EFE001AC1F0 /* iOSEngineTests.swift */,
+				786805821C565EFE001AC1F0 /* Info.plist */,
+			);
+			path = iOSEngineTests;
+			sourceTree = "<group>";
+		};
+		786805BC1C56757E001AC1F0 /* watchOSEngine */ = {
+			isa = PBXGroup;
+			children = (
+				786805CE1C56765E001AC1F0 /* Synchronizer */,
+				786805BD1C56757E001AC1F0 /* watchOSEngine.h */,
+				786805BF1C56757E001AC1F0 /* Info.plist */,
+			);
+			path = watchOSEngine;
+			sourceTree = "<group>";
+		};
+		786805CB1C567607001AC1F0 /* Synchronizer */ = {
+			isa = PBXGroup;
+			children = (
+				786805CC1C567607001AC1F0 /* ClientSynchronizer.swift */,
+			);
+			path = Synchronizer;
+			sourceTree = "<group>";
+		};
+		786805CE1C56765E001AC1F0 /* Synchronizer */ = {
+			isa = PBXGroup;
+			children = (
+				786805CF1C56765E001AC1F0 /* ServerSynchronizer.swift */,
+			);
+			path = Synchronizer;
+			sourceTree = "<group>";
+		};
+		786805EC1C567758001AC1F0 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				786805ED1C567758001AC1F0 /* Analyzer */,
+				786805EF1C567758001AC1F0 /* Data */,
+				786805F81C567758001AC1F0 /* Synchronizer */,
+			);
+			path = Engine;
+			sourceTree = SOURCE_ROOT;
+		};
+		786805ED1C567758001AC1F0 /* Analyzer */ = {
+			isa = PBXGroup;
+			children = (
+				786805EE1C567758001AC1F0 /* Analyzer.swift */,
+			);
+			path = Analyzer;
+			sourceTree = "<group>";
+		};
+		786805EF1C567758001AC1F0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				786805F01C567758001AC1F0 /* AccelerationData.swift */,
+				786805F11C567758001AC1F0 /* Activity.swift */,
+				786805F21C567758001AC1F0 /* History.swift */,
+				786805F31C567758001AC1F0 /* Realm+Configure.swift */,
+				786805F41C567758001AC1F0 /* StorageController.swift */,
+				786805F51C567758001AC1F0 /* Tag.swift */,
+				786805F61C567758001AC1F0 /* Training.swift */,
+				786805F71C567758001AC1F0 /* TrainingsCollection.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		786805F81C567758001AC1F0 /* Synchronizer */ = {
+			isa = PBXGroup;
+			children = (
+				786805F91C567758001AC1F0 /* Package.swift */,
+			);
+			path = Synchronizer;
 			sourceTree = "<group>";
 		};
 		786C3F4D1C340B2B00CBCC54 /* Detail */ = {
@@ -436,6 +586,10 @@
 				788A51B71C15835600A166A0 /* SportAssistantUITests */,
 				788A51C11C15835600A166A0 /* SportAssistant WatchKit App */,
 				788A51D01C15835600A166A0 /* SportAssistant WatchKit Extension */,
+				786805EC1C567758001AC1F0 /* Engine */,
+				786805711C565EFE001AC1F0 /* iOSEngine */,
+				7868057F1C565EFE001AC1F0 /* iOSEngineTests */,
+				786805BC1C56757E001AC1F0 /* watchOSEngine */,
 				788A51961C15835600A166A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -448,6 +602,9 @@
 				788A51B41C15835600A166A0 /* SportAssistantUITests.xctest */,
 				788A51BD1C15835600A166A0 /* SportAssistant WatchKit App.app */,
 				788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */,
+				786805701C565EFE001AC1F0 /* iOSEngine.framework */,
+				786805791C565EFE001AC1F0 /* iOSEngineTests.xctest */,
+				786805BB1C56757E001AC1F0 /* watchOSEngine.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -456,11 +613,8 @@
 			isa = PBXGroup;
 			children = (
 				780E49C91C4BC327004FBB7E /* Tags */,
-				7840908E1C2D80D7003DF043 /* Analyzer */,
-				78E61E611C2C257B003C59F1 /* Synchronizer */,
 				788C3B401C28AB400081BD13 /* Resources */,
 				78045FD11C26072200FEEB87 /* Intervals */,
-				78FAF04B1C258D2700016580 /* Engine */,
 				7831F62E1C21793300A7CBB1 /* Utils */,
 				788A51981C15835600A166A0 /* AppDelegate.swift */,
 				788A519C1C15835600A166A0 /* Main.storyboard */,
@@ -509,7 +663,6 @@
 				7807AC561C4EE8F300D2BCE5 /* Tags */,
 				78C38DDD1C491567003CD041 /* Utils */,
 				78159A371C39D00B001C8031 /* Resources */,
-				78E61E671C2C2ADF003C59F1 /* Synchronizer */,
 				78A2D1DF1C2C135400EEBDD7 /* History */,
 				7831F6351C21843D00A7CBB1 /* Training */,
 				784D25051C1F1806006491A0 /* Menu */,
@@ -558,41 +711,83 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		78E61E611C2C257B003C59F1 /* Synchronizer */ = {
-			isa = PBXGroup;
-			children = (
-				78E61E621C2C2597003C59F1 /* Package.swift */,
-				78E61E651C2C2A78003C59F1 /* ClientSynchronizer.swift */,
-			);
-			path = Synchronizer;
-			sourceTree = "<group>";
-		};
-		78E61E671C2C2ADF003C59F1 /* Synchronizer */ = {
-			isa = PBXGroup;
-			children = (
-				78E61E681C2C2AF6003C59F1 /* ServerSynchronizer.swift */,
-			);
-			path = Synchronizer;
-			sourceTree = "<group>";
-		};
-		78FAF04B1C258D2700016580 /* Engine */ = {
-			isa = PBXGroup;
-			children = (
-				78FAF04C1C258D4700016580 /* AccelerationData.swift */,
-				78045FCC1C25FF1000FEEB87 /* Training.swift */,
-				789DE8F01C27571400B8CA98 /* History.swift */,
-				78E51D1C1C2AA7ED00E5D26B /* Realm+Configure.swift */,
-				784090911C2D84A4003DF043 /* Activity.swift */,
-				78317C731C4ADC8A002DD2AA /* Tag.swift */,
-				78DB531B1C50232100DDF7E3 /* TrainingsCollection.swift */,
-				78DB531D1C50235400DDF7E3 /* StorageController.swift */,
-			);
-			path = Engine;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		7868056D1C565EFD001AC1F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786805731C565EFE001AC1F0 /* iOSEngine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805B81C56757E001AC1F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786805BE1C56757E001AC1F0 /* watchOSEngine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		7868056F1C565EFD001AC1F0 /* iOSEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 786805871C565EFE001AC1F0 /* Build configuration list for PBXNativeTarget "iOSEngine" */;
+			buildPhases = (
+				7868056B1C565EFD001AC1F0 /* Sources */,
+				7868056C1C565EFD001AC1F0 /* Frameworks */,
+				7868056D1C565EFD001AC1F0 /* Headers */,
+				7868056E1C565EFD001AC1F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSEngine;
+			productName = iOSEngine;
+			productReference = 786805701C565EFE001AC1F0 /* iOSEngine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		786805781C565EFE001AC1F0 /* iOSEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7868058A1C565EFE001AC1F0 /* Build configuration list for PBXNativeTarget "iOSEngineTests" */;
+			buildPhases = (
+				786805751C565EFE001AC1F0 /* Sources */,
+				786805761C565EFE001AC1F0 /* Frameworks */,
+				786805771C565EFE001AC1F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7868057C1C565EFE001AC1F0 /* PBXTargetDependency */,
+				7868057E1C565EFE001AC1F0 /* PBXTargetDependency */,
+			);
+			name = iOSEngineTests;
+			productName = iOSEngineTests;
+			productReference = 786805791C565EFE001AC1F0 /* iOSEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		786805BA1C56757E001AC1F0 /* watchOSEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 786805C41C56757E001AC1F0 /* Build configuration list for PBXNativeTarget "watchOSEngine" */;
+			buildPhases = (
+				786805B61C56757E001AC1F0 /* Sources */,
+				786805B71C56757E001AC1F0 /* Frameworks */,
+				786805B81C56757E001AC1F0 /* Headers */,
+				786805B91C56757E001AC1F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = watchOSEngine;
+			productName = watchOSEngine;
+			productReference = 786805BB1C56757E001AC1F0 /* watchOSEngine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		788A51941C15835600A166A0 /* SportAssistant */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 788A51E61C15835600A166A0 /* Build configuration list for PBXNativeTarget "SportAssistant" */;
@@ -609,6 +804,7 @@
 			);
 			dependencies = (
 				788A51C01C15835600A166A0 /* PBXTargetDependency */,
+				786805841C565EFE001AC1F0 /* PBXTargetDependency */,
 			);
 			name = SportAssistant;
 			productName = SportAssistant;
@@ -682,6 +878,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				786805C11C56757E001AC1F0 /* PBXTargetDependency */,
 			);
 			name = "SportAssistant WatchKit Extension";
 			productName = "SportAssistant WatchKit Extension";
@@ -698,6 +895,18 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Spangle;
 				TargetAttributes = {
+					7868056F1C565EFD001AC1F0 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 76CZQW8YA8;
+					};
+					786805781C565EFE001AC1F0 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 788A51941C15835600A166A0;
+					};
+					786805BA1C56757E001AC1F0 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 76CZQW8YA8;
+					};
 					788A51941C15835600A166A0 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 76CZQW8YA8;
@@ -754,11 +963,35 @@
 				788A51B31C15835600A166A0 /* SportAssistantUITests */,
 				788A51BC1C15835600A166A0 /* SportAssistant WatchKit App */,
 				788A51CB1C15835600A166A0 /* SportAssistant WatchKit Extension */,
+				7868056F1C565EFD001AC1F0 /* iOSEngine */,
+				786805781C565EFE001AC1F0 /* iOSEngineTests */,
+				786805BA1C56757E001AC1F0 /* watchOSEngine */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7868056E1C565EFD001AC1F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805771C565EFE001AC1F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805B91C56757E001AC1F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		788A51931C15835600A166A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -865,16 +1098,57 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7868056B1C565EFD001AC1F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786805CD1C567607001AC1F0 /* ClientSynchronizer.swift in Sources */,
+				786806011C567758001AC1F0 /* Training.swift in Sources */,
+				786805FB1C567758001AC1F0 /* AccelerationData.swift in Sources */,
+				786806021C567758001AC1F0 /* TrainingsCollection.swift in Sources */,
+				786805FD1C567758001AC1F0 /* History.swift in Sources */,
+				786805FC1C567758001AC1F0 /* Activity.swift in Sources */,
+				786805FE1C567758001AC1F0 /* Realm+Configure.swift in Sources */,
+				786806001C567758001AC1F0 /* Tag.swift in Sources */,
+				786805FA1C567758001AC1F0 /* Analyzer.swift in Sources */,
+				786806031C567758001AC1F0 /* Package.swift in Sources */,
+				786805FF1C567758001AC1F0 /* StorageController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805751C565EFE001AC1F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786805811C565EFE001AC1F0 /* iOSEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		786805B61C56757E001AC1F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7868060A1C567924001AC1F0 /* Tag.swift in Sources */,
+				786805D01C56765E001AC1F0 /* ServerSynchronizer.swift in Sources */,
+				786806051C567924001AC1F0 /* AccelerationData.swift in Sources */,
+				786806081C567924001AC1F0 /* Realm+Configure.swift in Sources */,
+				786806061C567924001AC1F0 /* Activity.swift in Sources */,
+				786806041C56791F001AC1F0 /* Analyzer.swift in Sources */,
+				786806091C567924001AC1F0 /* StorageController.swift in Sources */,
+				7868060C1C567924001AC1F0 /* TrainingsCollection.swift in Sources */,
+				7868060B1C567924001AC1F0 /* Training.swift in Sources */,
+				7868060D1C567929001AC1F0 /* Package.swift in Sources */,
+				786806071C567924001AC1F0 /* History.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		788A51911C15835600A166A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78317C741C4ADC8A002DD2AA /* Tag.swift in Sources */,
-				78E61E661C2C2A78003C59F1 /* ClientSynchronizer.swift in Sources */,
 				78180CDD1C3A785300D3C7CC /* AccelerationDataCell.swift in Sources */,
 				78045FD51C26073700FEEB87 /* TrainingViewController.swift in Sources */,
 				789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */,
-				78DB531C1C50232100DDF7E3 /* TrainingsCollection.swift in Sources */,
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,
 				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
@@ -884,16 +1158,8 @@
 				786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */,
 				7848466A1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */,
-				78E51D1D1C2AA7ED00E5D26B /* Realm+Configure.swift in Sources */,
-				78045FCD1C25FF1000FEEB87 /* Training.swift in Sources */,
-				78FAF04D1C258D4700016580 /* AccelerationData.swift in Sources */,
-				784090901C2D81C0003DF043 /* Analyzer.swift in Sources */,
 				780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */,
-				78DB531E1C50235400DDF7E3 /* StorageController.swift in Sources */,
 				780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */,
-				789DE8F11C27571400B8CA98 /* History.swift in Sources */,
-				78E61E631C2C2597003C59F1 /* Package.swift in Sources */,
-				784090921C2D84A4003DF043 /* Activity.swift in Sources */,
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
@@ -906,19 +1172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78176C651C37183800EB2638 /* AccelerationData.swift in Sources */,
 				788A51AE1C15835600A166A0 /* SportAssistantTests.swift in Sources */,
-				78176C671C37183E00EB2638 /* History.swift in Sources */,
-				78DB53211C50237500DDF7E3 /* TrainingsCollection.swift in Sources */,
-				78176C661C37183E00EB2638 /* Training.swift in Sources */,
 				784090941C2F2A54003DF043 /* AnalyzerTests.swift in Sources */,
-				78176C691C37184800EB2638 /* Realm+Configure.swift in Sources */,
-				780E49C81C4BC271004FBB7E /* Tag.swift in Sources */,
 				784090971C2F2E6E003DF043 /* HistoryTests.swift in Sources */,
-				78176C681C37183E00EB2638 /* Activity.swift in Sources */,
 				78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */,
-				78176C641C37167700EB2638 /* Analyzer.swift in Sources */,
-				78DB531F1C50235400DDF7E3 /* StorageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,11 +1192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				784846711C387A50009E4CDD /* ChartInterfaceController.swift in Sources */,
-				78E51D231C2ACB5A00E5D26B /* History.swift in Sources */,
 				784846681C386D92009E4CDD /* TrainingInterfaceController.swift in Sources */,
-				78DB53201C50235400DDF7E3 /* StorageController.swift in Sources */,
-				78E51D211C2ACB5A00E5D26B /* AccelerationData.swift in Sources */,
-				78DB53221C50237600DDF7E3 /* TrainingsCollection.swift in Sources */,
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
 				7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */,
@@ -947,18 +1200,11 @@
 				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
 				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */,
-				78E61E641C2C25A3003C59F1 /* Package.swift in Sources */,
 				78898AC61C419FFF00907629 /* Colors.swift in Sources */,
-				787636151C3284B100E84348 /* Activity.swift in Sources */,
-				78E51D221C2ACB5A00E5D26B /* Training.swift in Sources */,
-				78317C751C4ADC8A002DD2AA /* Tag.swift in Sources */,
-				78805AF91C308D80002E1845 /* Analyzer.swift in Sources */,
 				788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */,
-				78E51D201C2ACA8200E5D26B /* Realm+Configure.swift in Sources */,
 				789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */,
 				7831F6381C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift in Sources */,
 				7807AC581C4EE96A00D2BCE5 /* TagsInterfaceController.swift in Sources */,
-				78E61E691C2C2AF6003C59F1 /* ServerSynchronizer.swift in Sources */,
 				784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */,
 				78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */,
 			);
@@ -967,6 +1213,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7868057C1C565EFE001AC1F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7868056F1C565EFD001AC1F0 /* iOSEngine */;
+			targetProxy = 7868057B1C565EFE001AC1F0 /* PBXContainerItemProxy */;
+		};
+		7868057E1C565EFE001AC1F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 788A51941C15835600A166A0 /* SportAssistant */;
+			targetProxy = 7868057D1C565EFE001AC1F0 /* PBXContainerItemProxy */;
+		};
+		786805841C565EFE001AC1F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7868056F1C565EFD001AC1F0 /* iOSEngine */;
+			targetProxy = 786805831C565EFE001AC1F0 /* PBXContainerItemProxy */;
+		};
+		786805C11C56757E001AC1F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 786805BA1C56757E001AC1F0 /* watchOSEngine */;
+			targetProxy = 786805C01C56757E001AC1F0 /* PBXContainerItemProxy */;
+		};
 		788A51AB1C15835600A166A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 788A51941C15835600A166A0 /* SportAssistant */;
@@ -1017,6 +1283,142 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		786805881C565EFE001AC1F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOSEngine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.iOSEngine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		786805891C565EFE001AC1F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iOSEngine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.iOSEngine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7868058B1C565EFE001AC1F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOSEngineTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.iOSEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportAssistant.app/SportAssistant";
+			};
+			name = Debug;
+		};
+		7868058C1C565EFE001AC1F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOSEngineTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.iOSEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportAssistant.app/SportAssistant";
+			};
+			name = Release;
+		};
+		786805C51C56757E001AC1F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/watchOS",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = watchOSEngine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchOSEngine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		786805C61C56757E001AC1F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/watchOS",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = watchOSEngine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchOSEngine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		788A51DC1C15835600A166A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1106,6 +1508,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SportAssistant WatchKit Extension/SportAssistant WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/watchOS",
@@ -1128,6 +1531,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SportAssistant WatchKit Extension/SportAssistant WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/watchOS",
@@ -1189,6 +1593,7 @@
 				CODE_SIGN_ENTITLEMENTS = SportAssistant/SportAssistant.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
@@ -1208,6 +1613,7 @@
 				CODE_SIGN_ENTITLEMENTS = SportAssistant/SportAssistant.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
@@ -1279,6 +1685,30 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		786805871C565EFE001AC1F0 /* Build configuration list for PBXNativeTarget "iOSEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				786805881C565EFE001AC1F0 /* Debug */,
+				786805891C565EFE001AC1F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7868058A1C565EFE001AC1F0 /* Build configuration list for PBXNativeTarget "iOSEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7868058B1C565EFE001AC1F0 /* Debug */,
+				7868058C1C565EFE001AC1F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		786805C41C56757E001AC1F0 /* Build configuration list for PBXNativeTarget "watchOSEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				786805C51C56757E001AC1F0 /* Debug */,
+				786805C61C56757E001AC1F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		788A51901C15835600A166A0 /* Build configuration list for PBXProject "SportAssistant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,4 +1,5 @@
 import UIKit
+import iOSEngine
 
 class AccelerationDataCell: UITableViewCell, ReusableNibView {
 

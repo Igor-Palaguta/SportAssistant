@@ -1,5 +1,6 @@
 import WatchKit
 import RealmSwift
+import watchOSEngine
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 

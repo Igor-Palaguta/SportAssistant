@@ -82,7 +82,7 @@ extension AccelerationData {
    }
 }
 
-final class AccelerationDataRange: CustomStringConvertible {
+public final class AccelerationDataRange: CustomStringConvertible {
 
    var x: Range
    var y: Range
@@ -123,7 +123,7 @@ final class AccelerationDataRange: CustomStringConvertible {
       }
    }
 
-   var description: String {
+   public var description: String {
       return self.all.description
    }
 }
@@ -143,12 +143,12 @@ struct Template<AttributesType> {
    }
 }
 
-enum AnalyzerResult<AttributesType> {
+public enum AnalyzerResult<AttributesType> {
    case Analyzing
    case FoundRange(AttributesType?, AccelerationDataRange)
    case NotFromRange([AccelerationData])
 
-   var data: [AccelerationData] {
+   public var data: [AccelerationData] {
       switch self {
       case Analyzing:
          return []
@@ -159,7 +159,7 @@ enum AnalyzerResult<AttributesType> {
       }
    }
 
-   var peak: (attributes: AttributesType, data: AccelerationData)? {
+   public var peak: (attributes: AttributesType, data: AccelerationData)? {
       if case .FoundRange(.Some(let attributes), let range) = self {
          return (attributes, range.total.globalMax.data)
       }
@@ -167,13 +167,13 @@ enum AnalyzerResult<AttributesType> {
    }
 }
 
-class Analyzer<AttributesType> {
+public class Analyzer<AttributesType> {
 
    private var currentRange: AccelerationDataRange?
    private let templates: [Template<AttributesType>]
    private let defaultValue: AttributesType?
 
-   var outstandingData: [AccelerationData] {
+   public var outstandingData: [AccelerationData] {
       return self.currentRange.map { $0.all } ?? []
    }
 
@@ -189,7 +189,7 @@ class Analyzer<AttributesType> {
       return nil
    }
 
-   func analyzeData(data: AccelerationData) -> AnalyzerResult<AttributesType> {
+   public func analyzeData(data: AccelerationData) -> AnalyzerResult<AttributesType> {
       guard let currentRange = self.currentRange else {
          self.currentRange = AccelerationDataRange(initial: data)
          return .Analyzing
@@ -212,17 +212,17 @@ class Analyzer<AttributesType> {
    }
 }
 
-enum Hand: String {
+public enum Hand: String {
    case Left
    case Right
 }
 
-enum TableTennisMotion: CustomStringConvertible {
+public enum TableTennisMotion: CustomStringConvertible {
    case RightTopSpin(Hand)
    case LeftTopSpin(Hand)
    case Unknown
 
-   var description: String {
+   public var description: String {
       switch self {
       case RightTopSpin(let hand):
          return "\(hand) Hand Right Top Spin"
@@ -242,9 +242,9 @@ private func predicateForField(field: AccelerationDataField,
       }
 }
 
-final class TableTennisAnalyzer: Analyzer<TableTennisMotion> {
+public final class TableTennisAnalyzer: Analyzer<TableTennisMotion> {
 
-   init() {
+   public init() {
       let rightHandRightTopSpin = Template(attributes: TableTennisMotion.RightTopSpin(.Right),
          predicates: [
             predicateForField(.x) { $0.globalMin < 0 && abs($0.globalMin.value) > abs($0.globalMax.value) },

@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 
 extension Realm {
-   class func configure() {
+   public class func configure() {
       var config = Realm.Configuration()
 
       let documentsURL = NSFileManager.defaultManager()
@@ -14,16 +14,5 @@ extension Realm {
          .path
 
       Realm.Configuration.defaultConfiguration = config
-   }
-
-   class func write(@noescape transaction: (Realm) -> ()) {
-      if let realm = try? Realm() {
-         do {
-            try realm.write {
-               transaction(realm)
-            }
-         } catch {
-         }
-      }
    }
 }

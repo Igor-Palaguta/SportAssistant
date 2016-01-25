@@ -1,5 +1,6 @@
 import WatchKit
 import Foundation
+import watchOSEngine
 
 final class TrainingController: NSObject {
 

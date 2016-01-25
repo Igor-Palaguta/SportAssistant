@@ -2,6 +2,7 @@ import WatchKit
 import Foundation
 import CoreMotion
 import HealthKit
+import watchOSEngine
 
 private class Session: NSObject {
 

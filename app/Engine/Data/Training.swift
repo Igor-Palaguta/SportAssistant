@@ -1,15 +1,15 @@
 import Foundation
 import RealmSwift
 
-final class Training: Object, Equatable {
-   private(set) dynamic var id = NSUUID().UUIDString
-   private(set) dynamic var best: Double = 0
-   private(set) dynamic var start = NSDate()
-   private(set) dynamic var currentCount = 0
-   private(set) dynamic var tagsVersion = 0
+public final class Training: Object, Equatable {
+   public private(set) dynamic var id = NSUUID().UUIDString
+   public private(set) dynamic var best: Double = 0
+   public private(set) dynamic var start = NSDate()
+   public private(set) dynamic var currentCount = 0
+   public private(set) dynamic var tagsVersion = 0
 
-   let tags = List<Tag>()
-   let data = List<AccelerationData>()
+   public let tags = List<Tag>()
+   public let data = List<AccelerationData>()
 
    func deleteTag(tag: Tag) {
       guard let tagIndex = self.tags.indexOf(tag) else {
@@ -33,15 +33,15 @@ final class Training: Object, Equatable {
       self.tagsVersion += 1
    }
 
-   dynamic var duration: NSTimeInterval {
+   public dynamic var duration: NSTimeInterval {
       return self.data.last?.timestamp ?? 0
    }
 
-   var activities: [Activity] {
+   public var activities: [Activity] {
       return self.activitiesData.map { $0.activity! }
    }
 
-   var activitiesData: Results<AccelerationData> {
+   public var activitiesData: Results<AccelerationData> {
       return self.data.filter(NSPredicate(format: "activity != nil"))
    }
 
@@ -72,16 +72,16 @@ final class Training: Object, Equatable {
       return NSSet(object: "currentCount")
    }
 
-   override static func primaryKey() -> String? {
+   public override static func primaryKey() -> String? {
       return "id"
    }
 
-   override static func ignoredProperties() -> [String] {
+   public override static func ignoredProperties() -> [String] {
       return ["duration", "activities", "activitiesData"]
    }
 }
 
-func == (lhs: Training, rhs: Training) -> Bool {
+public func == (lhs: Training, rhs: Training) -> Bool {
    return lhs.id == rhs.id
 }
 

@@ -1,9 +1,9 @@
 import Foundation
 import RealmSwift
 
-class StorageController: NSObject {
+public final class StorageController: NSObject {
 
-   static var UIController: StorageController {
+   public static var UIController: StorageController {
       assert(NSThread.isMainThread())
       return self._UIController
    }
@@ -35,7 +35,7 @@ class StorageController: NSObject {
       return self.realm.objects(History).first!
       }()
 
-   dynamic var best: Double {
+   public dynamic var best: Double {
       return self.history.best
    }
 
@@ -43,7 +43,7 @@ class StorageController: NSObject {
       return NSSet(object: "history.best")
    }
 
-   dynamic var active: Training? {
+   public dynamic var active: Training? {
       return self.history.active
    }
 
@@ -51,23 +51,27 @@ class StorageController: NSObject {
       return NSSet(object: "history.active")
    }
 
-   var tags: Results<Tag>  {
+   public var tags: Results<Tag>  {
       return self.realm.objects(Tag)
    }
 
-   var recentTags: Results<Tag> {
+   public var allTrainings: TrainingsCollection {
+      return self.history
+   }
+
+   public var recentTags: Results<Tag> {
       return self.realm.objects(Tag).sorted("lastUseDate", ascending: false)
    }
 
-   var trainingsCount: Int {
+   public var trainingsCount: Int {
       return self.history.trainings.count
    }
 
-   func trainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
+   public func trainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
       return self.history.trainingsOrderedBy(orderBy, ascending: ascending)
    }
 
-   func trainingsWithPredicate(predicate: NSPredicate?) -> Results<Training> {
+   public func trainingsWithPredicate(predicate: NSPredicate?) -> Results<Training> {
       if let predicate = predicate {
          return self.history.trainings.filter(predicate)
       } else {
@@ -79,7 +83,7 @@ class StorageController: NSObject {
       try! self.realm.write(transaction)
    }
 
-   func addTrainingWithId(id: String, start: NSDate, tagId: String?, activate: Bool = false) -> Training {
+   public func addTrainingWithId(id: String, start: NSDate, tagId: String?, activate: Bool = false) -> Training {
       var createdTraining: Training!
       self.write {
          let tag: Tag? = tagId.flatMap { self.realm.objectForPrimaryKey(Tag.self, key: $0) }
@@ -113,7 +117,7 @@ class StorageController: NSObject {
          }
    }
 
-   func deleteTraining(training: Training) {
+   public func deleteTraining(training: Training) {
       self.write {
          self.history.deleteTraining(training)
          training.tags.forEach {
@@ -129,7 +133,7 @@ class StorageController: NSObject {
       }
    }
 
-   func createTraining(tag: Tag?) -> Training {
+   public func createTraining(tag: Tag?) -> Training {
       let training = Training()
       if let tag = tag {
          training.tags.append(tag)
@@ -141,14 +145,14 @@ class StorageController: NSObject {
       return training
    }
 
-   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toTraining training: Training) {
+   public func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toTraining training: Training) {
       self.write {
          self.history.appendDataFromArray(data, toTraining: training)
          training.tags.forEach { $0.checkBestOfTraining(training) }
       }
    }
 
-   func addActivityWithName(name: String, toData data: AccelerationData) {
+   public func addActivityWithName(name: String, toData data: AccelerationData) {
       self.write {
          let activity = Activity(name: name)
          data.activity = activity
@@ -165,19 +169,19 @@ class StorageController: NSObject {
 
 extension StorageController {
 
-   func addTag(tag: Tag) {
+   public func addTag(tag: Tag) {
       self.write {
          self.realm.add(tag)
       }
    }
 
-   func editTag(tag: Tag, name: String) {
+   public func editTag(tag: Tag, name: String) {
       self.write {
          tag.name = name
       }
    }
 
-   func deleteTag(tag: Tag) {
+   public func deleteTag(tag: Tag) {
       self.write {
          tag.trainings.forEach { $0.deleteTag(tag) }
          self.realm.delete(tag)
@@ -197,7 +201,7 @@ extension StorageController {
       }
    }
 
-   func assignTags(tags: [Tag], forTraining training: Training) {
+   public func assignTags(tags: [Tag], forTraining training: Training) {
       self.write {
          let oldTags = training.tags.filter { !tags.contains($0) }
          let newTags = tags.filter { !training.tags.contains($0) }

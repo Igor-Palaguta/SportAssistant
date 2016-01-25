@@ -1,5 +1,6 @@
 import WatchKit
 import Foundation
+import watchOSEngine
 
 protocol TrainingInterfaceControllerDelegate: class {
    func deleteTrainingInterfaceController(controller: TrainingInterfaceController)

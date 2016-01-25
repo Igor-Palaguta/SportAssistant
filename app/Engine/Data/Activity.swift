@@ -1,8 +1,8 @@
 import Foundation
 import RealmSwift
 
-final class Activity: Object {
-   dynamic var name: String = ""
+public final class Activity: Object {
+   public internal(set) dynamic var name: String = ""
    convenience init(name: String) {
       self.init()
       self.name = name

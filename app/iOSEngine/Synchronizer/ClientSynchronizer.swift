@@ -1,13 +1,13 @@
 import Foundation
 import WatchConnectivity
 
-final class ClientSynchronizer: NSObject {
+public final class ClientSynchronizer: NSObject {
 
-   static let defaultClient = ClientSynchronizer()
+   public static let defaultClient = ClientSynchronizer()
 
    private var session: WCSession?
 
-   func start() {
+   public func start() {
       if self.session == nil && WCSession.isSupported() {
          let session = WCSession.defaultSession()
          session.delegate = self
@@ -16,7 +16,7 @@ final class ClientSynchronizer: NSObject {
       }
    }
 
-   func synchronizeTags() {
+   public func synchronizeTags() {
       let storage = StorageController()
       let message = Package.Tags(Array(storage.tags)).toMessage()
       do {
@@ -27,11 +27,11 @@ final class ClientSynchronizer: NSObject {
 }
 
 extension ClientSynchronizer: WCSessionDelegate {
-   func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?) {
+   public func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?) {
 
    }
 
-   func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+   public func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
 
       NSLog("didReceiveUserInfo %@", userInfo)
 

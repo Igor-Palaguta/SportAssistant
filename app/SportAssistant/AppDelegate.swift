@@ -1,6 +1,7 @@
 import UIKit
 import RealmSwift
 import HealthKit
+import iOSEngine
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

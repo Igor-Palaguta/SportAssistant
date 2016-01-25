@@ -2,6 +2,7 @@ import UIKit
 import MessageUI
 import Charts
 import ReactiveCocoa
+import iOSEngine
 
 private enum Attributes {
    case Line(UIColor, Bool, CGFloat)
@@ -23,18 +24,12 @@ private enum Attributes {
 
 private enum DataExtractor {
    case Field(AccelerationDataField)
-   case Activity(TableTennisMotion)
    case AnyActivity
 
    func valueForData(data: AccelerationData) -> Double? {
       switch self {
       case .Field(let id):
          return data[id]
-      case .Activity(let motion):
-         if let activity = data.activity where activity.name == motion.description {
-            return data.total
-         }
-         return nil
       case .AnyActivity:
          if data.activity != nil {
             return data.total
@@ -47,8 +42,6 @@ private enum DataExtractor {
       switch self {
       case .Field(let id):
          return id.rawValue
-      case .Activity(let motion):
-         return motion.description
       case .AnyActivity:
          return nil
       }

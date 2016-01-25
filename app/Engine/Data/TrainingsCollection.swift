@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-enum OrderBy: String {
+public enum OrderBy: String {
    case Date
    case Result
 
@@ -15,19 +15,19 @@ enum OrderBy: String {
    }
 }
 
-class TrainingsCollection: Object {
+public class TrainingsCollection: Object {
 
-   private(set) dynamic var lastUseDate: NSDate?
-   private(set) dynamic var version = 0
-   private(set) dynamic var best: Double = 0
+   public private(set) dynamic var lastUseDate: NSDate?
+   public private(set) dynamic var version = 0
+   public private(set) dynamic var best: Double = 0
 
-   let trainings = List<Training>()
+   public let trainings = List<Training>()
 
-   var last: Training? {
+   public var last: Training? {
       return self.trainings.last
    }
 
-   func trainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
+   public func trainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
       return self.trainings.sorted(orderBy.fieldName, ascending: ascending)
    }
 

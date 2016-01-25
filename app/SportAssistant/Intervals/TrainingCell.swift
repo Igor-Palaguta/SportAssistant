@@ -1,5 +1,6 @@
 import UIKit
 import ReactiveCocoa
+import iOSEngine
 
 class ProgressView: UIView {
 

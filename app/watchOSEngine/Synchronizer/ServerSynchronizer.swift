@@ -59,15 +59,15 @@ class DataBufferManager {
    }
 }
 
-final class ServerSynchronizer: NSObject {
+public final class ServerSynchronizer: NSObject {
 
-   static let defaultServer = ServerSynchronizer()
+   public static let defaultServer = ServerSynchronizer()
 
    private lazy var bufferManager: DataBufferManager = DataBufferManager(delegate: self)
 
    private var session: WCSession?
 
-   func start() {
+   public func start() {
       if self.session == nil && WCSession.isSupported() {
          let session = WCSession.defaultSession()
          session.delegate = self
@@ -82,25 +82,25 @@ final class ServerSynchronizer: NSObject {
       self.session!.transferUserInfo(message)
    }
 
-   func startTraining(training: Training) {
+   public func startTraining(training: Training) {
       self.sendPackage(.Start(id: training.id,
          start: training.start,
          tagId: training.tags.first?.id))
    }
 
-   func stopTraining(training: Training) {
+   public func stopTraining(training: Training) {
       self.bufferManager.flush()
       self.sendPackage(.Stop(id: training.id))
    }
 
-   func synchronizeTraining(training: Training) {
+   public func synchronizeTraining(training: Training) {
       self.sendPackage(.Synchronize(id: training.id,
          start: training.start,
          tagId: training.tags.first?.id,
          data: Array(training.data)))
    }
 
-   func sendData(data: [AccelerationData], forTraining training: Training) {
+   public func sendData(data: [AccelerationData], forTraining training: Training) {
       if let first = data.first, position = training.data.indexOf(first) {
          self.bufferManager.sendData(data, fromTraining: training.id, position: position)
       } else {
@@ -110,10 +110,10 @@ final class ServerSynchronizer: NSObject {
 }
 
 extension ServerSynchronizer: WCSessionDelegate {
-   func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?) {
+   public func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?) {
    }
 
-   func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+   public func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
       let packages = applicationContext.flatMap {
          name, arguments in
          return Package(name: name, arguments: arguments)

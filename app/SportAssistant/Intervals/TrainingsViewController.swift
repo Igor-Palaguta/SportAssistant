@@ -1,6 +1,7 @@
 import UIKit
 import ReactiveCocoa
 import RealmSwift
+import iOSEngine
 
 extension TagsFilter {
    var name: String? {
@@ -15,7 +16,7 @@ extension TagsFilter {
    var trainingsCollection: TrainingsCollection? {
       switch self {
       case All:
-         return StorageController.UIController.history
+         return StorageController.UIController.allTrainings
       case .Selected(let tags):
          return tags.first
       }

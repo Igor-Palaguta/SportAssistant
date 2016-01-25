@@ -1,4 +1,5 @@
 import UIKit
+import iOSEngine
 
 private extension Array where Element: Equatable {
    func arrayByTogglingElement(element: Element) -> [Element] {
@@ -234,7 +235,7 @@ final class TagsViewController: UITableViewController {
       let cell: TagCell = tableView.dequeueCellForIndexPath(indexPath)
       if let action = action where action == .SelectAll {
          cell.nameLabel.text = tr(.AllTrainings)
-         cell.trainingsCollection = StorageController.UIController.history
+         cell.trainingsCollection = StorageController.UIController.allTrainings
          cell.accessoryType = self.mode.accessoryForAll()
       } else if let tag = self.tagAtIndexPath(indexPath) {
          cell.nameLabel.text = tag.name

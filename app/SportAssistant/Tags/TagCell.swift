@@ -1,5 +1,6 @@
 import UIKit
 import ReactiveCocoa
+import iOSEngine
 
 final class BadgeView: UIView {
 

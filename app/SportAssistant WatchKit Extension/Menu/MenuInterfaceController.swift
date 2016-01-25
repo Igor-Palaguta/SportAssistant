@@ -1,6 +1,7 @@
 import WatchKit
 import Foundation
 import HealthKit
+import watchOSEngine
 
 class MenuInterfaceController: WKInterfaceController {
 
