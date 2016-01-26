@@ -3,6 +3,17 @@ import Foundation
 import RealmSwift
 import watchOSEngine
 
+private extension OrderBy {
+   var title: String {
+      switch self {
+      case .Date:
+         return tr(.Date)
+      case .Result:
+         return tr(.Result)
+      }
+   }
+}
+
 private struct Ordering: Equatable {
    let orderBy: OrderBy
    let ascending: Bool
@@ -20,13 +31,13 @@ private extension NSUserDefaults {
    var ordering: Ordering? {
       set {
          if let ordering = newValue {
-            self.setObject(ordering.orderBy.rawValue, forKey: "Ordering.orderBy")
+            self.setInteger(ordering.orderBy.rawValue, forKey: "Ordering.orderBy")
             self.setBool(ordering.ascending, forKey: "Ordering.ascending")
             self.synchronize()
          }
       }
       get {
-         if let orderByValue = self.objectForKey("Ordering.orderBy") as? String, orderBy = OrderBy(rawValue: orderByValue) {
+         if let orderBy = OrderBy(rawValue: self.integerForKey("Ordering.orderBy")) {
             return Ordering(orderBy: orderBy, ascending: self.boolForKey("Ordering.ascending"))
          }
          return nil
@@ -52,10 +63,10 @@ final class HistoryInterfaceController: WKInterfaceController {
                : (self.orderByResultButton, self.orderByDateButton)
 
             let ascendingString = ordering.ascending ? tr(.Ascending) : tr(.Descending)
-            activeButton.setTitle(ascendingString + ordering.orderBy.rawValue)
+            activeButton.setTitle(ascendingString + ordering.orderBy.title)
 
             let anotherField: OrderBy = ordering.orderBy == .Date ? .Result : .Date
-            inactiveButton.setTitle(anotherField.rawValue)
+            inactiveButton.setTitle(anotherField.title)
 
             inactiveButton.setBackgroundColor(nil)
             activeButton.setBackgroundColor(UIColor(named: .Base))

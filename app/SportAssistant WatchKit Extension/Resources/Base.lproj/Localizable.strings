@@ -6,6 +6,8 @@
 "TrainingsCountFormat" = "Trainings (%d)";
 "Ascending" = "↑";
 "Descending" = "↓";
+"Date" = "Date";
+"Result" = "Result";
 "Other" = "Other";
 "BestFormat" = "Best: %@";
 "LastFormat" = "Last: %@";

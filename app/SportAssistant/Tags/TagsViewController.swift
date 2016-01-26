@@ -258,7 +258,7 @@ final class TagsViewController: UITableViewController {
          return nil
       }
 
-      let editAction = UITableViewRowAction(style: .Normal, title: tr(.Edit)) {
+      let editAction = UITableViewRowAction(style: .Normal, title: tr(.More)) {
          _, indexPath in
          self.performSegue(StoryboardSegue.Main.Edit, sender: tag)
       }
@@ -274,7 +274,7 @@ final class TagsViewController: UITableViewController {
          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       }
 
-      return [editAction, deleteAction]
+      return [deleteAction, editAction]
    }
 
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

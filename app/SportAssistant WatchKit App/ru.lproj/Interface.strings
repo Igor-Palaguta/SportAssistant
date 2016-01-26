@@ -24,7 +24,7 @@
 "GJC-tZ-FjD.text" = "Рекорд: 12.3";
 
 /* Class = "WKInterfaceLabel"; text = "Нет Движений"; ObjectID = "HMb-jE-K1Q"; */
-"HMb-jE-K1Q.text" = "Нет Движений";
+"HMb-jE-K1Q.text" = "Нет движений";
 
 /* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "Hsg-D2-QcP"; */
 "Hsg-D2-QcP.text" = "-";
@@ -57,7 +57,7 @@
 "aVT-rn-Sjf.text" = "01:30.01";
 
 /* Class = "WKInterfaceLabel"; text = "Название Метки"; ObjectID = "b6n-NQ-zM8"; */
-"b6n-NQ-zM8.text" = "Название Метки";
+"b6n-NQ-zM8.text" = "Название метки";
 
 /* Class = "WKInterfaceLabel"; text = "00:00"; ObjectID = "dWj-27-7wV"; */
 "dWj-27-7wV.text" = "00:00";

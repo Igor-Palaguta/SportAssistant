@@ -172,7 +172,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
       super.awakeWithContext(context)
 
       self.context = context as! TrainingContext
-      self.setTitle(self.context.tag?.name ?? tr(.Other))
+      self.setTitle(self.context.tag?.name)
 
       self.startRecording()
    }

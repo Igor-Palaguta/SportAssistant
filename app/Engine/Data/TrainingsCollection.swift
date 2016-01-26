@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-public enum OrderBy: String {
+public enum OrderBy: Int {
    case Date
    case Result
 

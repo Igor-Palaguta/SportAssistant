@@ -6,6 +6,8 @@
 "TrainingsCountFormat" = "Тренировки (%d)";
 "Ascending" = "↑";
 "Descending" = "↓";
+"Date" = "Время";
+"Result" = "Результат";
 "Other" = "Другая";
 "BestFormat" = "Рекорд: %@";
 "LastFormat" = "Посл.: %@";

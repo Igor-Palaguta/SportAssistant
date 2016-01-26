@@ -19,6 +19,10 @@ enum L10n {
   case Ascending
   /// ↓
   case Descending
+  /// Date
+  case Date
+  /// Result
+  case Result
   /// Other
   case Other
   /// Best: %@
@@ -48,6 +52,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("Ascending")
       case .Descending:
         return L10n.tr("Descending")
+      case .Date:
+        return L10n.tr("Date")
+      case .Result:
+        return L10n.tr("Result")
       case .Other:
         return L10n.tr("Other")
       case .BestFormat(let p0):
