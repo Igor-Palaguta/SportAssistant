@@ -10,7 +10,7 @@
             <objects>
                 <controller title="Record" id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
-                        <group width="134" alignment="left" id="in6-fX-Png">
+                        <group width="1" alignment="left" id="in6-fX-Png">
                             <items>
                                 <label alignment="center" text="-" textAlignment="center" id="Hsg-D2-QcP">
                                     <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,7 +37,6 @@
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
                         </group>
                     </items>
-                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="Hsg-D2-QcP" id="ggz-xr-LMh"/>
                         <outlet property="trainingsButton" destination="3kb-av-udU" id="bSz-vH-Lgx"/>
@@ -80,6 +79,7 @@
                             </items>
                         </table>
                     </items>
+                    <edgeInsets key="margins" left="1" right="1" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="table" destination="N3i-JU-t4m" id="wEN-Ne-AMN"/>
                     </connections>
@@ -92,22 +92,26 @@
             <objects>
                 <controller title="Trainings" id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SportAssistant_WatchKit_Extension">
                     <items>
-                        <group width="1" alignment="left" id="juf-G4-Uk9">
+                        <group width="1" alignment="left" spacing="2" id="juf-G4-Uk9">
                             <items>
                                 <button width="0.5" alignment="left" title="Result" id="ui7-Aj-YhA">
+                                    <color key="titleColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="font" type="system" pointSize="12"/>
                                     <connections>
                                         <action selector="orderByResultAction:" destination="4Vm-e0-XGA" id="rdb-x7-Yah"/>
                                     </connections>
                                 </button>
                                 <button width="0.5" alignment="right" title="Date" id="uwc-fR-1Ic">
-                                    <color key="backgroundColor" red="0.2274509804" green="0.65098039220000004" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="12"/>
                                     <connections>
                                         <action selector="orderByDateAction:" destination="4Vm-e0-XGA" id="UjH-Pc-tSc"/>
                                     </connections>
                                 </button>
                             </items>
+                            <color key="backgroundColor" red="0.22745098039215686" green="0.65098039215686276" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                            <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
                         </group>
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
@@ -143,12 +147,12 @@
                             </items>
                         </table>
                         <button width="1" alignment="left" title="More" id="IKe-Nq-d0V">
+                            <color key="backgroundColor" red="0.2274509804" green="0.65098039220000004" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="showMoreAction:" destination="4Vm-e0-XGA" id="EC4-aH-q8T"/>
                             </connections>
                         </button>
                     </items>
-                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="orderByDateButton" destination="uwc-fR-1Ic" id="JEV-p6-GQs"/>
                         <outlet property="orderByResultButton" destination="ui7-Aj-YhA" id="OHy-v4-0eC"/>
@@ -212,7 +216,6 @@
                             </menuItem>
                         </items>
                     </menu>
-                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="iC3-Ln-mXC" id="WE4-HG-61n"/>
                         <outlet property="countLabel" destination="UGe-0d-juz" id="VQx-6g-DZh"/>
@@ -251,7 +254,7 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Hbz-BX-IXP">
                             <items>
-                                <group width="134" alignment="left" verticalAlignment="center" spacing="10" id="zUC-WC-caW">
+                                <group width="1" alignment="left" verticalAlignment="center" spacing="0.0" id="zUC-WC-caW">
                                     <items>
                                         <label alignment="center" verticalAlignment="bottom" text="0" id="V7n-gw-cXm">
                                             <fontDescription key="font" type="system" pointSize="36"/>
@@ -287,7 +290,6 @@
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
                         </group>
                     </items>
-                    <edgeInsets key="margins" left="5" right="5" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="bestLabel" destination="V7n-gw-cXm" id="Uad-wG-Vvm"/>
                         <outlet property="durationLabel" destination="aVT-rn-Sjf" id="J4J-eL-003"/>

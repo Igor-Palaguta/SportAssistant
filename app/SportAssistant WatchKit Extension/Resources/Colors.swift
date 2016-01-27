@@ -18,6 +18,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 0% <br/> (0x00000000)
     case __Http
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 100% <br/> (0xffffffff)
+    case ActiveButton
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#3aa6d0"></span>
     /// Alpha: 100% <br/> (0x3aa6d0ff)
     case Base
@@ -31,6 +34,7 @@ extension UIColor {
     var rgbaValue: UInt32! {
       switch self {
       case .__Http: return 0x00000000
+      case .ActiveButton: return 0xffffffff
       case .Base: return 0x3aa6d0ff
       case .Destructive: return 0xff2c00ff
       case .Record: return 0x00ff00ff

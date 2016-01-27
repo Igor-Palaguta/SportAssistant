@@ -100,7 +100,7 @@
 		788A51BE1C15835600A166A0 /* SportAssistant WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 788A51BD1C15835600A166A0 /* SportAssistant WatchKit App.app */; };
 		788A51C41C15835600A166A0 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C21C15835600A166A0 /* Interface.storyboard */; };
 		788A51C61C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C51C15835600A166A0 /* Assets.xcassets */; };
-		788A51CD1C15835600A166A0 /* SportAssistant WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		788A51CD1C15835600A166A0 /* SwingTracer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SwingTracer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
@@ -212,7 +212,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				788A51CD1C15835600A166A0 /* SportAssistant WatchKit Extension.appex in Embed App Extensions */,
+				788A51CD1C15835600A166A0 /* SwingTracer.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +296,7 @@
 		7881FD571C56C8BE00574990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78898AC31C419ECE00907629 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = colors.txt; sourceTree = "<group>"; };
 		78898AC51C419FFF00907629 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		788A51951C15835600A166A0 /* SportAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		788A51951C15835600A166A0 /* SwingTracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingTracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		788A51981C15835600A166A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		788A519D1C15835600A166A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		788A519F1C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 		788A51C31C15835600A166A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		788A51C51C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		788A51C71C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SportAssistant WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		788A51CC1C15835600A166A0 /* SwingTracer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwingTracer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		788A51D21C15835600A166A0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -602,11 +602,11 @@
 		788A51961C15835600A166A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				788A51951C15835600A166A0 /* SportAssistant.app */,
+				788A51951C15835600A166A0 /* SwingTracer.app */,
 				788A51A91C15835600A166A0 /* SportAssistantTests.xctest */,
 				788A51B41C15835600A166A0 /* SportAssistantUITests.xctest */,
 				788A51BD1C15835600A166A0 /* SportAssistant WatchKit App.app */,
-				788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */,
+				788A51CC1C15835600A166A0 /* SwingTracer.appex */,
 				786805701C565EFE001AC1F0 /* iOSEngine.framework */,
 				786805791C565EFE001AC1F0 /* iOSEngineTests.xctest */,
 				786805BB1C56757E001AC1F0 /* watchOSEngine.framework */,
@@ -813,7 +813,7 @@
 			);
 			name = SportAssistant;
 			productName = SportAssistant;
-			productReference = 788A51951C15835600A166A0 /* SportAssistant.app */;
+			productReference = 788A51951C15835600A166A0 /* SwingTracer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		788A51A81C15835600A166A0 /* SportAssistantTests */ = {
@@ -887,7 +887,7 @@
 			);
 			name = "SportAssistant WatchKit Extension";
 			productName = "SportAssistant WatchKit Extension";
-			productReference = 788A51CC1C15835600A166A0 /* SportAssistant WatchKit Extension.appex */;
+			productReference = 788A51CC1C15835600A166A0 /* SwingTracer.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
@@ -1542,7 +1542,7 @@
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = SwingTracer;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1565,7 +1565,7 @@
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = SwingTracer;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1627,7 +1627,7 @@
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwingTracer;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -1647,7 +1647,7 @@
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwingTracer;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;

@@ -25,3 +25,6 @@ public final class Tag: TrainingsCollection, Equatable {
 public func == (lhs: Tag, rhs: Tag) -> Bool {
    return lhs.id == rhs.id
 }
+
+extension Tag: Hashable {
+}

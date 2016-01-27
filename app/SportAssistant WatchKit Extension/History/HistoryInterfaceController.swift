@@ -62,14 +62,20 @@ final class HistoryInterfaceController: WKInterfaceController {
                ? (self.orderByDateButton, self.orderByResultButton)
                : (self.orderByResultButton, self.orderByDateButton)
 
-            let ascendingString = ordering.ascending ? tr(.Ascending) : tr(.Descending)
-            activeButton.setTitle(ascendingString + ordering.orderBy.title)
+            inactiveButton.setBackgroundColor(UIColor.clearColor())
 
             let anotherField: OrderBy = ordering.orderBy == .Date ? .Result : .Date
-            inactiveButton.setTitle(anotherField.title)
+            let attributedInactiveFieldTitle = NSAttributedString(string: anotherField.title,
+               attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            inactiveButton.setAttributedTitle(attributedInactiveFieldTitle)
 
-            inactiveButton.setBackgroundColor(nil)
-            activeButton.setBackgroundColor(UIColor(named: .Base))
+            activeButton.setBackgroundColor(UIColor(named: .ActiveButton))
+
+            let ascendingString = ordering.ascending ? tr(.Ascending) : tr(.Descending)
+            let attributedActiveFieldTitle = NSAttributedString(string: ascendingString + ordering.orderBy.title,
+               attributes: [NSForegroundColorAttributeName: UIColor(named: .Base)])
+            activeButton.setAttributedTitle(attributedActiveFieldTitle)
+
             self.reloadData()
          }
       }

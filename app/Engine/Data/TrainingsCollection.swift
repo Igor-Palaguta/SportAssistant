@@ -53,6 +53,10 @@ public class TrainingsCollection: Object {
       }
    }
 
+   func recalculateBest() {
+      self.best = self.trainings.max("best") ?? 0
+   }
+
    func deleteTraining(training: Training) {
       guard let index = self.trainings.indexOf(training) else {
          return
@@ -62,7 +66,29 @@ public class TrainingsCollection: Object {
          let isBest = self.best == training.best
          self.trainings.removeAtIndex(index)
          if isBest {
-            self.best = self.trainings.max("best") ?? 0
+            self.recalculateBest()
+         }
+      }
+   }
+
+   func deleteTrainings(trainings: [Training]) {
+      self.update {
+         var updateBest = false
+         trainings.forEach {
+            training in
+            guard let index = self.trainings.indexOf(training) else {
+               return
+            }
+
+            if !updateBest && self.best == training.best {
+               updateBest = true
+            }
+
+            self.trainings.removeAtIndex(index)
+         }
+
+         if updateBest {
+            self.recalculateBest()
          }
       }
    }

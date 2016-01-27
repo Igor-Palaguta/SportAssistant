@@ -3,3 +3,4 @@
 Base: #3AA6D0
 Destructive: #FF2C00
 Record: #00FF00
+ActiveButton: #FFFFFF

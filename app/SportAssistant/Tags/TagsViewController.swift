@@ -269,9 +269,23 @@ final class TagsViewController: UITableViewController {
 
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
          _, indexPath in
-         StorageController.UIController.deleteTag(tag)
-         ClientSynchronizer.defaultClient.synchronizeTags()
-         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+         let alert = UIAlertController(title: "",
+            message: tr(.DeleteTagConfirmation),
+            preferredStyle: .ActionSheet)
+
+         alert.addAction(UIAlertAction(title: tr(.DeleteTrainings), style: .Destructive) {
+            [unowned self] _ in
+            self.deleteTag(tag, withTrainings: true, atIndexPath: indexPath)
+            })
+
+         alert.addAction(UIAlertAction(title: tr(.DeleteTag), style: .Destructive) {
+            [unowned self] _ in
+            self.deleteTag(tag, withTrainings: false, atIndexPath: indexPath)
+            })
+
+         alert.addCacelAction(title: tr(.Cancel))
+
+         self.presentViewController(alert, animated: true, completion: nil)
       }
 
       return [deleteAction, editAction]
@@ -297,6 +311,12 @@ final class TagsViewController: UITableViewController {
          tagViewController.delegate = self
          tagViewController.operation = tag.map { .Edit($0) } ?? .Add
       }
+   }
+
+   private func deleteTag(tag: Tag, withTrainings: Bool, atIndexPath indexPath: NSIndexPath) {
+      StorageController.UIController.deleteTag(tag, withTrainings: withTrainings)
+      ClientSynchronizer.defaultClient.synchronizeTags()
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
    }
 
    @objc private func completeAction(_: UIBarButtonItem) {

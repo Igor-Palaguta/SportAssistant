@@ -134,7 +134,19 @@ final class TrainingsViewController: UITableViewController {
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
          _, indexPath in
          let training = self.trainings[indexPath.row]
-         StorageController.UIController.deleteTraining(training)
+
+         let alert = UIAlertController(title: "",
+            message: tr(.DeleteTrainingConfirmation),
+            preferredStyle: .ActionSheet)
+
+         alert.addAction(UIAlertAction(title: tr(.Delete), style: .Destructive) {
+            _ in
+            StorageController.UIController.deleteTraining(training)
+            })
+
+         alert.addCacelAction(title: tr(.Cancel))
+
+         self.presentViewController(alert, animated: true, completion: nil)
       }
 
       return [deleteAction]

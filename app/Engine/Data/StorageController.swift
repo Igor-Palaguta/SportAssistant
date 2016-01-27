@@ -181,10 +181,34 @@ extension StorageController {
       }
    }
 
-   public func deleteTag(tag: Tag) {
+   private func deleteTrainings(trainings: [Training]) {
+      self.history.deleteTrainings(trainings)
+      var affectedTags = Set<Tag>()
+      trainings.forEach {
+         training in
+         training.tags.forEach {
+            tag in
+            if let index = tag.trainings.indexOf(training) {
+               tag.trainings.removeAtIndex(index)
+               affectedTags.insert(tag)
+            }
+         }
+         self.realm.delete(training)
+      }
+      affectedTags.forEach {
+         tag in
+         tag.update { tag.recalculateBest() }
+      }
+   }
+
+   public func deleteTag(tag: Tag, withTrainings: Bool = false) {
       self.write {
-         tag.trainings.forEach { $0.deleteTag(tag) }
+         let trainings = Array(tag.trainings)
+         trainings.forEach { $0.deleteTag(tag) }
          self.realm.delete(tag)
+         if withTrainings {
+            self.deleteTrainings(trainings)
+         }
       }
    }
 

@@ -12,3 +12,8 @@
 "EditTag" = "Edit Tag";
 "AllTrainings" = "All Trainings";
 "EditTags" = "Edit Tags";
+"DeleteTagConfirmation" = "Do you want to delete tag with associated trainings?";
+"DeleteTrainings" = "Yes with trainings";
+"DeleteTag" = "Only tag";
+"DeleteTrainingConfirmation" = "Are you sure?";
+
