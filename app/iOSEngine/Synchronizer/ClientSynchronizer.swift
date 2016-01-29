@@ -33,8 +33,6 @@ extension ClientSynchronizer: WCSessionDelegate {
 
    public func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
 
-      NSLog("didReceiveUserInfo %@", userInfo)
-
       let packages = userInfo.flatMap {
          name, arguments in
          return Package(name: name, arguments: arguments)

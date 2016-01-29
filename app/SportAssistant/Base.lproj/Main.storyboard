@@ -11,7 +11,7 @@
         <scene sceneID="emb-Jt-vOa">
             <objects>
                 <navigationController id="ZYp-TO-101" userLabel="Trainings Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Trainings" image="History" id="fun-nK-J7J"/>
+                    <tabBarItem key="tabBarItem" title="Trainings" image="History" selectedImage="SelectedHistory" id="fun-nK-J7J"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rsp-Dh-gGc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -722,7 +722,7 @@
         <scene sceneID="r5L-Qo-w3W">
             <objects>
                 <navigationController id="Sq3-rd-XXD" userLabel="Tags Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tags" image="Tags" id="pyQ-Tj-VtR"/>
+                    <tabBarItem key="tabBarItem" title="Tags" image="Tags" selectedImage="SelectedTags" id="pyQ-Tj-VtR"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTq-pG-Sng">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -740,6 +740,8 @@
     <resources>
         <image name="Filter" width="25" height="25"/>
         <image name="History" width="25" height="25"/>
+        <image name="SelectedHistory" width="25" height="25"/>
+        <image name="SelectedTags" width="25" height="25"/>
         <image name="Tags" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
