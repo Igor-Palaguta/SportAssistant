@@ -3,15 +3,15 @@ import iOSEngine
 
 class AccelerationEventCell: UITableViewCell, ReusableNibView {
 
-   var data: AccelerationEvent! {
+   var event: AccelerationEvent! {
       didSet {
-         self.timestampLabel.text = self.data.timestamp.toDurationString(true)
-         self.activityLabel.text = self.data.activity?.name
-         self.hiddenActivityConstraint.priority = self.data.activity == nil ? 750 : 250
-         [(self.accelerationLabel, self.data.total),
-            (self.xLabel, self.data.x),
-            (self.yLabel, self.data.y),
-            (self.zLabel, self.data.z)].forEach { label, value in
+         self.timestampLabel.text = self.event.timestamp.toDurationString(true)
+         self.activityLabel.text = self.event.activity?.name
+         self.hiddenActivityConstraint.priority = self.event.activity == nil ? 750 : 250
+         [(self.accelerationLabel, self.event.total),
+            (self.xLabel, self.event.x),
+            (self.yLabel, self.event.y),
+            (self.zLabel, self.event.z)].forEach { label, value in
                label.attributedText = NSNumberFormatter.attributedStringForAcceleration(value,
                   integralFont: self.accelerationFont)
          }

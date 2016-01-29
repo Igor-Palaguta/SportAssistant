@@ -68,10 +68,10 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
       if let recordSession = self.recordSession {
          WKInterfaceDevice.currentDevice().playHaptic(.Stop)
 
-         let outstandingData = recordSession.analyzer.outstandingData
+         let outstandingEvents = recordSession.analyzer.outstandingEvents
 
-         if !outstandingData.isEmpty {
-            ServerSynchronizer.defaultServer.sendData(outstandingData, forTraining: recordSession.training)
+         if !outstandingEvents.isEmpty {
+            ServerSynchronizer.defaultServer.sendEvents(outstandingEvents, forTraining: recordSession.training)
          }
 
          ServerSynchronizer.defaultServer.stopTraining(recordSession.training)
@@ -155,8 +155,8 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
          recordSession.suspender.suspend()
 
          self.reloadDataWithTotal(recordSession.training.best,
-            last: recordSession.training.activitiesData.last?.total,
-            duration: recordSession.training.data.last?.timestamp)
+            last: recordSession.training.activityEvents.last?.total,
+            duration: recordSession.training.events.last?.timestamp)
 
          self.durationLabel.start(recordSession.training.start)
       }
@@ -201,21 +201,21 @@ extension RecordTrainingInterfaceController: AccelerometerDelegate {
          z: data.acceleration.z,
          timestamp: date.timeIntervalSinceDate(recordSession.training.start))
 
-      let result = recordSession.analyzer.analyzeData(event)
+      let result = recordSession.analyzer.analyzeEvent(event)
       self.reloadDataWithTotal(event.total,
-         last: result.peak?.data.total,
+         last: result.peak?.event.total,
          duration: event.timestamp,
          playHaptic: true)
 
-      StorageController.UIController.appendDataFromArray([event], toTraining: recordSession.training)
+      StorageController.UIController.appendEvents([event], toTraining: recordSession.training)
 
       if let peak = result.peak {
          StorageController.UIController.addActivityWithName(peak.attributes.description,
-            toData: peak.data)
+            toEvent: peak.event)
       }
 
-      if !result.data.isEmpty {
-         ServerSynchronizer.defaultServer.sendData(result.data, forTraining: recordSession.training)
+      if !result.events.isEmpty {
+         ServerSynchronizer.defaultServer.sendEvents(result.events, forTraining: recordSession.training)
       }
    }
 }

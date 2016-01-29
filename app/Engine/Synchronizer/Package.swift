@@ -5,9 +5,9 @@ enum Package {
    case Tags([Tag])
    case Start(id: String, start: NSDate, tagId: String?)
    case Stop(id: String)
-   case Synchronize(id: String, start: NSDate, tagId: String?, data: [AccelerationEvent])
+   case Synchronize(id: String, start: NSDate, tagId: String?, events: [AccelerationEvent])
    case Delete(id: String)
-   case Data(id: String, position: Int, data: [AccelerationEvent])
+   case Events(id: String, position: Int, events: [AccelerationEvent])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
@@ -17,10 +17,10 @@ enum Package {
             message["tag"] = tagId
          }
          return ["start": message]
-      case Synchronize(let id, let start, let tagId, let data):
+      case Synchronize(let id, let start, let tagId, let events):
          var message = ["id": id,
             "start": start,
-            "data": data.map { $0.toMessage() }]
+            "events": events.map { $0.toMessage() }]
          if let tagId = tagId {
             message["tag"] = tagId
          }
@@ -29,8 +29,8 @@ enum Package {
          return ["stop": id]
       case Delete(let id):
          return ["delete": id]
-      case Data(let id, let position, let data):
-         return ["data": ["id": id, "position": position, "data": data.map { $0.toMessage() }]]
+      case Events(let id, let position, let events):
+         return ["events": ["id": id, "position": position, "events": events.map { $0.toMessage() }]]
       case Tags(let tags):
          return ["tags": tags.map { $0.toMessage() }]
       }
@@ -48,12 +48,12 @@ enum Package {
       case ("synchronize", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
             start = arguments["start"] as? NSDate,
-            dataMessage = arguments["data"] as? [[String: AnyObject]] {
-               let data = dataMessage.flatMap { AccelerationEvent(message: $0) }
+            eventsMessage = arguments["events"] as? [[String: AnyObject]] {
+               let events = eventsMessage.flatMap { AccelerationEvent(message: $0) }
                self = Synchronize(id: id,
                   start: start,
                   tagId: arguments["tag"] as? String,
-                  data: data)
+                  events: events)
          } else {
             return nil
          }
@@ -61,12 +61,12 @@ enum Package {
          self = Stop(id: id)
       case ("delete", let id as String):
          self = Delete(id: id)
-      case ("data", let arguments as [String: AnyObject]):
+      case ("events", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
             position = arguments["position"] as? Int,
-            dataMessage = arguments["data"] as? [[String: AnyObject]] {
-               let data = dataMessage.flatMap { AccelerationEvent(message: $0) }
-               self = Data(id: id, position: position, data: data)
+            eventsMessage = arguments["events"] as? [[String: AnyObject]] {
+               let events = eventsMessage.flatMap { AccelerationEvent(message: $0) }
+               self = Events(id: id, position: position, events: events)
          } else {
             return nil
          }

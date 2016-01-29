@@ -53,18 +53,18 @@ extension ClientSynchronizer: WCSessionDelegate {
             if let training = storage[id] {
                storage.deactivateTraining(training)
             }
-         case .Synchronize(let id, let start, let tagId, let data):
-            storage.synchronizeTrainingWithId(id, start: start, tagId: tagId, data: data)
+         case .Synchronize(let id, let start, let tagId, let events):
+            storage.synchronizeTrainingWithId(id, start: start, tagId: tagId, events: events)
          case .Delete(let id):
             if let training = storage[id] {
                storage.deleteTraining(training)
             }
-         case .Data(let id, let index, let data):
+         case .Events(let id, let index, let events):
             if let training = storage[id]
-               where (training.currentCount < index + data.count)
+               where (training.currentCount < index + events.count)
                   && (training.currentCount >= index) {
-                     let newData = data[training.currentCount-index..<data.count]
-                     storage.appendDataFromArray(newData, toTraining: training)
+                     let newEvents = events[training.currentCount-index..<events.count]
+                     storage.appendEvents(newEvents, toTraining: training)
             }
          case .Tags(_):
             fatalError()

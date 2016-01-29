@@ -10,14 +10,14 @@ private enum Attributes {
    case Bar(UIColor)
    case Bubble
 
-   func dataEntryForValue(value: Double, atIndex index: Int, data: AccelerationEvent) -> ChartDataEntry {
+   func dataEntryForValue(value: Double, atIndex index: Int, event: AccelerationEvent) -> ChartDataEntry {
       switch self {
       case Line(_), Point(_):
-         return ChartDataEntry(value: value, xIndex: index, data: data)
+         return ChartDataEntry(value: value, xIndex: index, data: event)
       case Bar(_):
-         return BarChartDataEntry(value: value, xIndex: index, data: data)
+         return BarChartDataEntry(value: value, xIndex: index, data: event)
       case Bubble:
-         return BubbleChartDataEntry(xIndex: index, value: value, size: 3, data: data)
+         return BubbleChartDataEntry(xIndex: index, value: value, size: 3, data: event)
       }
    }
 }
@@ -26,7 +26,7 @@ private enum DataExtractor {
    case Field(AccelerationEventField)
    case AnyActivity
 
-   func valueForData(event: AccelerationEvent) -> Double? {
+   func valueForEvent(event: AccelerationEvent) -> Double? {
       switch self {
       case .Field(let id):
          return event[id]
@@ -124,15 +124,15 @@ private class TrainingDataSet {
       self.attributes = attributes
    }
 
-   func dataEntryForData(data: AccelerationEvent, atIndex index: Int) -> ChartDataEntry? {
-      if let value = self.data.valueForData(data) {
-         return self.attributes.dataEntryForValue(value, atIndex: index, data: data)
+   func dataEntryForEvent(event: AccelerationEvent, atIndex index: Int) -> ChartDataEntry? {
+      if let value = self.data.valueForEvent(event) {
+         return self.attributes.dataEntryForValue(value, atIndex: index, event: event)
       }
       return nil
    }
 
-   func addData(data: AccelerationEvent, atIndex index: Int) {
-      if let dataEntry = self.dataEntryForData(data, atIndex: index) {
+   func addEvent(event: AccelerationEvent, atIndex index: Int) {
+      if let dataEntry = self.dataEntryForEvent(event, atIndex: index) {
          if let chartDataSet = self._chartDataSet {
             chartDataSet.addEntry(dataEntry)
          } else {
@@ -156,14 +156,14 @@ private struct TrainingDataSource {
 
    init(training: Training) {
 
-      let xVals = training.data.map {
+      let xVals = training.events.map {
          return $0.timestamp.toDurationString()
       }
 
-      for (i, data) in training.data.enumerate() {
+      for (i, event) in training.events.enumerate() {
          self.dataSets.forEach {
             dataSet in
-            dataSet.addData(data, atIndex: i)
+            dataSet.addEvent(event, atIndex: i)
          }
       }
 
@@ -184,18 +184,18 @@ private struct TrainingDataSource {
       self.chartData = allData
    }
 
-   func addNewData<T: SequenceType where T.Generator.Element == AccelerationEvent>(newData: T) {
+   func addEvents<T: SequenceType where T.Generator.Element == AccelerationEvent>(events: T) {
       let previousCount = self.chartData.xValCount
 
-      for (i, data) in newData.enumerate() {
+      for (i, event) in events.enumerate() {
          self.dataSets.forEach {
             dataSet in
-            if let dataEntry = dataSet.dataEntryForData(data, atIndex: previousCount + i) {
+            if let dataEntry = dataSet.dataEntryForEvent(event, atIndex: previousCount + i) {
                dataSet.chartDataSet.addEntry(dataEntry)
             }
          }
 
-         self.chartData.addXValue(data.timestamp.toDurationString())
+         self.chartData.addXValue(event.timestamp.toDurationString())
       }
    }
 
@@ -226,9 +226,9 @@ final class TrainingViewController: UIViewController {
 
    private var dataSource: TrainingDataSource?
 
-   private var data: [AccelerationEvent] = [] {
+   private var events: [AccelerationEvent] = [] {
       didSet {
-         self.tableView.hidden = self.data.isEmpty
+         self.tableView.hidden = self.events.isEmpty
       }
    }
 
@@ -245,12 +245,12 @@ final class TrainingViewController: UIViewController {
          }
       }
 
-      func filterData<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T) -> [AccelerationEvent] {
+      func filterEvents<T: SequenceType where T.Generator.Element == AccelerationEvent>(events: T) -> [AccelerationEvent] {
          switch self {
          case Peaks:
-            return data.filter { $0.activity != nil }
+            return events.filter { $0.activity != nil }
          case All:
-            return Array(data)
+            return Array(events)
          }
       }
    }
@@ -263,7 +263,7 @@ final class TrainingViewController: UIViewController {
 
          self.chartView.notifyDataSetChanged()
 
-         self.data = self.filter.filterData(self.training.data)
+         self.events = self.filter.filterEvents(self.training.events)
          self.emptyLabel.text = self.filter.emptyMessage
          self.tableView.contentOffset = .zero
          self.tableView.reloadData()
@@ -353,14 +353,14 @@ final class TrainingViewController: UIViewController {
 
             if let dataSource = strongSelf.dataSource {
                let previousCount = strongSelf.chartView.data!.xValCount
-               let newData = strongSelf.training.data[previousCount..<count]
+               let newEvents = strongSelf.training.events[previousCount..<count]
 
-               dataSource.addNewData(newData)
+               dataSource.addEvents(newEvents)
                strongSelf.chartView.notifyDataSetChanged()
 
-               let filteredData = strongSelf.filter.filterData(newData)
-               if !filteredData.isEmpty {
-                  strongSelf.data.appendContentsOf(filteredData)
+               let filteredEvents = strongSelf.filter.filterEvents(newEvents)
+               if !filteredEvents.isEmpty {
+                  strongSelf.events.appendContentsOf(filteredEvents)
                   strongSelf.tableView.hidden = false
                   strongSelf.tableView.reloadData()
                }
@@ -372,7 +372,7 @@ final class TrainingViewController: UIViewController {
                strongSelf.chartView.yMin = strongSelf.filter == .All ? nil : 0
                strongSelf.chartView.data = dataSource.chartData
 
-               strongSelf.data = strongSelf.filter.filterData(strongSelf.training.data)
+               strongSelf.events = strongSelf.filter.filterEvents(strongSelf.training.events)
                strongSelf.tableView.reloadData()
             }
       }
@@ -414,7 +414,7 @@ final class TrainingViewController: UIViewController {
          let mailController = MFMailComposeViewController()
          mailController.mailComposeDelegate = self
          mailController.setSubject(self.training.start.toString(.ShortStyle)!)
-         let csvLines = self.training.data.map { "\($0.timestamp), \($0.x), \($0.y) \($0.z) \($0.total)" }
+         let csvLines = self.training.events.map { "\($0.timestamp), \($0.x), \($0.y) \($0.z) \($0.total)" }
          let csv = csvLines.joinWithSeparator("\n")
          mailController.addAttachmentData(csv.dataUsingEncoding(NSUTF8StringEncoding)!,
             mimeType: "text/plain",
@@ -453,13 +453,12 @@ final class TrainingViewController: UIViewController {
 
 extension TrainingViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return self.data.count
+      return self.events.count
    }
 
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell: AccelerationEventCell = tableView.dequeueCellForIndexPath(indexPath)
-      let data = self.data[indexPath.row]
-      cell.data = data
+      cell.event = self.events[indexPath.row]
       return cell
    }
 
@@ -470,8 +469,8 @@ extension TrainingViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension TrainingViewController: ChartViewDelegate {
    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-      if let data = entry.data as? AccelerationEvent,
-         index = self.data.indexOf({$0 == data}) {
+      if let event = entry.data as? AccelerationEvent,
+         index = self.events.indexOf({$0 == event}) {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
                atScrollPosition: .Top,
                animated: true)

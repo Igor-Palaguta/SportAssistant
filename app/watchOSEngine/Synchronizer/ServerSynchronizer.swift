@@ -1,59 +1,59 @@
 import Foundation
 import WatchConnectivity
 
-struct DataBuffer {
+struct EventsBuffer {
    let createdDate: NSDate
    let trainingId: String
    let position: Int
-   let data: [AccelerationEvent]
+   let events: [AccelerationEvent]
 
-   func dataBufferByAddingData(data: [AccelerationEvent]) -> DataBuffer {
-      return DataBuffer(createdDate: self.createdDate,
+   func eventsBufferByAddingEvents(events: [AccelerationEvent]) -> EventsBuffer {
+      return EventsBuffer(createdDate: self.createdDate,
          trainingId: self.trainingId,
          position: self.position,
-         data: self.data + data)
+         events: self.events + events)
    }
 }
 
-protocol DataBufferManagerDelegate: class {
-   func dataBufferManager(manager: DataBufferManager, sendBuffer buffer: DataBuffer)
+protocol EventsBufferManagerDelegate: class {
+   func eventsBufferManager(manager: EventsBufferManager, sendBuffer buffer: EventsBuffer)
 }
 
-class DataBufferManager {
+class EventsBufferManager {
 
-   weak var delegate: DataBufferManagerDelegate?
+   weak var delegate: EventsBufferManagerDelegate?
 
-   private var buffer: DataBuffer?
+   private var buffer: EventsBuffer?
    private let sendLimit: Int = 100
    private let flushTraining: NSTimeInterval = 1
 
-   init(delegate: DataBufferManagerDelegate) {
+   init(delegate: EventsBufferManagerDelegate) {
       self.delegate = delegate
    }
 
-   func sendData(data: [AccelerationEvent], fromTraining trainingId: String, position: Int) {
+   func sendEvents(events: [AccelerationEvent], fromTraining trainingId: String, position: Int) {
       if let buffer = self.buffer
          where buffer.trainingId == trainingId
-            && buffer.position + buffer.data.count == position {
-               let combinedBuffer = buffer.dataBufferByAddingData(data)
+            && buffer.position + buffer.events.count == position {
+               let combinedBuffer = buffer.eventsBufferByAddingEvents(events)
                self.buffer = combinedBuffer
-               let shouldFlush = combinedBuffer.data.count >= self.sendLimit
+               let shouldFlush = combinedBuffer.events.count >= self.sendLimit
                   || NSDate().timeIntervalSinceDate(combinedBuffer.createdDate) > self.flushTraining
                if shouldFlush {
                   self.flush()
                }
       } else {
          self.flush()
-         self.buffer = DataBuffer(createdDate: NSDate(),
+         self.buffer = EventsBuffer(createdDate: NSDate(),
             trainingId: trainingId,
             position: position,
-            data: data)
+            events: events)
       }
    }
 
    func flush() {
       if let buffer = self.buffer {
-         self.delegate?.dataBufferManager(self, sendBuffer: buffer)
+         self.delegate?.eventsBufferManager(self, sendBuffer: buffer)
          self.buffer = nil
       }
    }
@@ -63,7 +63,7 @@ public final class ServerSynchronizer: NSObject {
 
    public static let defaultServer = ServerSynchronizer()
 
-   private lazy var bufferManager: DataBufferManager = DataBufferManager(delegate: self)
+   private lazy var bufferManager: EventsBufferManager = EventsBufferManager(delegate: self)
 
    private var session: WCSession?
 
@@ -97,12 +97,12 @@ public final class ServerSynchronizer: NSObject {
       self.sendPackage(.Synchronize(id: training.id,
          start: training.start,
          tagId: training.tags.first?.id,
-         data: Array(training.data)))
+         events: Array(training.events)))
    }
 
-   public func sendData(data: [AccelerationEvent], forTraining training: Training) {
-      if let first = data.first, position = training.data.indexOf(first) {
-         self.bufferManager.sendData(data, fromTraining: training.id, position: position)
+   public func sendEvents(events: [AccelerationEvent], forTraining training: Training) {
+      if let first = events.first, position = training.events.indexOf(first) {
+         self.bufferManager.sendEvents(events, fromTraining: training.id, position: position)
       } else {
          fatalError("Incorrect training data")
       }
@@ -135,8 +135,8 @@ extension ServerSynchronizer: WCSessionDelegate {
    }
 }
 
-extension ServerSynchronizer: DataBufferManagerDelegate {
-   func dataBufferManager(manager: DataBufferManager, sendBuffer buffer: DataBuffer) {
-      self.sendPackage(.Data(id: buffer.trainingId, position: buffer.position, data: buffer.data))
+extension ServerSynchronizer: EventsBufferManagerDelegate {
+   func eventsBufferManager(manager: EventsBufferManager, sendBuffer buffer: EventsBuffer) {
+      self.sendPackage(.Events(id: buffer.trainingId, position: buffer.position, events: buffer.events))
    }
 }

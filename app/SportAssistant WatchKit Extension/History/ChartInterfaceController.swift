@@ -25,7 +25,7 @@ final class ChartInterfaceController: WKInterfaceController {
          return
       }
 
-      let activities = self.training.activitiesData.map { $0.total }
+      let activities = self.training.activityEvents.map { $0.total }
 
       if activities.isEmpty {
          self.emptyView.setHidden(false)

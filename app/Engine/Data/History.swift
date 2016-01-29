@@ -15,8 +15,8 @@ class History: TrainingsCollection {
       }
    }
 
-   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T, toTraining training: Training) {
-      training.appendDataFromArray(data)
+   func appendEvents<T: SequenceType where T.Generator.Element == AccelerationEvent>(events: T, toTraining training: Training) {
+      training.appendEvents(events)
       self.checkBestOfTraining(training)
    }
 }

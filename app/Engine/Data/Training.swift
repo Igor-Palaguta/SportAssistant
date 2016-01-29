@@ -9,7 +9,7 @@ public final class Training: Object, Equatable {
    public private(set) dynamic var tagsVersion = 0
 
    public let tags = List<Tag>()
-   public let data = List<AccelerationEvent>()
+   public let events = List<AccelerationEvent>()
 
    func deleteTag(tag: Tag) {
       guard let tagIndex = self.tags.indexOf(tag) else {
@@ -34,29 +34,29 @@ public final class Training: Object, Equatable {
    }
 
    public dynamic var duration: NSTimeInterval {
-      return self.data.last?.timestamp ?? 0
+      return self.events.last?.timestamp ?? 0
    }
 
    public var activities: [Activity] {
-      return self.activitiesData.map { $0.activity! }
+      return self.activityEvents.map { $0.activity! }
    }
 
-   public var activitiesData: Results<AccelerationEvent> {
-      return self.data.filter(NSPredicate(format: "activity != nil"))
+   public var activityEvents: Results<AccelerationEvent> {
+      return self.events.filter(NSPredicate(format: "activity != nil"))
    }
 
-   func appendData(data: AccelerationEvent) {
-      if data.total > self.best {
-         self.best = data.total
+   func appendEvent(event: AccelerationEvent) {
+      if event.total > self.best {
+         self.best = event.total
       }
 
-      self.data.append(data)
-      self.currentCount = self.data.count
+      self.events.append(event)
+      self.currentCount = self.events.count
    }
 
-   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T) {
+   func appendEvents<T: SequenceType where T.Generator.Element == AccelerationEvent>(events: T) {
 
-      guard let max = data.maxElement({ $0.total < $1.total }) else {
+      guard let max = events.maxElement({ $0.total < $1.total }) else {
          return
       }
 
@@ -64,8 +64,8 @@ public final class Training: Object, Equatable {
          self.best = max.total
       }
 
-      self.data.appendContentsOf(data)
-      self.currentCount = self.data.count
+      self.events.appendContentsOf(events)
+      self.currentCount = self.events.count
    }
 
    class func keyPathsForValuesAffectingDuration() -> NSSet {
@@ -77,7 +77,7 @@ public final class Training: Object, Equatable {
    }
 
    public override static func ignoredProperties() -> [String] {
-      return ["duration", "activities", "activitiesData"]
+      return ["duration", "activities", "activitityEvents"]
    }
 }
 

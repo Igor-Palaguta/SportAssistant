@@ -100,13 +100,11 @@ final class TagViewController: UITableViewController {
             .producer
             .map { !$0.isEmpty }
 
-      combineLatest(self.model.activityType.producer, self.model.isDefaultName.producer)
-         .filter { _, isDefaultName in isDefaultName }
-         .map { type, _ in type }
+      self.model.activityType.producer
          .skipRepeats()
          .startWithNext {
             [weak self] type in
-            guard let strongSelf = self else {
+            guard let strongSelf = self where strongSelf.model.isDefaultName.value else {
                return
             }
 

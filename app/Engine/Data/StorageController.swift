@@ -106,14 +106,14 @@ public final class StorageController: NSObject {
    func synchronizeTrainingWithId(id: String,
       start: NSDate,
       tagId: String?,
-      data: [AccelerationEvent]) {
+      events: [AccelerationEvent]) {
          self.write {
             if let training = self[id] {
-               let newData = data[training.data.count..<data.count]
-               self.history.appendDataFromArray(newData, toTraining: training)
+               let newEvents = events[training.events.count..<events.count]
+               self.history.appendEvents(newEvents, toTraining: training)
             } else {
                let training = self.addTrainingWithId(id, start: start, tagId: tagId)
-               self.history.appendDataFromArray(data, toTraining: training)
+               self.history.appendEvents(events, toTraining: training)
             }
          }
    }
@@ -146,17 +146,17 @@ public final class StorageController: NSObject {
       return training
    }
 
-   public func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T, toTraining training: Training) {
+   public func appendEvents<T: SequenceType where T.Generator.Element == AccelerationEvent>(events: T, toTraining training: Training) {
       self.write {
-         self.history.appendDataFromArray(data, toTraining: training)
+         self.history.appendEvents(events, toTraining: training)
          training.tags.forEach { $0.checkBestOfTraining(training) }
       }
    }
 
-   public func addActivityWithName(name: String, toData data: AccelerationEvent) {
+   public func addActivityWithName(name: String, toEvent event: AccelerationEvent) {
       self.write {
          let activity = Activity(name: name)
-         data.activity = activity
+         event.activity = activity
          self.realm.add(activity)
       }
    }

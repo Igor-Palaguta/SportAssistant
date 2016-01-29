@@ -23,7 +23,7 @@ private extension Double {
 
 struct PointValue {
    let value: Double
-   let data: AccelerationEvent
+   let event: AccelerationEvent
 }
 
 func < (point: PointValue, value: Double) -> Bool { return point.value < value }
@@ -78,7 +78,7 @@ typealias AccelerationEventRangePredicate = (AccelerationEventRange) -> Bool
 
 extension AccelerationEvent {
    func point(field: AccelerationEventField) -> PointValue {
-      return PointValue(value: self[field], data: self)
+      return PointValue(value: self[field], event: self)
    }
 }
 
@@ -98,13 +98,13 @@ public final class AccelerationEventRange: CustomStringConvertible {
       self.all = [initial]
    }
 
-   func addData(data: AccelerationEvent, final: Bool = false) {
-      self.x.addValue(data.point(.x))
-      self.y.addValue(data.point(.y))
-      self.z.addValue(data.point(.z))
-      self.total.addValue(data.point(.total))
+   func addEvent(event: AccelerationEvent, final: Bool = false) {
+      self.x.addValue(event.point(.x))
+      self.y.addValue(event.point(.y))
+      self.z.addValue(event.point(.z))
+      self.total.addValue(event.point(.total))
       if !final {
-         self.all.append(data)
+         self.all.append(event)
       }
    }
 
@@ -148,20 +148,20 @@ public enum AnalyzerResult<AttributesType> {
    case FoundRange(AttributesType?, AccelerationEventRange)
    case NotFromRange([AccelerationEvent])
 
-   public var data: [AccelerationEvent] {
+   public var events: [AccelerationEvent] {
       switch self {
       case Analyzing:
          return []
       case FoundRange(_, let range):
          return range.all
-      case NotFromRange(let data):
-         return data
+      case NotFromRange(let events):
+         return events
       }
    }
 
-   public var peak: (attributes: AttributesType, data: AccelerationEvent)? {
+   public var peak: (attributes: AttributesType, event: AccelerationEvent)? {
       if case .FoundRange(.Some(let attributes), let range) = self {
-         return (attributes, range.total.globalMax.data)
+         return (attributes, range.total.globalMax.event)
       }
       return nil
    }
@@ -173,7 +173,7 @@ public class Analyzer<AttributesType> {
    private let templates: [Template<AttributesType>]
    private let defaultValue: AttributesType?
 
-   public var outstandingData: [AccelerationEvent] {
+   public var outstandingEvents: [AccelerationEvent] {
       return self.currentRange.map { $0.all } ?? []
    }
 
@@ -189,21 +189,21 @@ public class Analyzer<AttributesType> {
       return nil
    }
 
-   public func analyzeData(data: AccelerationEvent) -> AnalyzerResult<AttributesType> {
+   public func analyzeEvent(event: AccelerationEvent) -> AnalyzerResult<AttributesType> {
       guard let currentRange = self.currentRange else {
-         self.currentRange = AccelerationEventRange(initial: data)
+         self.currentRange = AccelerationEventRange(initial: event)
          return .Analyzing
       }
 
-      if data.total.isSignificant {
-         currentRange.addData(data)
+      if event.total.isSignificant {
+         currentRange.addEvent(event)
          return .Analyzing
       }
 
-      self.currentRange = AccelerationEventRange(initial: data)
+      self.currentRange = AccelerationEventRange(initial: event)
 
       if currentRange.total.globalMax.value.isSignificant {
-         currentRange.addData(data, final: true)
+         currentRange.addEvent(event, final: true)
          return .FoundRange(self.attributesForRange(currentRange) ?? self.defaultValue,
             currentRange)
       }
