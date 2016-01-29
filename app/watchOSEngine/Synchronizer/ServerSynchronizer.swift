@@ -5,9 +5,9 @@ struct DataBuffer {
    let createdDate: NSDate
    let trainingId: String
    let position: Int
-   let data: [AccelerationData]
+   let data: [AccelerationEvent]
 
-   func dataBufferByAddingData(data: [AccelerationData]) -> DataBuffer {
+   func dataBufferByAddingData(data: [AccelerationEvent]) -> DataBuffer {
       return DataBuffer(createdDate: self.createdDate,
          trainingId: self.trainingId,
          position: self.position,
@@ -31,7 +31,7 @@ class DataBufferManager {
       self.delegate = delegate
    }
 
-   func sendData(data: [AccelerationData], fromTraining trainingId: String, position: Int) {
+   func sendData(data: [AccelerationEvent], fromTraining trainingId: String, position: Int) {
       if let buffer = self.buffer
          where buffer.trainingId == trainingId
             && buffer.position + buffer.data.count == position {
@@ -100,7 +100,7 @@ public final class ServerSynchronizer: NSObject {
          data: Array(training.data)))
    }
 
-   public func sendData(data: [AccelerationData], forTraining training: Training) {
+   public func sendData(data: [AccelerationEvent], forTraining training: Training) {
       if let first = data.first, position = training.data.indexOf(first) {
          self.bufferManager.sendData(data, fromTraining: training.id, position: position)
       } else {

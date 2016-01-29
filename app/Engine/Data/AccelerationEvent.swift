@@ -1,14 +1,14 @@
 import Foundation
 import RealmSwift
 
-public enum AccelerationDataField: String {
+public enum AccelerationEventField: String {
    case x
    case y
    case z
    case total
 }
 
-public final class AccelerationData: Object {
+public final class AccelerationEvent: Object {
    public private(set) dynamic var timestamp: Double = 0
    public private(set) dynamic var x: Double = 0
    public private(set) dynamic var y: Double = 0
@@ -25,7 +25,7 @@ public final class AccelerationData: Object {
       self.timestamp = timestamp
    }
 
-   public subscript(id: AccelerationDataField) -> Double {
+   public subscript(id: AccelerationEventField) -> Double {
       get {
          return self.valueForKey(id.rawValue) as! Double
       }

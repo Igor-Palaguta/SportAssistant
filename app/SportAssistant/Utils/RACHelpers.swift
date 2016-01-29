@@ -4,7 +4,7 @@ import SwiftDate
 
 func everyMinuteSignalProducer() -> SignalProducer<NSDate, NoError> {
    let now = NSDate()
-   let secondsToNewMinute = now.endOf(.Minute, inRegion: .LocalRegion()).timeIntervalSinceDate(now)
+   let secondsToNewMinute = now.endOf(.Minute, inRegion: DateRegion()).timeIntervalSinceDate(now)
 
    return SignalProducer(value: now)
       .concat(timer(secondsToNewMinute, onScheduler: QueueScheduler.mainQueueScheduler).take(1))
@@ -17,9 +17,12 @@ func everySecondSignalProducer() -> SignalProducer<NSDate, NoError> {
 }
 
 extension RACSignal {
+   func toNoErrorSignalProducer() -> SignalProducer<AnyObject?, NoError> {
+      return self.toSignalProducer().flatMapError { _ in SignalProducer.empty }
+   }
+
    func toVoidNoErrorSignalProducer() -> SignalProducer<(), NoError> {
-      return self.toSignalProducer()
-         .flatMapError { _ in SignalProducer.empty }
+      return self.toNoErrorSignalProducer()
          .map { _ in () }
    }
 }

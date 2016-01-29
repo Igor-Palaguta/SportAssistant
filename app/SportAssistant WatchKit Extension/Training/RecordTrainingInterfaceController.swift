@@ -20,7 +20,8 @@ private class Session: NSObject {
       self.accelerometer = Accelerometer()
       self.accelerometer.start()
       self.healthStore = context.healthStore
-      self.workoutSession = HKWorkoutSession(activityType: .TableTennis, locationType: .Indoor)
+      let activityType = context.tag?.activityType ?? HKWorkoutActivityType.Other
+      self.workoutSession = HKWorkoutSession(activityType: activityType, locationType: .Indoor)
       super.init()
       self.workoutSession.delegate = self
       self.healthStore.startWorkoutSession(self.workoutSession)
@@ -195,18 +196,18 @@ extension RecordTrainingInterfaceController: AccelerometerDelegate {
       let bootTime = NSDate(timeIntervalSinceNow: -NSProcessInfo.processInfo().systemUptime)
       let date = NSDate(timeInterval: data.timestamp, sinceDate: bootTime)
 
-      let accelerationData = AccelerationData(x: data.acceleration.x,
+      let event = AccelerationEvent(x: data.acceleration.x,
          y: data.acceleration.y,
          z: data.acceleration.z,
          timestamp: date.timeIntervalSinceDate(recordSession.training.start))
 
-      let result = recordSession.analyzer.analyzeData(accelerationData)
-      self.reloadDataWithTotal(accelerationData.total,
+      let result = recordSession.analyzer.analyzeData(event)
+      self.reloadDataWithTotal(event.total,
          last: result.peak?.data.total,
-         duration: accelerationData.timestamp,
+         duration: event.timestamp,
          playHaptic: true)
 
-      StorageController.UIController.appendDataFromArray([accelerationData], toTraining: recordSession.training)
+      StorageController.UIController.appendDataFromArray([event], toTraining: recordSession.training)
 
       if let peak = result.peak {
          StorageController.UIController.addActivityWithName(peak.attributes.description,

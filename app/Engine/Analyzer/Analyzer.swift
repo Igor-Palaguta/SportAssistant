@@ -23,7 +23,7 @@ private extension Double {
 
 struct PointValue {
    let value: Double
-   let data: AccelerationData
+   let data: AccelerationEvent
 }
 
 func < (point: PointValue, value: Double) -> Bool { return point.value < value }
@@ -74,23 +74,23 @@ final class Range {
 }
 
 typealias RangePredicate = (Range) -> Bool
-typealias AccelerationDataRangePredicate = (AccelerationDataRange) -> Bool
+typealias AccelerationEventRangePredicate = (AccelerationEventRange) -> Bool
 
-extension AccelerationData {
-   func point(field: AccelerationDataField) -> PointValue {
+extension AccelerationEvent {
+   func point(field: AccelerationEventField) -> PointValue {
       return PointValue(value: self[field], data: self)
    }
 }
 
-public final class AccelerationDataRange: CustomStringConvertible {
+public final class AccelerationEventRange: CustomStringConvertible {
 
    var x: Range
    var y: Range
    var z: Range
    var total: Range
-   var all: [AccelerationData]
+   var all: [AccelerationEvent]
 
-   init(initial: AccelerationData) {
+   init(initial: AccelerationEvent) {
       self.x = Range(initial: initial.point(.x))
       self.y = Range(initial: initial.point(.y))
       self.z = Range(initial: initial.point(.z))
@@ -98,7 +98,7 @@ public final class AccelerationDataRange: CustomStringConvertible {
       self.all = [initial]
    }
 
-   func addData(data: AccelerationData, final: Bool = false) {
+   func addData(data: AccelerationEvent, final: Bool = false) {
       self.x.addValue(data.point(.x))
       self.y.addValue(data.point(.y))
       self.z.addValue(data.point(.z))
@@ -108,7 +108,7 @@ public final class AccelerationDataRange: CustomStringConvertible {
       }
    }
 
-   subscript(id: AccelerationDataField) -> Range {
+   subscript(id: AccelerationEventField) -> Range {
       get {
          switch id {
          case .x:
@@ -129,15 +129,15 @@ public final class AccelerationDataRange: CustomStringConvertible {
 }
 
 struct Template<AttributesType> {
-   let predicates: [AccelerationDataRangePredicate]
+   let predicates: [AccelerationEventRangePredicate]
    let attributes: AttributesType
 
-   init(attributes: AttributesType, predicates: [AccelerationDataRangePredicate]) {
+   init(attributes: AttributesType, predicates: [AccelerationEventRangePredicate]) {
       self.attributes = attributes
       self.predicates = predicates
    }
 
-   func isMatchedRange(range: AccelerationDataRange) -> Bool {
+   func isMatchedRange(range: AccelerationEventRange) -> Bool {
       let failed = self.predicates.contains { !$0(range) }
       return !failed
    }
@@ -145,10 +145,10 @@ struct Template<AttributesType> {
 
 public enum AnalyzerResult<AttributesType> {
    case Analyzing
-   case FoundRange(AttributesType?, AccelerationDataRange)
-   case NotFromRange([AccelerationData])
+   case FoundRange(AttributesType?, AccelerationEventRange)
+   case NotFromRange([AccelerationEvent])
 
-   public var data: [AccelerationData] {
+   public var data: [AccelerationEvent] {
       switch self {
       case Analyzing:
          return []
@@ -159,7 +159,7 @@ public enum AnalyzerResult<AttributesType> {
       }
    }
 
-   public var peak: (attributes: AttributesType, data: AccelerationData)? {
+   public var peak: (attributes: AttributesType, data: AccelerationEvent)? {
       if case .FoundRange(.Some(let attributes), let range) = self {
          return (attributes, range.total.globalMax.data)
       }
@@ -169,11 +169,11 @@ public enum AnalyzerResult<AttributesType> {
 
 public class Analyzer<AttributesType> {
 
-   private var currentRange: AccelerationDataRange?
+   private var currentRange: AccelerationEventRange?
    private let templates: [Template<AttributesType>]
    private let defaultValue: AttributesType?
 
-   public var outstandingData: [AccelerationData] {
+   public var outstandingData: [AccelerationEvent] {
       return self.currentRange.map { $0.all } ?? []
    }
 
@@ -182,16 +182,16 @@ public class Analyzer<AttributesType> {
       self.defaultValue = defaultValue
    }
 
-   private func attributesForRange(range: AccelerationDataRange) -> AttributesType? {
+   private func attributesForRange(range: AccelerationEventRange) -> AttributesType? {
       if let index = self.templates.indexOf({$0.isMatchedRange(range)}) {
          return self.templates[index].attributes
       }
       return nil
    }
 
-   public func analyzeData(data: AccelerationData) -> AnalyzerResult<AttributesType> {
+   public func analyzeData(data: AccelerationEvent) -> AnalyzerResult<AttributesType> {
       guard let currentRange = self.currentRange else {
-         self.currentRange = AccelerationDataRange(initial: data)
+         self.currentRange = AccelerationEventRange(initial: data)
          return .Analyzing
       }
 
@@ -200,7 +200,7 @@ public class Analyzer<AttributesType> {
          return .Analyzing
       }
 
-      self.currentRange = AccelerationDataRange(initial: data)
+      self.currentRange = AccelerationEventRange(initial: data)
 
       if currentRange.total.globalMax.value.isSignificant {
          currentRange.addData(data, final: true)
@@ -234,11 +234,11 @@ public enum TableTennisMotion: CustomStringConvertible {
    }
 }
 
-private func predicateForField(field: AccelerationDataField,
-   predicate: RangePredicate) -> AccelerationDataRangePredicate {
+private func predicateForField(field: AccelerationEventField,
+   predicate: RangePredicate) -> AccelerationEventRangePredicate {
       return {
-         accelerationDataRange in
-         return predicate(accelerationDataRange[field])
+         AccelerationEventRange in
+         return predicate(AccelerationEventRange[field])
       }
 }
 

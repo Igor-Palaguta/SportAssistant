@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RMd-Wx-1Ur">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RMd-Wx-1Ur">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
@@ -8,7 +8,7 @@
         <!--Record-->
         <scene sceneID="zbt-Ow-m9C">
             <objects>
-                <controller title="Record" id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Record" id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" alignment="left" id="in6-fX-Png">
                             <items>
@@ -48,11 +48,11 @@
         <!--Tags-->
         <scene sceneID="8JM-g2-1Yt">
             <objects>
-                <controller title="Tags" id="vRZ-7m-PNx" customClass="TagsInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Tags" id="vRZ-7m-PNx" customClass="TagsInterfaceController" customModule="SwingTracer">
                     <items>
                         <table alignment="left" id="N3i-JU-t4m">
                             <items>
-                                <tableRow identifier="TagController" id="bvi-a6-Zjx" customClass="TagController" customModule="SportAssistant_WatchKit_Extension">
+                                <tableRow identifier="TagController" id="bvi-a6-Zjx" customClass="TagController" customModule="SwingTracer">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="HBE-kX-TXc">
                                         <items>
                                             <label alignment="left" text="Label" id="b6n-NQ-zM8"/>
@@ -90,7 +90,7 @@
         <!--Trainings-->
         <scene sceneID="Ydg-Ue-tWj">
             <objects>
-                <controller title="Trainings" id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Trainings" id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" alignment="left" spacing="2" id="juf-G4-Uk9">
                             <items>
@@ -115,7 +115,7 @@
                         </group>
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
-                                <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="SportAssistant_WatchKit_Extension">
+                                <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="SwingTracer">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="Dxk-sW-opS">
                                         <items>
                                             <group alignment="left" id="4vQ-ab-Ckl">
@@ -166,7 +166,7 @@
         <!--TrainingInterfaceController-->
         <scene sceneID="gwI-Y9-Opt">
             <objects>
-                <controller identifier="TrainingInterfaceController" id="rxU-gG-mSZ" customClass="TrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller identifier="TrainingInterfaceController" id="rxU-gG-mSZ" customClass="TrainingInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" alignment="left" id="X09-vk-OPZ">
                             <items>
@@ -229,7 +229,7 @@
         <!--Activities-->
         <scene sceneID="V95-qR-dqU">
             <objects>
-                <controller identifier="ChartInterfaceController" title="Activities" id="uLD-ez-mz2" customClass="ChartInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller identifier="ChartInterfaceController" title="Activities" id="uLD-ez-mz2" customClass="ChartInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" height="1" alignment="left" hidden="YES" id="8Z9-9b-fBg">
                             <items>
@@ -250,7 +250,7 @@
         <!--Training Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Done" id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="SportAssistant_WatchKit_Extension">
+                <controller title="Done" id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Hbz-BX-IXP">
                             <items>

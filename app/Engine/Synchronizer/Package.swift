@@ -1,65 +1,13 @@
 import Foundation
 import WatchConnectivity
 
-private extension AccelerationData {
-   func toMessage() -> [String: AnyObject] {
-      var message: [String: AnyObject] = ["x": x, "y": y, "z": z, "timestamp": timestamp]
-      if let activity = self.activity {
-         message["activity"] = activity.toMessage()
-      }
-      return message
-   }
-
-   convenience init?(message: [String: AnyObject]) {
-      guard let x = message["x"] as? Double,
-         y = message["y"] as? Double,
-         z = message["z"] as? Double,
-         timestamp = message["timestamp"] as? Double else {
-            return nil
-      }
-
-      self.init(x: x, y: y, z: z, timestamp: timestamp)
-      let activityMessage = message["activity"] as? [String: AnyObject]
-      self.activity = activityMessage.flatMap { Activity(message: $0) }
-   }
-}
-
-private extension Activity {
-   func toMessage() -> [String: AnyObject] {
-      return ["name": name]
-   }
-
-   convenience init?(message: [String: AnyObject]) {
-      guard let name = message["name"] as? String else {
-         return nil
-      }
-
-      self.init(name: name)
-   }
-}
-
-private extension Tag {
-   func toMessage() -> [String: AnyObject] {
-      return ["id": id, "name": name]
-   }
-
-   convenience init?(message: [String: AnyObject]) {
-      guard let id = message["id"] as? String,
-         name = message["name"] as? String else {
-            return nil
-      }
-
-      self.init(id: id, name: name)
-   }
-}
-
 enum Package {
    case Tags([Tag])
    case Start(id: String, start: NSDate, tagId: String?)
    case Stop(id: String)
-   case Synchronize(id: String, start: NSDate, tagId: String?, data: [AccelerationData])
+   case Synchronize(id: String, start: NSDate, tagId: String?, data: [AccelerationEvent])
    case Delete(id: String)
-   case Data(id: String, position: Int, data: [AccelerationData])
+   case Data(id: String, position: Int, data: [AccelerationEvent])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
@@ -101,7 +49,7 @@ enum Package {
          if let id = arguments["id"] as? String,
             start = arguments["start"] as? NSDate,
             dataMessage = arguments["data"] as? [[String: AnyObject]] {
-               let data = dataMessage.flatMap { AccelerationData(message: $0) }
+               let data = dataMessage.flatMap { AccelerationEvent(message: $0) }
                self = Synchronize(id: id,
                   start: start,
                   tagId: arguments["tag"] as? String,
@@ -117,7 +65,7 @@ enum Package {
          if let id = arguments["id"] as? String,
             position = arguments["position"] as? Int,
             dataMessage = arguments["data"] as? [[String: AnyObject]] {
-               let data = dataMessage.flatMap { AccelerationData(message: $0) }
+               let data = dataMessage.flatMap { AccelerationEvent(message: $0) }
                self = Data(id: id, position: position, data: data)
          } else {
             return nil

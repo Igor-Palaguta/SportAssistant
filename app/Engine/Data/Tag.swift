@@ -1,24 +1,41 @@
 import Foundation
 import RealmSwift
+import HealthKit
 
 public final class Tag: TrainingsCollection, Equatable {
 
    public private(set) dynamic var id = NSUUID().UUIDString
    public internal(set) dynamic var name = ""
+   dynamic var type: Int = Int(HKWorkoutActivityType.Other.rawValue)
 
-   convenience init(id: String, name: String) {
+   public var activityType: HKWorkoutActivityType {
+      get {
+         return HKWorkoutActivityType(rawValue: UInt(self.type)) ?? .Other
+      }
+      set {
+         self.type = Int(newValue.rawValue)
+      }
+   }
+
+   convenience init(id: String, name: String, activityType: HKWorkoutActivityType) {
       self.init()
       self.id = id
       self.name = name
+      self.activityType = activityType
    }
 
-   public convenience init(name: String) {
+   public convenience init(name: String, activityType: HKWorkoutActivityType) {
       self.init()
       self.name = name
+      self.activityType = activityType
    }
 
    public override static func primaryKey() -> String? {
       return "id"
+   }
+
+   public override static func ignoredProperties() -> [String] {
+      return ["activityType"]
    }
 }
 

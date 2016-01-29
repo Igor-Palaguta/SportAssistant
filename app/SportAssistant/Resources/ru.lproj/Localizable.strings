@@ -1,6 +1,6 @@
 "AccelerationRecord" = "Рекорд";
-"AccelerationData" = "Акселерометр";
-"AccelerationDataEmpty" = "Нет данных";
+"AccelerationEvent" = "Акселерометр";
+"AccelerationEventEmpty" = "Нет данных";
 "NoPeaks" = "Нет движений";
 "Delete" = "Удалить";
 "More" = "Eще";

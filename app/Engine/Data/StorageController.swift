@@ -1,4 +1,5 @@
 import Foundation
+import HealthKit
 import RealmSwift
 
 public final class StorageController: NSObject {
@@ -14,8 +15,8 @@ public final class StorageController: NSObject {
       let realm = try! Realm()
       if realm.objects(History).isEmpty {
          let history = History()
-         let tableTennis = Tag(id: "1", name: "Table Tennis")
-         let boxing = Tag(id: "2", name: "Boxing")
+         let tableTennis = Tag(id: "1", name: "Table Tennis", activityType: .TableTennis)
+         let boxing = Tag(id: "2", name: "Boxing", activityType: .Boxing)
          try! realm.write {
             realm.add([history, tableTennis, boxing])
          }
@@ -105,7 +106,7 @@ public final class StorageController: NSObject {
    func synchronizeTrainingWithId(id: String,
       start: NSDate,
       tagId: String?,
-      data: [AccelerationData]) {
+      data: [AccelerationEvent]) {
          self.write {
             if let training = self[id] {
                let newData = data[training.data.count..<data.count]
@@ -145,14 +146,14 @@ public final class StorageController: NSObject {
       return training
    }
 
-   public func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T, toTraining training: Training) {
+   public func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T, toTraining training: Training) {
       self.write {
          self.history.appendDataFromArray(data, toTraining: training)
          training.tags.forEach { $0.checkBestOfTraining(training) }
       }
    }
 
-   public func addActivityWithName(name: String, toData data: AccelerationData) {
+   public func addActivityWithName(name: String, toData data: AccelerationEvent) {
       self.write {
          let activity = Activity(name: name)
          data.activity = activity
@@ -175,9 +176,10 @@ extension StorageController {
       }
    }
 
-   public func editTag(tag: Tag, name: String) {
+   public func editTag(tag: Tag, name: String, activityType: HKWorkoutActivityType) {
       self.write {
          tag.name = name
+         tag.activityType = activityType
       }
    }
 

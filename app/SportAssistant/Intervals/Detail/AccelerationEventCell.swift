@@ -1,9 +1,9 @@
 import UIKit
 import iOSEngine
 
-class AccelerationDataCell: UITableViewCell, ReusableNibView {
+class AccelerationEventCell: UITableViewCell, ReusableNibView {
 
-   var data: AccelerationData! {
+   var data: AccelerationEvent! {
       didSet {
          self.timestampLabel.text = self.data.timestamp.toDurationString(true)
          self.activityLabel.text = self.data.activity?.name

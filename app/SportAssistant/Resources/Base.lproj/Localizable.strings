@@ -1,6 +1,6 @@
 "AccelerationRecord" = "Record";
-"AccelerationData" = "Accelerometer";
-"AccelerationDataEmpty" = "No data";
+"AccelerationEvent" = "Accelerometer";
+"AccelerationEventEmpty" = "No data";
 "NoPeaks" = "No peaks";
 "Delete" = "Delete";
 "More" = "More";
@@ -16,4 +16,14 @@
 "DeleteTrainings" = "Yes with trainings";
 "DeleteTag" = "Only tag";
 "DeleteTrainingConfirmation" = "Are you sure?";
-
+"Badminton" = "Badminton";
+"Baseball" = "Baseball";
+"Boxing" = "Boxing";
+"Dance" = "Dance";
+"Golf" = "Golf";
+"Handball" = "Handball";
+"Squash" = "Squash";
+"TableTennis" = "Table Tennis";
+"Tennis" = "Tennis";
+"Volleyball" = "Volleyball";
+"Other" = "Other";

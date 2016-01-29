@@ -131,7 +131,7 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
                   .takeUntil(reuseSignal)
                   .map {
                      if let date = $0 as? NSDate {
-                        return date.toString(.ShortStyle, inRegion: .LocalRegion())
+                        return date.toString(.ShortStyle)
                      }
                      return nil
             }

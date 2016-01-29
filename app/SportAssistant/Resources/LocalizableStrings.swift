@@ -6,9 +6,9 @@ enum L10n {
   /// Record
   case AccelerationRecord
   /// Accelerometer
-  case AccelerationData
+  case AccelerationEvent
   /// No data
-  case AccelerationDataEmpty
+  case AccelerationEventEmpty
   /// No peaks
   case NoPeaks
   /// Delete
@@ -39,6 +39,28 @@ enum L10n {
   case DeleteTag
   /// Are you sure?
   case DeleteTrainingConfirmation
+  /// Badminton
+  case Badminton
+  /// Baseball
+  case Baseball
+  /// Boxing
+  case Boxing
+  /// Dance
+  case Dance
+  /// Golf
+  case Golf
+  /// Handball
+  case Handball
+  /// Squash
+  case Squash
+  /// Table Tennis
+  case TableTennis
+  /// Tennis
+  case Tennis
+  /// Volleyball
+  case Volleyball
+  /// Other
+  case Other
 }
 
 extension L10n : CustomStringConvertible {
@@ -48,10 +70,10 @@ extension L10n : CustomStringConvertible {
     switch self {
       case .AccelerationRecord:
         return L10n.tr("AccelerationRecord")
-      case .AccelerationData:
-        return L10n.tr("AccelerationData")
-      case .AccelerationDataEmpty:
-        return L10n.tr("AccelerationDataEmpty")
+      case .AccelerationEvent:
+        return L10n.tr("AccelerationEvent")
+      case .AccelerationEventEmpty:
+        return L10n.tr("AccelerationEventEmpty")
       case .NoPeaks:
         return L10n.tr("NoPeaks")
       case .Delete:
@@ -82,6 +104,28 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("DeleteTag")
       case .DeleteTrainingConfirmation:
         return L10n.tr("DeleteTrainingConfirmation")
+      case .Badminton:
+        return L10n.tr("Badminton")
+      case .Baseball:
+        return L10n.tr("Baseball")
+      case .Boxing:
+        return L10n.tr("Boxing")
+      case .Dance:
+        return L10n.tr("Dance")
+      case .Golf:
+        return L10n.tr("Golf")
+      case .Handball:
+        return L10n.tr("Handball")
+      case .Squash:
+        return L10n.tr("Squash")
+      case .TableTennis:
+        return L10n.tr("TableTennis")
+      case .Tennis:
+        return L10n.tr("Tennis")
+      case .Volleyball:
+        return L10n.tr("Volleyball")
+      case .Other:
+        return L10n.tr("Other")
     }
   }
 

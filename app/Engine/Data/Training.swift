@@ -9,7 +9,7 @@ public final class Training: Object, Equatable {
    public private(set) dynamic var tagsVersion = 0
 
    public let tags = List<Tag>()
-   public let data = List<AccelerationData>()
+   public let data = List<AccelerationEvent>()
 
    func deleteTag(tag: Tag) {
       guard let tagIndex = self.tags.indexOf(tag) else {
@@ -41,11 +41,11 @@ public final class Training: Object, Equatable {
       return self.activitiesData.map { $0.activity! }
    }
 
-   public var activitiesData: Results<AccelerationData> {
+   public var activitiesData: Results<AccelerationEvent> {
       return self.data.filter(NSPredicate(format: "activity != nil"))
    }
 
-   func appendData(data: AccelerationData) {
+   func appendData(data: AccelerationEvent) {
       if data.total > self.best {
          self.best = data.total
       }
@@ -54,7 +54,7 @@ public final class Training: Object, Equatable {
       self.currentCount = self.data.count
    }
 
-   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) {
+   func appendDataFromArray<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T) {
 
       guard let max = data.maxElement({ $0.total < $1.total }) else {
          return

@@ -305,6 +305,7 @@ final class TagsViewController: UITableViewController {
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       let tag = sender as? Tag
+
       if let tag = tag, trainingsViewController = segue.destinationViewController as? TrainingsViewController {
          trainingsViewController.filter = .Selected([tag])
       } else if let tagViewController = segue.destinationViewController as? TagViewController {

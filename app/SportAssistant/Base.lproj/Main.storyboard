@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jvk-OQ-Iho">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jvk-OQ-Iho">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -11,7 +11,7 @@
         <scene sceneID="emb-Jt-vOa">
             <objects>
                 <navigationController id="ZYp-TO-101" userLabel="Trainings Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="fun-nK-J7J"/>
+                    <tabBarItem key="tabBarItem" title="Trainings" image="History" id="fun-nK-J7J"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rsp-Dh-gGc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,7 +27,7 @@
         <!--Trainings-->
         <scene sceneID="hq7-v3-FUk">
             <objects>
-                <tableViewController id="fCw-9A-acM" customClass="TrainingsViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fCw-9A-acM" customClass="TrainingsViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" id="JXo-rC-XaZ">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TrainingCell" rowHeight="102" id="tOa-gp-Ltm" customClass="TrainingCell" customModule="SportAssistant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TrainingCell" rowHeight="102" id="tOa-gp-Ltm" customClass="TrainingCell" customModule="SwingTracer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tOa-gp-Ltm" id="2IG-yS-SDx">
@@ -98,7 +98,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeY-sH-Rdi" customClass="ProgressView" customModule="SportAssistant" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeY-sH-Rdi" customClass="ProgressView" customModule="SwingTracer" customModuleProvider="target">
                                             <rect key="frame" x="2" y="46" width="10" height="10"/>
                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -188,7 +188,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" id="B9M-we-XWe"/>
                     <navigationItem key="navigationItem" title="Trainings" id="QeE-vZ-Lby">
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="aag-MX-3WK">
+                        <barButtonItem key="rightBarButtonItem" image="Filter" id="aag-MX-3WK">
                             <connections>
                                 <segue destination="Sq3-rd-XXD" kind="modal" identifier="Filter" id="N2S-S2-3Wf"/>
                             </connections>
@@ -207,7 +207,7 @@
         <!--Training View Controller-->
         <scene sceneID="Ngv-HL-Gv0">
             <objects>
-                <viewController storyboardIdentifier="Training" hidesBottomBarWhenPushed="YES" id="3eW-Fv-zfJ" customClass="TrainingViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Training" hidesBottomBarWhenPushed="YES" id="3eW-Fv-zfJ" customClass="TrainingViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JSa-eG-7K4"/>
                         <viewControllerLayoutGuide type="bottom" id="2OS-L9-Xzh"/>
@@ -229,7 +229,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="291"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AccelerationDataCell" rowHeight="66" id="wf8-rI-Ir1" customClass="AccelerationDataCell" customModule="SportAssistant" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AccelerationEventCell" rowHeight="66" id="wf8-rI-Ir1" customClass="AccelerationEventCell" customModule="SwingTracer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="320" height="66"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wf8-rI-Ir1" id="iuK-o1-Y8H">
@@ -466,13 +466,13 @@
         <!--Tags-->
         <scene sceneID="TxN-NW-1fi">
             <objects>
-                <tableViewController id="U8J-8M-xfo" customClass="TagsViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="U8J-8M-xfo" customClass="TagsViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ONA-lS-dUS">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddTagCell" id="asu-mF-qB5" customClass="AddTagCell" customModule="SportAssistant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddTagCell" id="asu-mF-qB5" customClass="AddTagCell" customModule="SwingTracer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="asu-mF-qB5" id="8Vy-nd-5Xd">
@@ -500,7 +500,7 @@
                                     <constraint firstItem="4wx-Id-ZBg" firstAttribute="centerX" secondItem="asu-mF-qB5" secondAttribute="centerX" id="hRX-6n-odK"/>
                                 </constraints>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="TagCell" editingAccessoryType="disclosureIndicator" id="iXZ-tr-9xI" customClass="TagCell" customModule="SportAssistant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="TagCell" editingAccessoryType="disclosureIndicator" id="iXZ-tr-9xI" customClass="TagCell" customModule="SwingTracer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iXZ-tr-9xI" id="kY1-Sb-OFE">
@@ -513,7 +513,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-mB-9TR" customClass="BadgeView" customModule="SportAssistant" customModuleProvider="target">
+                                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-mB-9TR" customClass="BadgeView" customModule="SwingTracer" customModuleProvider="target">
                                             <rect key="frame" x="248" y="9" width="32" height="24.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt6-B4-YMa">
@@ -581,7 +581,7 @@
         <!--Add Tag-->
         <scene sceneID="Er8-zV-rIq">
             <objects>
-                <tableViewController id="NDa-Sq-Wze" customClass="TagViewController" customModule="SportAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="NDa-Sq-Wze" customClass="TagViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZtU-Sk-ZPj">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -598,7 +598,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6Ik-sf-bRB">
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
@@ -609,6 +609,33 @@
                                                 <constraint firstItem="6Ik-sf-bRB" firstAttribute="leading" secondItem="jhY-cN-nhj" secondAttribute="leading" constant="15" id="nrR-2I-RkP"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="X2V-8O-1Qf" detailTextLabel="zOH-pP-Gv8" style="IBUITableViewCellStyleValue1" id="xj7-Qt-f0V">
+                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xj7-Qt-f0V" id="Eiq-kA-gxZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X2V-8O-1Qf">
+                                                    <rect key="frame" x="15" y="12" width="54" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zOH-pP-Gv8">
+                                                    <rect key="frame" x="243.5" y="12" width="41.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="HGb-vc-9az" kind="push" id="hka-e7-71a"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -621,12 +648,56 @@
                     <navigationItem key="navigationItem" title="Add Tag" id="BTE-4X-Rx3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityLabel" destination="zOH-pP-Gv8" id="Erw-6D-n4f"/>
                         <outlet property="nameField" destination="6Ik-sf-bRB" id="R2X-ai-gOR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4c-rB-nXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="650" y="137"/>
+        </scene>
+        <!--Activities-->
+        <scene sceneID="kFY-zd-i9z">
+            <objects>
+                <tableViewController id="HGb-vc-9az" customClass="ActivitiesViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z8f-R4-8TH">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityCell" textLabel="jtk-JJ-W9Q" style="IBUITableViewCellStyleDefault" id="Ngh-wy-y8u" customClass="ActivityCell" customModule="SwingTracer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ngh-wy-y8u" id="DzJ-tl-b4c">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jtk-JJ-W9Q">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="GKV-Cd-HWT" kind="unwind" unwindAction="unwindActivitySegue:" id="QhH-So-5aM"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HGb-vc-9az" id="mVS-Eh-rDY"/>
+                            <outlet property="delegate" destination="HGb-vc-9az" id="HTK-M0-at5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Activities" id="fmB-jp-hxF"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AzW-dQ-U8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GKV-Cd-HWT" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1134" y="153"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8xk-Ol-Kie">
@@ -651,7 +722,7 @@
         <scene sceneID="r5L-Qo-w3W">
             <objects>
                 <navigationController id="Sq3-rd-XXD" userLabel="Tags Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tags" id="pyQ-Tj-VtR"/>
+                    <tabBarItem key="tabBarItem" title="Tags" image="Tags" id="pyQ-Tj-VtR"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTq-pG-Sng">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -666,9 +737,14 @@
             <point key="canvasLocation" x="-316" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Filter" width="25" height="25"/>
+        <image name="History" width="25" height="25"/>
+        <image name="Tags" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LdV-4m-lIl"/>
         <segue reference="Igz-RH-noq"/>
+        <segue reference="qgr-we-p2z"/>
         <segue reference="Qhy-5q-sNK"/>
     </inferredMetricsTieBreakers>
 </document>

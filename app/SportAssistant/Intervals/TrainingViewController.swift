@@ -10,7 +10,7 @@ private enum Attributes {
    case Bar(UIColor)
    case Bubble
 
-   func dataEntryForValue(value: Double, atIndex index: Int, data: AccelerationData) -> ChartDataEntry {
+   func dataEntryForValue(value: Double, atIndex index: Int, data: AccelerationEvent) -> ChartDataEntry {
       switch self {
       case Line(_), Point(_):
          return ChartDataEntry(value: value, xIndex: index, data: data)
@@ -23,16 +23,16 @@ private enum Attributes {
 }
 
 private enum DataExtractor {
-   case Field(AccelerationDataField)
+   case Field(AccelerationEventField)
    case AnyActivity
 
-   func valueForData(data: AccelerationData) -> Double? {
+   func valueForData(event: AccelerationEvent) -> Double? {
       switch self {
       case .Field(let id):
-         return data[id]
+         return event[id]
       case .AnyActivity:
-         if data.activity != nil {
-            return data.total
+         if event.activity != nil {
+            return event.total
          }
          return nil
       }
@@ -124,14 +124,14 @@ private class TrainingDataSet {
       self.attributes = attributes
    }
 
-   func dataEntryForData(data: AccelerationData, atIndex index: Int) -> ChartDataEntry? {
+   func dataEntryForData(data: AccelerationEvent, atIndex index: Int) -> ChartDataEntry? {
       if let value = self.data.valueForData(data) {
          return self.attributes.dataEntryForValue(value, atIndex: index, data: data)
       }
       return nil
    }
 
-   func addData(data: AccelerationData, atIndex index: Int) {
+   func addData(data: AccelerationEvent, atIndex index: Int) {
       if let dataEntry = self.dataEntryForData(data, atIndex: index) {
          if let chartDataSet = self._chartDataSet {
             chartDataSet.addEntry(dataEntry)
@@ -184,7 +184,7 @@ private struct TrainingDataSource {
       self.chartData = allData
    }
 
-   func addNewData<T: SequenceType where T.Generator.Element == AccelerationData>(newData: T) {
+   func addNewData<T: SequenceType where T.Generator.Element == AccelerationEvent>(newData: T) {
       let previousCount = self.chartData.xValCount
 
       for (i, data) in newData.enumerate() {
@@ -226,7 +226,7 @@ final class TrainingViewController: UIViewController {
 
    private var dataSource: TrainingDataSource?
 
-   private var data: [AccelerationData] = [] {
+   private var data: [AccelerationEvent] = [] {
       didSet {
          self.tableView.hidden = self.data.isEmpty
       }
@@ -241,11 +241,11 @@ final class TrainingViewController: UIViewController {
          case Peaks:
             return tr(.NoPeaks)
          case All:
-            return tr(.AccelerationDataEmpty)
+            return tr(.AccelerationEventEmpty)
          }
       }
 
-      func filterData<T: SequenceType where T.Generator.Element == AccelerationData>(data: T) -> [AccelerationData] {
+      func filterData<T: SequenceType where T.Generator.Element == AccelerationEvent>(data: T) -> [AccelerationEvent] {
          switch self {
          case Peaks:
             return data.filter { $0.activity != nil }
@@ -280,8 +280,8 @@ final class TrainingViewController: UIViewController {
 
       self.chartView.delegate = self
 
-      self.chartView.descriptionText = tr(.AccelerationData)
-      self.chartView.noDataTextDescription = tr(.AccelerationDataEmpty)
+      self.chartView.descriptionText = tr(.AccelerationEvent)
+      self.chartView.noDataTextDescription = tr(.AccelerationEventEmpty)
 
       self.chartView.drawBordersEnabled = true
 
@@ -413,7 +413,7 @@ final class TrainingViewController: UIViewController {
 
          let mailController = MFMailComposeViewController()
          mailController.mailComposeDelegate = self
-         mailController.setSubject(self.training.start.toString(.ShortStyle, inRegion: .LocalRegion())!)
+         mailController.setSubject(self.training.start.toString(.ShortStyle)!)
          let csvLines = self.training.data.map { "\($0.timestamp), \($0.x), \($0.y) \($0.z) \($0.total)" }
          let csv = csvLines.joinWithSeparator("\n")
          mailController.addAttachmentData(csv.dataUsingEncoding(NSUTF8StringEncoding)!,
@@ -457,7 +457,7 @@ extension TrainingViewController: UITableViewDataSource, UITableViewDelegate {
    }
 
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let cell: AccelerationDataCell = tableView.dequeueCellForIndexPath(indexPath)
+      let cell: AccelerationEventCell = tableView.dequeueCellForIndexPath(indexPath)
       let data = self.data[indexPath.row]
       cell.data = data
       return cell
@@ -470,7 +470,7 @@ extension TrainingViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension TrainingViewController: ChartViewDelegate {
    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-      if let data = entry.data as? AccelerationData,
+      if let data = entry.data as? AccelerationEvent,
          index = self.data.indexOf({$0 == data}) {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
                atScrollPosition: .Top,

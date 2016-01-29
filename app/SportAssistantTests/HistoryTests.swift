@@ -29,10 +29,10 @@ class HistoryTests: XCTestCase {
    }
 
    func testTotal() {
-      let data1 = AccelerationData(x: 3, y: 4, z: 12, timestamp: 0)
+      let data1 = AccelerationEvent(x: 3, y: 4, z: 12, timestamp: 0)
       XCTAssertTrue(data1.total == 13)
 
-      let data2 = AccelerationData(x: 4, y: 5, z: 20, timestamp: 0)
+      let data2 = AccelerationEvent(x: 4, y: 5, z: 20, timestamp: 0)
       XCTAssertTrue(data2.total == 21)
    }
 
@@ -54,14 +54,14 @@ class HistoryTests: XCTestCase {
       storage.deactivateTraining(training1)
       XCTAssertTrue(storage.active == nil)
 
-      let data1 = AccelerationData(x: 1, y: 2, z: 3, timestamp: 0)
-      let data2 = AccelerationData(x: 3, y: 4, z: 12, timestamp: 0)
+      let data1 = AccelerationEvent(x: 1, y: 2, z: 3, timestamp: 0)
+      let data2 = AccelerationEvent(x: 3, y: 4, z: 12, timestamp: 0)
       storage.addData([data1, data2], toTraining: training1)
 
       XCTAssertTrue(training1.currentCount == 2)
 
-      let data3 = AccelerationData(x: 3, y: 5, z: 11, timestamp: 0)
-      let data4 = AccelerationData(x: 3, y: 6, z: 10, timestamp: 0)
+      let data3 = AccelerationEvent(x: 3, y: 5, z: 11, timestamp: 0)
+      let data4 = AccelerationEvent(x: 3, y: 6, z: 10, timestamp: 0)
       storage.addData([data3, data4], toTraining: training1)
 
       XCTAssertTrue(training1.data.count == 4)

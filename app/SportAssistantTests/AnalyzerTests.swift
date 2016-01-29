@@ -9,7 +9,7 @@
 import XCTest
 @testable import SportAssistant
 
-private extension AccelerationData {
+private extension AccelerationEvent {
    func p(value: Double) -> PointValue {
       return PointValue(value: value, data: self)
    }
@@ -52,7 +52,7 @@ class AnalyzerTests: XCTestCase {
    }
 
    func testRange() {
-      let data = AccelerationData(x: 1, y: 1, z: 1, timestamp: 0)
+      let data = AccelerationEvent(x: 1, y: 1, z: 1, timestamp: 0)
 
       let range = Range(initial: data.p(7))
       XCTAssertTrue(range.final.value == 7)
@@ -81,15 +81,15 @@ class AnalyzerTests: XCTestCase {
 
    func testTableTennisAnalyzer() {
       let analyzer = TableTennisAnalyzer()
-      let result1 = analyzer.analyzeData(AccelerationData(total: 1.24684542980376))
+      let result1 = analyzer.analyzeData(AccelerationEvent(total: 1.24684542980376))
       XCTAssertTrue(result1.data.isEmpty)
-      let result2 = analyzer.analyzeData(AccelerationData(total: 3.57171658045749))
+      let result2 = analyzer.analyzeData(AccelerationEvent(total: 3.57171658045749))
       XCTAssertTrue(result2.data.isEmpty)
-      let result3 = analyzer.analyzeData(AccelerationData(total: 5.45520732717584))
+      let result3 = analyzer.analyzeData(AccelerationEvent(total: 5.45520732717584))
       XCTAssertTrue(result3.data.isEmpty)
-      let result4 = analyzer.analyzeData(AccelerationData(total: 4.69492818116718))
+      let result4 = analyzer.analyzeData(AccelerationEvent(total: 4.69492818116718))
       XCTAssertTrue(result4.data.isEmpty)
-      let result5 = analyzer.analyzeData(AccelerationData(total: 0.791985977568311))
+      let result5 = analyzer.analyzeData(AccelerationEvent(total: 0.791985977568311))
       XCTAssertTrue(result5.data.count == 4)
    }
 }

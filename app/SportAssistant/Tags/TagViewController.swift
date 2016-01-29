@@ -1,4 +1,5 @@
 import UIKit
+import HealthKit
 import ReactiveCocoa
 import iOSEngine
 
@@ -22,15 +23,15 @@ enum TagOperation {
       return ""
    }
 
-   private func processWithName(name: String) -> Tag {
+   private func processWithName(name: String, activityType: HKWorkoutActivityType) -> Tag {
       let storage = StorageController.UIController
       switch self {
       case .Add:
-         let tag = Tag(name: name)
+         let tag = Tag(name: name, activityType: activityType)
          storage.addTag(tag)
          return tag
       case .Edit(let tag):
-         storage.editTag(tag, name: name)
+         storage.editTag(tag, name: name, activityType: activityType)
          return tag
       }
    }
@@ -41,13 +42,30 @@ protocol TagViewControllerDelegate: class {
    func tagViewController(controller: TagViewController, didCompleteOperation operation: TagOperation, withTag tag: Tag)
 }
 
-class TagViewController: UITableViewController {
+private class TagViewModel {
+   let name = MutableProperty<String>("")
+   let activityType = MutableProperty<HKWorkoutActivityType>(.Other)
+   let isDefaultName = MutableProperty<Bool>(true)
+}
+
+final class TagViewController: UITableViewController {
+
+   var operation: TagOperation = .Add {
+      didSet {
+         if case .Edit(let tag) = self.operation {
+            self.model.name.value = tag.name
+            self.model.activityType.value = tag.activityType
+            self.model.isDefaultName.value = false
+         }
+      }
+   }
 
    weak var delegate: TagViewControllerDelegate?
 
-   var operation: TagOperation = .Add
-
    @IBOutlet private weak var nameField: UITextField!
+   @IBOutlet private weak var activityLabel: UILabel!
+
+   private var model = TagViewModel()
 
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -59,23 +77,63 @@ class TagViewController: UITableViewController {
          target: self,
          action: Selector("cancelAction:"))
 
+      self.model.isDefaultName <~ self.nameField.rac_signalForControlEvents(.EditingChanged)
+         .toVoidNoErrorSignalProducer()
+         .map { [weak textField = self.nameField] _ in textField?.text ?? "" }
+         .map { $0.isEmpty }
+
+      self.model.name <~ self.nameField.rac_textSignal()
+         .toNoErrorSignalProducer()
+         .map { $0 as? String ?? "" }
+
+      DynamicProperty(object: self.activityLabel, keyPath: "text") <~
+         self.model.activityType
+            .producer
+            .map { $0.name }
+
       let saveItem = UIBarButtonItem(barButtonSystemItem: .Done,
          target: self,
          action: Selector("doneAction:"))
+
       DynamicProperty(object: saveItem, keyPath: "enabled") <~
-         self.nameField.rac_textSignal()
-            .toSignalProducer()
-            .map { $0 as? String ?? "" }
+         self.model.name
+            .producer
             .map { !$0.isEmpty }
-            .flatMapError { _ in SignalProducer.empty }
+
+      combineLatest(self.model.activityType.producer, self.model.isDefaultName.producer)
+         .filter { _, isDefaultName in isDefaultName }
+         .map { type, _ in type }
+         .skipRepeats()
+         .startWithNext {
+            [weak self] type in
+            guard let strongSelf = self else {
+               return
+            }
+
+            let suggestedName = type == .Other ? "" : type.name
+            strongSelf.model.name.value = suggestedName
+            strongSelf.nameField.text = suggestedName
+      }
 
       self.navigationItem.rightBarButtonItem = saveItem
 
       self.tableView.tableFooterView = UIView()
    }
 
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+      if let activitiesViewController = segue.destinationViewController as? ActivitiesViewController {
+         activitiesViewController.activityType = self.model.activityType.value
+      }
+   }
+
+   @IBAction private func unwindActivitySegue(segue: UIStoryboardSegue) {
+      if let activitiesViewController = segue.sourceViewController as? ActivitiesViewController {
+         self.model.activityType.value = activitiesViewController.activityType
+      }
+   }
+
    @IBAction private func doneAction(_: UIBarButtonItem) {
-      let tag = self.operation.processWithName(self.nameField.text!)
+      let tag = self.operation.processWithName(self.model.name.value, activityType: self.model.activityType.value)
       self.delegate!.tagViewController(self,
          didCompleteOperation: self.operation,
          withTag: tag)
