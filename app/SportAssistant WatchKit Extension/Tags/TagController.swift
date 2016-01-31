@@ -23,7 +23,7 @@ class TagController: NSObject {
          self.dateLabel.setText(lastStrings)
 
          let bestString: String? = self.trainingTag.best != 0
-            ? tr(.BestFormat(self.trainingTag.best.formattedAcceleration()))
+            ? tr(.BestFormat(self.trainingTag.best.formattedAcceleration))
             : nil
 
          self.bestLabel.setText(bestString)

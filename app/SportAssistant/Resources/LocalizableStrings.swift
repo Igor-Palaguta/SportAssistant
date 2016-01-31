@@ -31,14 +31,10 @@ enum L10n {
   case AllTrainings
   /// Edit Tags
   case EditTags
-  /// Do you want to delete tag with associated trainings?
-  case DeleteTagConfirmation
-  /// Yes with trainings
-  case DeleteTrainings
-  /// Only tag
-  case DeleteTag
+  /// Yes
+  case Yes
   /// Are you sure?
-  case DeleteTrainingConfirmation
+  case DeleteConfirmation
   /// Badminton
   case Badminton
   /// Baseball
@@ -96,14 +92,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("AllTrainings")
       case .EditTags:
         return L10n.tr("EditTags")
-      case .DeleteTagConfirmation:
-        return L10n.tr("DeleteTagConfirmation")
-      case .DeleteTrainings:
-        return L10n.tr("DeleteTrainings")
-      case .DeleteTag:
-        return L10n.tr("DeleteTag")
-      case .DeleteTrainingConfirmation:
-        return L10n.tr("DeleteTrainingConfirmation")
+      case .Yes:
+        return L10n.tr("Yes")
+      case .DeleteConfirmation:
+        return L10n.tr("DeleteConfirmation")
       case .Badminton:
         return L10n.tr("Badminton")
       case .Baseball:

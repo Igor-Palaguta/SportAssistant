@@ -45,6 +45,14 @@ public final class Training: Object, Equatable {
       return self.events.filter(NSPredicate(format: "activity != nil"))
    }
 
+   public var average: Double? {
+      return self.activityEvents.average("total")
+   }
+
+   public var minimum: Double? {
+      return self.activityEvents.min("total")
+   }
+
    func appendEvent(event: AccelerationEvent) {
       if event.total > self.best {
          self.best = event.total

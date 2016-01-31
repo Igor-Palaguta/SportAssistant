@@ -136,7 +136,7 @@ final class TrainingsViewController: UITableViewController {
          let training = self.trainings[indexPath.row]
 
          let alert = UIAlertController(title: "",
-            message: tr(.DeleteTrainingConfirmation),
+            message: tr(.DeleteConfirmation),
             preferredStyle: .ActionSheet)
 
          alert.addAction(UIAlertAction(title: tr(.Delete), style: .Destructive) {

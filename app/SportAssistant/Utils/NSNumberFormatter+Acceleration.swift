@@ -9,7 +9,7 @@ private let _accelerationFormatter: NSNumberFormatter = {
 }()
 
 extension Double {
-   func formattedAcceleration() -> String {
+   var formattedAcceleration: String {
       return NSNumberFormatter.stringForAcceleration(self)
    }
 }

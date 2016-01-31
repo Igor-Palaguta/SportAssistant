@@ -50,6 +50,6 @@ class MenuInterfaceController: WKInterfaceController {
    private func reloadData() {
       let storage = StorageController.UIController
       self.trainingsButton.setTitle(tr(.TrainingsCountFormat(storage.trainingsCount)))
-      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(storage.best))
+      self.bestLabel.setText(storage.best.formattedAcceleration)
    }
 }

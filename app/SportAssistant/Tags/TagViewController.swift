@@ -7,6 +7,13 @@ enum TagOperation {
    case Add
    case Edit(Tag)
 
+   private var tag: Tag? {
+      if case .Edit(let tag) = self {
+         return tag
+      }
+      return nil
+   }
+
    private var title: String {
       switch self {
       case .Add:
@@ -17,10 +24,7 @@ enum TagOperation {
    }
 
    private var name: String {
-      if case .Edit(let tag) = self {
-         return tag.name
-      }
-      return ""
+      return self.tag?.name ?? ""
    }
 
    private func processWithName(name: String, activityType: HKWorkoutActivityType) -> Tag {
@@ -37,8 +41,14 @@ enum TagOperation {
    }
 }
 
+private enum TagSection: Int {
+   case Information
+   case Delete
+   case SectionCount
+}
+
 protocol TagViewControllerDelegate: class {
-   func didCancelTagViewController(controller: TagViewController)
+   func didCompleteTagViewController(controller: TagViewController)
    func tagViewController(controller: TagViewController, didCompleteOperation operation: TagOperation, withTag tag: Tag)
 }
 
@@ -46,16 +56,18 @@ private class TagViewModel {
    let name = MutableProperty<String>("")
    let activityType = MutableProperty<HKWorkoutActivityType>(.Other)
    let isDefaultName = MutableProperty<Bool>(true)
+   let hasTrainings = MutableProperty<Bool>(false)
 }
 
 final class TagViewController: UITableViewController {
 
    var operation: TagOperation = .Add {
       didSet {
-         if case .Edit(let tag) = self.operation {
+         if let tag = self.operation.tag {
             self.model.name.value = tag.name
             self.model.activityType.value = tag.activityType
             self.model.isDefaultName.value = false
+            self.model.hasTrainings.value = !tag.trainings.isEmpty
          }
       }
    }
@@ -113,6 +125,27 @@ final class TagViewController: UITableViewController {
             strongSelf.nameField.text = suggestedName
       }
 
+      if let tag = self.operation.tag {
+         self.model.hasTrainings <~ DynamicProperty(object: tag, keyPath: "version")
+            .producer
+            .map {
+               [weak tag] _ in
+               if let tag = tag {
+                  return !tag.trainings.isEmpty
+               }
+               return false
+         }
+
+         self.model.hasTrainings
+            .producer
+            .skip(1)
+            .skipRepeats()
+            .startWithNext {
+               [weak self] _ in
+               self?.tableView.reloadData()
+         }
+      }
+
       self.navigationItem.rightBarButtonItem = saveItem
 
       self.tableView.tableFooterView = UIView()
@@ -138,6 +171,30 @@ final class TagViewController: UITableViewController {
    }
 
    @IBAction private func cancelAction(_: UIBarButtonItem) {
-      self.delegate!.didCancelTagViewController(self)
+      self.delegate!.didCompleteTagViewController(self)
+   }
+
+   @IBAction private func deleteAction(_: UIButton) {
+      StorageController.UIController.deleteTag(self.operation.tag!)
+      ClientSynchronizer.defaultClient.synchronizeTags()
+      self.delegate!.didCompleteTagViewController(self)
+   }
+
+   @IBAction private func deleteTrainingsAction(_: UIButton) {
+      StorageController.UIController.deleteTrainingsOfTag(self.operation.tag!)
+   }
+
+   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+      if self.operation.tag != nil {
+         return TagSection.Delete.rawValue + 1
+      }
+      return TagSection.Information.rawValue + 1
+   }
+
+   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      if section == TagSection.Delete.rawValue && !self.model.hasTrainings.value {
+         return 1
+      }
+      return super.tableView(tableView, numberOfRowsInSection: section)
    }
 }

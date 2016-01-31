@@ -8,22 +8,30 @@ protocol TrainingInterfaceControllerDelegate: class {
 
 final class TrainingInterfaceController: WKInterfaceController {
 
+   @IBOutlet private weak var tagsLabel: WKInterfaceLabel!
+   @IBOutlet private weak var bestLabel: WKInterfaceLabel!
+   @IBOutlet private weak var countLabel: WKInterfaceLabel!
+   @IBOutlet private weak var durationLabel: WKInterfaceLabel!
+   @IBOutlet private weak var averageLabel: WKInterfaceLabel!
+   @IBOutlet private weak var minimumLabel: WKInterfaceLabel!
+
    private weak var delegate: TrainingInterfaceControllerDelegate?
 
    private(set) var training: Training! {
       didSet {
-         self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(training.best))
+         let tagsString = training.tags.map { $0.name }.joinWithSeparator(", ")
+         self.tagsLabel.setText(tagsString)
+         self.bestLabel.setText(training.best.formattedAcceleration)
          self.durationLabel.setDuration(training.duration)
-         self.countLabel.setText(training.activities.count.description)
+         let activityEvents = training.activityEvents
+         self.countLabel.setText("\(activityEvents.count)")
+         self.minimumLabel.setText(training.minimum?.formattedAcceleration)
+         self.minimumLabel.setText(training.average?.formattedAcceleration)
          if training.best == StorageController.UIController.best {
             self.bestLabel.setTextColor(UIColor(named: .Record))
          }
       }
    }
-
-   @IBOutlet private weak var bestLabel: WKInterfaceLabel!
-   @IBOutlet private weak var countLabel: WKInterfaceLabel!
-   @IBOutlet private weak var durationLabel: WKInterfaceLabel!
 
    override func awakeWithContext(context: AnyObject?) {
       super.awakeWithContext(context)

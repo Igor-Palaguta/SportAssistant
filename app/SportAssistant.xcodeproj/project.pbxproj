@@ -117,6 +117,8 @@
 		78A2D1E21C2C137D00EEBDD7 /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */; };
 		78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */; };
 		78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */; };
+		78C18E1B1C5D64A5003F954F /* StorageController+iOSEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C18E1A1C5D64A5003F954F /* StorageController+iOSEngine.swift */; };
+		78C18E1E1C5D6776003F954F /* StorageController+watchOSEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C18E1D1C5D6776003F954F /* StorageController+watchOSEngine.swift */; };
 		78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C38DDE1C491658003CD041 /* TimerLabel.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
@@ -335,6 +337,8 @@
 		78A2D1E01C2C137D00EEBDD7 /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		78A2D1E11C2C137D00EEBDD7 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingController.swift; sourceTree = "<group>"; };
 		78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
+		78C18E1A1C5D64A5003F954F /* StorageController+iOSEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StorageController+iOSEngine.swift"; sourceTree = "<group>"; };
+		78C18E1D1C5D6776003F954F /* StorageController+watchOSEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StorageController+watchOSEngine.swift"; sourceTree = "<group>"; };
 		78C38DDE1C491658003CD041 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportAssistant.entitlements; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 		786805711C565EFE001AC1F0 /* iOSEngine */ = {
 			isa = PBXGroup;
 			children = (
+				78C18E191C5D648D003F954F /* Data */,
 				786805CB1C567607001AC1F0 /* Synchronizer */,
 				786805721C565EFE001AC1F0 /* iOSEngine.h */,
 				786805741C565EFE001AC1F0 /* Info.plist */,
@@ -514,6 +519,7 @@
 		786805BC1C56757E001AC1F0 /* watchOSEngine */ = {
 			isa = PBXGroup;
 			children = (
+				78C18E1C1C5D6776003F954F /* Data */,
 				786805CE1C56765E001AC1F0 /* Synchronizer */,
 				786805BD1C56757E001AC1F0 /* watchOSEngine.h */,
 				786805BF1C56757E001AC1F0 /* Info.plist */,
@@ -724,6 +730,22 @@
 				7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		78C18E191C5D648D003F954F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				78C18E1A1C5D64A5003F954F /* StorageController+iOSEngine.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		78C18E1C1C5D6776003F954F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				78C18E1D1C5D6776003F954F /* StorageController+watchOSEngine.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		78C38DDD1C491567003CD041 /* Utils */ = {
@@ -1128,6 +1150,7 @@
 				786A250A1C5B677500B7470E /* Activity+JSON.swift in Sources */,
 				786805CD1C567607001AC1F0 /* ClientSynchronizer.swift in Sources */,
 				786806011C567758001AC1F0 /* Training.swift in Sources */,
+				78C18E1B1C5D64A5003F954F /* StorageController+iOSEngine.swift in Sources */,
 				786A25021C5B66C700B7470E /* Tag+JSON.swift in Sources */,
 				786805FB1C567758001AC1F0 /* AccelerationEvent.swift in Sources */,
 				786806021C567758001AC1F0 /* TrainingsCollection.swift in Sources */,
@@ -1168,6 +1191,7 @@
 				7868060B1C567924001AC1F0 /* Training.swift in Sources */,
 				7868060D1C567929001AC1F0 /* Package.swift in Sources */,
 				786806071C567924001AC1F0 /* History.swift in Sources */,
+				78C18E1E1C5D6776003F954F /* StorageController+watchOSEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -270,17 +270,14 @@ final class TagsViewController: UITableViewController {
       let deleteAction = UITableViewRowAction(style: .Destructive, title: tr(.Delete)) {
          _, indexPath in
          let alert = UIAlertController(title: "",
-            message: tr(.DeleteTagConfirmation),
+            message: tr(.DeleteConfirmation),
             preferredStyle: .ActionSheet)
 
-         alert.addAction(UIAlertAction(title: tr(.DeleteTrainings), style: .Destructive) {
-            [unowned self] _ in
-            self.deleteTag(tag, withTrainings: true, atIndexPath: indexPath)
-            })
-
-         alert.addAction(UIAlertAction(title: tr(.DeleteTag), style: .Destructive) {
-            [unowned self] _ in
-            self.deleteTag(tag, withTrainings: false, atIndexPath: indexPath)
+         alert.addAction(UIAlertAction(title: tr(.Delete), style: .Destructive) {
+            _ in
+            StorageController.UIController.deleteTag(tag)
+            ClientSynchronizer.defaultClient.synchronizeTags()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             })
 
          alert.addCacelAction(title: tr(.Cancel))
@@ -314,12 +311,6 @@ final class TagsViewController: UITableViewController {
       }
    }
 
-   private func deleteTag(tag: Tag, withTrainings: Bool, atIndexPath indexPath: NSIndexPath) {
-      StorageController.UIController.deleteTag(tag, withTrainings: withTrainings)
-      ClientSynchronizer.defaultClient.synchronizeTags()
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-   }
-
    @objc private func completeAction(_: UIBarButtonItem) {
       self.completionHandler!(self)
    }
@@ -327,7 +318,7 @@ final class TagsViewController: UITableViewController {
 
 extension TagsViewController: TagViewControllerDelegate {
 
-   func didCancelTagViewController(controller: TagViewController) {
+   func didCompleteTagViewController(controller: TagViewController) {
       self.navigationController?.popViewControllerAnimated(true)
    }
 

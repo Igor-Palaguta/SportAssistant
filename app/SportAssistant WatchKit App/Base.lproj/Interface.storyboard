@@ -163,37 +163,74 @@
             </objects>
             <point key="canvasLocation" x="220" y="581"/>
         </scene>
-        <!--TrainingInterfaceController-->
+        <!--Close-->
         <scene sceneID="gwI-Y9-Opt">
             <objects>
-                <controller identifier="TrainingInterfaceController" id="rxU-gG-mSZ" customClass="TrainingInterfaceController" customModule="SwingTracer">
+                <controller identifier="TrainingInterfaceController" title="Close" id="rxU-gG-mSZ" customClass="TrainingInterfaceController" customModule="SwingTracer">
                     <items>
-                        <group width="1" alignment="left" id="X09-vk-OPZ">
+                        <group width="1" alignment="left" layout="vertical" spacing="5" id="X09-vk-OPZ">
                             <items>
-                                <label alignment="center" verticalAlignment="bottom" text="0" id="iC3-Ln-mXC">
+                                <label width="1" alignment="left" text="Label" textAlignment="center" id="hAe-jl-Nu1">
+                                    <fontDescription key="font" type="system" pointSize="14"/>
+                                </label>
+                                <label alignment="center" text="0" id="iC3-Ln-mXC">
                                     <fontDescription key="font" type="system" pointSize="36"/>
                                 </label>
+                                <group width="1" alignment="left" id="g1L-nK-Ysi">
+                                    <items>
+                                        <label alignment="left" text="time" id="YXM-gs-tvE">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label alignment="right" verticalAlignment="bottom" text="00:00" id="dWj-27-7wV">
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="0.0"/>
+                                </group>
+                                <separator alignment="left" id="8aw-pj-hqQ"/>
+                                <group width="134" alignment="left" id="Xtb-ew-osT">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="bottom" text="moves" id="ZsC-8p-iRX">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label alignment="right" verticalAlignment="bottom" text="-" id="UGe-0d-juz">
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                </group>
+                                <separator alignment="left" id="kWM-q5-gga"/>
+                                <group width="134" alignment="left" id="U3G-hL-xSq">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="bottom" text="avg." id="a8q-e8-8cA">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label alignment="right" verticalAlignment="bottom" text="-" id="GyE-Ft-l9v">
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                </group>
+                                <separator alignment="left" id="Keo-0q-QiW"/>
+                                <group width="134" alignment="left" id="L2J-Cl-zIl">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="bottom" text="min." id="tat-3e-w3U">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label alignment="right" verticalAlignment="bottom" text="-" id="9bq-Wb-fBp">
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                </group>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="20" bottom="0.0"/>
-                        </group>
-                        <group width="1" alignment="left" verticalAlignment="bottom" spacing="5" id="Xtb-ew-osT">
-                            <items>
-                                <label alignment="right" verticalAlignment="bottom" text="moves" id="ZsC-8p-iRX">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </label>
-                                <label alignment="left" verticalAlignment="bottom" text="00:00" id="dWj-27-7wV">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="font" type="system" pointSize="18"/>
-                                </label>
-                                <label alignment="right" verticalAlignment="bottom" text="-" id="UGe-0d-juz">
-                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                </label>
-                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="0.0"/>
                         </group>
                         <group width="1" alignment="left" verticalAlignment="bottom" id="MKk-An-wok">
                             <items>
                                 <button width="1" alignment="left" verticalAlignment="bottom" title="Delete" id="7Dt-Ub-YAV">
-                                    <color key="backgroundColor" red="1" green="0.17254901960784313" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="0.17254901959999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="deleteAction" destination="rxU-gG-mSZ" id="HTN-dF-ExH"/>
                                     </connections>
@@ -217,19 +254,22 @@
                         </items>
                     </menu>
                     <connections>
+                        <outlet property="averageLabel" destination="GyE-Ft-l9v" id="ng9-Ft-F0M"/>
                         <outlet property="bestLabel" destination="iC3-Ln-mXC" id="WE4-HG-61n"/>
                         <outlet property="countLabel" destination="UGe-0d-juz" id="VQx-6g-DZh"/>
                         <outlet property="durationLabel" destination="dWj-27-7wV" id="m1P-wi-SOp"/>
+                        <outlet property="minimumLabel" destination="9bq-Wb-fBp" id="x3G-Uo-I87"/>
+                        <outlet property="tagsLabel" destination="hAe-jl-Nu1" id="oo7-ay-FKL"/>
                         <segue destination="uLD-ez-mz2" kind="relationship" relationship="nextPage" id="m2e-Re-Gmm"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="428" y="581"/>
         </scene>
-        <!--Activities-->
+        <!--Close-->
         <scene sceneID="V95-qR-dqU">
             <objects>
-                <controller identifier="ChartInterfaceController" title="Activities" id="uLD-ez-mz2" customClass="ChartInterfaceController" customModule="SwingTracer">
+                <controller identifier="ChartInterfaceController" title="Close" id="uLD-ez-mz2" customClass="ChartInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" height="1" alignment="left" hidden="YES" id="8Z9-9b-fBg">
                             <items>
@@ -250,7 +290,7 @@
         <!--Training Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Done" id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="SwingTracer">
+                <controller id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Hbz-BX-IXP">
                             <items>

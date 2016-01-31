@@ -50,11 +50,16 @@ final class TagsInterfaceController: WKInterfaceController {
    }
 
    override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
-      if segueIdentifier == String(RecordTrainingInterfaceController.self) {
-         let tag: Tag? = rowIndex < self.tags.count ? self.tags[rowIndex] : nil
-         return TrainingContext(healthStore: self.healthStore, tag: tag)
+      if segueIdentifier != String(RecordTrainingInterfaceController.self) {
+         return nil
       }
-      return nil
+
+      let tag: Tag? = rowIndex < self.tags.count
+         ? self.tags[rowIndex]
+         : nil
+
+      return TrainingContext(healthStore: self.healthStore,
+         tag: tag.flatMap { $0.invalidated ? nil : $0 })
    }
 
 }

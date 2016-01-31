@@ -12,7 +12,5 @@
 "EditTag" = "Править метку";
 "AllTrainings" = "Тренировки";
 "EditTags" = "Правка меток";
-"DeleteTagConfirmation" = "Удалить с тренировками?";
-"DeleteTrainings" = "Да";
-"DeleteTag" = "Только метку";
-"DeleteTrainingConfirmation" = "Вы уверены?";
+"Yes" = "Да";
+"DeleteConfirmation" = "Вы уверены?";
