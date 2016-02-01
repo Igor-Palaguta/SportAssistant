@@ -21,9 +21,12 @@ final class TrainingController: NSObject {
    @IBOutlet private weak var dateLabel: WKInterfaceLabel!
    @IBOutlet private weak var timeLabel: WKInterfaceLabel!
    @IBOutlet private weak var resultLabel: WKInterfaceLabel!
+   @IBOutlet private weak var tagsLabel: WKInterfaceLabel!
 
    var training: Training! {
       didSet {
+
+         self.tagsLabel.setText(training.tags.map { $0.name }.joinWithSeparator(", "))
 
          self.dateLabel.setText(TrainingController.dateFormatter.stringFromDate(self.training.start))
          self.timeLabel.setText(TrainingController.timeFormatter.stringFromDate(self.training.start))

@@ -322,18 +322,21 @@ extension TagsViewController: TagViewControllerDelegate {
       self.navigationController?.popViewControllerAnimated(true)
    }
 
-   func tagViewController(controller: TagViewController,
-      didAdd: Bool,
-      tag: Tag) {
-         guard let indexPath = self.indexPathForTag(tag) else {
-            return
-         }
-         ClientSynchronizer.defaultClient.sendTags()
-         if didAdd {
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-         } else {
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-         }
-         self.navigationController?.popViewControllerAnimated(true)
+   func tagViewController(controller: TagViewController, didAddTag tag: Tag) {
+      guard let indexPath = self.indexPathForTag(tag) else {
+         return
+      }
+      ClientSynchronizer.defaultClient.sendTags()
+      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      self.navigationController?.popViewControllerAnimated(true)
+   }
+
+   func tagViewController(controller: TagViewController, didEditTag tag: Tag) {
+      guard let indexPath = self.indexPathForTag(tag) else {
+         return
+      }
+      ClientSynchronizer.defaultClient.sendTags()
+      self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      self.navigationController?.popViewControllerAnimated(true)
    }
 }

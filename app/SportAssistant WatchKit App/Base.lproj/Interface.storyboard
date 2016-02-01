@@ -116,8 +116,15 @@
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
                                 <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="SwingTracer">
-                                    <group key="rootItem" width="1" alignment="left" layout="vertical" id="E1R-cr-Qqp">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="E1R-cr-Qqp">
                                         <items>
+                                            <group width="1" height="1" alignment="left" id="tnY-R7-iRP">
+                                                <items>
+                                                    <label alignment="left" numberOfLines="0" id="8eW-5T-cGz">
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                </items>
+                                            </group>
                                             <group width="1" alignment="left" id="Dxk-sW-opS">
                                                 <items>
                                                     <group alignment="left" id="4vQ-ab-Ckl">
@@ -130,9 +137,11 @@
                                                     <group alignment="right" layout="vertical" id="CgI-6V-FS3">
                                                         <items>
                                                             <label alignment="right" text="10:03" id="17d-xa-fDt">
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" pointSize="12"/>
                                                             </label>
                                                             <label alignment="right" verticalAlignment="bottom" text="12 Dec" id="RcS-fa-WFJ">
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" pointSize="12"/>
                                                             </label>
                                                         </items>
@@ -140,16 +149,13 @@
                                                 </items>
                                                 <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                             </group>
-                                            <group width="1" alignment="left" id="tnY-R7-iRP">
-                                                <items>
-                                                    <label alignment="left" text="Label" id="8eW-5T-cGz"/>
-                                                </items>
-                                            </group>
                                         </items>
+                                        <edgeInsets key="margins" left="4" right="2" top="2" bottom="2"/>
                                     </group>
                                     <connections>
                                         <outlet property="dateLabel" destination="RcS-fa-WFJ" id="JRV-6e-UiB"/>
                                         <outlet property="resultLabel" destination="GGQ-un-L2V" id="hzf-V8-2W9"/>
+                                        <outlet property="tagsLabel" destination="8eW-5T-cGz" id="hhE-K1-IXc"/>
                                         <outlet property="timeLabel" destination="17d-xa-fDt" id="Wj1-PP-o6o"/>
                                     </connections>
                                 </tableRow>
@@ -172,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="581"/>
         </scene>
-        <!--Close-->
+        <!--Training-->
         <scene sceneID="gwI-Y9-Opt">
             <objects>
-                <controller identifier="TrainingInterfaceController" title="Close" id="rxU-gG-mSZ" customClass="TrainingInterfaceController" customModule="SwingTracer">
+                <controller identifier="TrainingInterfaceController" title="Close" id="rxU-gG-mSZ" userLabel="Training" customClass="TrainingInterfaceController" customModule="SwingTracer">
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="5" id="X09-vk-OPZ">
                             <items>
@@ -267,7 +273,7 @@
                         <outlet property="bestLabel" destination="iC3-Ln-mXC" id="WE4-HG-61n"/>
                         <outlet property="countLabel" destination="UGe-0d-juz" id="VQx-6g-DZh"/>
                         <outlet property="durationLabel" destination="dWj-27-7wV" id="m1P-wi-SOp"/>
-                        <outlet property="minimumLabel" destination="9bq-Wb-fBp" id="x3G-Uo-I87"/>
+                        <outlet property="minimumLabel" destination="9bq-Wb-fBp" id="wki-Eg-3B1"/>
                         <outlet property="tagsLabel" destination="hAe-jl-Nu1" id="oo7-ay-FKL"/>
                         <segue destination="uLD-ez-mz2" kind="relationship" relationship="nextPage" id="m2e-Re-Gmm"/>
                     </connections>

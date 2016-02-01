@@ -25,8 +25,8 @@ final class TrainingInterfaceController: WKInterfaceController {
          self.durationLabel.setDuration(training.duration)
          let activityEvents = training.activityEvents
          self.countLabel.setText("\(activityEvents.count)")
-         self.averageLabel.setText(training.minimum?.formattedAcceleration)
-         self.minimumLabel.setText(training.average?.formattedAcceleration)
+         self.averageLabel.setText(training.average?.formattedAcceleration)
+         self.minimumLabel.setText(training.minimum?.formattedAcceleration)
          if training.best == StorageController.UIController.best {
             self.bestLabel.setTextColor(UIColor(named: .Record))
          }

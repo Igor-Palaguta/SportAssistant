@@ -11,7 +11,8 @@ private enum TagSection: Int {
 
 protocol TagViewControllerDelegate: class {
    func didCompleteTagViewController(controller: TagViewController)
-   func tagViewController(controller: TagViewController, didAdd: Bool, tag: Tag)
+   func tagViewController(controller: TagViewController, didAddTag tag: Tag)
+   func tagViewController(controller: TagViewController, didEditTag tag: Tag)
 }
 
 final class TagViewController: UITableViewController {
@@ -85,8 +86,14 @@ final class TagViewController: UITableViewController {
 
       self.model.saveAction.values.observeNext {
          [weak self] (let tag, let isNew) in
-         if let strongSelf = self {
-            strongSelf.delegate?.tagViewController(strongSelf, didAdd: isNew, tag: tag)
+         guard let strongSelf = self else {
+            return
+         }
+
+         if isNew {
+            strongSelf.delegate?.tagViewController(strongSelf, didAddTag: tag)
+         } else {
+            strongSelf.delegate?.tagViewController(strongSelf, didEditTag: tag)
          }
       }
 
