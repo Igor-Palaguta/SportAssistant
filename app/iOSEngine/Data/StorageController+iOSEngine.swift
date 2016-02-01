@@ -56,16 +56,6 @@ extension StorageController {
       }
    }
 
-   public func assignTags(tags: [Tag], forTraining training: Training) {
-      self.write {
-         let oldTags = training.tags.filter { !tags.contains($0) }
-         let newTags = tags.filter { !training.tags.contains($0) }
-
-         oldTags.forEach { training.deleteTag($0) }
-         newTags.forEach { training.addTag($0) }
-      }
-   }
-
    func synchronizeTrainingWithId(id: String,
       start: NSDate,
       tagId: String?,

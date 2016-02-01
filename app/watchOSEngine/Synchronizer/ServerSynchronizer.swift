@@ -113,8 +113,9 @@ extension ServerSynchronizer: WCSessionDelegate {
    public func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?) {
    }
 
-   public func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
-      let packages = applicationContext.flatMap {
+   private func processMessage(message: [String : AnyObject]) {
+      NSLog("processMessage %@", message)
+      let packages = message.flatMap {
          name, arguments in
          return Package(name: name, arguments: arguments)
       }
@@ -128,10 +129,23 @@ extension ServerSynchronizer: WCSessionDelegate {
          switch package {
          case .Tags(let tags):
             storage.assignTags(tags)
+         case .ChangeTrainingTags(let id, let tagIds):
+            if let training = storage[id] {
+               let tags = tagIds.flatMap { storage.realm.objectForPrimaryKey(Tag.self, key: $0) }
+               storage.assignTags(tags, forTraining: training)
+            }
          default:
             fatalError()
          }
       }
+   }
+
+   public func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+      self.processMessage(applicationContext)
+   }
+
+   public func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+      self.processMessage(userInfo)
    }
 }
 

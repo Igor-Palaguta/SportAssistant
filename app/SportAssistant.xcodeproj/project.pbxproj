@@ -15,6 +15,8 @@
 		780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CC1C4C359A004FBB7E /* TagsViewController.swift */; };
 		780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CE1C4C35AC004FBB7E /* TagCell.swift */; };
 		780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49D01C4C3DDC004FBB7E /* TagViewController.swift */; };
+		780FDBAD1C5EB83800FDF98F /* NKWatchChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */; };
+		780FDBAE1C5EB83800FDF98F /* NKWatchChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7813D6541C3C718400775FC7 /* Storyboard.swift */; };
 		78159A391C39D022001C8031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78159A381C39D022001C8031 /* Assets.xcassets */; };
 		78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78159A3D1C39D180001C8031 /* LocalizableStrings.swift */; };
@@ -41,8 +43,6 @@
 		7868055A1C5659F7001AC1F0 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805511C5659F7001AC1F0 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7868055B1C5659F7001AC1F0 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805521C5659F7001AC1F0 /* Result.framework */; };
 		7868055C1C5659F7001AC1F0 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805521C5659F7001AC1F0 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		786805611C565A6B001AC1F0 /* YOChartImageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */; };
-		786805621C565A6B001AC1F0 /* YOChartImageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805631C565A6B001AC1F0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055F1C565A6B001AC1F0 /* RealmSwift.framework */; };
 		786805641C565A6B001AC1F0 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055F1C565A6B001AC1F0 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805651C565A6B001AC1F0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805601C565A6B001AC1F0 /* Realm.framework */; };
@@ -61,7 +61,6 @@
 		786805C31C56757E001AC1F0 /* watchOSEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 786805BB1C56757E001AC1F0 /* watchOSEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805CD1C567607001AC1F0 /* ClientSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805CC1C567607001AC1F0 /* ClientSynchronizer.swift */; };
 		786805D01C56765E001AC1F0 /* ServerSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805CF1C56765E001AC1F0 /* ServerSynchronizer.swift */; };
-		786805D11C5676DA001AC1F0 /* YOChartImageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */; };
 		786805D21C5676DA001AC1F0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868055F1C565A6B001AC1F0 /* RealmSwift.framework */; };
 		786805D31C5676DA001AC1F0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786805601C565A6B001AC1F0 /* Realm.framework */; };
 		786805FA1C567758001AC1F0 /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786805EE1C567758001AC1F0 /* Analyzer.swift */; };
@@ -110,6 +109,7 @@
 		788A51C61C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C51C15835600A166A0 /* Assets.xcassets */; };
 		788A51CD1C15835600A166A0 /* SwingTracer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SwingTracer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
+		7893DC911C5FA74200620FBF /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893DC901C5FA74200620FBF /* TagViewModel.swift */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACHelpers.swift */; };
@@ -211,7 +211,7 @@
 				786805661C565A6B001AC1F0 /* Realm.framework in Embed Frameworks */,
 				786805641C565A6B001AC1F0 /* RealmSwift.framework in Embed Frameworks */,
 				786805C31C56757E001AC1F0 /* watchOSEngine.framework in Embed Frameworks */,
-				786805621C565A6B001AC1F0 /* YOChartImageKit.framework in Embed Frameworks */,
+				780FDBAE1C5EB83800FDF98F /* NKWatchChart.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +249,7 @@
 		780E49CC1C4C359A004FBB7E /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 		780E49CE1C4C35AC004FBB7E /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		780E49D01C4C3DDC004FBB7E /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NKWatchChart.framework; path = ../Carthage/Build/watchOS/NKWatchChart.framework; sourceTree = "<group>"; };
 		7813D6541C3C718400775FC7 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		78159A381C39D022001C8031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -270,7 +271,6 @@
 		786805501C5659F7001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		786805511C5659F7001AC1F0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		786805521C5659F7001AC1F0 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YOChartImageKit.framework; path = ../Carthage/Build/watchOS/YOChartImageKit.framework; sourceTree = "<group>"; };
 		7868055F1C565A6B001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/watchOS/RealmSwift.framework; sourceTree = "<group>"; };
 		786805601C565A6B001AC1F0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/watchOS/Realm.framework; sourceTree = "<group>"; };
 		786805681C565B6A001AC1F0 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = ../Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
@@ -331,6 +331,7 @@
 		788A51D21C15835600A166A0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7893DC901C5FA74200620FBF /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpers.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
@@ -369,7 +370,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				786805D11C5676DA001AC1F0 /* YOChartImageKit.framework in Frameworks */,
 				786805D21C5676DA001AC1F0 /* RealmSwift.framework in Frameworks */,
 				786805D31C5676DA001AC1F0 /* Realm.framework in Frameworks */,
 			);
@@ -409,9 +409,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				786805651C565A6B001AC1F0 /* Realm.framework in Frameworks */,
-				786805611C565A6B001AC1F0 /* YOChartImageKit.framework in Frameworks */,
 				787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */,
 				786805631C565A6B001AC1F0 /* RealmSwift.framework in Frameworks */,
+				780FDBAD1C5EB83800FDF98F /* NKWatchChart.framework in Frameworks */,
 				786805C21C56757E001AC1F0 /* watchOSEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +442,7 @@
 		780E49C91C4BC327004FBB7E /* Tags */ = {
 			isa = PBXGroup;
 			children = (
+				7893DC8F1C5FA72F00620FBF /* Detail */,
 				780E49CC1C4C359A004FBB7E /* TagsViewController.swift */,
 				780E49CE1C4C35AC004FBB7E /* TagCell.swift */,
 				780E49D01C4C3DDC004FBB7E /* TagViewController.swift */,
@@ -599,8 +600,8 @@
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
+				780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */,
 				786805681C565B6A001AC1F0 /* Charts.framework */,
-				7868055E1C565A6B001AC1F0 /* YOChartImageKit.framework */,
 				7868055F1C565A6B001AC1F0 /* RealmSwift.framework */,
 				786805601C565A6B001AC1F0 /* Realm.framework */,
 				7868054E1C5659F6001AC1F0 /* SwiftDate.framework */,
@@ -719,6 +720,14 @@
 				787953381C56CC6500780275 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		7893DC8F1C5FA72F00620FBF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7893DC901C5FA74200620FBF /* TagViewModel.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		78A2D1DF1C2C135400EEBDD7 /* History */ = {
@@ -1206,6 +1215,7 @@
 				786A24FF1C5ABFB500B7470E /* ActivityCell.swift in Sources */,
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,
 				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
+				7893DC911C5FA74200620FBF /* TagViewModel.swift in Sources */,
 				78045FD61C26073700FEEB87 /* TrainingCell.swift in Sources */,
 				7821E1401C511790001B97A7 /* AddTagCell.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,

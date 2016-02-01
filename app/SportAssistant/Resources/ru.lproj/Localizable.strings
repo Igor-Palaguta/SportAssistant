@@ -14,3 +14,4 @@
 "EditTags" = "Правка меток";
 "Yes" = "Да";
 "DeleteConfirmation" = "Вы уверены?";
+"TrainingsCountFormat" = "Тренировки (%d)";

@@ -8,6 +8,7 @@ enum Package {
    case Synchronize(id: String, start: NSDate, tagId: String?, events: [AccelerationEvent])
    case Delete(id: String)
    case Events(id: String, position: Int, events: [AccelerationEvent])
+   case ChangeTrainingTags(id: String, tagIds: [String])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
@@ -33,6 +34,8 @@ enum Package {
          return ["events": ["id": id, "position": position, "events": events.map { $0.toMessage() }]]
       case Tags(let tags):
          return ["tags": tags.map { $0.toMessage() }]
+      case ChangeTrainingTags(let id, let tagIds):
+         return ["change_tags": ["id": id, "tags": tagIds]]
       }
    }
 
@@ -73,6 +76,13 @@ enum Package {
       case ("tags", let arguments as [[String: AnyObject]]):
          let tags = arguments.flatMap { Tag(message: $0) }
          self = .Tags(tags)
+      case ("change_tags", let arguments as [String: AnyObject]):
+         if let id = arguments["id"] as? String,
+            tagIds = arguments["tags"] as? [String] {
+               self = ChangeTrainingTags(id: id, tagIds: tagIds)
+         } else {
+            return nil
+         }
       default:
          return nil
       }

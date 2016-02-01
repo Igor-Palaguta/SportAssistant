@@ -14,6 +14,7 @@
 "EditTags" = "Edit Tags";
 "Yes" = "Yes";
 "DeleteConfirmation" = "Are you sure?";
+"TrainingsCountFormat" = "Trainings (%d)";
 "Badminton" = "Badminton";
 "Baseball" = "Baseball";
 "Boxing" = "Boxing";

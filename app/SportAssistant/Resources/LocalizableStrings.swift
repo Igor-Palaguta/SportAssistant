@@ -35,6 +35,8 @@ enum L10n {
   case Yes
   /// Are you sure?
   case DeleteConfirmation
+  /// Trainings (%d)
+  case TrainingsCountFormat(Int)
   /// Badminton
   case Badminton
   /// Baseball
@@ -96,6 +98,8 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("Yes")
       case .DeleteConfirmation:
         return L10n.tr("DeleteConfirmation")
+      case .TrainingsCountFormat(let p0):
+        return L10n.tr("TrainingsCountFormat", p0)
       case .Badminton:
         return L10n.tr("Badminton")
       case .Baseball:

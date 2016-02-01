@@ -1,5 +1,6 @@
 import Foundation
 import WatchConnectivity
+import RealmSwift
 
 public final class ClientSynchronizer: NSObject {
 
@@ -16,13 +17,24 @@ public final class ClientSynchronizer: NSObject {
       }
    }
 
-   public func synchronizeTags() {
+   public func sendTags() {
       let storage = StorageController()
       let message = Package.Tags(Array(storage.tags)).toMessage()
       do {
          try self.session?.updateApplicationContext(message)
       } catch {
       }
+   }
+
+   private func sendPackage(package: Package) {
+      let message = package.toMessage()
+      NSLog("sendPackage %@", message)
+      self.session!.transferUserInfo(message)
+   }
+
+   public func sendTagsOfTraining(training: Training) {
+      let package = Package.ChangeTrainingTags(id: training.id, tagIds: Array(training.tags.map { $0.id }))
+      self.sendPackage(package)
    }
 }
 
@@ -64,7 +76,7 @@ extension ClientSynchronizer: WCSessionDelegate {
                      let newEvents = events[training.currentCount-index..<events.count]
                      storage.appendEvents(newEvents, toTraining: training)
             }
-         case .Tags(_):
+         case .Tags(_), .ChangeTrainingTags(_):
             fatalError()
          }
       }

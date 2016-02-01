@@ -116,27 +116,36 @@
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
                                 <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="SwingTracer">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="Dxk-sW-opS">
+                                    <group key="rootItem" width="1" alignment="left" layout="vertical" id="E1R-cr-Qqp">
                                         <items>
-                                            <group alignment="left" id="4vQ-ab-Ckl">
+                                            <group width="1" alignment="left" id="Dxk-sW-opS">
                                                 <items>
-                                                    <label alignment="left" verticalAlignment="bottom" text="12.3" id="GGQ-un-L2V">
-                                                        <fontDescription key="font" type="system" pointSize="30"/>
-                                                    </label>
+                                                    <group alignment="left" id="4vQ-ab-Ckl">
+                                                        <items>
+                                                            <label alignment="left" verticalAlignment="bottom" text="12.3" id="GGQ-un-L2V">
+                                                                <fontDescription key="font" type="system" pointSize="30"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group alignment="right" layout="vertical" id="CgI-6V-FS3">
+                                                        <items>
+                                                            <label alignment="right" text="10:03" id="17d-xa-fDt">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                            <label alignment="right" verticalAlignment="bottom" text="12 Dec" id="RcS-fa-WFJ">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
                                                 </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                             </group>
-                                            <group alignment="right" layout="vertical" id="CgI-6V-FS3">
+                                            <group width="1" alignment="left" id="tnY-R7-iRP">
                                                 <items>
-                                                    <label alignment="right" text="10:03" id="17d-xa-fDt">
-                                                        <fontDescription key="font" type="system" pointSize="12"/>
-                                                    </label>
-                                                    <label alignment="right" verticalAlignment="bottom" text="12 Dec" id="RcS-fa-WFJ">
-                                                        <fontDescription key="font" type="system" pointSize="12"/>
-                                                    </label>
+                                                    <label alignment="left" text="Label" id="8eW-5T-cGz"/>
                                                 </items>
                                             </group>
                                         </items>
-                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
                                     <connections>
                                         <outlet property="dateLabel" destination="RcS-fa-WFJ" id="JRV-6e-UiB"/>
@@ -170,7 +179,7 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="5" id="X09-vk-OPZ">
                             <items>
-                                <label width="1" alignment="left" text="Label" textAlignment="center" id="hAe-jl-Nu1">
+                                <label width="1" alignment="left" text="Label" textAlignment="center" numberOfLines="0" id="hAe-jl-Nu1">
                                     <fontDescription key="font" type="system" pointSize="14"/>
                                 </label>
                                 <label alignment="center" text="0" id="iC3-Ln-mXC">

@@ -445,6 +445,7 @@ final class TrainingViewController: UIViewController {
                [unowned self] tagsViewController in
                StorageController.UIController.assignTags(tagsViewController.mode.tags,
                   forTraining: self.training)
+               ClientSynchronizer.defaultClient.sendTagsOfTraining(self.training)
                tagsViewController.dismissViewControllerAnimated(true, completion: nil)
             }
       }

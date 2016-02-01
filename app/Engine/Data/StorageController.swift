@@ -85,6 +85,16 @@ public final class StorageController: NSObject {
       }
    }
 
+   public func assignTags(tags: [Tag], forTraining training: Training) {
+      self.write {
+         let oldTags = training.tags.filter { !tags.contains($0) }
+         let newTags = tags.filter { !training.tags.contains($0) }
+
+         oldTags.forEach { training.deleteTag($0) }
+         newTags.forEach { training.addTag($0) }
+      }
+   }
+
    subscript(id: String) -> Training? {
       get {
          return self.realm.objectForPrimaryKey(Training.self, key: id)

@@ -276,7 +276,7 @@ final class TagsViewController: UITableViewController {
          alert.addAction(UIAlertAction(title: tr(.Delete), style: .Destructive) {
             _ in
             StorageController.UIController.deleteTag(tag)
-            ClientSynchronizer.defaultClient.synchronizeTags()
+            ClientSynchronizer.defaultClient.sendTags()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             })
 
@@ -307,7 +307,7 @@ final class TagsViewController: UITableViewController {
          trainingsViewController.filter = .Selected([tag])
       } else if let tagViewController = segue.destinationViewController as? TagViewController {
          tagViewController.delegate = self
-         tagViewController.operation = tag.map { .Edit($0) } ?? .Add
+         tagViewController.model = tag.map { TagViewModel(tag: $0) } ?? TagViewModel()
       }
    }
 
@@ -323,13 +323,13 @@ extension TagsViewController: TagViewControllerDelegate {
    }
 
    func tagViewController(controller: TagViewController,
-      didCompleteOperation operation: TagOperation,
-      withTag tag: Tag) {
+      didAdd: Bool,
+      tag: Tag) {
          guard let indexPath = self.indexPathForTag(tag) else {
             return
          }
-         ClientSynchronizer.defaultClient.synchronizeTags()
-         if case .Add = operation {
+         ClientSynchronizer.defaultClient.sendTags()
+         if didAdd {
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
          } else {
             self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

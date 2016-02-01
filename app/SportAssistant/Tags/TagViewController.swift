@@ -3,44 +3,6 @@ import HealthKit
 import ReactiveCocoa
 import iOSEngine
 
-enum TagOperation {
-   case Add
-   case Edit(Tag)
-
-   private var tag: Tag? {
-      if case .Edit(let tag) = self {
-         return tag
-      }
-      return nil
-   }
-
-   private var title: String {
-      switch self {
-      case .Add:
-         return tr(.AddTag)
-      case .Edit(_):
-         return tr(.EditTag)
-      }
-   }
-
-   private var name: String {
-      return self.tag?.name ?? ""
-   }
-
-   private func processWithName(name: String, activityType: HKWorkoutActivityType) -> Tag {
-      let storage = StorageController.UIController
-      switch self {
-      case .Add:
-         let tag = Tag(name: name, activityType: activityType)
-         storage.addTag(tag)
-         return tag
-      case .Edit(let tag):
-         storage.editTag(tag, name: name, activityType: activityType)
-         return tag
-      }
-   }
-}
-
 private enum TagSection: Int {
    case Information
    case Delete
@@ -49,41 +11,27 @@ private enum TagSection: Int {
 
 protocol TagViewControllerDelegate: class {
    func didCompleteTagViewController(controller: TagViewController)
-   func tagViewController(controller: TagViewController, didCompleteOperation operation: TagOperation, withTag tag: Tag)
-}
-
-private class TagViewModel {
-   let name = MutableProperty<String>("")
-   let activityType = MutableProperty<HKWorkoutActivityType>(.Other)
-   let isDefaultName = MutableProperty<Bool>(true)
-   let hasTrainings = MutableProperty<Bool>(false)
+   func tagViewController(controller: TagViewController, didAdd: Bool, tag: Tag)
 }
 
 final class TagViewController: UITableViewController {
 
-   var operation: TagOperation = .Add {
-      didSet {
-         if let tag = self.operation.tag {
-            self.model.name.value = tag.name
-            self.model.activityType.value = tag.activityType
-            self.model.isDefaultName.value = false
-            self.model.hasTrainings.value = !tag.trainings.isEmpty
-         }
-      }
-   }
-
+   var model = TagViewModel()
    weak var delegate: TagViewControllerDelegate?
 
    @IBOutlet private weak var nameField: UITextField!
    @IBOutlet private weak var activityLabel: UILabel!
+   @IBOutlet private weak var countLabel: UILabel!
 
-   private var model = TagViewModel()
+   private lazy var saveAction: CocoaAction = {
+      return CocoaAction(self.model.saveAction, input: self.model.tagState)
+   }()
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      self.title = self.operation.title
-      self.nameField.text = self.operation.name
+      self.title = self.model.title.value
+      self.nameField.text = self.model.name.value
 
       self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel,
          target: self,
@@ -103,14 +51,15 @@ final class TagViewController: UITableViewController {
             .producer
             .map { $0.name }
 
-      let saveItem = UIBarButtonItem(barButtonSystemItem: .Done,
-         target: self,
-         action: Selector("doneAction:"))
-
-      DynamicProperty(object: saveItem, keyPath: "enabled") <~
-         self.model.name
+      DynamicProperty(object: self.countLabel, keyPath: "text") <~
+         self.model.trainingsCount
             .producer
-            .map { !$0.isEmpty }
+            .map { tr(.TrainingsCountFormat($0)) }
+
+      DynamicProperty(object: self.countLabel, keyPath: "hidden") <~
+         self.model.hasTrainings
+            .producer
+            .map { !$0 }
 
       self.model.activityType.producer
          .skipRepeats()
@@ -125,30 +74,32 @@ final class TagViewController: UITableViewController {
             strongSelf.nameField.text = suggestedName
       }
 
-      if let tag = self.operation.tag {
-         self.model.hasTrainings <~ DynamicProperty(object: tag, keyPath: "version")
-            .producer
-            .map {
-               [weak tag] _ in
-               if let tag = tag {
-                  return !tag.trainings.isEmpty
-               }
-               return false
-         }
+      self.model.hasTrainings
+         .producer
+         .skip(1)
+         .skipRepeats()
+         .startWithNext {
+            [weak self] _ in
+            self?.tableView.reloadData()
+      }
 
-         self.model.hasTrainings
-            .producer
-            .skip(1)
-            .skipRepeats()
-            .startWithNext {
-               [weak self] _ in
-               self?.tableView.reloadData()
+      self.model.saveAction.values.observeNext {
+         [weak self] (let tag, let isNew) in
+         if let strongSelf = self {
+            strongSelf.delegate?.tagViewController(strongSelf, didAdd: isNew, tag: tag)
          }
       }
 
-      self.navigationItem.rightBarButtonItem = saveItem
+      let saveItem = UIBarButtonItem(barButtonSystemItem: .Done,
+         target: self.saveAction,
+         action: CocoaAction.selector)
 
-      self.tableView.tableFooterView = UIView()
+      DynamicProperty(object: saveItem, keyPath: "enabled") <~
+         self.model.name
+            .producer
+            .map { !$0.isEmpty }
+
+      self.navigationItem.rightBarButtonItem = saveItem
    }
 
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -163,29 +114,26 @@ final class TagViewController: UITableViewController {
       }
    }
 
-   @IBAction private func doneAction(_: UIBarButtonItem) {
-      let tag = self.operation.processWithName(self.model.name.value, activityType: self.model.activityType.value)
-      self.delegate!.tagViewController(self,
-         didCompleteOperation: self.operation,
-         withTag: tag)
-   }
-
    @IBAction private func cancelAction(_: UIBarButtonItem) {
       self.delegate!.didCompleteTagViewController(self)
    }
 
    @IBAction private func deleteAction(_: UIButton) {
-      StorageController.UIController.deleteTag(self.operation.tag!)
-      ClientSynchronizer.defaultClient.synchronizeTags()
-      self.delegate!.didCompleteTagViewController(self)
+      self.model.deleteAction?.apply(()).startWithNext {
+         [weak self] _ in
+         if let strongSelf = self {
+            strongSelf.delegate?.didCompleteTagViewController(strongSelf)
+         }
+      }
    }
 
    @IBAction private func deleteTrainingsAction(_: UIButton) {
-      StorageController.UIController.deleteTrainingsOfTag(self.operation.tag!)
+      self.model.deleteTrainingsAction?.apply(()).startWithCompleted {
+      }
    }
 
    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-      if self.operation.tag != nil {
+      if self.model.deleteAction != nil {
          return TagSection.Delete.rawValue + 1
       }
       return TagSection.Information.rawValue + 1
