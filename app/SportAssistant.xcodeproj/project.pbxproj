@@ -109,7 +109,10 @@
 		788A51C61C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C51C15835600A166A0 /* Assets.xcassets */; };
 		788A51CD1C15835600A166A0 /* SwingTracer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SwingTracer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
-		7893DC911C5FA74200620FBF /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893DC901C5FA74200620FBF /* TagViewModel.swift */; };
+		789263A61C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */; };
+		789263A71C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */; };
+		789263AA1C6222AF00F9B94C /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A91C6222AF00F9B94C /* TagViewModel.swift */; };
+		789263AC1C6222C700F9B94C /* TrainingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263AB1C6222C700F9B94C /* TrainingViewModel.swift */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACHelpers.swift */; };
@@ -331,7 +334,9 @@
 		788A51D21C15835600A166A0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7893DC901C5FA74200620FBF /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Training.swift"; sourceTree = "<group>"; };
+		789263A91C6222AF00F9B94C /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		789263AB1C6222C700F9B94C /* TrainingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewModel.swift; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpers.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
@@ -442,7 +447,6 @@
 		780E49C91C4BC327004FBB7E /* Tags */ = {
 			isa = PBXGroup;
 			children = (
-				7893DC8F1C5FA72F00620FBF /* Detail */,
 				780E49CC1C4C359A004FBB7E /* TagsViewController.swift */,
 				780E49CE1C4C35AC004FBB7E /* TagCell.swift */,
 				780E49D01C4C3DDC004FBB7E /* TagViewController.swift */,
@@ -547,6 +551,7 @@
 		786805EC1C567758001AC1F0 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				789263A41C614B8D00F9B94C /* UserActivity */,
 				786805ED1C567758001AC1F0 /* Analyzer */,
 				786805EF1C567758001AC1F0 /* Data */,
 				786805F81C567758001AC1F0 /* Synchronizer */,
@@ -642,6 +647,7 @@
 		788A51971C15835600A166A0 /* SportAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				789263A81C6222AF00F9B94C /* ViewModel */,
 				780E49C91C4BC327004FBB7E /* Tags */,
 				788C3B401C28AB400081BD13 /* Resources */,
 				78045FD11C26072200FEEB87 /* Intervals */,
@@ -722,12 +728,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		7893DC8F1C5FA72F00620FBF /* Detail */ = {
+		789263A41C614B8D00F9B94C /* UserActivity */ = {
 			isa = PBXGroup;
 			children = (
-				7893DC901C5FA74200620FBF /* TagViewModel.swift */,
+				789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */,
 			);
-			path = Detail;
+			path = UserActivity;
+			sourceTree = "<group>";
+		};
+		789263A81C6222AF00F9B94C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				789263A91C6222AF00F9B94C /* TagViewModel.swift */,
+				789263AB1C6222C700F9B94C /* TrainingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		78A2D1DF1C2C135400EEBDD7 /* History */ = {
@@ -1168,6 +1183,7 @@
 				786805FC1C567758001AC1F0 /* Activity.swift in Sources */,
 				786805FE1C567758001AC1F0 /* Realm+Configure.swift in Sources */,
 				786806001C567758001AC1F0 /* Tag.swift in Sources */,
+				789263A61C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */,
 				786805FA1C567758001AC1F0 /* Analyzer.swift in Sources */,
 				786806031C567758001AC1F0 /* Package.swift in Sources */,
 				786805FF1C567758001AC1F0 /* StorageController.swift in Sources */,
@@ -1198,6 +1214,7 @@
 				786806091C567924001AC1F0 /* StorageController.swift in Sources */,
 				7868060C1C567924001AC1F0 /* TrainingsCollection.swift in Sources */,
 				7868060B1C567924001AC1F0 /* Training.swift in Sources */,
+				789263A71C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */,
 				7868060D1C567929001AC1F0 /* Package.swift in Sources */,
 				786806071C567924001AC1F0 /* History.swift in Sources */,
 				78C18E1E1C5D6776003F954F /* StorageController+watchOSEngine.swift in Sources */,
@@ -1212,10 +1229,11 @@
 				78045FD51C26073700FEEB87 /* TrainingViewController.swift in Sources */,
 				789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */,
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
+				789263AA1C6222AF00F9B94C /* TagViewModel.swift in Sources */,
+				789263AC1C6222C700F9B94C /* TrainingViewModel.swift in Sources */,
 				786A24FF1C5ABFB500B7470E /* ActivityCell.swift in Sources */,
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,
 				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
-				7893DC911C5FA74200620FBF /* TagViewModel.swift in Sources */,
 				78045FD61C26073700FEEB87 /* TrainingCell.swift in Sources */,
 				7821E1401C511790001B97A7 /* AddTagCell.swift in Sources */,
 				78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */,

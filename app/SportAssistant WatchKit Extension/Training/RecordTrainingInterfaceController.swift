@@ -103,13 +103,8 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
          ServerSynchronizer.defaultServer.startTraining(recordSession.training)
          self.durationLabel.start(recordSession.training.start)
 
-         var userInfo = ["id": recordSession.training.id, "start": recordSession.training.start]
-         if let tag = self.context.tag {
-            userInfo["tag"] = tag.id
-         }
-
-         self.updateUserActivity("com.spangleapp.Test.watchkitapp.watchkitextension.Training",
-            userInfo: userInfo,
+         self.updateUserActivity(NSUserActivity.trainingType,
+            userInfo: recordSession.training.userActivityInfo,
             webpageURL: nil)
 
          self.animateWithDuration(0.3) {

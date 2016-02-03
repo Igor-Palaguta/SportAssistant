@@ -44,6 +44,20 @@ final class TrainingInterfaceController: WKInterfaceController {
       self.delegate = contexts.flatMap { $0 as? TrainingInterfaceControllerDelegate }.first
    }
 
+   override func didAppear() {
+      super.didAppear()
+
+      self.updateUserActivity(NSUserActivity.trainingType,
+         userInfo: self.training.userActivityInfo,
+         webpageURL: nil)
+   }
+
+   override func willDisappear() {
+      super.willDisappear()
+
+      self.invalidateUserActivity()
+   }
+
    override func willActivate() {
       // This method is called when watch view controller is about to be visible to user
       super.willActivate()

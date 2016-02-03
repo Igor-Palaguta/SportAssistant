@@ -10,14 +10,14 @@ struct TagState {
 
 class TagViewModel {
 
-   let name = MutableProperty<String>("")
-   let activityType = MutableProperty<HKWorkoutActivityType>(.Other)
+   let name = MutableProperty("")
+   let activityType = MutableProperty(HKWorkoutActivityType.Other)
 
-   let isDefaultName = MutableProperty<Bool>(true)
-   let hasTrainings = MutableProperty<Bool>(false)
-   let trainingsCount = MutableProperty<Int>(0)
+   let isDefaultName = MutableProperty(true)
+   let hasTrainings = MutableProperty(false)
+   let trainingsCount = MutableProperty(0)
+
    let title: ConstantProperty<String>
-
    let saveAction: Action<TagState, (Tag, Bool), NoError>
    let deleteAction: Action<(), (), NoError>?
    let deleteTrainingsAction: Action<(), (), NoError>?

@@ -3,28 +3,24 @@ import WatchConnectivity
 
 enum Package {
    case Tags([Tag])
-   case Start(id: String, start: NSDate, tagId: String?)
+   case Start(id: String, start: NSDate, tagIds: [String])
    case Stop(id: String)
-   case Synchronize(id: String, start: NSDate, tagId: String?, events: [AccelerationEvent])
+   case Synchronize(id: String, start: NSDate, tagIds: [String], events: [AccelerationEvent])
    case Delete(id: String)
    case Events(id: String, position: Int, events: [AccelerationEvent])
    case ChangeTrainingTags(id: String, tagIds: [String])
 
    func toMessage() -> [String: AnyObject] {
       switch self {
-      case Start(let id, let start, let tagId):
-         var message = ["id": id, "start": start]
-         if let tagId = tagId {
-            message["tag"] = tagId
-         }
+      case Start(let id, let start, let tagIds):
+         let message = ["id": id, "start": start, "tags": tagIds]
          return ["start": message]
-      case Synchronize(let id, let start, let tagId, let events):
-         var message = ["id": id,
+      case Synchronize(let id, let start, let tagIds, let events):
+         let message = ["id": id,
             "start": start,
-            "events": events.map { $0.toMessage() }]
-         if let tagId = tagId {
-            message["tag"] = tagId
-         }
+            "events": events.map { $0.toMessage() },
+            "tags": tagIds
+         ]
          return ["synchronize": message]
       case Stop(let id):
          return ["stop": id]
@@ -43,19 +39,21 @@ enum Package {
       switch (name, arguments) {
       case ("start", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
-            start = arguments["start"] as? NSDate {
-               self = Start(id: id, start: start, tagId: arguments["tag"] as? String)
+            start = arguments["start"] as? NSDate,
+            tagIds = arguments["tags"] as? [String] {
+               self = Start(id: id, start: start, tagIds: tagIds)
          } else {
             return nil
          }
       case ("synchronize", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,
             start = arguments["start"] as? NSDate,
+            tagIds = arguments["tags"] as? [String],
             eventsMessage = arguments["events"] as? [[String: AnyObject]] {
                let events = eventsMessage.flatMap { AccelerationEvent(message: $0) }
                self = Synchronize(id: id,
                   start: start,
-                  tagId: arguments["tag"] as? String,
+                  tagIds: tagIds,
                   events: events)
          } else {
             return nil

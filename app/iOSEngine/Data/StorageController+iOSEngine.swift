@@ -58,30 +58,32 @@ extension StorageController {
 
    func synchronizeTrainingWithId(id: String,
       start: NSDate,
-      tagId: String?,
+      tagIds: [String],
       events: [AccelerationEvent]) {
          self.write {
             if let training = self[id] {
                let newEvents = events[training.events.count..<events.count]
                self.history.appendEvents(newEvents, toTraining: training)
             } else {
-               let training = self.addTrainingWithId(id, start: start, tagId: tagId)
+               let training = self.addTrainingWithId(id, start: start, tagIds: tagIds)
                self.history.appendEvents(events, toTraining: training)
             }
          }
    }
 
-   public func addTrainingWithId(id: String, start: NSDate, tagId: String?, activate: Bool = false) -> Training {
+   public func addTrainingWithId(id: String, start: NSDate, tagIds: [String], activate: Bool = false) -> Training {
       var createdTraining: Training!
       self.write {
-         let tag: Tag? = tagId.flatMap { self.realm.objectForPrimaryKey(Tag.self, key: $0) }
-         var trainingValue = ["id": id, "start": start]
-         if let tag = tag {
-            trainingValue["tags"] = [tag]
+         createdTraining = self.realm.objectForPrimaryKey(Training.self, key: id)
+         if createdTraining != nil {
+            return
          }
+
+         let tags: [Tag] = tagIds.flatMap { self.realm.objectForPrimaryKey(Tag.self, key: $0) }
+         let trainingValue = ["id": id, "start": start, "tags": tags]
          let training = self.realm.create(Training.self, value: trainingValue, update: true)
          self.history.addTraining(training)
-         tag?.addTraining(training)
+         tags.forEach { $0.addTraining(training) }
          if activate {
             self.history.activateTraining(training)
          }

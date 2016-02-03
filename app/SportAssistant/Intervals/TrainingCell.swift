@@ -1,6 +1,5 @@
 import UIKit
 import ReactiveCocoa
-import iOSEngine
 
 class ProgressView: UIView {
 
@@ -89,100 +88,55 @@ final class TrainingCell: UITableViewCell, ReusableNibView {
 
    private lazy var accelerationFont: UIFont = self.bestLast.font
 
-   var training: Training! {
+   var model: TrainingViewModel! {
       didSet {
-         if let training = self.training {
+         let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
 
-            let reuseSignal = self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer()
-
-            let activeSignal = DynamicProperty(object: StorageController.UIController, keyPath: "active")
+         DynamicProperty(object: self.durationLabel, keyPath: "text") <~
+            self.model.duration
                .producer
-               .map { $0 as? Training }
-               .map {
-                  active -> Bool in
-                  if let active = active {
-                     return active == training
-                  }
-                  return false
-               }
-               .skipRepeats()
-
-            DynamicProperty(object: self.durationLabel, keyPath: "text") <~
-               activeSignal
-                  .flatMap(.Latest) {
-                     active -> SignalProducer<NSTimeInterval, NoError> in
-                     if active {
-                        return everySecondSignalProducer().map { _ in training.duration }
-                     } else {
-                        return SignalProducer(value: training.duration)
-                     }
-                  }
-                  .map { $0.toDurationString() }
-                  .takeUntil(reuseSignal)
-
-            DynamicProperty(object: self.progressView, keyPath: "isAnimating") <~
-               activeSignal
-                  .map { $0 }
-                  .takeUntil(reuseSignal)
-
-            DynamicProperty(object: self.dateLabel, keyPath: "text") <~
-               DynamicProperty(object: training, keyPath: "start")
-                  .producer
-                  .takeUntil(reuseSignal)
-                  .map {
-                     if let date = $0 as? NSDate {
-                        return date.toString(.ShortStyle)
-                     }
-                     return nil
-            }
-
-            let integralFont = self.accelerationFont
-            DynamicProperty(object: self.bestLast, keyPath: "attributedText") <~
-               DynamicProperty(object: training, keyPath: "best")
-                  .producer
-                  .takeUntil(reuseSignal)
-                  .map { $0 as! Double }
-                  .map {
-                     best -> NSAttributedString? in
-                     return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
-            }
-
-            DynamicProperty(object: self.tagLabel, keyPath: "text") <~
-               DynamicProperty(object: training, keyPath: "tagsVersion")
-                  .producer
-                  .takeUntil(reuseSignal)
-                  .map { $0 as! Int }
-                  .skipRepeats()
-                  .map {
-                     [weak training] _ in
-                     if let training = training {
-                        return training.tags.map { $0.name }.joinWithSeparator(", ")
-                     }
-                     return nil
-            }
-
-
-            let hasTagsSignal = DynamicProperty(object: training, keyPath: "tagsVersion")
-               .producer
+               .map { $0.toDurationString() }
                .takeUntil(reuseSignal)
-               .map { $0 as! Int }
-               .skipRepeats()
+
+         DynamicProperty(object: self.progressView, keyPath: "isAnimating") <~
+            self.model.isActive
+               .producer
+               .map { $0 }
+               .takeUntil(reuseSignal)
+
+         DynamicProperty(object: self.dateLabel, keyPath: "text") <~
+            self.model.start
+               .producer
+               .map { $0.toString(.ShortStyle) }
+               .takeUntil(reuseSignal)
+
+         let integralFont = self.accelerationFont
+         DynamicProperty(object: self.bestLast, keyPath: "attributedText") <~
+            self.model.best
+               .producer
                .map {
-                  [weak training] _ -> Bool in
-                  if let training = training where !training.tags.isEmpty {
-                     return true
-                  }
-                  return false
-            }
+                  best -> NSAttributedString? in
+                  return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
+               }
+               .takeUntil(reuseSignal)
 
-            DynamicProperty(object: self.tagPrefixLabel, keyPath: "hidden") <~
-               hasTagsSignal
-                  .map { !$0 }
+         DynamicProperty(object: self.tagLabel, keyPath: "text") <~
+            self.model.tags
+               .producer
+               .map { $0 }
+               .takeUntil(reuseSignal)
 
-            DynamicProperty(object: self.hiddenTagsConstraint, keyPath: "priority") <~
-               hasTagsSignal
-                  .map { $0 ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh }
-         }
+         DynamicProperty(object: self.tagPrefixLabel, keyPath: "hidden") <~
+            self.model.hasTags
+               .producer
+               .map { !$0 }
+               .takeUntil(reuseSignal)
+
+         DynamicProperty(object: self.hiddenTagsConstraint, keyPath: "priority") <~
+            self.model.hasTags
+               .producer
+               .map { $0 ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh }
+               .takeUntil(reuseSignal)
       }
    }
 }

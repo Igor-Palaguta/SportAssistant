@@ -37,10 +37,6 @@ private extension Training {
 
       chart.labelMarginTop = 5
       chart.showChartBorder = true
-      /*chart.yLabelFormatter = {
-         time: CGFloat -> String! in
-         return time.formattedSeconds()
-      }*/
       chart.xLabels = chartPoints.map { $0.timestamp.formattedSeconds() }
       chart.yValues = chartPoints.map { $0.total }
       chart.yLabelSum = 5
@@ -70,7 +66,6 @@ final class ChartInterfaceController: WKInterfaceController {
    }
 
    override func willActivate() {
-      // This method is called when watch view controller is about to be visible to user
       super.willActivate()
 
       guard !self.didActivateBefore else {
@@ -89,9 +84,17 @@ final class ChartInterfaceController: WKInterfaceController {
       self.didActivateBefore = true
    }
 
-   override func didDeactivate() {
-      // This method is called when watch view controller is no longer visible
-      super.didDeactivate()
+   override func didAppear() {
+      super.didAppear()
+
+      self.updateUserActivity(NSUserActivity.trainingType,
+         userInfo: self.training.userActivityInfo,
+         webpageURL: nil)
    }
 
+   override func willDisappear() {
+      super.willDisappear()
+
+      self.invalidateUserActivity()
+   }
 }

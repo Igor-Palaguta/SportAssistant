@@ -65,14 +65,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    }
 
    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-      print("\(userActivity.userInfo)")
-      guard let userInfo = userActivity.userInfo as? [String: AnyObject],
-         trainingId = userInfo["id"] as? String,
-         start = userInfo["start"] as? NSDate else {
-            return false
+      guard let trainingInfo = userActivity.trainingInfo else {
+         return false
       }
 
-      let training = StorageController.UIController.addTrainingWithId(trainingId, start: start, tagId: userInfo["tag"] as? String)
+      let training = StorageController.UIController.addTrainingWithId(trainingInfo.id,
+         start: trainingInfo.start,
+         tagIds: trainingInfo.tags)
       self.showTraining(training)
       return true
    }

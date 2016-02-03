@@ -57,14 +57,14 @@ extension ClientSynchronizer: WCSessionDelegate {
       let storage = StorageController()
       for package in packages {
          switch package {
-         case .Start(let id, let start, let tagId):
-            storage.addTrainingWithId(id, start: start, tagId: tagId, activate: true)
+         case .Start(let id, let start, let tagIds):
+            storage.addTrainingWithId(id, start: start, tagIds: tagIds, activate: true)
          case .Stop(let id):
             if let training = storage[id] {
                storage.deactivateTraining(training)
             }
-         case .Synchronize(let id, let start, let tagId, let events):
-            storage.synchronizeTrainingWithId(id, start: start, tagId: tagId, events: events)
+         case .Synchronize(let id, let start, let tagIds, let events):
+            storage.synchronizeTrainingWithId(id, start: start, tagIds: tagIds, events: events)
          case .Delete(let id):
             if let training = storage[id] {
                storage.deleteTraining(training)

@@ -125,7 +125,7 @@ final class TrainingsViewController: UITableViewController {
 
    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell: TrainingCell = tableView.dequeueCellForIndexPath(indexPath)
-      cell.training = self.trainings[indexPath.row]
+      cell.model = TrainingViewModel(training: self.trainings[indexPath.row])
       return cell
    }
 
