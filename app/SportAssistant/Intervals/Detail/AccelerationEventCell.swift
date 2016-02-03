@@ -7,7 +7,9 @@ class AccelerationEventCell: UITableViewCell, ReusableNibView {
       didSet {
          self.timestampLabel.text = self.event.timestamp.toDurationString(true)
          self.activityLabel.text = self.event.activity?.name
-         self.hiddenActivityConstraint.priority = self.event.activity == nil ? 750 : 250
+         self.hiddenActivityConstraint.priority = self.event.activity == nil
+            ? UILayoutPriorityDefaultHigh
+            : UILayoutPriorityDefaultLow
          [(self.accelerationLabel, self.event.total),
             (self.xLabel, self.event.x),
             (self.yLabel, self.event.y),

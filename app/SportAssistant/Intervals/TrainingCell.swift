@@ -1,7 +1,7 @@
 import UIKit
 import ReactiveCocoa
 
-class ProgressView: UIView {
+final class ProgressView: UIView {
 
    dynamic var isAnimating = false {
       didSet {

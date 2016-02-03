@@ -337,7 +337,7 @@ final class TrainingViewController: UIViewController {
             .takeUntil(self.rac_willDeallocSignalProducer())
             .map { $0 as! Double }
             .skipRepeats()
-            .map { NSNumberFormatter.stringForAcceleration($0) }
+            .map { $0.formattedAcceleration }
 
       DynamicProperty(object: self.training, keyPath: "currentCount")
          .producer
@@ -392,7 +392,7 @@ final class TrainingViewController: UIViewController {
       self.navigationController?.setNavigationBarHidden(toInterfaceOrientation.isLandscape, animated: true)
 
       UIView.animateWithDuration(duration) {
-         self.visibleTableConstraint.priority = toInterfaceOrientation.isPortrait ? 750 : 250
+         self.visibleTableConstraint.priority = toInterfaceOrientation.isPortrait ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
          self.view.layoutIfNeeded()
       }
    }

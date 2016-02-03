@@ -75,7 +75,7 @@ class BalloonMarker: ChartMarker {
    }
 
    override func refreshContent(entry entry: ChartDataEntry, highlight: ChartHighlight) {
-      var textLines = [NSNumberFormatter.stringForAcceleration(entry.value)]
+      var textLines = [entry.value.formattedAcceleration]
       if let event = entry.data as? AccelerationEvent, activity = event.activity {
          textLines.insert(activity.name, atIndex: 0)
       }

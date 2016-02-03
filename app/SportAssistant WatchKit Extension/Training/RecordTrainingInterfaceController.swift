@@ -120,7 +120,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
       }
 
       if let last = last {
-         self.lastLabel.setText(NSNumberFormatter.stringForAcceleration(last))
+         self.lastLabel.setText(last.formattedAcceleration)
       }
 
       //if let duration = duration {
@@ -131,7 +131,7 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
          return
       }
 
-      self.bestLabel.setText(NSNumberFormatter.stringForAcceleration(total))
+      self.bestLabel.setText(total.formattedAcceleration)
 
       if total < StorageController.UIController.best {
          return
