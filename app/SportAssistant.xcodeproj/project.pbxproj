@@ -123,6 +123,8 @@
 		78C18E1B1C5D64A5003F954F /* StorageController+iOSEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C18E1A1C5D64A5003F954F /* StorageController+iOSEngine.swift */; };
 		78C18E1E1C5D6776003F954F /* StorageController+watchOSEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C18E1D1C5D6776003F954F /* StorageController+watchOSEngine.swift */; };
 		78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C38DDE1C491658003CD041 /* TimerLabel.swift */; };
+		78CA65541C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA65531C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift */; };
+		78CA65561C638F7100F93725 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA65551C638F7100F93725 /* MotionManager.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
 		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
 		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
@@ -268,7 +270,6 @@
 		784846691C386FD5009E4CDD /* NSTimeInterval+Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Duration.swift"; sourceTree = "<group>"; };
 		7848466F1C387A50009E4CDD /* ChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInterfaceController.swift; sourceTree = "<group>"; };
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
-		78583BE41C576DA100D4760D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Interface.strings; sourceTree = "<group>"; };
 		7868054E1C5659F6001AC1F0 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = ../Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		786805501C5659F7001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -346,6 +347,9 @@
 		78C18E1A1C5D64A5003F954F /* StorageController+iOSEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StorageController+iOSEngine.swift"; sourceTree = "<group>"; };
 		78C18E1D1C5D6776003F954F /* StorageController+watchOSEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StorageController+watchOSEngine.swift"; sourceTree = "<group>"; };
 		78C38DDE1C491658003CD041 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
+		78CA65521C62A7C800F93725 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Interface.strings; sourceTree = "<group>"; };
+		78CA65531C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSProcessInfo+SimulatorCheck.swift"; sourceTree = "<group>"; };
+		78CA65551C638F7100F93725 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportAssistant.entitlements; sourceTree = "<group>"; };
 		78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SportAssistant WatchKit Extension.entitlements"; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 				7831F6361C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift */,
 				7831F6371C21845B00A7CBB1 /* Accelerometer.swift */,
 				789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */,
+				78CA65551C638F7100F93725 /* MotionManager.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -776,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				78C38DDE1C491658003CD041 /* TimerLabel.swift */,
+				78CA65531C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1278,6 +1284,7 @@
 				784846681C386D92009E4CDD /* TrainingInterfaceController.swift in Sources */,
 				789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				7831F6391C21845B00A7CBB1 /* Accelerometer.swift in Sources */,
+				78CA65541C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift in Sources */,
 				7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */,
 				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
 				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
@@ -1286,6 +1293,7 @@
 				78898AC61C419FFF00907629 /* Colors.swift in Sources */,
 				788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */,
 				789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */,
+				78CA65561C638F7100F93725 /* MotionManager.swift in Sources */,
 				7831F6381C21845B00A7CBB1 /* RecordTrainingInterfaceController.swift in Sources */,
 				7807AC581C4EE96A00D2BCE5 /* TagsInterfaceController.swift in Sources */,
 				784D25081C1F1856006491A0 /* MenuInterfaceController.swift in Sources */,
@@ -1379,7 +1387,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				788A51C31C15835600A166A0 /* Base */,
-				78583BE41C576DA100D4760D /* ru */,
+				78CA65521C62A7C800F93725 /* ru */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";

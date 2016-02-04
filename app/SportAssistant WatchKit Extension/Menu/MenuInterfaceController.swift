@@ -5,14 +5,21 @@ import watchOSEngine
 
 class MenuInterfaceController: WKInterfaceController {
 
-   private lazy var healthStore = HKHealthStore()
-
    @IBOutlet private weak var bestLabel: WKInterfaceLabel!
    @IBOutlet private weak var trainingsButton: WKInterfaceButton!
+
+   private lazy var healthStore = HKHealthStore()
+   private var didActivateBefore = false
 
    override func willActivate() {
       // This method is called when watch view controller is about to be visible to user
       super.willActivate()
+
+      guard !self.didActivateBefore else {
+         return
+      }
+
+      self.reloadData()
 
       self.healthStore.requestAuthorizationToShareTypes(Set([HKObjectType.workoutType()]),
          readTypes: Set([HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!])) {
@@ -22,7 +29,7 @@ class MenuInterfaceController: WKInterfaceController {
             }
       }
 
-      self.reloadData()
+      self.didActivateBefore = true
    }
 
    override func didDeactivate() {

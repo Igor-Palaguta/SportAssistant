@@ -183,18 +183,15 @@ final class RecordTrainingInterfaceController: WKInterfaceController {
 }
 
 extension RecordTrainingInterfaceController: AccelerometerDelegate {
-   func accelerometer(accelerometer: Accelerometer, didReceiveData data: CMAccelerometerData) {
+   func accelerometer(accelerometer: Accelerometer, didReceiveData data: AccelerometerData) {
       guard let recordSession = self.recordSession else {
          return
       }
 
-      let bootTime = NSDate(timeIntervalSinceNow: -NSProcessInfo.processInfo().systemUptime)
-      let date = NSDate(timeInterval: data.timestamp, sinceDate: bootTime)
-
-      let event = AccelerationEvent(x: data.acceleration.x,
-         y: data.acceleration.y,
-         z: data.acceleration.z,
-         timestamp: date.timeIntervalSinceDate(recordSession.training.start))
+      let event = AccelerationEvent(x: data.x,
+         y: data.y,
+         z: data.z,
+         timestamp: data.date.timeIntervalSinceDate(recordSession.training.start))
 
       let result = recordSession.analyzer.analyzeEvent(event)
       self.reloadDataWithTotal(event.total,

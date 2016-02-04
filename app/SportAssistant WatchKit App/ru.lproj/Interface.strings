@@ -11,6 +11,9 @@
 /* Class = "WKInterfaceButton"; title = "Удалить"; ObjectID = "7Dt-Ub-YAV"; */
 "7Dt-Ub-YAV.title" = "Удалить";
 
+/* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "9bq-Wb-fBp"; */
+"9bq-Wb-fBp.text" = "-";
+
 /* Class = "WKInterfaceButton"; title = "Начать"; ObjectID = "Che-Hz-tXw"; */
 "Che-Hz-tXw.title" = "Начать";
 
@@ -23,8 +26,11 @@
 /* Class = "WKInterfaceLabel"; text = "Рекорд: 12.3"; ObjectID = "GJC-tZ-FjD"; */
 "GJC-tZ-FjD.text" = "Рекорд: 12.3";
 
-/* Class = "WKInterfaceLabel"; text = "Нет Движений"; ObjectID = "HMb-jE-K1Q"; */
-"HMb-jE-K1Q.text" = "Нет движений";
+/* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "GyE-Ft-l9v"; */
+"GyE-Ft-l9v.text" = "-";
+
+/* Class = "WKInterfaceLabel"; text = "Нет движений"; ObjectID = "HMb-jE-K1Q"; */
+"HMb-jE-K1Q.text" = "Нет данных";
 
 /* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "Hsg-D2-QcP"; */
 "Hsg-D2-QcP.text" = "-";
@@ -47,16 +53,22 @@
 /* Class = "WKInterfaceLabel"; text = "0"; ObjectID = "V7n-gw-cXm"; */
 "V7n-gw-cXm.text" = "0";
 
+/* Class = "WKInterfaceLabel"; text = "время"; ObjectID = "YXM-gs-tvE"; */
+"YXM-gs-tvE.text" = "время";
+
 /* Class = "WKInterfaceButton"; title = "Начать"; ObjectID = "Z6I-aa-HVH"; */
 "Z6I-aa-HVH.title" = "Начать";
 
 /* Class = "WKInterfaceLabel"; text = "движ."; ObjectID = "ZsC-8p-iRX"; */
 "ZsC-8p-iRX.text" = "движ.";
 
+/* Class = "WKInterfaceLabel"; text = "средн."; ObjectID = "a8q-e8-8cA"; */
+"a8q-e8-8cA.text" = "средн.";
+
 /* Class = "WKInterfaceLabel"; text = "01:30.01"; ObjectID = "aVT-rn-Sjf"; */
 "aVT-rn-Sjf.text" = "01:30.01";
 
-/* Class = "WKInterfaceLabel"; text = "Название Метки"; ObjectID = "b6n-NQ-zM8"; */
+/* Class = "WKInterfaceLabel"; text = "Название метки"; ObjectID = "b6n-NQ-zM8"; */
 "b6n-NQ-zM8.text" = "Название метки";
 
 /* Class = "WKInterfaceLabel"; text = "00:00"; ObjectID = "dWj-27-7wV"; */
@@ -68,14 +80,23 @@
 /* Class = "WKInterfaceLabel"; text = "-"; ObjectID = "h5S-4o-Vj6"; */
 "h5S-4o-Vj6.text" = "-";
 
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "hAe-jl-Nu1"; */
+"hAe-jl-Nu1.text" = "Label";
+
 /* Class = "WKInterfaceLabel"; text = "0"; ObjectID = "iC3-Ln-mXC"; */
 "iC3-Ln-mXC.text" = "0";
+
+/* Class = "WKInterfaceController"; title = "Закрыть"; ObjectID = "rxU-gG-mSZ"; */
+"rxU-gG-mSZ.title" = "Закрыть";
 
 /* Class = "WKInterfaceLabel"; text = "посл."; ObjectID = "sr8-TQ-KUE"; */
 "sr8-TQ-KUE.text" = "посл.";
 
-/* Class = "WKInterfaceController"; title = "Движения"; ObjectID = "uLD-ez-mz2"; */
-"uLD-ez-mz2.title" = "Движения";
+/* Class = "WKInterfaceLabel"; text = "мин."; ObjectID = "tat-3e-w3U"; */
+"tat-3e-w3U.text" = "мин.";
+
+/* Class = "WKInterfaceController"; title = "Закрыть"; ObjectID = "uLD-ez-mz2"; */
+"uLD-ez-mz2.title" = "Закрыть";
 
 /* Class = "WKInterfaceButton"; title = "Результат"; ObjectID = "ui7-Aj-YhA"; */
 "ui7-Aj-YhA.title" = "Результат";

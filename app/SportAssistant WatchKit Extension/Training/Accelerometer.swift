@@ -2,14 +2,14 @@ import Foundation
 import CoreMotion
 
 protocol AccelerometerDelegate: class {
-   func accelerometer(accelerometer: Accelerometer, didReceiveData data: CMAccelerometerData)
+   func accelerometer(accelerometer: Accelerometer, didReceiveData data: AccelerometerData)
 }
 
 class Accelerometer {
 
    weak var delegate: AccelerometerDelegate?
 
-   private var manager: CMMotionManager?
+   private var manager: MotionManager?
 
    deinit {
       self.stop()
@@ -18,21 +18,16 @@ class Accelerometer {
    func start() {
       self.stop()
 
-      let manager = CMMotionManager()
+      let manager: MotionManager = NSProcessInfo.processInfo().isSimulator
+         ? AccelerometerSimulator()
+         : CMMotionManager()
+
       manager.accelerometerUpdateInterval = 0.1
 
-      if manager.accelerometerAvailable {
-         manager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) {
-            [weak self] data, error in
-            guard let strongSelf = self else {
-               return
-            }
-
-            if let data = data {
-               strongSelf.delegate?.accelerometer(strongSelf, didReceiveData: data)
-            } else if let error = error {
-               print("startAccelerometerUpdatesToQueue: \(error)")
-            }
+      manager.startWithHandler {
+         [weak self] data in
+         if let strongSelf = self {
+            strongSelf.delegate?.accelerometer(strongSelf, didReceiveData: data)
          }
       }
 
@@ -40,6 +35,7 @@ class Accelerometer {
    }
 
    func stop() {
-      self.manager?.stopAccelerometerUpdates()
+      self.manager?.stop()
    }
 }
+

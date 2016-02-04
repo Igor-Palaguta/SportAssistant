@@ -78,7 +78,7 @@ public final class ServerSynchronizer: NSObject {
 
    private func sendPackage(package: Package) {
       let message = package.toMessage()
-      NSLog("sendPackage %@", message)
+      //NSLog("sendPackage %@", message)
       self.session!.transferUserInfo(message)
    }
 
@@ -114,7 +114,7 @@ extension ServerSynchronizer: WCSessionDelegate {
    }
 
    private func processMessage(message: [String : AnyObject]) {
-      NSLog("processMessage %@", message)
+      //NSLog("processMessage %@", message)
       let packages = message.flatMap {
          name, arguments in
          return Package(name: name, arguments: arguments)

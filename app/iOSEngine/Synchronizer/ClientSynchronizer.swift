@@ -28,7 +28,7 @@ public final class ClientSynchronizer: NSObject {
 
    private func sendPackage(package: Package) {
       let message = package.toMessage()
-      NSLog("sendPackage %@", message)
+      //NSLog("sendPackage %@", message)
       self.session!.transferUserInfo(message)
    }
 
