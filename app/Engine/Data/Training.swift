@@ -5,8 +5,6 @@ public final class Training: Object, Equatable {
    public private(set) dynamic var id = NSUUID().UUIDString
    public private(set) dynamic var best: Double = 0
    public private(set) dynamic var start = NSDate()
-   public private(set) dynamic var currentCount = 0
-   public private(set) dynamic var tagsVersion = 0
 
    public let tags = List<Tag>()
    public let events = List<AccelerationEvent>()
@@ -18,8 +16,6 @@ public final class Training: Object, Equatable {
 
       tag.deleteTraining(self)
       self.tags.removeAtIndex(tagIndex)
-
-      self.tagsVersion += 1
    }
 
    func addTag(tag: Tag) {
@@ -29,11 +25,9 @@ public final class Training: Object, Equatable {
 
       self.tags.append(tag)
       tag.addTraining(self)
-
-      self.tagsVersion += 1
    }
 
-   public dynamic var duration: NSTimeInterval {
+   public var duration: NSTimeInterval {
       return self.events.last?.timestamp ?? 0
    }
 
@@ -59,7 +53,6 @@ public final class Training: Object, Equatable {
       }
 
       self.events.append(event)
-      self.currentCount = self.events.count
    }
 
    func appendEvents<T: SequenceType where T.Generator.Element == AccelerationEvent>(events: T) {
@@ -73,11 +66,6 @@ public final class Training: Object, Equatable {
       }
 
       self.events.appendContentsOf(events)
-      self.currentCount = self.events.count
-   }
-
-   class func keyPathsForValuesAffectingDuration() -> NSSet {
-      return NSSet(object: "currentCount")
    }
 
    public override static func primaryKey() -> String? {
@@ -85,7 +73,7 @@ public final class Training: Object, Equatable {
    }
 
    public override static func ignoredProperties() -> [String] {
-      return ["duration", "activities", "activitityEvents"]
+      return ["activities", "activitityEvents"]
    }
 }
 

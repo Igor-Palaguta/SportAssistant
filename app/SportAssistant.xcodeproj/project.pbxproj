@@ -12,6 +12,7 @@
 		78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78045FD41C26073700FEEB87 /* TrainingsViewController.swift */; };
 		7807AC581C4EE96A00D2BCE5 /* TagsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807AC571C4EE96A00D2BCE5 /* TagsInterfaceController.swift */; };
 		7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807AC591C4EE9F500D2BCE5 /* TagController.swift */; };
+		780DAB4B1C662C6E002FA0B7 /* Realm+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780DAB4A1C662C6E002FA0B7 /* Realm+Notifications.swift */; };
 		780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CC1C4C359A004FBB7E /* TagsViewController.swift */; };
 		780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49CE1C4C35AC004FBB7E /* TagCell.swift */; };
 		780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49D01C4C3DDC004FBB7E /* TagViewController.swift */; };
@@ -251,6 +252,7 @@
 		78045FD41C26073700FEEB87 /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
 		7807AC571C4EE96A00D2BCE5 /* TagsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsInterfaceController.swift; sourceTree = "<group>"; };
 		7807AC591C4EE9F500D2BCE5 /* TagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
+		780DAB4A1C662C6E002FA0B7 /* Realm+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Notifications.swift"; sourceTree = "<group>"; };
 		780E49CC1C4C359A004FBB7E /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 		780E49CE1C4C35AC004FBB7E /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		780E49D01C4C3DDC004FBB7E /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				78180CDA1C3A6D3800D3C7CC /* UIViewController+Rotation.swift */,
 				78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */,
 				78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */,
+				780DAB4A1C662C6E002FA0B7 /* Realm+Notifications.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1249,6 +1252,7 @@
 				780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */,
 				780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */,
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
+				780DAB4B1C662C6E002FA0B7 /* Realm+Notifications.swift in Sources */,
 				780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
 				786A24FD1C5ABD7500B7470E /* ActivitiesViewController.swift in Sources */,

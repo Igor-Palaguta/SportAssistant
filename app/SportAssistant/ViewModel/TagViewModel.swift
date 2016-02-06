@@ -1,5 +1,6 @@
 import Foundation
 import ReactiveCocoa
+import Result
 import iOSEngine
 import HealthKit
 
@@ -63,24 +64,12 @@ class TagViewModel {
       self.name.value = tag.name
       self.activityType.value = tag.activityType
       self.isDefaultName.value = false
-      self.hasTrainings <~ DynamicProperty(object: tag, keyPath: "version")
-         .producer
-         .map {
-            [weak tag] _ in
-            if let tag = tag {
-               return !tag.trainings.isEmpty
-            }
-            return false
-      }
-      self.trainingsCount <~ DynamicProperty(object: tag, keyPath: "version")
-         .producer
-         .map {
-            [weak tag] _ in
-            if let tag = tag {
-               return tag.trainings.count
-            }
-            return 0
-      }
+
+      self.hasTrainings <~ tag.trainings.changeSignal(sendImmediately: true)
+         .map { return !$0.isEmpty }
+
+      self.trainingsCount <~ tag.trainings.changeSignal(sendImmediately: true)
+         .map { return $0.count }
    }
 
    init() {

@@ -71,9 +71,9 @@ extension ClientSynchronizer: WCSessionDelegate {
             }
          case .Events(let id, let index, let events):
             if let training = storage[id]
-               where (training.currentCount < index + events.count)
-                  && (training.currentCount >= index) {
-                     let newEvents = events[training.currentCount-index..<events.count]
+               where (training.events.count < index + events.count)
+                  && (training.events.count >= index) {
+                     let newEvents = events[training.events.count-index..<events.count]
                      storage.appendEvents(newEvents, toTraining: training)
             }
          case .Tags(_), .ChangeTrainingTags(_):

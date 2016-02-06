@@ -18,7 +18,6 @@ public enum OrderBy: Int {
 public class TrainingsCollection: Object {
 
    public private(set) dynamic var lastUseDate: NSDate?
-   public private(set) dynamic var version = 0
    public private(set) dynamic var best: Double = 0
 
    public let trainings = List<Training>()
@@ -33,7 +32,6 @@ public class TrainingsCollection: Object {
 
    func update(@noescape transaction: () -> ()) {
       transaction()
-      self.version += 1
    }
 
    func addTraining(training: Training) {

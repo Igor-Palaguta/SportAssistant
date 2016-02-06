@@ -29,43 +29,20 @@ final class TrainingViewModel {
          }
          .skipRepeats()
 
-      self.duration <~ DynamicProperty(object: training, keyPath: "duration")
-         .producer
-         .map { $0 as! NSTimeInterval }
+      self.duration <~ training.events.changeSignal(sendImmediately: true)
+         .map { [weak training] _ in training?.duration ?? 0 }
 
       self.best <~ DynamicProperty(object: training, keyPath: "best")
          .producer
          .map { $0 as! Double }
 
-      let tagsChangeSignal = DynamicProperty(object: training, keyPath: "tagsVersion")
-         .producer
-         .map { $0 as! Int }
-         .skipRepeats()
-         .map {
-            [weak training] _ -> List<Tag>? in
-            if let training = training {
-               return training.tags
-            }
-            return nil
-      }
+      let tagsChangeSignal = training.tags.changeSignal(sendImmediately: true)
 
       self.tags <~ tagsChangeSignal
-         .map {
-            tags in
-            if let tags = tags {
-               return tags.map { $0.name }.joinWithSeparator(", ")
-            }
-            return ""
-      }
+         .map { $0.map { $0.name }.joinWithSeparator(", ") }
 
       self.hasTags <~ tagsChangeSignal
-         .map {
-            tags in
-            if let tags = tags {
-               return !tags.isEmpty
-            }
-            return false
-      }
+         .map { !$0.isEmpty }
 
       self.start = ConstantProperty(training.start)
    }

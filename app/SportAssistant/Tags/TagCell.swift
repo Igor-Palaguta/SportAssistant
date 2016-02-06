@@ -53,16 +53,9 @@ final class TagCell: UITableViewCell, ReusableNibView {
          }
 
          DynamicProperty(object: self.countLabel, keyPath: "text") <~
-            DynamicProperty(object: trainingsCollection, keyPath: "version")
-               .producer
-               .map { $0 as! Int }
-               .skipRepeats()
-               .map {
-                  [weak trainingsCollection] _ in
-                  return trainingsCollection.map { "\($0.trainings.count)" }
-               }
+            trainingsCollection.trainings.changeSignal(sendImmediately: true)
+               .map { "\($0.count)" }
                .takeUntil(self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer())
       }
    }
-
 }

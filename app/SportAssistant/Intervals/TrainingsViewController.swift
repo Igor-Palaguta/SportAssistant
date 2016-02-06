@@ -37,12 +37,13 @@ final class TrainingsViewController: UITableViewController {
       }
    }
 
-   private var trainings: Results<Training>!
+   private var trainings: [Training] = []
 
    private dynamic var trainingsCollection: TrainingsCollection! {
       didSet {
 
-         self.trainings = self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
+         let trainings = self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
+         self.trainings = Array(trainings)
 
          let invalidatedSignal = DynamicProperty(object: trainingsCollection, keyPath: "invalidated")
             .producer
@@ -73,15 +74,13 @@ final class TrainingsViewController: UITableViewController {
                   return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
          }
 
-         DynamicProperty(object: self.trainingsCollection, keyPath: "version")
-            .producer
+         trainings
+            .changeSignal()
             .takeUntil(stopSignal)
-            .map { $0 as! Int }
-            .skip(1)
-            .skipRepeats()
             .startWithNext {
-               [weak self] _ in
+               [weak self] trainings in
                if let strongSelf = self {
+                  strongSelf.trainings = Array(trainings)
                   strongSelf.tableView.reloadData()
                }
          }

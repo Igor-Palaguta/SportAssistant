@@ -1,5 +1,6 @@
 import Foundation
 import ReactiveCocoa
+import Result
 import SwiftDate
 
 func everyMinuteSignalProducer() -> SignalProducer<NSDate, NoError> {

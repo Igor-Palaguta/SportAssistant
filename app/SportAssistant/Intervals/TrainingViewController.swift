@@ -339,19 +339,16 @@ final class TrainingViewController: UIViewController {
             .skipRepeats()
             .map { $0.formattedAcceleration }
 
-      DynamicProperty(object: self.training, keyPath: "currentCount")
-         .producer
-         .map { $0 as! Int }
-         .filter { $0 != 0 }
-         .skipRepeats()
+      self.training.events.changeSignal(sendImmediately: true)
          .takeUntil(self.rac_willDeallocSignalProducer())
          .startWithNext {
-            [weak self] count in
+            [weak self] trainings in
             guard let strongSelf = self else {
                return
             }
 
             if let dataSource = strongSelf.dataSource {
+               let count = trainings.count
                let previousCount = strongSelf.chartView.data!.xValCount
                let newEvents = strongSelf.training.events[previousCount..<count]
 
