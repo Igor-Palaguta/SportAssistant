@@ -192,6 +192,7 @@ final class TagsViewController: UITableViewController {
          .startWithNext {
             [weak self] tags in
             if let strongSelf = self where tags != strongSelf.tags {
+               strongSelf.tags = tags
                strongSelf.tableView.reloadData()
             }
       }

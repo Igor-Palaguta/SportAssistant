@@ -35,6 +35,7 @@ final class TrainingViewModel {
 
       self.best <~ DynamicProperty(object: training, keyPath: "best")
          .producer
+         .takeUntil(training.invalidateSignal())
          .map { $0 as! Double }
 
       let tagsChangeSignal = training.tags.changeSignal()
