@@ -180,18 +180,23 @@ final class TagsViewController: UITableViewController {
          action: Selector("completeAction:"))
    }()
 
-   private lazy var tags = StorageController.UIController.tags
+   private var tags: [Tag] = []
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      self.tableView.tableFooterView = UIView()
-   }
+      StorageController.UIController.tags
+         .changeSignal()
+         .takeUntil(self.rac_willDeallocSignalProducer())
+         .map { Array($0) }
+         .startWithNext {
+            [weak self] tags in
+            if let strongSelf = self where tags != strongSelf.tags {
+               strongSelf.tableView.reloadData()
+            }
+      }
 
-   override func viewWillAppear(animated: Bool) {
-      super.viewWillAppear(animated)
-      //If changed from another screen
-      self.tableView.reloadData()
+      self.tableView.tableFooterView = UIView()
    }
 
    override func shouldAutorotate() -> Bool {
@@ -277,7 +282,6 @@ final class TagsViewController: UITableViewController {
             _ in
             StorageController.UIController.deleteTag(tag)
             ClientSynchronizer.defaultClient.sendTags()
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             })
 
          alert.addCacelAction(title: tr(.Cancel))
@@ -323,20 +327,12 @@ extension TagsViewController: TagViewControllerDelegate {
    }
 
    func tagViewController(controller: TagViewController, didAddTag tag: Tag) {
-      guard let indexPath = self.indexPathForTag(tag) else {
-         return
-      }
       ClientSynchronizer.defaultClient.sendTags()
-      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       self.navigationController?.popViewControllerAnimated(true)
    }
 
    func tagViewController(controller: TagViewController, didEditTag tag: Tag) {
-      guard let indexPath = self.indexPathForTag(tag) else {
-         return
-      }
       ClientSynchronizer.defaultClient.sendTags()
-      self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
       self.navigationController?.popViewControllerAnimated(true)
    }
 }

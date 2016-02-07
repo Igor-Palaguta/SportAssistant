@@ -29,14 +29,16 @@ final class TrainingViewModel {
          }
          .skipRepeats()
 
-      self.duration <~ training.events.changeSignal(sendImmediately: true)
+      self.duration <~ training.events.changeSignal()
+         .takeUntil(training.invalidateSignal())
          .map { [weak training] _ in training?.duration ?? 0 }
 
       self.best <~ DynamicProperty(object: training, keyPath: "best")
          .producer
          .map { $0 as! Double }
 
-      let tagsChangeSignal = training.tags.changeSignal(sendImmediately: true)
+      let tagsChangeSignal = training.tags.changeSignal()
+         .takeUntil(training.invalidateSignal())
 
       self.tags <~ tagsChangeSignal
          .map { $0.map { $0.name }.joinWithSeparator(", ") }

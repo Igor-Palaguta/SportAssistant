@@ -65,11 +65,12 @@ class TagViewModel {
       self.activityType.value = tag.activityType
       self.isDefaultName.value = false
 
-      self.hasTrainings <~ tag.trainings.changeSignal(sendImmediately: true)
-         .map { return !$0.isEmpty }
+      let tagsChangeSignal = tag.trainings.changeSignal()
+         .takeUntil(tag.invalidateSignal())
 
-      self.trainingsCount <~ tag.trainings.changeSignal(sendImmediately: true)
-         .map { return $0.count }
+      self.hasTrainings <~ tagsChangeSignal.map { !$0.isEmpty }
+
+      self.trainingsCount <~ tagsChangeSignal.map { $0.count }
    }
 
    init() {

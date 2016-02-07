@@ -277,6 +277,7 @@ final class TrainingViewController: UIViewController {
 
       self.tableView.estimatedRowHeight = 40
       self.tableView.rowHeight = UITableViewAutomaticDimension
+      self.tableView.hidden = true
 
       self.chartView.delegate = self
 
@@ -339,7 +340,8 @@ final class TrainingViewController: UIViewController {
             .skipRepeats()
             .map { $0.formattedAcceleration }
 
-      self.training.events.changeSignal(sendImmediately: true)
+      self.training.events.changeSignal()
+         .takeUntil(self.training.invalidateSignal())
          .takeUntil(self.rac_willDeallocSignalProducer())
          .startWithNext {
             [weak self] trainings in
@@ -347,8 +349,8 @@ final class TrainingViewController: UIViewController {
                return
             }
 
+            let count = trainings.count
             if let dataSource = strongSelf.dataSource {
-               let count = trainings.count
                let previousCount = strongSelf.chartView.data!.xValCount
                let newEvents = strongSelf.training.events[previousCount..<count]
 
@@ -361,7 +363,7 @@ final class TrainingViewController: UIViewController {
                   strongSelf.tableView.hidden = false
                   strongSelf.tableView.reloadData()
                }
-            } else {
+            } else if count > 0 {
                let dataSource = TrainingDataSource(training: strongSelf.training)
                strongSelf.dataSource = dataSource
 

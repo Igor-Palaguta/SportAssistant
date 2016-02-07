@@ -42,15 +42,6 @@ final class TrainingsViewController: UITableViewController {
    private dynamic var trainingsCollection: TrainingsCollection! {
       didSet {
 
-         let trainings = self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
-         self.trainings = Array(trainings)
-
-         let invalidatedSignal = DynamicProperty(object: trainingsCollection, keyPath: "invalidated")
-            .producer
-            .map { $0 as! Bool }
-            .filter { $0 }
-            .map { _ in () }
-
          let changeSignal = DynamicProperty(object: self, keyPath: "trainingsCollection")
             .producer
             .map { $0 as! TrainingsCollection }
@@ -61,7 +52,7 @@ final class TrainingsViewController: UITableViewController {
          let deallocSignal = self.rac_willDeallocSignalProducer()
             .map { _ in () }
 
-         let stopSignal = SignalProducer(values: [invalidatedSignal, changeSignal, deallocSignal]).flatten(.Merge)
+         let stopSignal = SignalProducer(values: [trainingsCollection.invalidateSignal(), changeSignal, deallocSignal]).flatten(.Merge)
 
          let integralFont = self.bestLabel.font
          DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
@@ -74,12 +65,13 @@ final class TrainingsViewController: UITableViewController {
                   return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
          }
 
-         trainings
+         self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
             .changeSignal()
             .takeUntil(stopSignal)
+            .map { Array($0) }
             .startWithNext {
                [weak self] trainings in
-               if let strongSelf = self {
+               if let strongSelf = self where trainings != strongSelf.trainings {
                   strongSelf.trainings = Array(trainings)
                   strongSelf.tableView.reloadData()
                }
@@ -92,7 +84,7 @@ final class TrainingsViewController: UITableViewController {
 
       self.title = self.filter.name
 
-      self.tableView.estimatedRowHeight = 100
+      self.tableView.estimatedRowHeight = 120
       self.tableView.rowHeight = UITableViewAutomaticDimension
 
       self.trainingsCollection = self.filter.trainingsCollection!

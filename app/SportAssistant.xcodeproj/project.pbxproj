@@ -127,6 +127,12 @@
 		78CA65541C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA65531C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift */; };
 		78CA65561C638F7100F93725 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA65551C638F7100F93725 /* MotionManager.swift */; };
 		78D9D0E51C28AF9700D71865 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */; };
+		78F0877A1C668F350062C724 /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087741C668F350062C724 /* SwiftDate.framework.dSYM */; };
+		78F0877B1C668F350062C724 /* Realm.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087751C668F350062C724 /* Realm.framework.dSYM */; };
+		78F0877C1C668F350062C724 /* RealmSwift.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087761C668F350062C724 /* RealmSwift.framework.dSYM */; };
+		78F0877D1C668F350062C724 /* ReactiveCocoa.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087771C668F350062C724 /* ReactiveCocoa.framework.dSYM */; };
+		78F0877E1C668F350062C724 /* Charts.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087781C668F350062C724 /* Charts.framework.dSYM */; };
+		78F0877F1C668F350062C724 /* Result.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087791C668F350062C724 /* Result.framework.dSYM */; };
 		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
 		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
 /* End PBXBuildFile section */
@@ -244,6 +250,21 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78F087731C668EF00062C724 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				78F0877A1C668F350062C724 /* SwiftDate.framework.dSYM in CopyFiles */,
+				78F0877B1C668F350062C724 /* Realm.framework.dSYM in CopyFiles */,
+				78F0877C1C668F350062C724 /* RealmSwift.framework.dSYM in CopyFiles */,
+				78F0877D1C668F350062C724 /* ReactiveCocoa.framework.dSYM in CopyFiles */,
+				78F0877E1C668F350062C724 /* Charts.framework.dSYM in CopyFiles */,
+				78F0877F1C668F350062C724 /* Result.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -355,6 +376,12 @@
 		78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		78E51D1E1C2ACA0100E5D26B /* SportAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportAssistant.entitlements; sourceTree = "<group>"; };
 		78E51D1F1C2ACA3000E5D26B /* SportAssistant WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SportAssistant WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		78F087741C668F350062C724 /* SwiftDate.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftDate.framework.dSYM; path = ../Carthage/Build/iOS/SwiftDate.framework.dSYM; sourceTree = "<group>"; };
+		78F087751C668F350062C724 /* Realm.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Realm.framework.dSYM; path = ../Carthage/Build/iOS/Realm.framework.dSYM; sourceTree = "<group>"; };
+		78F087761C668F350062C724 /* RealmSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RealmSwift.framework.dSYM; path = ../Carthage/Build/iOS/RealmSwift.framework.dSYM; sourceTree = "<group>"; };
+		78F087771C668F350062C724 /* ReactiveCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveCocoa.framework.dSYM; path = ../Carthage/Build/iOS/ReactiveCocoa.framework.dSYM; sourceTree = "<group>"; };
+		78F087781C668F350062C724 /* Charts.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Charts.framework.dSYM; path = ../Carthage/Build/iOS/Charts.framework.dSYM; sourceTree = "<group>"; };
+		78F087791C668F350062C724 /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = ../Carthage/Build/iOS/Result.framework.dSYM; sourceTree = "<group>"; };
 		78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -613,6 +640,12 @@
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
+				78F087741C668F350062C724 /* SwiftDate.framework.dSYM */,
+				78F087751C668F350062C724 /* Realm.framework.dSYM */,
+				78F087761C668F350062C724 /* RealmSwift.framework.dSYM */,
+				78F087771C668F350062C724 /* ReactiveCocoa.framework.dSYM */,
+				78F087781C668F350062C724 /* Charts.framework.dSYM */,
+				78F087791C668F350062C724 /* Result.framework.dSYM */,
 				780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */,
 				786805681C565B6A001AC1F0 /* Charts.framework */,
 				7868055F1C565A6B001AC1F0 /* RealmSwift.framework */,
@@ -877,6 +910,7 @@
 				788A51931C15835600A166A0 /* Resources */,
 				788A51E51C15835600A166A0 /* Embed Watch Content */,
 				7868055D1C5659F7001AC1F0 /* Embed Frameworks */,
+				78F087731C668EF00062C724 /* CopyFiles */,
 			);
 			buildRules = (
 			);
