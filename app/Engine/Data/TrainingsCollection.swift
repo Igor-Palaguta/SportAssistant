@@ -5,7 +5,7 @@ public enum OrderBy: Int {
    case Date
    case Result
 
-   private var fieldName: String {
+   var fieldName: String {
       switch self {
       case Date:
          return "start"

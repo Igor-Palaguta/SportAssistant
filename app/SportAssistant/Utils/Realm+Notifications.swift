@@ -3,8 +3,13 @@ import RealmSwift
 import ReactiveCocoa
 import Result
 
-extension List {
-   func changeSignal(sendImmediately: Bool = true) -> SignalProducer<List, NoError> {
+protocol ObservableCollection {
+   func changeSignal(sendImmediately: Bool) -> SignalProducer<Self, NoError>
+   func observeCollectionWithBlock(block: (Self) -> ()) -> NotificationToken
+}
+
+extension ObservableCollection {
+   func changeSignal(sendImmediately: Bool = true) -> SignalProducer<Self, NoError> {
       return SignalProducer {
          sink, disposable in
 
@@ -13,7 +18,7 @@ extension List {
          }
 
          var ignoreNext = sendImmediately
-         let token = self.addNotificationBlock {
+         let token = self.observeCollectionWithBlock {
             list in
             if !ignoreNext {
                sink.sendNext(list)
@@ -25,36 +30,24 @@ extension List {
          disposable.addDisposable {
             token.stop()
          }
-      }.observeOn(UIScheduler())
+         }.observeOn(UIScheduler())
    }
 }
 
-extension Results {
-   func changeSignal(sendImmediately: Bool = true) -> SignalProducer<Results, NoError> {
-      return SignalProducer {
-         sink, disposable in
+extension List: ObservableCollection {
+   func observeCollectionWithBlock(block: (List) -> ()) -> NotificationToken {
+      return self.addNotificationBlock(block)
+   }
+}
 
-         if sendImmediately {
-            sink.sendNext(self)
+extension Results: ObservableCollection {
+   func observeCollectionWithBlock(block: (Results) -> ()) -> NotificationToken {
+      return self.addNotificationBlock {
+         list, _ in
+         if let list = list {
+            block(list)
          }
-
-         var ignoreNext = sendImmediately
-         let token = self.addNotificationBlock {
-            list, _ in
-            guard let list = list else {
-               return
-            }
-            if !ignoreNext {
-               sink.sendNext(list)
-            } else {
-               ignoreNext = false
-            }
-         }
-
-         disposable.addDisposable {
-            token.stop()
-         }
-      }.observeOn(UIScheduler())
+      }
    }
 }
 

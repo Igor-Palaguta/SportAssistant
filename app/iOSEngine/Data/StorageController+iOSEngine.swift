@@ -8,6 +8,18 @@ extension StorageController {
       return self.history
    }
 
+   public func allTrainingsOrderedBy(orderBy: OrderBy, ascending: Bool) -> Results<Training> {
+      return self.history.trainings.sorted(orderBy.fieldName, ascending: ascending)
+   }
+
+   public func trainingsForTags(tags: [Tag], orderBy: OrderBy, ascending: Bool) -> Results<Training> {
+      let tagIds = tags.map { $0.id }
+      let trainings = self.realm.objects(Training.self)
+         .filter("SUBQUERY(tags, $tag, $tag.id IN %@).@count == \(tagIds.count)", tagIds)
+         .sorted(orderBy.fieldName, ascending: ascending)
+      return trainings
+   }
+
    public func addTag(tag: Tag) {
       self.write {
          self.realm.add(tag)

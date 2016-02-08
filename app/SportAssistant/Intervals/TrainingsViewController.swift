@@ -3,102 +3,46 @@ import ReactiveCocoa
 import RealmSwift
 import iOSEngine
 
-extension TagsFilter {
-   var name: String? {
-      switch self {
-      case All:
-         return tr(.AllTrainings)
-      case .Selected(let tags):
-         return tags.map { $0.name }.joinWithSeparator(", ")
-      }
-   }
-
-   var trainingsCollection: TrainingsCollection? {
-      switch self {
-      case All:
-         return StorageController.UIController.allTrainings
-      case .Selected(let tags):
-         return tags.first
-      }
-   }
-}
-
 final class TrainingsViewController: UITableViewController {
+
+   var model = TrainingsViewModel()
 
    @IBOutlet weak private var bestLabel: UILabel!
 
-   var filter = TagsFilter.All {
-      didSet {
-         if self.isViewLoaded() {
-            self.title = self.filter.name
-            self.trainingsCollection = self.filter.trainingsCollection!
-            self.tableView.reloadData()
-         }
-      }
-   }
-
    private var trainings: [Training] = []
-
-   private dynamic var trainingsCollection: TrainingsCollection! {
-      didSet {
-
-         let changeSignal = DynamicProperty(object: self, keyPath: "trainingsCollection")
-            .producer
-            .map { $0 as! TrainingsCollection }
-            .skip(1)
-            .skipRepeats()
-            .map { _ in () }
-
-         let deallocSignal = self.rac_willDeallocSignalProducer()
-            .map { _ in () }
-
-         let stopSignal = SignalProducer(values: [trainingsCollection.invalidateSignal(), changeSignal, deallocSignal]).flatten(.Merge)
-
-         let integralFont = self.bestLabel.font
-         DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
-            DynamicProperty(object: self.trainingsCollection, keyPath: "best")
-               .producer
-               .takeUntil(stopSignal)
-               .map { $0 as! Double }
-               .map {
-                  best -> NSAttributedString? in
-                  return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
-         }
-
-         self.trainingsCollection.trainingsOrderedBy(.Date, ascending: false)
-            .changeSignal()
-            .takeUntil(stopSignal)
-            .map { Array($0) }
-            .startWithNext {
-               [weak self] trainings in
-               if let strongSelf = self where trainings != strongSelf.trainings {
-                  strongSelf.trainings = Array(trainings)
-                  strongSelf.tableView.reloadData()
-               }
-         }
-      }
-   }
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      self.title = self.filter.name
-
       self.tableView.estimatedRowHeight = 120
       self.tableView.rowHeight = UITableViewAutomaticDimension
 
-      self.trainingsCollection = self.filter.trainingsCollection!
-
       self.tableView.tableFooterView = UIView()
+
+      let integralFont = self.bestLabel.font
+      DynamicProperty(object: self.bestLabel, keyPath: "attributedText") <~
+         self.model.best
+            .map {
+               best -> NSAttributedString? in
+               return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
+      }
+
+      DynamicProperty(object: self, keyPath: "title") <~ self.model.name.producer.map { $0 }
+
+      self.model.trainings.startWithNext {
+         [weak self] trainings in
+         if let strongSelf = self where trainings != strongSelf.trainings {
+            strongSelf.trainings = Array(trainings)
+            strongSelf.tableView.reloadData()
+         }
+      }
    }
 
    override func viewWillAppear(animated: Bool) {
       super.viewWillAppear(animated)
 
-      if let invalidated = self.trainingsCollection?.invalidated where invalidated {
-         self.filter = TagsFilter.All
-      } else {
-         self.tableView.reloadData()
+      if self.model.filter.value.hasInvalidatedTag {
+         self.model.filter.value = self.model.filter.value.filterByRemovingInvalidatedTags()
       }
    }
 
@@ -146,11 +90,11 @@ final class TrainingsViewController: UITableViewController {
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let navigationController = segue.destinationViewController as? UINavigationController,
          tagsViewController = navigationController.viewControllers.first as? TagsViewController {
-            tagsViewController.mode = .Picker(self.filter, .Single, .EmptyNotAllowed)
+            tagsViewController.mode = .Picker(self.model.filter.value, .Multiple, .EmptyNotAllowed)
             tagsViewController.completionHandler = {
                [unowned self] tagsViewController in
                if case .Picker(let filter, _, _) = tagsViewController.mode {
-                  self.filter = filter
+                  self.model.filter.value = filter
                }
                tagsViewController.dismissViewControllerAnimated(true, completion: nil)
             }

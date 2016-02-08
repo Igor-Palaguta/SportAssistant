@@ -309,7 +309,7 @@ final class TagsViewController: UITableViewController {
       let tag = sender as? Tag
 
       if let tag = tag, trainingsViewController = segue.destinationViewController as? TrainingsViewController {
-         trainingsViewController.filter = .Selected([tag])
+         trainingsViewController.model.filter.value = .Selected([tag])
       } else if let tagViewController = segue.destinationViewController as? TagViewController {
          tagViewController.delegate = self
          tagViewController.model = tag.map { TagViewModel(tag: $0) } ?? TagViewModel()

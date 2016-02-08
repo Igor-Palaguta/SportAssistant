@@ -18,6 +18,7 @@
 		780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E49D01C4C3DDC004FBB7E /* TagViewController.swift */; };
 		780FDBAD1C5EB83800FDF98F /* NKWatchChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */; };
 		780FDBAE1C5EB83800FDF98F /* NKWatchChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7812C4C21C688AC40055140D /* TrainingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7812C4C11C688AC40055140D /* TrainingsViewModel.swift */; };
 		7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7813D6541C3C718400775FC7 /* Storyboard.swift */; };
 		78159A391C39D022001C8031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78159A381C39D022001C8031 /* Assets.xcassets */; };
 		78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78159A3D1C39D180001C8031 /* LocalizableStrings.swift */; };
@@ -278,6 +279,7 @@
 		780E49CE1C4C35AC004FBB7E /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		780E49D01C4C3DDC004FBB7E /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NKWatchChart.framework; path = ../Carthage/Build/watchOS/NKWatchChart.framework; sourceTree = "<group>"; };
+		7812C4C11C688AC40055140D /* TrainingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewModel.swift; sourceTree = "<group>"; };
 		7813D6541C3C718400775FC7 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		78159A381C39D022001C8031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -782,6 +784,7 @@
 			children = (
 				789263A91C6222AF00F9B94C /* TagViewModel.swift */,
 				789263AB1C6222C700F9B94C /* TrainingViewModel.swift */,
+				7812C4C11C688AC40055140D /* TrainingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1291,6 +1294,7 @@
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
 				786A24FD1C5ABD7500B7470E /* ActivitiesViewController.swift in Sources */,
 				78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */,
+				7812C4C21C688AC40055140D /* TrainingsViewModel.swift in Sources */,
 				78180CDB1C3A6D3800D3C7CC /* UIViewController+Rotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
