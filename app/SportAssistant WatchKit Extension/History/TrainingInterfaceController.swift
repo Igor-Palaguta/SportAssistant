@@ -47,9 +47,11 @@ final class TrainingInterfaceController: WKInterfaceController {
    override func didAppear() {
       super.didAppear()
 
-      self.updateUserActivity(NSUserActivity.trainingType,
-         userInfo: self.training.userActivityInfo,
-         webpageURL: nil)
+      if !self.training.invalidated {
+         self.updateUserActivity(NSUserActivity.trainingType,
+            userInfo: self.training.userActivityInfo,
+            webpageURL: nil)
+      }
    }
 
    override func willDisappear() {

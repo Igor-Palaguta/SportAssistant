@@ -6,7 +6,7 @@ public final class Tag: TrainingsCollection, Equatable {
 
    public private(set) dynamic var id = NSUUID().UUIDString
    public internal(set) dynamic var name = ""
-   dynamic var type: Int = Int(HKWorkoutActivityType.Other.rawValue)
+   public dynamic var type = Int(HKWorkoutActivityType.Other.rawValue)
 
    public var activityType: HKWorkoutActivityType {
       get {

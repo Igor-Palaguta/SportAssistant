@@ -10,7 +10,7 @@ final class TagsInterfaceController: WKInterfaceController {
 
    private var healthStore: HKHealthStore!
 
-   private var tags: [Tag]!
+   private var tags: [Tag] = []
 
    private func reloadData() {
       self.tags = Array(StorageController.UIController.recentTags)
@@ -40,12 +40,10 @@ final class TagsInterfaceController: WKInterfaceController {
    }
 
    override func willActivate() {
-      // This method is called when watch view controller is about to be visible to user
       super.willActivate()
    }
 
    override func didDeactivate() {
-      // This method is called when watch view controller is no longer visible
       super.didDeactivate()
    }
 

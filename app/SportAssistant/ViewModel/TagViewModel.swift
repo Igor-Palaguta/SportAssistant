@@ -20,9 +20,10 @@ final class TagViewModel: BaseTagViewModel {
          .producer
          .map { $0 as! String }
 
-      //self.activityType <~ DynamicProperty(object: tag, keyPath: "activityType")
-      //   .producer
-      //   .map { $0 as! HKWorkoutActivityType }
+      self.activityType <~ DynamicProperty(object: tag, keyPath: "type")
+         .producer
+         .map { $0 as! Int }
+         .map { HKWorkoutActivityType(rawValue: UInt($0))! }
 
       self.trainingsCount <~ tag.trainings.changeSignal()
          .takeUntil(tag.invalidateSignal())

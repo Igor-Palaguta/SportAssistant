@@ -6,6 +6,24 @@ protocol AccelerometerData {
    var y: Double { get }
    var z: Double { get }
    var date: NSDate { get }
+   var weight: Double { get }
+}
+
+extension AccelerometerData {
+   var weight: Double {
+      return self.x * self.x + self.y * self.y + self.z * self.z
+   }
+}
+
+extension Comparable where Self: AccelerometerData {
+}
+
+func < (lhs: AccelerometerData, rhs: AccelerometerData) -> Bool {
+   return lhs.weight < rhs.weight
+}
+
+func == (lhs: AccelerometerData, rhs: AccelerometerData) -> Bool {
+   return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }
 
 protocol MotionManager: class {
