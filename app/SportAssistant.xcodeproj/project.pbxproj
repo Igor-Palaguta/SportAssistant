@@ -19,6 +19,7 @@
 		780FDBAD1C5EB83800FDF98F /* NKWatchChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */; };
 		780FDBAE1C5EB83800FDF98F /* NKWatchChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7812C4C21C688AC40055140D /* TrainingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7812C4C11C688AC40055140D /* TrainingsViewModel.swift */; };
+		7812C4C41C68DC4E0055140D /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7812C4C31C68DC4D0055140D /* TagCollectionViewCell.swift */; };
 		7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7813D6541C3C718400775FC7 /* Storyboard.swift */; };
 		78159A391C39D022001C8031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78159A381C39D022001C8031 /* Assets.xcassets */; };
 		78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78159A3D1C39D180001C8031 /* LocalizableStrings.swift */; };
@@ -135,6 +136,8 @@
 		78F0877E1C668F350062C724 /* Charts.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087781C668F350062C724 /* Charts.framework.dSYM */; };
 		78F0877F1C668F350062C724 /* Result.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F087791C668F350062C724 /* Result.framework.dSYM */; };
 		78F38C5E1C5575F30084FAF1 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */; };
+		78FC10A61C6B3E5B00FDED1A /* TagsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC10A51C6B3E5B00FDED1A /* TagsLayout.swift */; };
+		78FC10A81C6B42CC00FDED1A /* AutoLayoutCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC10A71C6B42CC00FDED1A /* AutoLayoutCollectionView.swift */; };
 		78FE1AC41C3E8CED002E7E1B /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +283,7 @@
 		780E49D01C4C3DDC004FBB7E /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		780FDBAC1C5EB83800FDF98F /* NKWatchChart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NKWatchChart.framework; path = ../Carthage/Build/watchOS/NKWatchChart.framework; sourceTree = "<group>"; };
 		7812C4C11C688AC40055140D /* TrainingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewModel.swift; sourceTree = "<group>"; };
+		7812C4C31C68DC4D0055140D /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		7813D6541C3C718400775FC7 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		78159A381C39D022001C8031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78159A3D1C39D180001C8031 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 		78F087781C668F350062C724 /* Charts.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Charts.framework.dSYM; path = ../Carthage/Build/iOS/Charts.framework.dSYM; sourceTree = "<group>"; };
 		78F087791C668F350062C724 /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = ../Carthage/Build/iOS/Result.framework.dSYM; sourceTree = "<group>"; };
 		78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
+		78FC10A51C6B3E5B00FDED1A /* TagsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsLayout.swift; sourceTree = "<group>"; };
+		78FC10A71C6B42CC00FDED1A /* AutoLayoutCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutCollectionView.swift; sourceTree = "<group>"; };
 		78FE1AC31C3E8CED002E7E1B /* PackageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -482,12 +488,14 @@
 		780E49C91C4BC327004FBB7E /* Tags */ = {
 			isa = PBXGroup;
 			children = (
+				78FC10A41C6B3E4500FDED1A /* Detail */,
 				780E49CC1C4C359A004FBB7E /* TagsViewController.swift */,
 				780E49CE1C4C35AC004FBB7E /* TagCell.swift */,
 				780E49D01C4C3DDC004FBB7E /* TagViewController.swift */,
 				7821E13F1C511790001B97A7 /* AddTagCell.swift */,
 				786A24FC1C5ABD7500B7470E /* ActivitiesViewController.swift */,
 				786A24FE1C5ABFB500B7470E /* ActivityCell.swift */,
+				7812C4C31C68DC4D0055140D /* TagCollectionViewCell.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -515,6 +523,7 @@
 				78AA57E21C3FAEF400319C51 /* UIAlertController+Helpers.swift */,
 				78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */,
 				780DAB4A1C662C6E002FA0B7 /* Realm+Notifications.swift */,
+				78FC10A71C6B42CC00FDED1A /* AutoLayoutCollectionView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -823,6 +832,14 @@
 				78CA65531C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		78FC10A41C6B3E4500FDED1A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				78FC10A51C6B3E5B00FDED1A /* TagsLayout.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1277,6 +1294,7 @@
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				789263AA1C6222AF00F9B94C /* TagViewModel.swift in Sources */,
 				789263AC1C6222C700F9B94C /* TrainingViewModel.swift in Sources */,
+				78FC10A61C6B3E5B00FDED1A /* TagsLayout.swift in Sources */,
 				786A24FF1C5ABFB500B7470E /* ActivityCell.swift in Sources */,
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,
 				78AA57E31C3FAEF400319C51 /* UIAlertController+Helpers.swift in Sources */,
@@ -1288,6 +1306,8 @@
 				7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */,
 				780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */,
 				780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */,
+				7812C4C41C68DC4E0055140D /* TagCollectionViewCell.swift in Sources */,
+				78FC10A81C6B42CC00FDED1A /* AutoLayoutCollectionView.swift in Sources */,
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				780DAB4B1C662C6E002FA0B7 /* Realm+Notifications.swift in Sources */,
 				780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */,

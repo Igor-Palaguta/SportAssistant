@@ -17,7 +17,7 @@ protocol TagViewControllerDelegate: class {
 
 final class TagViewController: UITableViewController {
 
-   var model = TagViewModel()
+   var model: EditableTagViewModel = AddTagViewModel()
    weak var delegate: TagViewControllerDelegate?
 
    @IBOutlet private weak var nameField: UITextField!
@@ -25,13 +25,13 @@ final class TagViewController: UITableViewController {
    @IBOutlet private weak var countLabel: UILabel!
 
    private lazy var saveAction: CocoaAction = {
-      return CocoaAction(self.model.saveAction, input: self.model.tagState)
+      return CocoaAction(self.model.saveAction, input: self.model)
    }()
 
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      self.title = self.model.title.value
+      self.title = self.model.title
       self.nameField.text = self.model.name.value
 
       self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel,
@@ -126,21 +126,25 @@ final class TagViewController: UITableViewController {
    }
 
    @IBAction private func deleteAction(_: UIButton) {
-      self.model.deleteAction?.apply(()).startWithNext {
-         [weak self] _ in
-         if let strongSelf = self {
-            strongSelf.delegate?.didCompleteTagViewController(strongSelf)
-         }
+      (self.model as? EditTagViewModel)?.deleteAction
+         .apply(())
+         .startWithNext {
+            [weak self] _ in
+            if let strongSelf = self {
+               strongSelf.delegate?.didCompleteTagViewController(strongSelf)
+            }
       }
    }
 
    @IBAction private func deleteTrainingsAction(_: UIButton) {
-      self.model.deleteTrainingsAction?.apply(()).startWithCompleted {
+      (self.model as? EditTagViewModel)?.deleteTrainingsAction
+         .apply(())
+         .startWithCompleted {
       }
    }
 
    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-      if self.model.deleteAction != nil {
+      if self.model is EditTagViewModel {
          return TagSection.Delete.rawValue + 1
       }
       return TagSection.Information.rawValue + 1

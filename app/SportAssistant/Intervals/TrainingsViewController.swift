@@ -43,6 +43,8 @@ final class TrainingsViewController: UITableViewController {
 
       if self.model.filter.value.hasInvalidatedTag {
          self.model.filter.value = self.model.filter.value.filterByRemovingInvalidatedTags()
+      } else {
+         self.tableView.reloadData()
       }
    }
 

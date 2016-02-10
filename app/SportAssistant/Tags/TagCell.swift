@@ -43,20 +43,20 @@ final class BadgeView: UIView {
 
 final class TagCell: UITableViewCell, ReusableNibView {
 
-   @IBOutlet private(set) weak var nameLabel: UILabel!
+   @IBOutlet private weak var nameLabel: UILabel!
    @IBOutlet private weak var countLabel: UILabel!
 
-   var trainingsCollection: TrainingsCollection! {
+   var model: TagViewModel! {
       didSet {
-         guard let trainingsCollection = self.trainingsCollection else {
-            return
-         }
+         DynamicProperty(object: self.nameLabel, keyPath: "text") <~
+            self.model.name.producer
+               .takeUntil(self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer())
+               .map { $0 }
 
          DynamicProperty(object: self.countLabel, keyPath: "text") <~
-            trainingsCollection.trainings.changeSignal()
+            self.model.trainingsCount.producer
                .takeUntil(self.rac_prepareForReuseSignal.toVoidNoErrorSignalProducer())
-               .takeUntil(trainingsCollection.invalidateSignal())
-               .map { "\($0.count)" }
+               .map { "\($0)" }
       }
    }
 }

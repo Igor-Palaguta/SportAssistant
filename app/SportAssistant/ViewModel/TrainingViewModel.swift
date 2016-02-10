@@ -7,7 +7,7 @@ final class TrainingViewModel {
    let isActive = MutableProperty(false)
    let duration = MutableProperty<NSTimeInterval>(0)
    let best = MutableProperty<Double>(0)
-   let tags = MutableProperty("")
+   let tags = MutableProperty<[Tag]>([])
    let hasTags = MutableProperty(false)
 
    let start: ConstantProperty<NSDate>
@@ -42,7 +42,7 @@ final class TrainingViewModel {
          .takeUntil(training.invalidateSignal())
 
       self.tags <~ tagsChangeSignal
-         .map { $0.map { $0.name }.joinWithSeparator(", ") }
+         .map { Array($0) }
 
       self.hasTags <~ tagsChangeSignal
          .map { !$0.isEmpty }

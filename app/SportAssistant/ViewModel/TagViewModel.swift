@@ -4,41 +4,78 @@ import Result
 import iOSEngine
 import HealthKit
 
-struct TagState {
-   let name: MutableProperty<String>
-   let activityType: MutableProperty<HKWorkoutActivityType>
+class BaseTagViewModel {
+   let name = MutableProperty<String>("")
+   let activityType = MutableProperty(HKWorkoutActivityType.Other)
 }
 
-class TagViewModel {
+final class TagViewModel: BaseTagViewModel {
 
-   let name = MutableProperty("")
-   let activityType = MutableProperty(HKWorkoutActivityType.Other)
+   let trainingsCount = MutableProperty(0)
 
+   init(tag: Tag) {
+      super.init()
+
+      self.name <~ DynamicProperty(object: tag, keyPath: "name")
+         .producer
+         .map { $0 as! String }
+
+      //self.activityType <~ DynamicProperty(object: tag, keyPath: "activityType")
+      //   .producer
+      //   .map { $0 as! HKWorkoutActivityType }
+
+      self.trainingsCount <~ tag.trainings.changeSignal()
+         .takeUntil(tag.invalidateSignal())
+         .map { $0.count }
+   }
+
+   override init() {
+      super.init()
+      self.name.value = tr(.AllTrainings)
+      let allTrainings = StorageController.UIController.allTrainings
+      self.trainingsCount <~ allTrainings.trainings.changeSignal()
+         .map { $0.count }
+   }
+}
+
+class EditableTagViewModel: BaseTagViewModel {
+   let title: String
+   typealias SaveAction = Action<BaseTagViewModel, (Tag, Bool), NoError>
+   let saveAction: SaveAction
    let isDefaultName = MutableProperty(true)
+
    let hasTrainings = MutableProperty(false)
    let trainingsCount = MutableProperty(0)
 
-   let title: ConstantProperty<String>
-   let saveAction: Action<TagState, (Tag, Bool), NoError>
-   let deleteAction: Action<(), (), NoError>?
-   let deleteTrainingsAction: Action<(), (), NoError>?
-
-   var tagState: TagState {
-      return TagState(name: self.name, activityType: self.activityType)
+   init(title: String, saveAction: SaveAction) {
+      self.title = title
+      self.saveAction = saveAction
    }
+}
 
-   init(tag: Tag) {
-      self.saveAction = Action {
-         state in
+final class AddTagViewModel: EditableTagViewModel {
+   init() {
+      let saveAction: SaveAction = Action {
+         model in
          return SignalProducer {
             sink, disposable in
             let storage = StorageController.UIController
-            storage.editTag(tag, name: state.name.value, activityType: state.activityType.value)
-            sink.sendNext((tag, false))
+            let tag = Tag(name: model.name.value, activityType: model.activityType.value)
+            storage.addTag(tag)
+            sink.sendNext((tag, true))
             sink.sendCompleted()
          }
       }
+      super.init(title: tr(.AddTag), saveAction: saveAction)
+   }
+}
 
+final class EditTagViewModel: EditableTagViewModel {
+
+   let deleteAction: Action<(), (), NoError>
+   let deleteTrainingsAction: Action<(), (), NoError>
+
+   init(tag: Tag) {
       self.deleteAction = Action {
          _ in
          return SignalProducer {
@@ -60,7 +97,19 @@ class TagViewModel {
          }
       }
 
-      self.title = ConstantProperty(tr(.EditTag))
+      let saveAction: SaveAction = Action {
+         model in
+         return SignalProducer {
+            sink, disposable in
+            let storage = StorageController.UIController
+            storage.editTag(tag, name: model.name.value, activityType: model.activityType.value)
+            sink.sendNext((tag, false))
+            sink.sendCompleted()
+         }
+      }
+
+      super.init(title: tr(.EditTag), saveAction: saveAction)
+
       self.name.value = tag.name
       self.activityType.value = tag.activityType
       self.isDefaultName.value = false
@@ -71,24 +120,5 @@ class TagViewModel {
       self.hasTrainings <~ tagsChangeSignal.map { !$0.isEmpty }
 
       self.trainingsCount <~ tagsChangeSignal.map { $0.count }
-   }
-
-   init() {
-      self.deleteAction = nil
-      self.deleteTrainingsAction = nil
-      self.saveAction = Action {
-         state in
-         return SignalProducer {
-            sink, disposable in
-            let storage = StorageController.UIController
-            let tag = Tag(name: state.name.value, activityType: state.activityType.value)
-            storage.addTag(tag)
-            sink.sendNext((tag, true))
-            sink.sendCompleted()
-         }
-      }
-
-      self.title = ConstantProperty(tr(.AddTag))
-      self.isDefaultName.value = true
    }
 }

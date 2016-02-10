@@ -240,12 +240,10 @@ final class TagsViewController: UITableViewController {
 
       let cell: TagCell = tableView.dequeueCellForIndexPath(indexPath)
       if let action = action where action == .SelectAll {
-         cell.nameLabel.text = tr(.AllTrainings)
-         cell.trainingsCollection = StorageController.UIController.allTrainings
+         cell.model = TagViewModel()
          cell.accessoryType = self.mode.accessoryForAll()
       } else if let tag = self.tagAtIndexPath(indexPath) {
-         cell.nameLabel.text = tag.name
-         cell.trainingsCollection = tag
+         cell.model = TagViewModel(tag: tag)
          cell.accessoryType = self.mode.accessoryForTag(tag)
       } else {
          fatalError()
@@ -312,7 +310,7 @@ final class TagsViewController: UITableViewController {
          trainingsViewController.model.filter.value = .Selected([tag])
       } else if let tagViewController = segue.destinationViewController as? TagViewController {
          tagViewController.delegate = self
-         tagViewController.model = tag.map { TagViewModel(tag: $0) } ?? TagViewModel()
+         tagViewController.model = tag.map { EditTagViewModel(tag: $0) } ?? AddTagViewModel()
       }
    }
 
