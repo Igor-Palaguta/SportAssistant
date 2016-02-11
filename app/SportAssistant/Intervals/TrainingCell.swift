@@ -157,7 +157,7 @@ extension TrainingCell: UICollectionViewDataSource, UICollectionViewDelegate, UI
 
    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       let cell: TagCollectionViewCell = collectionView.dequeueCellForIndexPath(indexPath)
-      cell.trainingTag = self.model.tags.value[indexPath.item]
+      cell.model = TagViewModel(tag: self.model.tags.value[indexPath.item])
       return cell
    }
 

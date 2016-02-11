@@ -26,11 +26,15 @@ extension StorageController {
       }
    }
 
-   public func editTag(tag: Tag, name: String, activityType: HKWorkoutActivityType) {
-      self.write {
-         tag.name = name
-         tag.activityType = activityType
-      }
+   public func editTag(tag: Tag,
+      name: String,
+      activityType: HKWorkoutActivityType,
+      color: UIColor) {
+         self.write {
+            tag.name = name
+            tag.activityType = activityType
+            tag.color = color
+         }
    }
 
    public func deleteTrainingsOfTag(tag: Tag) {

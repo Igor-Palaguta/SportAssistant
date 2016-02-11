@@ -23,6 +23,9 @@ final class TagViewController: UITableViewController {
    @IBOutlet private weak var nameField: UITextField!
    @IBOutlet private weak var activityLabel: UILabel!
    @IBOutlet private weak var countLabel: UILabel!
+   @IBOutlet private weak var colorsView: UICollectionView!
+
+   private lazy var colors: [UIColor] = [.redColor(), .greenColor(), .blueColor()]
 
    private lazy var saveAction: CocoaAction = {
       return CocoaAction(self.model.saveAction, input: self.model)
@@ -109,6 +112,24 @@ final class TagViewController: UITableViewController {
       self.navigationItem.rightBarButtonItem = saveItem
    }
 
+   override func viewDidAppear(animated: Bool) {
+      super.viewDidAppear(animated)
+
+      if let index = self.colors.indexOf(self.model.color.value) {
+         self.colorsView.selectItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0),
+            animated: false,
+            scrollPosition: .None)
+      }
+   }
+
+   override func shouldAutorotate() -> Bool {
+      return true
+   }
+
+   override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+      return [.Portrait]
+   }
+
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let activitiesViewController = segue.destinationViewController as? ActivitiesViewController {
          activitiesViewController.activityType = self.model.activityType.value
@@ -155,5 +176,21 @@ final class TagViewController: UITableViewController {
          return 1
       }
       return super.tableView(tableView, numberOfRowsInSection: section)
+   }
+}
+
+extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+      return self.colors.count
+   }
+
+   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+      let cell: ColorCell = collectionView.dequeueCellForIndexPath(indexPath)
+      cell.color = self.colors[indexPath.item]
+      return cell
+   }
+
+   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      self.model.color.value = self.colors[indexPath.item]
    }
 }

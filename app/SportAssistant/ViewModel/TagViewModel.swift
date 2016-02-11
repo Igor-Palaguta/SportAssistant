@@ -7,6 +7,7 @@ import HealthKit
 class BaseTagViewModel {
    let name = MutableProperty<String>("")
    let activityType = MutableProperty(HKWorkoutActivityType.Other)
+   let color = MutableProperty(UIColor.darkGrayColor())
 }
 
 final class TagViewModel: BaseTagViewModel {
@@ -28,6 +29,10 @@ final class TagViewModel: BaseTagViewModel {
       self.trainingsCount <~ tag.trainings.changeSignal()
          .takeUntil(tag.invalidateSignal())
          .map { $0.count }
+
+      self.color <~ DynamicProperty(object: tag, keyPath: "color")
+         .producer
+         .map { $0 as! UIColor }
    }
 
    override init() {
@@ -61,7 +66,9 @@ final class AddTagViewModel: EditableTagViewModel {
          return SignalProducer {
             sink, disposable in
             let storage = StorageController.UIController
-            let tag = Tag(name: model.name.value, activityType: model.activityType.value)
+            let tag = Tag(name: model.name.value,
+               activityType: model.activityType.value,
+               color: model.color.value)
             storage.addTag(tag)
             sink.sendNext((tag, true))
             sink.sendCompleted()
@@ -103,7 +110,10 @@ final class EditTagViewModel: EditableTagViewModel {
          return SignalProducer {
             sink, disposable in
             let storage = StorageController.UIController
-            storage.editTag(tag, name: model.name.value, activityType: model.activityType.value)
+            storage.editTag(tag,
+               name: model.name.value,
+               activityType: model.activityType.value,
+               color: model.color.value)
             sink.sendNext((tag, false))
             sink.sendCompleted()
          }
