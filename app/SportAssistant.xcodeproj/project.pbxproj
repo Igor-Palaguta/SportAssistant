@@ -39,6 +39,7 @@
 		784DD7B11C6BD04300108216 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7B01C6BD04300108216 /* ColorCell.swift */; };
 		784DD7B41C6BD3D100108216 /* UIColor+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7B31C6BD3D100108216 /* UIColor+Conversion.swift */; };
 		784DD7B51C6BD3D100108216 /* UIColor+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7B31C6BD3D100108216 /* UIColor+Conversion.swift */; };
+		784DD7D01C6D377400108216 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7CF1C6D377400108216 /* BadgeView.swift */; };
 		786805531C5659F7001AC1F0 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054E1C5659F6001AC1F0 /* SwiftDate.framework */; };
 		786805541C5659F7001AC1F0 /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054E1C5659F6001AC1F0 /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805551C5659F7001AC1F0 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */; };
@@ -304,6 +305,7 @@
 		784D25071C1F1856006491A0 /* MenuInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInterfaceController.swift; sourceTree = "<group>"; };
 		784DD7B01C6BD04300108216 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		784DD7B31C6BD3D100108216 /* UIColor+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Conversion.swift"; sourceTree = "<group>"; };
+		784DD7CF1C6D377400108216 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		7868054E1C5659F6001AC1F0 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = ../Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		786805501C5659F7001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				78F38C5D1C5575F30084FAF1 /* UIViewController+Helpers.swift */,
 				780DAB4A1C662C6E002FA0B7 /* Realm+Notifications.swift */,
 				78FC10A71C6B42CC00FDED1A /* AutoLayoutCollectionView.swift */,
+				784DD7CF1C6D377400108216 /* BadgeView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1311,6 +1314,7 @@
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				789263AA1C6222AF00F9B94C /* TagViewModel.swift in Sources */,
 				789263AC1C6222C700F9B94C /* TrainingViewModel.swift in Sources */,
+				784DD7D01C6D377400108216 /* BadgeView.swift in Sources */,
 				78FC10A61C6B3E5B00FDED1A /* TagsLayout.swift in Sources */,
 				786A24FF1C5ABFB500B7470E /* ActivityCell.swift in Sources */,
 				78045FD71C26073700FEEB87 /* TrainingsViewController.swift in Sources */,

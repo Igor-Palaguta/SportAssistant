@@ -135,7 +135,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGa-X6-48B">
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGa-X6-48B" customClass="BadgeView" customModule="SwingTracer" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgb-aI-hmF">
@@ -580,6 +580,9 @@
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="ZSj-53-dxE"/>
                                                 <constraint firstItem="Yt6-B4-YMa" firstAttribute="leading" secondItem="UOO-mB-9TR" secondAttribute="leading" constant="2" id="oei-n6-uqU"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -633,7 +636,7 @@
             <objects>
                 <tableViewController id="NDa-Sq-Wze" customClass="TagViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZtU-Sk-ZPj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NJ3-I8-ywt">
@@ -705,28 +708,38 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uRO-rM-LYh">
-                                                        <size key="itemSize" width="20" height="20"/>
+                                                        <size key="itemSize" width="32" height="32"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCell" id="QVc-If-jkI" customClass="ColorCell" customModule="SwingTracer" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="12" width="20" height="20"/>
+                                                            <rect key="frame" x="0.0" y="6" width="32" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIJ-QY-X50">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltu-cA-g5g">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                <integer key="value" value="10"/>
+                                                                                <integer key="value" value="16"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                                <integer key="value" value="2"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIJ-QY-X50">
+                                                                        <rect key="frame" x="6" y="6" width="20" height="20"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="20" id="G2Z-LR-kEb"/>
+                                                                            <constraint firstAttribute="height" constant="20" id="xXV-4O-ouh"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
@@ -734,13 +747,28 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="ltu-cA-g5g" secondAttribute="trailing" id="HYa-U6-8yY"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ltu-cA-g5g" secondAttribute="bottom" id="IZc-dC-ZUE"/>
                                                                 <constraint firstItem="cIJ-QY-X50" firstAttribute="top" secondItem="QVc-If-jkI" secondAttribute="top" id="Ign-b2-bGz"/>
                                                                 <constraint firstAttribute="trailing" secondItem="cIJ-QY-X50" secondAttribute="trailing" id="JNs-71-K3J"/>
+                                                                <constraint firstItem="ltu-cA-g5g" firstAttribute="top" secondItem="QVc-If-jkI" secondAttribute="top" id="NEv-5Z-W19"/>
                                                                 <constraint firstAttribute="bottom" secondItem="cIJ-QY-X50" secondAttribute="bottom" id="Obj-8A-x0H"/>
                                                                 <constraint firstItem="cIJ-QY-X50" firstAttribute="leading" secondItem="QVc-If-jkI" secondAttribute="leading" id="aSd-F5-hvm"/>
+                                                                <constraint firstItem="cIJ-QY-X50" firstAttribute="centerY" secondItem="QVc-If-jkI" secondAttribute="centerY" id="avi-yI-c7p"/>
+                                                                <constraint firstItem="cIJ-QY-X50" firstAttribute="centerX" secondItem="QVc-If-jkI" secondAttribute="centerX" id="lW4-D3-IDo"/>
+                                                                <constraint firstItem="ltu-cA-g5g" firstAttribute="leading" secondItem="QVc-If-jkI" secondAttribute="leading" id="sQb-4I-P3B"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="Ign-b2-bGz"/>
+                                                                    <exclude reference="JNs-71-K3J"/>
+                                                                    <exclude reference="Obj-8A-x0H"/>
+                                                                    <exclude reference="aSd-F5-hvm"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <outlet property="colorView" destination="cIJ-QY-X50" id="NcV-yE-EZU"/>
+                                                                <outlet property="selectedBackgroundView" destination="ltu-cA-g5g" id="Rem-mQ-82D"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -838,7 +866,7 @@
             <objects>
                 <tableViewController id="HGb-vc-9az" customClass="ActivitiesViewController" customModule="SwingTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z8f-R4-8TH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -922,8 +950,8 @@
         <image name="Tags" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qhy-5q-sNK"/>
-        <segue reference="N2S-S2-3Wf"/>
         <segue reference="Igz-RH-noq"/>
+        <segue reference="N2S-S2-3Wf"/>
+        <segue reference="Qhy-5q-sNK"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -123,6 +123,7 @@ final class EditTagViewModel: EditableTagViewModel {
 
       self.name.value = tag.name
       self.activityType.value = tag.activityType
+      self.color.value = tag.color
       self.isDefaultName.value = false
 
       let tagsChangeSignal = tag.trainings.changeSignal()

@@ -117,7 +117,7 @@ final class TagViewController: UITableViewController {
 
       if let index = self.colors.indexOf(self.model.color.value) {
          self.colorsView.selectItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0),
-            animated: false,
+            animated: true,
             scrollPosition: .None)
       }
    }

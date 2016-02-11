@@ -1,6 +1,6 @@
 github "Igor-Palaguta/NKWatchChart" "0.2.3"
 github "antitypical/Result" "1.0.2"
 github "malcommac/SwiftDate" "3.0.1"
-github "danielgindi/ios-charts" "v2.2.1"
-github "realm/realm-cocoa" "v0.98.0"
+github "danielgindi/ios-charts" "v2.2.2"
+github "realm/realm-cocoa" "v0.98.1"
 github "ReactiveCocoa/ReactiveCocoa" "v4.0.1"
