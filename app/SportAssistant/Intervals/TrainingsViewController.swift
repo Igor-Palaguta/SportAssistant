@@ -92,10 +92,11 @@ final class TrainingsViewController: UITableViewController {
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let navigationController = segue.destinationViewController as? UINavigationController,
          tagsViewController = navigationController.viewControllers.first as? TagsViewController {
-            tagsViewController.mode = .Picker(self.model.filter.value, .Multiple, .EmptyNotAllowed)
+            tagsViewController.actions = []
+            tagsViewController.mode = .Picker(self.model.filter.value, [.AllowsEmpty, .AllowsMultipleSelection])
             tagsViewController.completionHandler = {
                [unowned self] tagsViewController in
-               if case .Picker(let filter, _, _) = tagsViewController.mode {
+               if case .Picker(let filter, _) = tagsViewController.mode {
                   self.model.filter.value = filter
                }
                tagsViewController.dismissViewControllerAnimated(true, completion: nil)

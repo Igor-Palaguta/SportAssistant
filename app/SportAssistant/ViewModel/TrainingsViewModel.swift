@@ -5,22 +5,22 @@ import ReactiveCocoa
 import Result
 
 extension TagsFilter {
-   var name: String {
+   private var name: String {
       switch self {
-      case All:
-         return tr(.AllTrainings)
-      case .Selected(let tags):
+      case .Selected(let tags) where !tags.isEmpty:
          return tags.map { $0.name }.joinWithSeparator(", ")
+      default:
+         return tr(.AllTrainings)
       }
    }
 
-   var trainings: Results<Training> {
+   private var trainings: Results<Training> {
       let storage = StorageController.UIController
       switch self {
-      case All:
-         return storage.trainingsOrderedBy(.Date, ascending: false)
-      case .Selected(let tags):
+      case .Selected(let tags) where !tags.isEmpty:
          return storage.trainingsForTags(tags, orderBy: .Date, ascending: false)
+      default:
+         return storage.trainingsOrderedBy(.Date, ascending: false)
       }
    }
 
@@ -48,7 +48,7 @@ extension TagsFilter {
 }
 
 final class TrainingsViewModel {
-   var filter = MutableProperty(TagsFilter.All)
+   var filter = MutableProperty(TagsFilter.Selected([]))
 
    var name: SignalProducer<String, NoError> {
       return self.filter.producer.map { $0.name }

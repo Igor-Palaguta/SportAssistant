@@ -439,7 +439,7 @@ final class TrainingViewController: UIViewController {
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       if let navigationController = segue.destinationViewController as? UINavigationController,
          let tagsViewController = navigationController.viewControllers.first as? TagsViewController {
-            tagsViewController.mode = .Picker(.Selected(Array(self.training.tags)), .Multiple, .EmptyAllowed)
+            tagsViewController.mode = .Picker(.Selected(Array(self.training.tags)), [.AllowsEmpty, .AllowsMultipleSelection, .SelectAllAutomatically])
             tagsViewController.completionHandler = {
                [unowned self] tagsViewController in
                StorageController.UIController.assignTags(tagsViewController.mode.tags,

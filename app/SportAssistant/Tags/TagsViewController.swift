@@ -38,34 +38,54 @@ enum TagsFilter {
 
 final class TagsViewController: UITableViewController {
 
-   enum Style {
-      case Single
-      case Multiple
-   }
+   struct Options: OptionSetType {
+      let rawValue: Int
+      init(rawValue: Int) { self.rawValue = rawValue }
 
-   enum Restrictions {
-      case EmptyAllowed
-      case EmptyNotAllowed
+      static let AllowsEmpty = Options(rawValue: 1)
+      static let AllowsMultipleSelection = Options(rawValue: 2)
+      static let SelectAllAutomatically = Options(rawValue: 4)
    }
 
    enum Mode {
       case Navigator
-      case Picker(TagsFilter, Style, Restrictions)
+      case Picker(TagsFilter, Options)
 
       var tags: [Tag] {
          switch self {
          case Navigator:
             fatalError()
-         case Picker(let filter, _, _):
+         case Picker(let filter, _):
             return filter.tags
          }
+      }
+
+      var allowsMultipleSelection: Bool {
+         guard case .Picker(_, let options) = self else {
+            fatalError()
+         }
+         return options.contains(.AllowsMultipleSelection)
+      }
+
+      var allowsEmpty: Bool {
+         guard case .Picker(_, let options) = self else {
+            fatalError()
+         }
+         return options.contains(.AllowsEmpty)
+      }
+
+      var shouldSelectAllAutomatically: Bool {
+         guard case .Picker(_, let options) = self else {
+            fatalError()
+         }
+         return options.contains(.SelectAllAutomatically)
       }
 
       private func accessoryForAll() -> UITableViewCellAccessoryType {
          switch self {
          case Navigator:
             return .DisclosureIndicator
-         case Picker(.All, _, _):
+         case Picker(.All, _):
             return .Checkmark
          default:
             return .None
@@ -76,9 +96,9 @@ final class TagsViewController: UITableViewController {
          switch self {
          case Navigator:
             return false
-         case Picker(.All, let style, _):
-            return style == .Multiple
-         case Picker(.Selected(let tags), _, _):
+         case Picker(.All, _):
+            return self.allowsMultipleSelection
+         case Picker(.Selected(let tags), _):
             return tags.contains(tag)
          }
       }
@@ -93,37 +113,42 @@ final class TagsViewController: UITableViewController {
       }
 
       private func modeWithFilter(filter: TagsFilter) -> Mode {
-         guard case Picker(_, let style, let restrictions) = self else {
+         guard case Picker(_, let options) = self else {
             fatalError()
          }
 
          if case .Selected(let selectedTags) = filter
-            where style == .Multiple && selectedTags.count == TagsFilter.All.tags.count {
-               return Picker(.All, style, restrictions)
+            where self.allowsMultipleSelection
+               && self.shouldSelectAllAutomatically
+               && selectedTags.count == TagsFilter.All.tags.count {
+                  return Picker(.All, options)
          }
 
-         return Picker(filter, style, restrictions)
+         return Picker(filter, options)
       }
 
       private func modeByTogglingTag(tag: Tag) -> Mode {
          switch self {
          case Navigator:
             return self
-         case Picker(_, .Multiple, .EmptyNotAllowed):
+         case Picker(_)
+            where self.allowsMultipleSelection && !self.allowsEmpty:
             let newTags = self.tags.arrayByTogglingElement(tag)
             return newTags.isEmpty ? self : self.modeWithFilter(.Selected(newTags))
-         case Picker(_, .Multiple, .EmptyAllowed):
+         case Picker(_) where self.allowsMultipleSelection && self.allowsEmpty:
             let newTags = self.tags.arrayByTogglingElement(tag)
             return self.modeWithFilter(.Selected(newTags))
-         case Picker(.All, .Single, _):
+         case Picker(.All, _) where !self.allowsMultipleSelection:
             return self.modeWithFilter(.Selected([tag]))
-         case Picker(.Selected(let tags), .Single, .EmptyAllowed):
+         case Picker(.Selected(let tags), _)
+            where !self.allowsMultipleSelection && self.allowsEmpty:
             if let selectedTag = tags.first where selectedTag == tag {
                return self.modeWithFilter(.Selected([]))
             } else {
                return self.modeWithFilter(.Selected([tag]))
             }
-         case Picker(.Selected(let tags), .Single, .EmptyNotAllowed):
+         case Picker(.Selected(let tags), _)
+            where !self.allowsMultipleSelection && !self.allowsEmpty:
             if let selectedTag = tags.first where selectedTag == tag {
                return self
             } else {
@@ -138,11 +163,11 @@ final class TagsViewController: UITableViewController {
          switch self {
          case Navigator:
             fatalError()
-         case Picker(.All, _, .EmptyNotAllowed):
+         case Picker(.All, _) where !self.allowsEmpty:
             return self
-         case Picker(.All, _, .EmptyAllowed):
+         case Picker(.All, _) where self.allowsEmpty:
             return self.modeWithFilter(.Selected([]))
-         case Picker(.Selected(_), _, _):
+         case Picker(.Selected(_), _):
             return self.modeWithFilter(.All)
          default:
             fatalError()
@@ -163,7 +188,7 @@ final class TagsViewController: UITableViewController {
 
    var actions: [Action] = [.Add, .SelectAll] {
       didSet {
-         self.tableView.reloadData()
+         self.tableView?.reloadData()
       }
    }
 
@@ -292,11 +317,12 @@ final class TagsViewController: UITableViewController {
    }
 
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      if indexPath.row == Action.Add.rawValue {
+      let action = self.actionAtIndexPath(indexPath)
+      if let action = action where action == .Add {
          self.performSegue(StoryboardSegue.Main.Add, sender: nil)
       } else if case .Navigator = self.mode {
          self.performSegue(StoryboardSegue.Main.Trainings, sender: self.tagAtIndexPath(indexPath))
-      } else if let action = self.actionAtIndexPath(indexPath) where action == .SelectAll {
+      } else if let action = action where action == .SelectAll {
          self.mode = self.mode.modeByTogglingAll()
       } else if let tag = self.tagAtIndexPath(indexPath) {
          self.mode = self.mode.modeByTogglingTag(tag)
