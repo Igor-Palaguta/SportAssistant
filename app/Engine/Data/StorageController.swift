@@ -15,8 +15,14 @@ public final class StorageController: NSObject {
       let realm = try! Realm()
       if realm.objects(History).isEmpty {
          let history = History()
-         let tableTennis = Tag(id: "1", name: "Table Tennis", activityType: .TableTennis)
-         let boxing = Tag(id: "2", name: "Boxing", activityType: .Boxing)
+         let tableTennis = Tag(id: "1",
+            name: "Table Tennis",
+            activityType: .TableTennis,
+            color: UIColor(hex: "#c0392bff"))
+         let boxing = Tag(id: "2",
+            name: "Boxing",
+            activityType: .Boxing,
+            color: UIColor(hex: "#27ae60ff"))
          try! realm.write {
             realm.add([history, tableTennis, boxing])
          }

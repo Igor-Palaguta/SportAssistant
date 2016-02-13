@@ -40,6 +40,8 @@
 		784DD7B41C6BD3D100108216 /* UIColor+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7B31C6BD3D100108216 /* UIColor+Conversion.swift */; };
 		784DD7B51C6BD3D100108216 /* UIColor+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7B31C6BD3D100108216 /* UIColor+Conversion.swift */; };
 		784DD7D01C6D377400108216 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DD7CF1C6D377400108216 /* BadgeView.swift */; };
+		784DD7DA1C6E889000108216 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784DD7D91C6E889000108216 /* Chameleon.framework */; };
+		784DD7DB1C6E889000108216 /* Chameleon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 784DD7D91C6E889000108216 /* Chameleon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805531C5659F7001AC1F0 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054E1C5659F6001AC1F0 /* SwiftDate.framework */; };
 		786805541C5659F7001AC1F0 /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054E1C5659F6001AC1F0 /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		786805551C5659F7001AC1F0 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */; };
@@ -120,6 +122,8 @@
 		789263A71C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */; };
 		789263AA1C6222AF00F9B94C /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A91C6222AF00F9B94C /* TagViewModel.swift */; };
 		789263AC1C6222C700F9B94C /* TrainingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263AB1C6222C700F9B94C /* TrainingViewModel.swift */; };
+		78945FAE1C6FC9BC0075573D /* NSAttributedString+Join.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78945FAD1C6FC9BC0075573D /* NSAttributedString+Join.swift */; };
+		78945FB21C6FCDD80075573D /* TagColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78945FB11C6FCDD80075573D /* TagColors.swift */; };
 		789C3C521C295B7A00FD6B08 /* BackgroundSuspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */; };
 		789C3C531C298FA600FD6B08 /* NSNumberFormatter+Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */; };
 		789DE8EF1C27484000B8CA98 /* RACHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DE8EE1C27484000B8CA98 /* RACHelpers.swift */; };
@@ -214,6 +218,7 @@
 				7868055A1C5659F7001AC1F0 /* Realm.framework in Embed Frameworks */,
 				786805541C5659F7001AC1F0 /* SwiftDate.framework in Embed Frameworks */,
 				7868055C1C5659F7001AC1F0 /* Result.framework in Embed Frameworks */,
+				784DD7DB1C6E889000108216 /* Chameleon.framework in Embed Frameworks */,
 				7868056A1C565B6A001AC1F0 /* Charts.framework in Embed Frameworks */,
 				786805561C5659F7001AC1F0 /* ReactiveCocoa.framework in Embed Frameworks */,
 				786805861C565EFE001AC1F0 /* iOSEngine.framework in Embed Frameworks */,
@@ -306,6 +311,7 @@
 		784DD7B01C6BD04300108216 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		784DD7B31C6BD3D100108216 /* UIColor+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Conversion.swift"; sourceTree = "<group>"; };
 		784DD7CF1C6D377400108216 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		784DD7D91C6E889000108216 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = ../Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 		7868054E1C5659F6001AC1F0 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = ../Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		7868054F1C5659F7001AC1F0 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		786805501C5659F7001AC1F0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -374,6 +380,9 @@
 		789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Training.swift"; sourceTree = "<group>"; };
 		789263A91C6222AF00F9B94C /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		789263AB1C6222C700F9B94C /* TrainingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewModel.swift; sourceTree = "<group>"; };
+		78945FAD1C6FC9BC0075573D /* NSAttributedString+Join.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Join.swift"; sourceTree = "<group>"; };
+		78945FAF1C6FCBA40075573D /* tag_colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tag_colors.txt; sourceTree = "<group>"; };
+		78945FB11C6FCDD80075573D /* TagColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagColors.swift; sourceTree = "<group>"; };
 		789C3C511C295B7A00FD6B08 /* BackgroundSuspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSuspender.swift; sourceTree = "<group>"; };
 		789DE8EE1C27484000B8CA98 /* RACHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpers.swift; sourceTree = "<group>"; };
 		789DE8F21C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Acceleration.swift"; sourceTree = "<group>"; };
@@ -437,6 +446,7 @@
 				786805551C5659F7001AC1F0 /* ReactiveCocoa.framework in Frameworks */,
 				786805571C5659F7001AC1F0 /* RealmSwift.framework in Frameworks */,
 				786805691C565B6A001AC1F0 /* Charts.framework in Frameworks */,
+				784DD7DA1C6E889000108216 /* Chameleon.framework in Frameworks */,
 				7868055B1C5659F7001AC1F0 /* Result.framework in Frameworks */,
 				787636121C31F00300E84348 /* HealthKit.framework in Frameworks */,
 				786805591C5659F7001AC1F0 /* Realm.framework in Frameworks */,
@@ -668,6 +678,7 @@
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
+				784DD7D91C6E889000108216 /* Chameleon.framework */,
 				78F087741C668F350062C724 /* SwiftDate.framework.dSYM */,
 				78F087751C668F350062C724 /* Realm.framework.dSYM */,
 				78F087761C668F350062C724 /* RealmSwift.framework.dSYM */,
@@ -790,9 +801,11 @@
 		788C3B401C28AB400081BD13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78945FB11C6FCDD80075573D /* TagColors.swift */,
 				7813D6541C3C718400775FC7 /* Storyboard.swift */,
 				78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */,
 				787953381C56CC6500780275 /* Localizable.strings */,
+				78945FAF1C6FCBA40075573D /* tag_colors.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -847,6 +860,7 @@
 			children = (
 				78C38DDE1C491658003CD041 /* TimerLabel.swift */,
 				78CA65531C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift */,
+				78945FAD1C6FC9BC0075573D /* NSAttributedString+Join.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1215,7 +1229,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Base.lproj/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen storyboards \"./SportAssistant/Base.lproj\" > \"./SportAssistant/Resources/Storyboard.swift\"\n";
+			shellScript = "../tools/swiftgen/bin/swiftgen strings \"./SportAssistant/Resources/Base.lproj/Localizable.strings\" > \"./SportAssistant/Resources/LocalizableStrings.swift\"\n\n../tools/swiftgen/bin/swiftgen storyboards \"./SportAssistant/Base.lproj\" > \"./SportAssistant/Resources/Storyboard.swift\"\n\n../tools/swiftgen/bin/swiftgen colors \"./SportAssistant/Resources/tag_colors.txt\" > \"./SportAssistant/Resources/TagColors.swift\"\n";
 		};
 		78EB0B621C3AA278006672BD /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1314,6 +1328,7 @@
 				788A51991C15835600A166A0 /* AppDelegate.swift in Sources */,
 				789263AA1C6222AF00F9B94C /* TagViewModel.swift in Sources */,
 				789263AC1C6222C700F9B94C /* TrainingViewModel.swift in Sources */,
+				78945FB21C6FCDD80075573D /* TagColors.swift in Sources */,
 				784DD7D01C6D377400108216 /* BadgeView.swift in Sources */,
 				78FC10A61C6B3E5B00FDED1A /* TagsLayout.swift in Sources */,
 				786A24FF1C5ABFB500B7470E /* ActivityCell.swift in Sources */,
@@ -1371,6 +1386,7 @@
 				78CA65541C62AE7900F93725 /* NSProcessInfo+SimulatorCheck.swift in Sources */,
 				7807AC5A1C4EE9F500D2BCE5 /* TagController.swift in Sources */,
 				78A2D1E31C2C137D00EEBDD7 /* TrainingController.swift in Sources */,
+				78945FAE1C6FC9BC0075573D /* NSAttributedString+Join.swift in Sources */,
 				78159A3E1C39D180001C8031 /* LocalizableStrings.swift in Sources */,
 				7848466B1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				78C38DDF1C491658003CD041 /* TimerLabel.swift in Sources */,

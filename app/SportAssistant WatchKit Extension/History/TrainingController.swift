@@ -26,7 +26,11 @@ final class TrainingController: NSObject {
    var training: Training! {
       didSet {
 
-         self.tagsLabel.setText(training.tags.map { $0.name }.joinWithSeparator(", "))
+         let attributedTags = training.tags
+            .map { NSAttributedString(string: $0.name, attributes: [NSBackgroundColorAttributeName: $0.color]) }
+            .joinWithSeparator(" ")
+
+         self.tagsLabel.setAttributedText(attributedTags)
 
          self.dateLabel.setText(TrainingController.dateFormatter.stringFromDate(self.training.start))
          self.timeLabel.setText(TrainingController.timeFormatter.stringFromDate(self.training.start))

@@ -36,11 +36,11 @@ extension StorageController {
             if let existentTag = self.realm.objectForPrimaryKey(Tag.self, key: tag.id) {
                existentTag.name = tag.name
                existentTag.activityType = tag.activityType
+               existentTag.colorHex = tag.colorHex
             } else {
                self.realm.add(tag)
             }
          }
       }
    }
-
 }

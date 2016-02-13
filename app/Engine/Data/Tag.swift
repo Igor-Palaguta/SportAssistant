@@ -9,11 +9,12 @@ public final class Tag: TrainingsCollection, Equatable {
    public internal(set) dynamic var type = Int(HKWorkoutActivityType.Other.rawValue)
    dynamic var colorHex: String = UIColor.darkGrayColor().hex
 
-   convenience init(id: String, name: String, activityType: HKWorkoutActivityType) {
+   convenience init(id: String, name: String, activityType: HKWorkoutActivityType, color: UIColor) {
       self.init()
       self.id = id
       self.name = name
       self.activityType = activityType
+      self.color = color
    }
 
    public convenience init(name: String, activityType: HKWorkoutActivityType, color: UIColor) {

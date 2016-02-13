@@ -19,8 +19,11 @@ final class TrainingInterfaceController: WKInterfaceController {
 
    private(set) var training: Training! {
       didSet {
-         let tagsString = training.tags.map { $0.name }.joinWithSeparator(", ")
-         self.tagsLabel.setText(tagsString)
+         let attributedTags = training.tags
+            .map { NSAttributedString(string: $0.name, attributes: [NSBackgroundColorAttributeName: $0.color]) }
+            .joinWithSeparator(" ")
+
+         self.tagsLabel.setAttributedText(attributedTags)
          self.bestLabel.setText(training.best.formattedAcceleration)
          self.durationLabel.setDuration(training.duration)
          let activityEvents = training.activityEvents

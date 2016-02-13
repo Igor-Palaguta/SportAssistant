@@ -2,6 +2,8 @@ import WatchKit
 import watchOSEngine
 
 class TagController: NSObject {
+
+   @IBOutlet private weak var colorGroup: WKInterfaceGroup!
    @IBOutlet private(set) weak var nameLabel: WKInterfaceLabel!
    @IBOutlet private(set) weak var bestLabel: WKInterfaceLabel!
    @IBOutlet private(set) weak var dateLabel: WKInterfaceLabel!
@@ -15,6 +17,9 @@ class TagController: NSObject {
 
    var trainingTag: Tag! {
       didSet {
+
+         self.colorGroup.setBackgroundColor(self.trainingTag.color)
+
          self.nameLabel.setText(self.trainingTag.name)
          let lastStrings = self.trainingTag.last.map {
             tr(.LastFormat(TagController.dateFormatter.stringFromDate($0.start)))

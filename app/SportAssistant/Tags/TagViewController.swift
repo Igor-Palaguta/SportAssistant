@@ -25,7 +25,15 @@ final class TagViewController: UITableViewController {
    @IBOutlet private weak var countLabel: UILabel!
    @IBOutlet private weak var colorsView: UICollectionView!
 
-   private lazy var colors: [UIColor] = [.redColor(), .greenColor(), .blueColor()]
+   private lazy var colors: [UIColor] = [UIColor(named: .Asbestos),
+      UIColor(named: .BelizeHole),
+      UIColor(named: .GreenSea),
+      UIColor(named: .MidnightBlue),
+      UIColor(named: .Nephritis),
+      UIColor(named: .Orange),
+      UIColor(named: .Pomegranate),
+      UIColor(named: .Pumpkin),
+      UIColor(named: .Wisteria)]
 
    private lazy var saveAction: CocoaAction = {
       return CocoaAction(self.model.saveAction, input: self.model)
@@ -118,7 +126,7 @@ final class TagViewController: UITableViewController {
       if let index = self.colors.indexOf(self.model.color.value) {
          self.colorsView.selectItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0),
             animated: true,
-            scrollPosition: .None)
+            scrollPosition: .CenteredHorizontally)
       }
    }
 
