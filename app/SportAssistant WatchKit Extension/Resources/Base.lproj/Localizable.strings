@@ -11,3 +11,4 @@
 "Other" = "Other";
 "BestFormat" = "Best: %@";
 "LastFormat" = "Last: %@";
+"RecordFormat" = "%@";

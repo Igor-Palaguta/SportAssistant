@@ -101,6 +101,18 @@
 		786A250A1C5B677500B7470E /* Activity+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A25081C5B676700B7470E /* Activity+JSON.swift */; };
 		786A250B1C5B677600B7470E /* Activity+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A25081C5B676700B7470E /* Activity+JSON.swift */; };
 		786C3F4F1C340B3D00CBCC54 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */; };
+		787281AA1C74A78B00A47973 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A01C74A78B00A47973 /* OpenSans-Bold.ttf */; };
+		787281AB1C74A78B00A47973 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A11C74A78B00A47973 /* OpenSans-BoldItalic.ttf */; };
+		787281AC1C74A78B00A47973 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A21C74A78B00A47973 /* OpenSans-ExtraBold.ttf */; };
+		787281AD1C74A78B00A47973 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A31C74A78B00A47973 /* OpenSans-ExtraBoldItalic.ttf */; };
+		787281AE1C74A78B00A47973 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A41C74A78B00A47973 /* OpenSans-Italic.ttf */; };
+		787281AF1C74A78B00A47973 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A51C74A78B00A47973 /* OpenSans-Light.ttf */; };
+		787281B01C74A78B00A47973 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A61C74A78B00A47973 /* OpenSans-LightItalic.ttf */; };
+		787281B11C74A78B00A47973 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A71C74A78B00A47973 /* OpenSans-Regular.ttf */; };
+		787281B21C74A78B00A47973 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A81C74A78B00A47973 /* OpenSans-Semibold.ttf */; };
+		787281B31C74A78B00A47973 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787281A91C74A78B00A47973 /* OpenSans-SemiboldItalic.ttf */; };
+		787281B61C74B5F500A47973 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787281B51C74B5F500A47973 /* Theme.swift */; };
+		787281B81C74B68D00A47973 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787281B71C74B68D00A47973 /* Fonts.swift */; };
 		787636121C31F00300E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636111C31F00300E84348 /* HealthKit.framework */; };
 		787636141C31F00E00E84348 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787636131C31F00E00E84348 /* HealthKit.framework */; };
 		787953361C56CC6500780275 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 787953381C56CC6500780275 /* Localizable.strings */; };
@@ -116,7 +128,7 @@
 		788A51BE1C15835600A166A0 /* SportAssistant WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 788A51BD1C15835600A166A0 /* SportAssistant WatchKit App.app */; };
 		788A51C41C15835600A166A0 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C21C15835600A166A0 /* Interface.storyboard */; };
 		788A51C61C15835600A166A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788A51C51C15835600A166A0 /* Assets.xcassets */; };
-		788A51CD1C15835600A166A0 /* SwingTracer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* SwingTracer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		788A51CD1C15835600A166A0 /* BeatTracer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 788A51CC1C15835600A166A0 /* BeatTracer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788A51D61C15835600A166A0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A51D51C15835600A166A0 /* ExtensionDelegate.swift */; };
 		789263A61C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */; };
 		789263A71C614BB900F9B94C /* NSUserActivity+Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789263A51C614BB900F9B94C /* NSUserActivity+Training.swift */; };
@@ -247,7 +259,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				788A51CD1C15835600A166A0 /* SwingTracer.appex in Embed App Extensions */,
+				788A51CD1C15835600A166A0 /* BeatTracer.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +359,18 @@
 		786A25041C5B671E00B7470E /* AccelerationEvent+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccelerationEvent+JSON.swift"; sourceTree = "<group>"; };
 		786A25081C5B676700B7470E /* Activity+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+JSON.swift"; sourceTree = "<group>"; };
 		786C3F4E1C340B3D00CBCC54 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		787281A01C74A78B00A47973 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		787281A11C74A78B00A47973 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		787281A21C74A78B00A47973 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		787281A31C74A78B00A47973 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		787281A41C74A78B00A47973 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		787281A51C74A78B00A47973 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		787281A61C74A78B00A47973 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		787281A71C74A78B00A47973 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		787281A81C74A78B00A47973 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		787281A91C74A78B00A47973 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		787281B51C74B5F500A47973 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		787281B71C74B68D00A47973 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		787636111C31F00300E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		787636131C31F00E00E84348 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		787953351C56CC4600780275 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -357,7 +381,7 @@
 		7881FD571C56C8BE00574990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78898AC31C419ECE00907629 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = colors.txt; sourceTree = "<group>"; };
 		78898AC51C419FFF00907629 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		788A51951C15835600A166A0 /* SwingTracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingTracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		788A51951C15835600A166A0 /* BeatTracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatTracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		788A51981C15835600A166A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		788A519D1C15835600A166A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		788A519F1C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -373,7 +397,7 @@
 		788A51C31C15835600A166A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		788A51C51C15835600A166A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		788A51C71C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		788A51CC1C15835600A166A0 /* SwingTracer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwingTracer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		788A51CC1C15835600A166A0 /* BeatTracer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeatTracer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		788A51D21C15835600A166A0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		788A51D51C15835600A166A0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		788A51DB1C15835600A166A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -675,6 +699,31 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		7872819F1C74A78B00A47973 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				787281A01C74A78B00A47973 /* OpenSans-Bold.ttf */,
+				787281A11C74A78B00A47973 /* OpenSans-BoldItalic.ttf */,
+				787281A21C74A78B00A47973 /* OpenSans-ExtraBold.ttf */,
+				787281A31C74A78B00A47973 /* OpenSans-ExtraBoldItalic.ttf */,
+				787281A41C74A78B00A47973 /* OpenSans-Italic.ttf */,
+				787281A51C74A78B00A47973 /* OpenSans-Light.ttf */,
+				787281A61C74A78B00A47973 /* OpenSans-LightItalic.ttf */,
+				787281A71C74A78B00A47973 /* OpenSans-Regular.ttf */,
+				787281A81C74A78B00A47973 /* OpenSans-Semibold.ttf */,
+				787281A91C74A78B00A47973 /* OpenSans-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		787281B41C74B5D300A47973 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				787281B51C74B5F500A47973 /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		788A518C1C15835600A166A0 = {
 			isa = PBXGroup;
 			children = (
@@ -712,11 +761,11 @@
 		788A51961C15835600A166A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				788A51951C15835600A166A0 /* SwingTracer.app */,
+				788A51951C15835600A166A0 /* BeatTracer.app */,
 				788A51A91C15835600A166A0 /* SportAssistantTests.xctest */,
 				788A51B41C15835600A166A0 /* SportAssistantUITests.xctest */,
 				788A51BD1C15835600A166A0 /* SportAssistant WatchKit App.app */,
-				788A51CC1C15835600A166A0 /* SwingTracer.appex */,
+				788A51CC1C15835600A166A0 /* BeatTracer.appex */,
 				786805701C565EFE001AC1F0 /* iOSEngine.framework */,
 				786805791C565EFE001AC1F0 /* iOSEngineTests.xctest */,
 				786805BB1C56757E001AC1F0 /* watchOSEngine.framework */,
@@ -727,6 +776,7 @@
 		788A51971C15835600A166A0 /* SportAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				787281B41C74B5D300A47973 /* Theme */,
 				789263A81C6222AF00F9B94C /* ViewModel */,
 				780E49C91C4BC327004FBB7E /* Tags */,
 				788C3B401C28AB400081BD13 /* Resources */,
@@ -801,6 +851,8 @@
 		788C3B401C28AB400081BD13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7872819F1C74A78B00A47973 /* Fonts */,
+				787281B71C74B68D00A47973 /* Fonts.swift */,
 				78945FB11C6FCDD80075573D /* TagColors.swift */,
 				7813D6541C3C718400775FC7 /* Storyboard.swift */,
 				78D9D0E41C28AF9700D71865 /* LocalizableStrings.swift */,
@@ -972,7 +1024,7 @@
 			);
 			name = SportAssistant;
 			productName = SportAssistant;
-			productReference = 788A51951C15835600A166A0 /* SwingTracer.app */;
+			productReference = 788A51951C15835600A166A0 /* BeatTracer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		788A51A81C15835600A166A0 /* SportAssistantTests */ = {
@@ -1046,7 +1098,7 @@
 			);
 			name = "SportAssistant WatchKit Extension";
 			productName = "SportAssistant WatchKit Extension";
-			productReference = 788A51CC1C15835600A166A0 /* SwingTracer.appex */;
+			productReference = 788A51CC1C15835600A166A0 /* BeatTracer.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
@@ -1160,10 +1212,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787281AE1C74A78B00A47973 /* OpenSans-Italic.ttf in Resources */,
+				787281AB1C74A78B00A47973 /* OpenSans-BoldItalic.ttf in Resources */,
 				788A51A31C15835600A166A0 /* LaunchScreen.storyboard in Resources */,
+				787281B21C74A78B00A47973 /* OpenSans-Semibold.ttf in Resources */,
+				787281AC1C74A78B00A47973 /* OpenSans-ExtraBold.ttf in Resources */,
 				787953361C56CC6500780275 /* Localizable.strings in Resources */,
+				787281B01C74A78B00A47973 /* OpenSans-LightItalic.ttf in Resources */,
 				788A51A01C15835600A166A0 /* Assets.xcassets in Resources */,
+				787281AA1C74A78B00A47973 /* OpenSans-Bold.ttf in Resources */,
 				788A519E1C15835600A166A0 /* Main.storyboard in Resources */,
+				787281B31C74A78B00A47973 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				787281AF1C74A78B00A47973 /* OpenSans-Light.ttf in Resources */,
+				787281B11C74A78B00A47973 /* OpenSans-Regular.ttf in Resources */,
+				787281AD1C74A78B00A47973 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,12 +1403,14 @@
 				7848466A1C386FD5009E4CDD /* NSTimeInterval+Duration.swift in Sources */,
 				7813D6551C3C718400775FC7 /* Storyboard.swift in Sources */,
 				780E49CF1C4C35AC004FBB7E /* TagCell.swift in Sources */,
+				787281B81C74B68D00A47973 /* Fonts.swift in Sources */,
 				780E49CD1C4C359A004FBB7E /* TagsViewController.swift in Sources */,
 				7812C4C41C68DC4E0055140D /* TagCollectionViewCell.swift in Sources */,
 				78FC10A81C6B42CC00FDED1A /* AutoLayoutCollectionView.swift in Sources */,
 				789DE8F31C27F2BF00B8CA98 /* NSNumberFormatter+Acceleration.swift in Sources */,
 				784DD7B11C6BD04300108216 /* ColorCell.swift in Sources */,
 				780DAB4B1C662C6E002FA0B7 /* Realm+Notifications.swift in Sources */,
+				787281B61C74B5F500A47973 /* Theme.swift in Sources */,
 				780E49D11C4C3DDC004FBB7E /* TagViewController.swift in Sources */,
 				7831F6301C217B7600A7CBB1 /* ReusableView.swift in Sources */,
 				786A24FD1C5ABD7500B7470E /* ActivitiesViewController.swift in Sources */,
@@ -1728,7 +1792,7 @@
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp.watchkitextension;
-				PRODUCT_NAME = SwingTracer;
+				PRODUCT_NAME = BeatTracer;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1751,7 +1815,7 @@
 				INFOPLIST_FILE = "SportAssistant WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test.watchkitapp.watchkitextension;
-				PRODUCT_NAME = SwingTracer;
+				PRODUCT_NAME = BeatTracer;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1813,7 +1877,7 @@
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test;
-				PRODUCT_NAME = SwingTracer;
+				PRODUCT_NAME = BeatTracer;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -1833,7 +1897,7 @@
 				INFOPLIST_FILE = SportAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spangleapp.Test;
-				PRODUCT_NAME = SwingTracer;
+				PRODUCT_NAME = BeatTracer;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;

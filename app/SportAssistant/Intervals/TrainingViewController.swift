@@ -440,6 +440,7 @@ final class TrainingViewController: UIViewController {
       if let navigationController = segue.destinationViewController as? UINavigationController,
          let tagsViewController = navigationController.viewControllers.first as? TagsViewController {
             tagsViewController.mode = .Picker(.Selected(Array(self.training.tags)), [.AllowsEmpty, .AllowsMultipleSelection, .SelectAllAutomatically])
+            tagsViewController.addButtonHidden = true
             tagsViewController.completionHandler = {
                [unowned self] tagsViewController in
                StorageController.UIController.assignTags(tagsViewController.mode.tags,

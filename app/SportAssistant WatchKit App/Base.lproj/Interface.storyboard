@@ -5,20 +5,24 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
-        <!--Record-->
+        <!--Menu Interface Controller-->
         <scene sceneID="zbt-Ow-m9C">
             <objects>
-                <controller title="Record" id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="SwingTracer">
+                <controller id="RMd-Wx-1Ur" customClass="MenuInterfaceController" customModule="BeatTracer">
                     <items>
-                        <group width="1" alignment="left" id="in6-fX-Png">
+                        <group width="1" alignment="left" layout="vertical" spacing="0.0" id="in6-fX-Png">
                             <items>
-                                <label alignment="center" text="-" textAlignment="center" id="Hsg-D2-QcP">
+                                <label alignment="center" text="0" textAlignment="center" id="Hsg-D2-QcP">
                                     <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="36"/>
                                 </label>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="0.0"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
+                        <label alignment="center" text="Best acceleration (G)" textAlignment="center" id="sZ8-xS-LTG">
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="font" type="system" pointSize="12"/>
+                        </label>
                         <group width="1" alignment="left" verticalAlignment="bottom" layout="vertical" id="6Xo-1T-RM5">
                             <items>
                                 <button width="1" alignment="left" title="Start" id="Che-Hz-tXw">
@@ -48,11 +52,11 @@
         <!--Tags-->
         <scene sceneID="8JM-g2-1Yt">
             <objects>
-                <controller title="Tags" id="vRZ-7m-PNx" customClass="TagsInterfaceController" customModule="SwingTracer">
+                <controller title="Tags" id="vRZ-7m-PNx" customClass="TagsInterfaceController" customModule="BeatTracer">
                     <items>
                         <table alignment="left" id="N3i-JU-t4m">
                             <items>
-                                <tableRow identifier="TagController" id="bvi-a6-Zjx" customClass="TagController" customModule="SwingTracer">
+                                <tableRow identifier="TagController" id="bvi-a6-Zjx" customClass="TagController" customModule="BeatTracer">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="HBE-kX-TXc">
                                         <items>
                                             <group alignment="left" radius="2" id="KJE-52-7uo">
@@ -99,7 +103,7 @@
         <!--Trainings-->
         <scene sceneID="Ydg-Ue-tWj">
             <objects>
-                <controller title="Trainings" id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="SwingTracer">
+                <controller title="Trainings" id="4Vm-e0-XGA" customClass="HistoryInterfaceController" customModule="BeatTracer">
                     <items>
                         <group width="1" alignment="left" spacing="2" id="juf-G4-Uk9">
                             <items>
@@ -124,7 +128,7 @@
                         </group>
                         <table alignment="left" id="l0d-aT-5AZ">
                             <items>
-                                <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="SwingTracer">
+                                <tableRow identifier="TrainingController" id="wiJ-P3-LBH" customClass="TrainingController" customModule="BeatTracer">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="E1R-cr-Qqp">
                                         <items>
                                             <group width="1" alignment="left" id="Dxk-sW-opS">
@@ -190,7 +194,7 @@
         <!--Training-->
         <scene sceneID="gwI-Y9-Opt">
             <objects>
-                <controller identifier="TrainingInterfaceController" title="Close" id="rxU-gG-mSZ" userLabel="Training" customClass="TrainingInterfaceController" customModule="SwingTracer">
+                <controller identifier="TrainingInterfaceController" title="Close" id="rxU-gG-mSZ" userLabel="Training" customClass="TrainingInterfaceController" customModule="BeatTracer">
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="5" id="X09-vk-OPZ">
                             <items>
@@ -251,6 +255,11 @@
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="0.0"/>
                         </group>
+                        <button width="1" alignment="left" title="Resend to Phone" id="zsf-hH-ULB">
+                            <connections>
+                                <action selector="sendAction" destination="rxU-gG-mSZ" id="GuY-9m-YNK"/>
+                            </connections>
+                        </button>
                         <group width="1" alignment="left" verticalAlignment="bottom" id="MKk-An-wok">
                             <items>
                                 <button width="1" alignment="left" verticalAlignment="bottom" title="Delete" id="7Dt-Ub-YAV">
@@ -290,10 +299,10 @@
             </objects>
             <point key="canvasLocation" x="428" y="581"/>
         </scene>
-        <!--Close-->
+        <!--Chart-->
         <scene sceneID="V95-qR-dqU">
             <objects>
-                <controller identifier="ChartInterfaceController" title="Close" id="uLD-ez-mz2" customClass="ChartInterfaceController" customModule="SwingTracer">
+                <controller identifier="ChartInterfaceController" title="Close" id="uLD-ez-mz2" userLabel="Chart" customClass="ChartInterfaceController" customModule="BeatTracer">
                     <items>
                         <group width="1" height="1" alignment="left" hidden="YES" id="8Z9-9b-fBg">
                             <items>
@@ -314,7 +323,7 @@
         <!--Training Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="SwingTracer">
+                <controller id="AgC-eL-Hgc" userLabel="Training Controller" customClass="RecordTrainingInterfaceController" customModule="BeatTracer">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Hbz-BX-IXP">
                             <items>

@@ -12,6 +12,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    func application(application: UIApplication,
       didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
+         let theme = Theme()
+         theme.apply()
+         self.window!.tintColor = UIColor(named: .BelizeHole)
+
          Realm.configure()
          ClientSynchronizer.defaultClient.start()
 

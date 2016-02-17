@@ -1,16 +1,19 @@
 import Foundation
 
+private struct Fields {
+   static let name = "n"
+}
+
 extension Activity {
-   func toMessage() -> [String: AnyObject] {
-      return ["name": name]
+   func toJSON() -> [String: AnyObject] {
+      return [Fields.name: name]
    }
 
-   convenience init?(message: [String: AnyObject]) {
-      guard let name = message["name"] as? String else {
-         return nil
+   static func parseJSON(message: [String: AnyObject]) -> Activity? {
+      if let name = message[Fields.name] as? String {
+         return Activity(name: name)
       }
-
-      self.init(name: name)
+      return nil
    }
 }
 

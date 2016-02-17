@@ -29,6 +29,8 @@ enum L10n {
   case BestFormat(String)
   /// Last: %@
   case LastFormat(String)
+  /// %@
+  case RecordFormat(String)
 }
 
 extension L10n : CustomStringConvertible {
@@ -62,6 +64,8 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("BestFormat", p0)
       case .LastFormat(let p0):
         return L10n.tr("LastFormat", p0)
+      case .RecordFormat(let p0):
+        return L10n.tr("RecordFormat", p0)
     }
   }
 

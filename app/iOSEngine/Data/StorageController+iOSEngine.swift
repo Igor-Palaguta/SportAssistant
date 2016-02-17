@@ -77,12 +77,15 @@ extension StorageController {
       tagIds: [String],
       events: [AccelerationEvent]) {
          self.write {
-            if let training = self[id] {
-               let newEvents = events[training.events.count..<events.count]
-               self.history.appendEvents(newEvents, toTraining: training)
-            } else {
+            guard let training = self[id] else {
                let training = self.addTrainingWithId(id, start: start, tagIds: tagIds)
                self.history.appendEvents(events, toTraining: training)
+               return
+            }
+
+            if events.count > training.events.count {
+               let newEvents = events[training.events.count..<events.count]
+               self.history.appendEvents(newEvents, toTraining: training)
             }
          }
    }

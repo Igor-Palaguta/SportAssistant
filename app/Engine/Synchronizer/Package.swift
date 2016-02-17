@@ -18,7 +18,7 @@ enum Package {
       case Synchronize(let id, let start, let tagIds, let events):
          let message = ["id": id,
             "start": start,
-            "events": events.map { $0.toMessage() },
+            "events": events.map { $0.toJSON() },
             "tags": tagIds
          ]
          return ["synchronize": message]
@@ -27,9 +27,9 @@ enum Package {
       case Delete(let id):
          return ["delete": id]
       case Events(let id, let position, let events):
-         return ["events": ["id": id, "position": position, "events": events.map { $0.toMessage() }]]
+         return ["events": ["id": id, "position": position, "events": events.map { $0.toJSON() }]]
       case Tags(let tags):
-         return ["tags": tags.map { $0.toMessage() }]
+         return ["tags": tags.map { $0.toJSON() }]
       case ChangeTrainingTags(let id, let tagIds):
          return ["change_tags": ["id": id, "tags": tagIds]]
       }
@@ -50,7 +50,7 @@ enum Package {
             start = arguments["start"] as? NSDate,
             tagIds = arguments["tags"] as? [String],
             eventsMessage = arguments["events"] as? [[String: AnyObject]] {
-               let events = eventsMessage.flatMap { AccelerationEvent(message: $0) }
+               let events = eventsMessage.flatMap { AccelerationEvent.parseJSON($0) }
                self = Synchronize(id: id,
                   start: start,
                   tagIds: tagIds,
@@ -66,13 +66,13 @@ enum Package {
          if let id = arguments["id"] as? String,
             position = arguments["position"] as? Int,
             eventsMessage = arguments["events"] as? [[String: AnyObject]] {
-               let events = eventsMessage.flatMap { AccelerationEvent(message: $0) }
+               let events = eventsMessage.flatMap { AccelerationEvent.parseJSON($0) }
                self = Events(id: id, position: position, events: events)
          } else {
             return nil
          }
       case ("tags", let arguments as [[String: AnyObject]]):
-         let tags = arguments.flatMap { Tag(message: $0) }
+         let tags = arguments.flatMap { Tag.parseJSON($0) }
          self = .Tags(tags)
       case ("change_tags", let arguments as [String: AnyObject]):
          if let id = arguments["id"] as? String,

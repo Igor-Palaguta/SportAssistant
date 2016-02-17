@@ -177,18 +177,24 @@ final class TagsViewController: UITableViewController {
 
    var mode: Mode = .Navigator {
       didSet {
-         self.tableView.reloadData()
+         if self.isViewLoaded() {
+            self.tableView.reloadData()
+         }
       }
    }
+
+   var addButtonHidden = false
 
    enum Action: Int {
       case Add
       case SelectAll
    }
 
-   var actions: [Action] = [.Add, .SelectAll] {
+   var actions: [Action] = [.SelectAll] {
       didSet {
-         self.tableView?.reloadData()
+         if self.isViewLoaded() {
+            self.tableView?.reloadData()
+         }
       }
    }
 
@@ -220,6 +226,12 @@ final class TagsViewController: UITableViewController {
                strongSelf.tags = tags
                strongSelf.tableView.reloadData()
             }
+      }
+
+      if !self.addButtonHidden {
+         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add,
+            target: self,
+            action: Selector("addAction:"))
       }
 
       self.tableView.tableFooterView = UIView()
@@ -342,6 +354,10 @@ final class TagsViewController: UITableViewController {
 
    @objc private func completeAction(_: UIBarButtonItem) {
       self.completionHandler!(self)
+   }
+
+   @objc private func addAction(_: UIBarButtonItem) {
+      self.performSegue(StoryboardSegue.Main.Add, sender: nil)
    }
 }
 
