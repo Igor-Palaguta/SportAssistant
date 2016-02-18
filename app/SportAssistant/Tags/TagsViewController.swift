@@ -26,7 +26,7 @@ enum TagsFilter {
    case All
    case Selected([Tag])
 
-   var tags: [Tag] {
+   private var tags: [Tag] {
       switch self {
       case .All:
          return Array(StorageController.UIController.tags)
@@ -44,7 +44,7 @@ final class TagsViewController: UITableViewController {
 
       static let AllowsEmpty = Options(rawValue: 1)
       static let AllowsMultipleSelection = Options(rawValue: 2)
-      static let SelectAllAutomatically = Options(rawValue: 4)
+      static let SelectAllExclusively = Options(rawValue: 4)
    }
 
    enum Mode {
@@ -55,8 +55,12 @@ final class TagsViewController: UITableViewController {
          switch self {
          case Navigator:
             fatalError()
-         case Picker(let filter, _):
-            return filter.tags
+         case Picker(.All, _) where self.shouldSelectAllExclusively:
+            return []
+         case Picker(.All, _):
+            return Array(StorageController.UIController.tags)
+         case Picker(.Selected(let tags), _):
+            return tags
          }
       }
 
@@ -74,11 +78,11 @@ final class TagsViewController: UITableViewController {
          return options.contains(.AllowsEmpty)
       }
 
-      var shouldSelectAllAutomatically: Bool {
+      var shouldSelectAllExclusively: Bool {
          guard case .Picker(_, let options) = self else {
             fatalError()
          }
-         return options.contains(.SelectAllAutomatically)
+         return options.contains(.SelectAllExclusively)
       }
 
       private func accessoryForAll() -> UITableViewCellAccessoryType {
@@ -97,7 +101,7 @@ final class TagsViewController: UITableViewController {
          case Navigator:
             return false
          case Picker(.All, _):
-            return self.allowsMultipleSelection
+            return !self.shouldSelectAllExclusively && self.allowsMultipleSelection
          case Picker(.Selected(let tags), _):
             return tags.contains(tag)
          }
@@ -118,10 +122,12 @@ final class TagsViewController: UITableViewController {
          }
 
          if case .Selected(let selectedTags) = filter
-            where self.allowsMultipleSelection
-               && self.shouldSelectAllAutomatically
-               && selectedTags.count == TagsFilter.All.tags.count {
-                  return Picker(.All, options)
+            where self.allowsMultipleSelection {
+               if (self.shouldSelectAllExclusively && selectedTags.isEmpty)
+                  || (!self.shouldSelectAllExclusively && selectedTags.count == TagsFilter.All.tags.count) {
+                     return Picker(.All, options)
+               }
+
          }
 
          return Picker(filter, options)
@@ -183,7 +189,7 @@ final class TagsViewController: UITableViewController {
       }
    }
 
-   var addButtonHidden = false
+   var editable = true
 
    enum Action: Int {
       case Add
@@ -228,7 +234,7 @@ final class TagsViewController: UITableViewController {
             }
       }
 
-      if !self.addButtonHidden {
+      if self.editable {
          self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add,
             target: self,
             action: Selector("addAction:"))
@@ -290,7 +296,7 @@ final class TagsViewController: UITableViewController {
    }
 
    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return self.tagAtIndexPath(indexPath) != nil
+      return self.editable && self.tagAtIndexPath(indexPath) != nil
    }
 
    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {

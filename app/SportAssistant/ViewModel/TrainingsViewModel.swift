@@ -48,7 +48,7 @@ extension TagsFilter {
 }
 
 final class TrainingsViewModel {
-   var filter = MutableProperty(TagsFilter.Selected([]))
+   var filter = MutableProperty(TagsFilter.All)
 
    var name: SignalProducer<String, NoError> {
       return self.filter.producer.map { $0.name }
