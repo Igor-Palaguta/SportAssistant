@@ -37,6 +37,10 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -294,9 +298,36 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bestLabel" destination="hku-Ek-90K" id="QoI-O9-UGP"/>
+                        <outlet property="emptyView" destination="dbw-Qb-mPs" id="bM8-l9-cHa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWV-rg-dp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="dbw-Qb-mPs">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start trainining from watch app or change filter." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRS-vQ-Gcs">
+                            <rect key="frame" x="40" y="35.5" width="160" height="57.5"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No trainings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGJ-ia-Uw5">
+                            <rect key="frame" x="78.5" y="11" width="83" height="19.5"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="uRS-vQ-Gcs" firstAttribute="centerY" secondItem="dbw-Qb-mPs" secondAttribute="centerY" id="AaS-q1-tFn"/>
+                        <constraint firstItem="oGJ-ia-Uw5" firstAttribute="centerX" secondItem="dbw-Qb-mPs" secondAttribute="centerX" id="W2Q-yw-TQd"/>
+                        <constraint firstItem="uRS-vQ-Gcs" firstAttribute="leading" secondItem="dbw-Qb-mPs" secondAttribute="leading" constant="40" id="dQw-NI-4Ba"/>
+                        <constraint firstAttribute="trailing" secondItem="uRS-vQ-Gcs" secondAttribute="trailing" constant="40" id="jkl-VI-Axd"/>
+                        <constraint firstItem="uRS-vQ-Gcs" firstAttribute="top" secondItem="oGJ-ia-Uw5" secondAttribute="bottom" constant="5" id="x2D-6c-2T3"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="650" y="-584"/>
         </scene>
@@ -312,16 +343,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-SN-zjF">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-SN-zjF">
                                 <rect key="frame" x="0.0" y="213" width="320" height="291"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="No peaks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KZ-d4-vXL" userLabel="NoPeaks">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" misplaced="YES" text="No peaks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KZ-d4-vXL" userLabel="NoPeaks">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="291"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Fq-La-d2S">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Fq-La-d2S">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="291"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -999,8 +1030,8 @@
         <image name="Tags" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LdV-4m-lIl"/>
-        <segue reference="Igz-RH-noq"/>
+        <segue reference="4Jk-he-QF5"/>
+        <segue reference="N2S-S2-3Wf"/>
         <segue reference="Qhy-5q-sNK"/>
     </inferredMetricsTieBreakers>
 </document>

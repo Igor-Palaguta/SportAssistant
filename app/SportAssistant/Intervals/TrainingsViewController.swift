@@ -7,7 +7,10 @@ final class TrainingsViewController: UITableViewController {
 
    var model = TrainingsViewModel()
 
-   @IBOutlet weak private var bestLabel: UILabel!
+   @IBOutlet private weak var bestLabel: UILabel!
+
+   //Out of hierarchy
+   @IBOutlet private var emptyView: UIView!
 
    private var trainings: [Training] = []
 
@@ -27,13 +30,29 @@ final class TrainingsViewController: UITableViewController {
                return NSNumberFormatter.attributedStringForAcceleration(best, integralFont: integralFont)
       }
 
-      DynamicProperty(object: self, keyPath: "title") <~ self.model.name.producer.map { $0 }
+      DynamicProperty(object: self.navigationItem, keyPath: "title") <~ self.model.name.producer.map { $0 }
 
       self.model.trainings.startWithNext {
          [weak self] trainings in
          if let strongSelf = self where trainings != strongSelf.trainings {
             strongSelf.trainings = Array(trainings)
             strongSelf.tableView.reloadData()
+         }
+      }
+
+      self.model.isEmpty.startWithNext {
+         [weak self] isEmpty in
+         guard let strongSelf = self else {
+            return
+         }
+
+         strongSelf.tableView.scrollEnabled = !isEmpty
+         if isEmpty {
+            strongSelf.emptyView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            strongSelf.emptyView.frame = strongSelf.view.bounds
+            strongSelf.view.addSubview(strongSelf.emptyView)
+         } else {
+            strongSelf.emptyView.removeFromSuperview()
          }
       }
    }
