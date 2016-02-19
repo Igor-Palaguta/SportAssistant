@@ -71,7 +71,10 @@ public final class StorageController: NSObject {
    }
 
    func write(@noescape transaction: () -> ()) {
-      try! self.realm.write(transaction)
+      do {
+         try self.realm.write(transaction)
+      } catch {
+      }
    }
 
    public func deleteTraining(training: Training) {

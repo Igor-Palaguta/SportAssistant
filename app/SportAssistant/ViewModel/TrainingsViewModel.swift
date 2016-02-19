@@ -71,6 +71,6 @@ final class TrainingsViewModel {
    }
 
    var isEmpty: SignalProducer<Bool, NoError> {
-      return self.trainings.map { $0.isEmpty }
+      return self.results.map { $0.isEmpty }
    }
 }
